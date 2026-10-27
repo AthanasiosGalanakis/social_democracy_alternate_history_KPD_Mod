@@ -1,0 +1,43 @@
+title: Send a delegation to Moscow
+subtitle: Moscow decides more than we like. We can try to decide some of it back.
+new-page: true
+is-card: true
+card-image: img/flags.jpg
+frequency: 150
+tags: kpd_party
+view-if: moscow_action_timer <= 0
+on-arrival: month_actions += 1; moscow_action_timer = 3
+
+= Our delegation to the Comintern
+
+The Executive Committee of the Communist International, the ECCI, settles disputes inside the Russian party as well as ours. Every delegation we send is a vote in that argument, and every delegation is noticed.
+
+Moscow's balance of power runs from -100 (the Left Opposition) to +100 (Stalin) and drifts toward Stalin by 0.8 a month. Below -30 Trotsky and Radek lead the International. From -30 to 24 it is Zinoviev, Kamenev and Stalin. From 25 to 59 it is Stalin and Bukharin. From 60 up, Stalin alone. There is no chance in it; the numbers are shown on the status page.
+
+- @back_opposition: Lobby the delegates for the Left Opposition.
+- @back_apparatus: Lobby the delegates for the Party Secretariat.
+- @report_loyal: Send a full and obedient report instead.
+- @root: Not this month.
+- @easy_discard
+
+@back_opposition
+choose-if: resources >= 2
+subtitle: -2 resources, -9 on the balance of power, -6 trust
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 2; moscow_balance -= 9; comintern_trust -= 6
+
+We argue the Left Opposition's case in the corridors of the Comintern: that the German revolution was lost by the leadership's caution, not by the German workers. The argument is serious and the Secretariat knows who is making it. Bear in mind that a faction fight is how the Russian party chooses its masters, and we help them choose.
+
+@back_apparatus
+choose-if: resources >= 2
+subtitle: -2 resources, +8 on the balance of power, +4 trust
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 2; moscow_balance += 8; comintern_trust += 4
+
+We lend our voices to the majority in the Russian party. The Secretariat is grateful and says so. It is also the faction that will remember, when the time comes, who was useful and who was not.
+
+@report_loyal
+subtitle: No cost, +5 trust
+on-arrival: comintern_trust += 5
+
+A full, careful report goes to the ECCI. It says what they wish to read, and it is an easy way to buy their goodwill, if the cost of goodwill is that Moscow will see Germany as it sees us, not as it is.

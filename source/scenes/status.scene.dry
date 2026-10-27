@@ -102,7 +102,7 @@ Moscow apparatus strength: [+ kf_apparatus_strength : strength +], dissent: [+ k
 
 Dollar rate: [+ usd_rate +] marks. Readiness for an October rising: [+ y23_ready +] (unity with the SPD left [+ y23_s +], Hundreds [+ y23_h +], strikes [+ y23_t +], workers' governments [+ y23_g +], Moscow [+ y23_m +]).
 
-Moscow: [+ moscow_leader +], trust [+ comintern_trust +]
+Moscow: [+ moscow_leader +] (line: [+ comintern_line +], favours [+ moscow_favored +]), trust [+ comintern_trust +], balance [+ moscow_balance_r +], subsidy [+ soviet_subsidy +], patience step [+ moscow_divergence +] of 5
 
 
 @paramilitaries

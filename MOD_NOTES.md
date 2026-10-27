@@ -30,6 +30,12 @@ Build with `dendrynexus make-html` (see README.md).
 - Crisis path: the "Call an extraordinary conference" card appears when the line holder's dissent is 20 or more; congress, plenum and Moscow-intervention triggers come with the events (M4, M5).
 - Plans of factions out of power lose 0.25 step per month; zigzag recovers 1 per 6 months; each zigzag point cuts campaign gains 4%.
 
+## M4 Moscow (feat/moscow)
+- moscow_balance (-100 Left Opposition to +100 Stalin) drifts +0.8 a month. Thresholds: <= -30 Trotsky-Radek (favours Left), -29 to 24 Zinoviev-Kamenev-Stalin (Right), 25-59 Stalin-Bukharin (Centre), 60+ Stalin (Apparatus). No dice.
+- Card "Send a delegation to Moscow" (3 month timer): lobby for the Opposition (-9 balance, -6 trust), for the Secretariat (+8, +4 trust), or an obedient report (+5 trust).
+- Divergence ladder: each month with a line Moscow does not favour adds 1 point (0.5 at trust 75+); 3 points per step. Steps: warning, subsidy cut, Moscow backs the favoured faction, Open Letter, removal by decree (forced line change). Aligned months remove 2 points.
+- Soviet subsidy gives 1 resource a quarter while active.
+- Events: moscow_divergence, moscow_change. Balance numbers are placeholders to tune in M5.
 ## Status (milestone M3, KPD advisers)
 
 - Eleven advisers as pinned cards, tagged by faction: Right (Brandler, Thalheimer, Walcher), Left (Fischer, Maslow, Thälmann), Centre (Meyer, Zetkin, Pieck), Moscow apparatus (Radek, Eberlein). Two actions each, one action every 4 months (`advisor_action_timer`). Effects are first-pass numbers.
