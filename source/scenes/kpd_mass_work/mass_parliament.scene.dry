@@ -1,0 +1,32 @@
+title: Parliamentary tactics
+subtitle: The Reichstag and the Landtage are a platform, not a goal.
+new-page: true
+is-card: true
+card-image: img/reichstag_1.jpg
+frequency: 150
+tags: kpd_mass
+view-if: mass_parliament_timer <= 0
+on-arrival: month_actions += 1; mass_parliament_timer = 4
+
+= Parliamentary tactics
+
+Our deputies sit in the Reichstag and in the Landtage and they have to decide what to do there. A parliament that the party would like to abolish is also the only place where the party's voice reaches every town.
+
+- @tribune: Use the tribune: speeches to the workers, not to the House.
+- @motions: Introduce motions that the SPD cannot refuse.
+- @root: Not this month.
+- @easy_discard
+
+@tribune
+subtitle: No cost.
+on-arrival: workers_kpd += 1*campaign_mult; pro_republic -= 1; kf_left_strength += 1
+go-to: root
+
+Our deputies speak for the benefit of the printed record. The speeches are reprinted in the party press and read at meetings. Nobody in the Reichstag is persuaded and nobody expected them to be.
+
+@motions
+subtitle: No cost.
+on-arrival: y23_unity += 1; workers_spd -= 1; kf_right_strength += 1
+go-to: root
+
+We introduce motions on unemployment pay and eight-hour days. The SPD deputies must vote with us, against us, or abstain, and each choice costs them something with their voters.

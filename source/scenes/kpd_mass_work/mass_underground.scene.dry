@@ -1,0 +1,34 @@
+title: Underground work
+subtitle: The party is banned. The work continues.
+new-page: true
+is-card: true
+card-image: img/poster_0.jpg
+frequency: 150
+tags: kpd_mass
+view-if: mass_underground_timer <= 0 and kpd_banned = 1
+on-arrival: month_actions += 1; mass_underground_timer = 3
+
+= Underground work
+
+The offices are closed and the papers are confiscated. The party's members meet in kitchens and at the allotments, using names that are not theirs, and the police have informers. How do we keep a mass party alive in secret?
+
+- @cells: Reorganise into small cells with a single link to the leadership.
+- @fronts: Work through legal front organisations.
+- @root: Not this month.
+- @easy_discard
+
+@cells
+subtitle: No cost.
+on-arrival: kf_apparatus_strength += 2; workers_kpd += 1*campaign_mult
+go-to: root
+
+Each cell knows only its own members and one contact. The structure is hard to break and also hard to lead, and it favours those who know the apparatus. The old branches, which liked to argue, are gone.
+
+@fronts
+choose-if: resources >= 1
+subtitle: -1 resources
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; kpd_ban_end = kpd_ban_end - 1; workers_kpd += 1*campaign_mult
+go-to: root
+
+Sports clubs, choirs and relief committees take on the work that the banned party cannot do openly. The police know exactly what they are, and the courts, for the moment, do not care.

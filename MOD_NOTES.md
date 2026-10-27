@@ -49,3 +49,9 @@ Build with `dendrynexus make-html` (see README.md).
 - Chemnitz is deterministic. Readiness = unity with the SPD left (5 per joint action, max 30) + Hundreds (6 each, max 30) + strikes (3 each, max 10) + workers' governments (10 Saxony, 5 Thuringia) + Moscow (5 subsidy, 10 if Trotsky-Radek lead, 5 if trust 60+). Rising succeeds at 75 with unity 15; a strike holds at 60 with unity 15; calling off leads to Hamburg only under the Left line.
 - Civil war: four campaign months, strength vs the Reichswehr (+5 a month); more than 10 ahead wins, within 10 is a long war, otherwise defeat. Endings are in kpd_endings.scene.dry; the base-game endings still appear and are replaced in M10.
 - To verify before release: Leipzig congress dates, Cuno strike dates, ECCI Politburo positions (Zinoviev, Trotsky, Stalin), Hamburg casualty figure, Reichsexekution and ban dates, the Dec 1923 working-time decree, Rentenmark rate wording.
+
+## M6 Mass Work deck (feat/mass-work-deck)
+- Second deck "Mass Work" (tag kpd_mass) next to Party Affairs. It replaces the Government Affairs deck.
+- Seven cards: strikes and factory councils, unemployed councils, workers' relief, the party press, defence units (Proletarian Hundreds, RFB from July 1924), parliamentary tactics, underground work (only while banned).
+- The actions do not depend on the party line. They feed the same counters as the line actions (y23_unity, y23_hundreds, y23_strikes), so every faction can prepare for October, which is what makes the Chemnitz thresholds reachable.
+- To verify: the RFB founding date (July 1924), Münzenberg's International Workers' Aid.
