@@ -1,0 +1,37 @@
+title: The prices
+subtitle: Wages are paid daily, and are spent by lunchtime.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 3 and y23_prices_done = 0
+on-arrival: y23_prices_done = 1
+
+= Prices rise faster than wages
+
+Prices are posted in the morning and are higher by evening. Workers who are paid on Friday spend their wages the same hour, since by Monday they will not buy bread. Industrialists with debts pay them off in worthless marks, and the speculators who hold dollars and goods grow rich. A pensioner or a small saver is ruined, which feeds a rage that the Right will know how to use.
+
+For the party the inflation is both an opportunity and a test. It is easy to blame the profiteers. It is harder to organise anything that makes the workers' lives better in the week it is promised.
+
+- @control: Build price control committees in the factories and markets.
+- @wages: Support a wave of wage strikes for indexed wages.
+- @agitate: Concentrate on agitation: the whole of capitalism is to blame.
+
+@control
+subtitle: Costs 1 resources.
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; y23_unity += 1; workers_kpd += 3*campaign_mult; unemployed_kpd += 2*campaign_mult
+go-to: root
+
+Control committees inspect the shops, expose the hoarders and, in some towns, make them sell. They are small and they are popular, and one thing they are not is a revolution.
+
+@wages
+on-arrival: y23_strikes += 1; workers_kpd += 3*campaign_mult; workers_spd -= 1; kf_right_dissent += 2
+go-to: root
+
+The strikes win raises that are eaten by the next week's prices. The workers still learn something: that wages negotiated by the union bureaucracy follow the market, while wages won by a strike follow the workers' strength.
+
+@agitate
+on-arrival: workers_kpd += 1*campaign_mult; unemployed_kpd += 1*campaign_mult; kf_left_dissent -= 2
+go-to: root
+
+The party press prints the slogans and the rallies are well attended. The workers agree and then go home to count their money.

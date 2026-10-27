@@ -1,0 +1,26 @@
+title: KPD endings
+new-page: true
+
+@october_victory
+title: The German October
+view-if: kpd_ending = "october_victory"
+tags: endings
+go-to: game_over.eg_menu
+
+The Reichswehr breaks, the councils hold, and the government in Berlin falls to the Hundreds and the factory committees of the Reich. What follows is not the end of the story: a workers' state in a ruined Germany, surrounded by hostile powers and tied to a Soviet Russia of its own troubles, has to decide what it will be. The Comintern wants a loyal section, and the German workers, who made this revolution, want a say. This game has no more to tell, but history does.
+
+@long_war
+title: Germany divided
+view-if: kpd_ending = "long_war"
+tags: endings
+go-to: game_over.eg_menu
+
+Neither side can destroy the other. The councils hold Saxony, Thuringia and parts of the Ruhr and the coast; the Reichswehr and the Freikorps hold Bavaria and the capital. Germany is divided into camps, each of which proclaims itself the legitimate government. A long war has begun, and no one can say who will be starving first.
+
+@october_defeat
+title: The German October is crushed
+view-if: kpd_ending = "october_defeat"
+tags: endings
+go-to: game_over.eg_menu
+
+The Reichswehr takes the last of our cities in the winter. Thousands are shot or imprisoned, the party is outlawed and its leaders are in exile or in the cellars. The Right in Bavaria, and the generals who restored order, are now in command. The path to what comes later runs through these months.

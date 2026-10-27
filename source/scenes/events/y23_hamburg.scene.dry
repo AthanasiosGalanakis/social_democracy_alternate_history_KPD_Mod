@@ -1,0 +1,14 @@
+title: Hamburg
+subtitle: The signal never reached the harbour.
+new-page: true
+tags: kpd_event
+view-if: y23_hamburg_pending = 1 and y23_hamburg_done = 0
+on-arrival: y23_hamburg_done = 1; y23_hamburg_pending = 0; workers_kpd -= 2; unemployed_kpd -= 1; kf_left_dissent += 5; kf_right_dissent += 8; comintern_trust -= 3
+
+= The Hamburg uprising
+
+On the night of 22 to 23 October, Hamburg's party district, which has the Left on its committees, acts on the earlier order and attacks the police stations of the harbour districts. A few hundred fighters, led by men like Hans Kippenberger, take stations in Barmbek and Schiffbek. They are on their own: the order to stand down arrived too late, or was ignored, in the only city where the party chose to fight.
+
+After three days the Hamburg police and the Reichswehr end it. About a hundred are dead, among them workers, policemen, and bystanders. It is not a revolution, and it is not nothing: it shows that the best fighters of the party followed a leadership that did not tell them the plan was changed.
+
+- @root: Continue.

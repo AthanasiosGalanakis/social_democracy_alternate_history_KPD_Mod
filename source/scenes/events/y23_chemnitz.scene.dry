@@ -1,0 +1,116 @@
+title: The Chemnitz conference
+subtitle: 21 October. The factory councils of Saxony are waiting for our call.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 10 and y23_saxony_done = 1 and y23_chemnitz_done = 0
+on-arrival: {!
+Q.y23_chemnitz_done = 1;
+Q.y23_s = Math.min(30, Q.y23_unity*5);
+Q.y23_h = Math.min(30, Q.y23_hundreds*6);
+Q.y23_t = Math.min(10, Q.y23_strikes*3);
+Q.y23_g = 10*Q.y23_saxony + 5*Q.y23_thuringia;
+Q.y23_m = 5*Q.soviet_subsidy + (Q.moscow_leader == "Trotsky-Radek" ? 10 : 0) + (Q.comintern_trust >= 60 ? 5 : 0);
+Q.y23_ready = Q.y23_s + Q.y23_h + Q.y23_t + Q.y23_g + Q.y23_m;
+Q.y23_has_s = (Q.y23_s >= 15) ? 1 : 0;
+Q.y23_has_r = (Q.y23_ready >= 75) ? 1 : 0;
+!}
+
+= The Chemnitz conference
+
+The conference of Saxony's factory councils meets in Chemnitz on 21 October. The Reichswehr is already advancing: General Müller has the Reich government's authority to remove the Saxon cabinet by force. The KPD intends to call a general strike from Chemnitz as the signal for the German October, and Brandler is going to say so.
+
+Before anything else, here is what we have, with no estimates added or subtracted.
+
+Readiness for a rising: [+ y23_ready +] points. The rising needs 75, and an alliance with the SPD left worth at least 15, which it must have, since without it the strike does not spread beyond the KPD.
+
+Unity with the SPD left: [+ y23_s +] of 30 (needed: 15)[? if y23_has_s = 1 : . We have it. ?][? if y23_has_s = 0 : . We do not have it. ?]
+
+Proletarian Hundreds: [+ y23_h +] of 30. Strikes: [+ y23_t +] of 10. Workers' governments: [+ y23_g +] of 15. Moscow: [+ y23_m +] of 20.
+
+The SPD ministers in the Saxon cabinet are unwilling to call a general strike. Without them, the strike will not leave the Communist-led districts. We can still go through with it.
+
+- @rising: Call the general strike and the armed rising.
+- @strike: Call the general strike, but no rising.
+- @calloff: Call it off. The party cannot win this fight.
+
+@rising
+subtitle: Needs readiness 75 and unity 15. Otherwise, a defeat.
+on-arrival: {!
+if (Q.y23_has_r == 1 && Q.y23_has_s == 1) {
+    Q.y23_outcome = 'rising_success';
+    Q.civil_war = 1;
+    Q.cw_red = Q.y23_ready;
+    Q.cw_white = 85;
+    Q.cw_month = 0;
+} else {
+    Q.y23_outcome = 'rising_crushed';
+}
+!}
+go-to: rising_won if y23_outcome = 'rising_success'; rising_lost if y23_outcome = 'rising_crushed'
+
+@rising_won
+title: The German October begins
+
+= The rising
+
+The strike is called, and it spreads. The Hundreds take the police stations of Saxony, the SPD left stays at the side of the councils, and in the Ruhr and in Hamburg the workers stop. The Reichswehr marches and hesitates; the Freikorps of Bavaria muster to the south. For the first time since 1919 Germany is on the edge of a civil war, and this time the workers have shown they can fight.
+
+The next months will decide it. We have no single decisive battle, only a campaign with fronts and the question of who, in Berlin, will command the Reichswehr.
+
+- @root: To the campaign.
+
+@rising_lost
+title: The rising is crushed
+
+= The rising is crushed
+
+The call goes out and the response is a patchwork. In Saxony the Hundreds hold a few towns for days before the Reichswehr takes them. The SPD left withdraws its support, and the councils, which do not feel ready, stay at the machines. Moscow had a date and the party had a plan, and neither had the workers.
+
+[? if y23_has_s = 0 : The SPD left's refusal was fatal. ?][? if y23_has_s = 1 : The alliance with the SPD left held, but the Hundreds and the other forces were not enough. ?]
+
+Hundreds of workers are dead or arrested. The party is ruined, and Moscow will look for someone to blame.
+
+- @root: Continue.
+
+@strike
+subtitle: Needs readiness 60 and unity 15 to hold.
+on-arrival: {!
+if (Q.y23_ready >= 60 && Q.y23_has_s == 1) {
+    Q.y23_outcome = 'strike_holds';
+    Q.saxony_survives = 1;
+    Q.workers_kpd += 4;
+} else {
+    Q.y23_outcome = 'strike_fails';
+}
+!}
+go-to: strike_won if y23_outcome = 'strike_holds'; strike_lost if y23_outcome = 'strike_fails'
+
+@strike_won
+title: The general strike holds
+
+= The strike holds
+
+Saxony stops. The SPD left votes with the councils, Stresemann, with a divided cabinet and a Reichswehr that does not want to be called a civil-war army, negotiates rather than marching. The Saxon workers' government survives into the winter. It is not a revolution. It is a workers' government that has not been crushed, which in 1923 is a rare thing.
+
+- @root: Continue.
+
+@strike_lost
+title: The strike fails
+
+= The strike fails
+
+The call is made and the strike does not leave the Communist districts. The Reichswehr enters Saxony on the 27th, and the SPD ministers, who had never wanted this, leave the cabinet. Our own people are left to explain to the workers what the strike was for.
+
+- @root: Continue.
+
+@calloff
+subtitle: The historical choice.
+on-arrival: {!
+Q.y23_outcome = 'called_off';
+Q.comintern_trust -= 5;
+Q.kf_left_dissent += 10;
+if (Q.party_line == 'left') { Q.y23_hamburg_pending = 1; }
+!}
+go-to: root
+
+We cancel the strike. The news cannot reach everyone, and the chairman of the conference withdraws his call to the Saxon councils. It is a retreat, and it is also a recognition that the German October exists in Moscow's calendar and not yet on Germany's streets. Brandler argued that the party could not win, and that he would be blamed for being right.

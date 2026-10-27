@@ -30,7 +30,7 @@ view-if: party_line = "right"
 choose-if: resources >= 1
 subtitle: -1 resources
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; plan_right_progress += 1; workers_kpd += 3*campaign_mult; kf_left_dissent += 4
+on-arrival: resources -= 1; plan_right_progress += 1; y23_unity += 1; workers_kpd += 3*campaign_mult; kf_left_dissent += 4
 
 Several SPD and union locals agree to talk, usually over the heads of their leaders. The Left calls it capitulation to the people who killed Liebknecht and Luxemburg, and they are not entirely wrong to ask what the SPD leaders will actually do in a crisis.
 
@@ -39,7 +39,7 @@ view-if: party_line = "right"
 choose-if: resources >= 1
 subtitle: -1 resources
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; plan_right_progress += 1; workers_kpd += 3*campaign_mult; workers_spd -= 1
+on-arrival: resources -= 1; plan_right_progress += 1; y23_unity += 1; workers_kpd += 3*campaign_mult; workers_spd -= 1
 
 Joint committees against hoarding and price gouging are set up in several towns. Workers of both parties sit on them, and it is the first time in a long while that the two parties' members have acted together.
 
@@ -48,7 +48,7 @@ view-if: party_line = "left"
 choose-if: resources >= 1
 subtitle: -1 resources
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; plan_left_progress += 1; rfb_strength += 20; rfb_militancy += 0.02; kf_right_dissent += 4
+on-arrival: resources -= 1; plan_left_progress += 1; y23_hundreds += 1; rfb_strength += 20; rfb_militancy += 0.02; kf_right_dissent += 4
 
 The Proletarian Hundreds grow and drill openly, especially in Saxony and Hamburg. Their strength is real, but so is the risk: a state with an army and police will not let armed workers' units grow for ever.
 
@@ -57,7 +57,7 @@ view-if: party_line = "left"
 choose-if: resources >= 1
 subtitle: -1 resources
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; plan_left_progress += 1; workers_kpd += 4*campaign_mult; workers_spd -= 2; kf_right_dissent += 3
+on-arrival: resources -= 1; plan_left_progress += 1; y23_strikes += 1; workers_kpd += 4*campaign_mult; workers_spd -= 2; kf_right_dissent += 3
 
 A wave of offensive strikes sweeps the Ruhr and central Germany. The anger is real, but a strike called without the unions' backing is easily isolated, and many SPD workers see only a party that wants them to follow it.
 

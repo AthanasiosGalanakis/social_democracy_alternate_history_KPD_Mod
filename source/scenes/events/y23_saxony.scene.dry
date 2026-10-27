@@ -1,0 +1,29 @@
+title: Saxony offers us seats
+subtitle: Minister-President Zeigner wants communists in his cabinet.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 10 and y23_saxony_done = 0
+on-arrival: y23_saxony_done = 1
+
+= A workers' government in Saxony
+
+Erich Zeigner, the SPD left's Minister-President of Saxony, has stood against the Reichswehr's drift to the Right and the Bavarian leagues. He invites the KPD into his cabinet. On the table are ministries for Fritz Heckert and Paul Böttcher, and a chancellery post for Brandler himself. A communist who sits in a Land government commands part of the police and can issue arms to the Hundreds, and Berlin knows it.
+
+This is the workers' government of Moscow's slogan. Is it a stepping stone to a rising or a trap? The Reich government can send in the Reichswehr under Article 48, and the SPD left may have more courage in the cabinet than it has in the streets.
+
+- @enter: Enter the cabinet and take the ministries.
+- @refuse: Refuse. A workers' government is no use if it sits at the pleasure of Berlin.
+
+@enter
+subtitle: Governments +10, Hundreds armed, Berlin will notice.
+on-arrival: y23_saxony = 1; y23_unity += 1; rfb_strength += 40; comintern_trust += 5; kf_right_strength += 3
+go-to: root
+
+Our ministers take their oaths. The first act of the new cabinet is to open the police arsenals to the Hundreds. Berlin sends an ultimatum and the SPD ministers in the Reich government begin to wonder, in public, how long they will be asked to sit next to men who arm the workers of Saxony.
+
+@refuse
+subtitle: Moscow -3 trust, Left +5 dissent.
+on-arrival: comintern_trust -= 3; kf_left_dissent += 5
+go-to: root
+
+We keep our hands clean of the Land government. Zeigner is disappointed. The Left says that a Saxon cabinet that could have armed the workers has been wasted, and the Right says that it is better to wait.

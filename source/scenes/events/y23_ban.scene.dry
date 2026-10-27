@@ -1,0 +1,29 @@
+title: The party is banned
+subtitle: 23 November. The Reich bans the KPD.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 11 and y23_chemnitz_done = 1 and y23_ban_done = 0 and civil_war = 0 and y23_outcome != 'strike_holds' and y23_outcome != 'rising_success'
+on-arrival: y23_ban_done = 1
+
+= The ban
+
+On 23 November the Reich government bans the KPD, and the Reichswehr's executive power puts the order into effect. The ban lasts until March 1924. The party's papers are shut, its offices closed and its leaders hunted. The NSDAP was banned on the same day, in the same decree, which tells you what the government thinks of the difference between its enemies.
+
+The party has to choose how to survive.
+
+- @underground: Go underground, with secret cells and illegal papers.
+- @legal: Fight the ban in the courts and keep to legal forms.
+
+@underground
+subtitle: Apparatus +5 strength, 3 months banned.
+on-arrival: kpd_banned = 1; kpd_ban_end = time + 3; kf_apparatus_strength += 5; resources -= 1; workers_kpd -= 1
+go-to: root
+
+The party falls back on cells and false names. This is a world the apparatus knows. The Comintern's agents, who have seen this before, are in their element, and the more the party depends on them the less it depends on its own members.
+
+@legal
+subtitle: Right +4 strength, 3 months banned.
+on-arrival: kpd_banned = 1; kpd_ban_end = time + 3; kf_right_strength += 4; kf_apparatus_strength -= 2; resources -= 1
+go-to: root
+
+We file complaints and send delegations to the courts. The judges are patient with us, as they were with the generals in 1920, and they decide nothing. A legalist party under a ban is a party that does very little.

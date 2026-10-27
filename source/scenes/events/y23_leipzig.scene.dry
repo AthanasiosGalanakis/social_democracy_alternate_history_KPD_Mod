@@ -1,0 +1,37 @@
+title: The Leipzig congress
+subtitle: The party congress meets from 28 January.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 1 and y23_leipzig_done = 0
+on-arrival: y23_leipzig_done = 1
+
+= The Eighth Party Congress, Leipzig
+
+The party meets in Leipzig at the end of January. Heinrich Brandler's Zentrale has the majority and a plan: the united front, the demand for a workers' government, and patient work in the unions and factory councils. In the corridors, Ruth Fischer and Arkadi Maslow speak for a Left that thinks the party is waiting on the SPD leaders for a revolution that those leaders will never carry out.
+
+Both sides have an argument, and the congress has to give one of them the floor.
+
+- @confirm: Confirm Brandler's Zentrale and the united front.
+- @balance: Offer the Left two seats on the Central Committee.
+- @leftturn: Give the Left the floor and move the party toward offensive action.
+
+@confirm
+subtitle: Right +4 strength, Left +6 dissent.
+on-arrival: kf_right_strength += 4; kf_left_dissent += 6; comintern_trust += 3
+go-to: root
+
+The congress confirms the Zentrale by a clear majority. The united front line is the party's policy, and the Left is outvoted, which in this party means it will wait for its chance rather than change its mind.
+
+@balance
+subtitle: Left +3 strength, Right +3 dissent.
+on-arrival: kf_left_strength += 3; kf_right_dissent += 3; kf_centre_strength += 2
+go-to: root
+
+Two Left delegates are admitted to the Central Committee. The Right calls it an invitation to sabotage and the Left calls it a token; the party centre, which wanted peace, is the only group pleased.
+
+@leftturn
+subtitle: Left +6 strength, Right +10 dissent, Moscow unimpressed.
+on-arrival: kf_left_strength += 6; kf_right_dissent += 10; comintern_trust -= 4; y23_hundreds += 1
+go-to: root
+
+The congress adopts resolutions on armed workers' units that would be at home in a more revolutionary year. The Right is furious, and Moscow, whose line at this moment is the workers' government, reads it as indiscipline.

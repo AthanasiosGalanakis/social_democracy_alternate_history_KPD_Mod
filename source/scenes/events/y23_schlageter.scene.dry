@@ -1,0 +1,29 @@
+title: The Schlageter line
+subtitle: Karl Radek speaks of a dead nationalist at the Comintern.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 6 and y23_schlageter_done = 0
+on-arrival: y23_schlageter_done = 1
+
+= Radek speaks of Schlageter
+
+In May the French shot Albert Leo Schlageter, a Freikorps veteran, for sabotage in the Ruhr. In June, at the Comintern's enlarged executive, Karl Radek calls him a "wanderer into nothingness" and appeals to the nationalist youth to join the struggle against Versailles and, with it, against capital. The party is expected to follow the line in the Ruhr and in the German press.
+
+The reasoning is not stupid: the petty bourgeoisie is being crushed by the inflation and could be won, and the nationalists' anger at the occupation is real. The difficulty is that the nationalists in question hate communists, hate democrats and, in their own papers and meetings, hate Jews. A line that invites them to talk is a line that gives them a platform.
+
+- @endorse: Follow Radek and open the party's papers and meetings to the nationalists.
+- @reject: Refuse the appeal and keep the party's line on the class struggle.
+
+@endorse
+subtitle: Moscow +6 trust, Left +8 dissent. The nationalists do not change.
+on-arrival: comintern_trust += 6; kf_left_dissent += 8; kf_apparatus_strength += 2; workers_spd -= 1
+go-to: root
+
+Our speakers appear at debates with Völkisch students and with the occasional Freikorps veteran. The nationalist press reports on them with contempt, and printed the same antisemitic slogans the day after as the day before. A handful of young men are won over. Many of our own members, who remember who shot Liebknecht and Luxemburg, are disgusted, and the Left says so loudly.
+
+@reject
+subtitle: Moscow -4 trust, Left -3 dissent.
+on-arrival: comintern_trust -= 4; kf_left_dissent -= 3; kf_right_dissent += 3
+go-to: root
+
+We keep to the class line: the nationalist youth who march with the Freikorps are the shock troops of the same capital that rules in Paris and in Essen. Moscow notes the disagreement, and the Left, for once, applauds.

@@ -1,0 +1,12 @@
+title: Thuringia follows
+subtitle: A second workers' government in Weimar's own state.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 10 and y23_saxony = 1 and y23_thuringia_done = 0
+on-arrival: y23_thuringia_done = 1; y23_thuringia = 1
+
+= Thuringia
+
+On 16 October Thuringia's SPD Minister-President August Frölich forms a similar cabinet, with KPD ministers, after Saxony's example. Two workers' governments now stand in central Germany, in territory between Berlin and Bavaria, and the Reich government in Berlin calls them a conspiracy.
+
+- @root: Continue.

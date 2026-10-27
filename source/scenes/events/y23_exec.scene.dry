@@ -1,0 +1,21 @@
+title: The Reichsexekution
+subtitle: Berlin removes the workers' governments.
+new-page: true
+tags: kpd_event
+view-if: y23_chemnitz_done = 1 and y23_exec_done = 0 and civil_war = 0 and saxony_survives = 0 and y23_outcome != 'strike_holds' and y23_outcome != 'rising_success'
+on-arrival: {!
+Q.y23_exec_done = 1;
+Q.y23_saxony = 0;
+Q.y23_thuringia = 0;
+Q.workers_kpd -= 2;
+Q.rfb_strength = Math.max(0, Q.rfb_strength - 60);
+Q.kf_right_dissent += 5;
+!}
+
+= Executive power
+
+On 27 October the Reichswehr under General Müller enters Saxony. On the 29th President Ebert's government dismisses Zeigner, and the Saxon cabinet, including the KPD ministers, leaves office. In Thuringia, the troops march in on 12 November.
+
+The Reich government acted against two elected state governments dominated by the Left, within days. Against Bavaria's Kahr, who defies Berlin openly and has a Reichswehr division sworn to him, the same Berlin does nothing.
+
+- @root: Continue.

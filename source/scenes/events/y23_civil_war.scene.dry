@@ -1,0 +1,68 @@
+title: The campaign
+subtitle: Germany is at war with itself.
+new-page: true
+tags: kpd_event
+view-if: civil_war = 1 and cw_last_time < time and kpd_ending = "none"
+on-arrival: {!
+Q.cw_last_time = Q.time;
+Q.cw_month += 1;
+Q.cw_white += 5;
+if (Q.cw_month > 4) { Q.cw_over = 1; }
+Q.cw_diff = Q.cw_red - Q.cw_white;
+Q.cw_has_moscow = (Q.comintern_trust >= 50) ? 1 : 0;
+Q.cw_has_spd = (Q.y23_s >= 15) ? 1 : 0;
+!}
+go-to: cw_end if cw_over = 1
+
+= The campaign, month [+ cw_month +]
+
+The Reichswehr, the Freikorps and the Bavarian leagues have gathered against the councils of Saxony, and our Hundreds, strengthened by the Saxon police and by the factory militias, fight them in the field. Each month decides something. Each side adds to its strength, and the Reichswehr adds five every month with its reserves and its railways. We have no luck to count on, and every number that decides the result is on this page.
+
+Our strength: [+ cw_red +]. The Reichswehr and Freikorps: [+ cw_white +].
+
+After the fourth month the campaign is decided: if our strength is more than 10 above theirs, the October has won. If it is within 10 of theirs, the war goes on. If it is lower than theirs by more than 10, we have lost.
+
+- @mobilise: Call a mass mobilisation of the factories and the unemployed. +8 strength.
+- @moscow: Appeal to Moscow for arms and for pressure on Poland. +12 with a trust of 50 or more, otherwise +4.
+- @spd: Win over SPD workers and soldiers to desert the Reichswehr. -8 for the enemy with unity 15 or more, otherwise -3.
+- @dig_in: Hold the cities and refuse a decisive battle. +3 strength, and -2 for the enemy.
+
+@mobilise
+on-arrival: cw_red += 8; workers_kpd -= 1
+go-to: root
+
+The factories empty and the barracks fill. We send many people who have never held a rifle to learn the use of one, and the officers we send with them are the only army we have.
+
+@moscow
+on-arrival: {!
+Q.cw_red += (Q.cw_has_moscow == 1) ? 12 : 4;
+Q.comintern_trust += 3;
+!}
+go-to: root
+
+Our emissaries go to Moscow. The Soviet leaders send what they can and promise more; the Polish question remains. Our dependence on them is now plain: we win only if Moscow wants us to win.
+
+@spd
+on-arrival: {!
+Q.cw_white -= (Q.cw_has_spd == 1) ? 8 : 3;
+!}
+go-to: root
+
+We send speakers into the barracks and the SPD factories. Where we have friends, whole units stop obeying. Where we don't, we meet an officer corps that has done this before.
+
+@dig_in
+on-arrival: cw_red += 3; cw_white -= 2
+go-to: root
+
+We hold the cities and we let the enemy come. The Reichswehr, on the offensive, loses men; so do we.
+
+@cw_end
+title: The campaign is decided
+on-arrival: {!
+if (Q.cw_red > Q.cw_white + 10) { Q.kpd_ending = 'october_victory'; }
+else if (Q.cw_red >= Q.cw_white - 10) { Q.kpd_ending = 'long_war'; }
+else { Q.kpd_ending = 'october_defeat'; }
+!}
+go-to: game_over
+
+The fourth month has ended and the front has settled.

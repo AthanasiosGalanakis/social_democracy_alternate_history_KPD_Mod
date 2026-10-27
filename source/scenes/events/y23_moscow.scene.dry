@@ -1,0 +1,29 @@
+title: Moscow decides
+subtitle: The Russian Politburo wants a German October.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 9 and y23_moscow_done = 0
+on-arrival: y23_moscow_done = 1
+
+= Moscow decides
+
+The fall of Cuno, the inflation and the occupation have convinced the Russian leaders that a revolutionary situation exists in Germany. In Moscow the Politburo discusses a date. Zinoviev wants an early rising, Trotsky argues for a fixed date, Stalin, who has doubts, writes that the Germans should be restrained rather than pushed. Brandler is summoned, and while he sits in Moscow he is told that the plan has been decided. A group of Soviet advisers, among them military men, is to be sent to Germany.
+
+It is a strange situation: a revolution in Germany is being planned in a foreign capital, by men who have never organised a German workers' strike. This is no insult to their intelligence, but it is a fact about their knowledge.
+
+- @accept: Accept the plan and the Soviet advisers.
+- @warn: Tell Moscow honestly that Germany is not ready.
+
+@accept
+subtitle: Trust +8, subsidy secured, Right +6 dissent.
+on-arrival: comintern_trust += 8; soviet_subsidy = 1; kf_right_dissent += 6; kf_apparatus_strength += 3; y23_hundreds += 1
+go-to: root
+
+We accept. Money and a few arms are on their way; so are the advisers. The Right, who know the German workers better than Moscow does, are uneasy, and the apparatus, which has just seen its stock rise, is not.
+
+@warn
+subtitle: Trust -8, Right +4 strength.
+on-arrival: comintern_trust -= 8; kf_right_strength += 4; kf_left_dissent += 5
+go-to: root
+
+We tell the truth, which is that the SPD left is not ready to fight and our Hundreds are not armed. Moscow notes the report and the name of the man who wrote it. The Left says the leadership has lost its nerve, and the Left will remember this when it counts.

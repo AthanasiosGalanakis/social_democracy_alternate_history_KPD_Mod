@@ -1,0 +1,28 @@
+title: Strikes in the coalfield
+subtitle: The miners want more than passive resistance.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 5 and y23_ruhr_strike_done = 0
+on-arrival: y23_ruhr_strike_done = 1
+
+= A strike wave in the Ruhr
+
+In May a wave of wage strikes spreads through the Ruhr coalfield. The miners are paid by a state that prints its way out of debt, under an occupation they were told to resist, and they notice that those who gave the order to resist are the owners of the mines. The strikes are not led by the party, but they could be.
+
+- @lead: Put the party's organisers at the head of the strike.
+- @support: Support the strikers from outside, with funds and leaflets.
+
+@lead
+subtitle: Costs 1 resources.
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; y23_strikes += 1; workers_kpd += 4*campaign_mult; workers_spd -= 2; kf_left_strength += 2
+go-to: root
+
+Our organisers go into the pits and win places on the strike committees. The government answers with police, the SPD leaders with disapproval, and the miners, who see who is on their side, with votes of confidence that the party remembers.
+
+@support
+on-arrival: workers_kpd += 2*campaign_mult; kf_right_strength += 2
+go-to: root
+
+We raise funds and print leaflets. The strike ends in a compromise brokered by the union bureaucracy. It is a respectable result that does not change anyone's opinion of who leads the workers.
