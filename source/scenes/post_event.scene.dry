@@ -98,6 +98,29 @@ if (Q.dissent < 0) {
     Q.dissent = 0.95;
 }
 
+// KPD factions: normalise strength and compute the strength-weighted dissent (same formula as the SPD factions above).
+var kf_total = 0;
+for (var f of Q.kpd_factions) {
+    if (Q['kf_' + f + '_strength'] < 0) {
+        Q['kf_' + f + '_strength'] = 0;
+    }
+    if (Q['kf_' + f + '_dissent'] < 0) {
+        Q['kf_' + f + '_dissent'] = 0;
+    } else if (Q['kf_' + f + '_dissent'] >= 100) {
+        Q['kf_' + f + '_dissent'] = 99;
+    }
+    kf_total += Q['kf_' + f + '_strength'];
+}
+var kf_weighted = 0;
+for (var f of Q.kpd_factions) {
+    if (kf_total > 0) {
+        Q['kf_' + f + '_strength'] = 100*Q['kf_' + f + '_strength']/kf_total;
+    }
+    kf_weighted += Q['kf_' + f + '_strength']*Q['kf_' + f + '_dissent'];
+}
+Q.kf_dissent_percent = kf_total > 0 ? kf_weighted/100 : 0;
+Q.kf_dissent = Math.min(0.95, Q.kf_dissent_percent/100);
+
 // 1. update dates
 if (Q.month_actions >= 1) {
     Q.time += 1;
@@ -110,6 +133,7 @@ if (Q.month_actions >= 1) {
             Q.resources += Q.annual_income;
         }
     }
+    Q.party_line_months += 1;
     // decrement timers
     for (timer of Q.timers) {
         if (Q[timer+'_timer'] && Q[timer+'_timer'] > 0) {
