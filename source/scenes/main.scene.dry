@@ -15,6 +15,7 @@ max-cards: 3
 #Here, the main deck will be displayed. Clicking on the deck draws a card into your hand. Clicking on a card activates that card.
 
 - @party
+- @mass
 - #advisor
 - @kpd_party_line
 - @shuffle_leadership_pinned
@@ -36,10 +37,18 @@ max-cards: 4
 #Here, the main deck will be displayed. Clicking on the deck draws a card into your hand. Clicking on a card activates that card.
 
 - @party
+- @mass
 - #advisor
 - @kpd_party_line
 - @shuffle_leadership_pinned
 
+
+@mass
+title: Mass Work
+card-image: img/protest.jpg
+is-deck: true
+
+- #kpd_mass
 
 @party
 title: Party Affairs

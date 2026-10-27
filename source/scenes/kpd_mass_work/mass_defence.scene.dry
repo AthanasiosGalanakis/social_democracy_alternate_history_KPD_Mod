@@ -1,0 +1,42 @@
+title: Defence units
+subtitle: The Proletarian Hundreds, and later the Red Front Fighters' League.
+new-page: true
+is-card: true
+card-image: img/reichsbanner.jpg
+frequency: 150
+tags: kpd_mass
+view-if: mass_defence_timer <= 0
+on-arrival: month_actions += 1; mass_defence_timer = 3
+
+= Defence units
+
+[? if year >= 1925 or (year = 1924 and month >= 7) : The Red Front Fighters' League (the RFB), founded in July 1924, ?][? if year < 1925 and not (year = 1924 and month >= 7) : The Proletarian Hundreds ?] protect meetings from the Right's squads and stand ready for the day. They are a shield and they are a temptation, since an armed organisation tends to find its own reasons to fight.
+
+- @drill: Drill and arm the units.
+- @discipline: Stress discipline: parades, uniforms and defence of meetings only.
+- @joint: Propose joint defence with the Reichsbanner locals.
+- @root: Not this month.
+- @easy_discard
+
+@drill
+choose-if: resources >= 1
+subtitle: -1 resources
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; y23_hundreds += 1; rfb_strength += 20; rfb_militancy += 0.02
+go-to: root
+
+The units drill in the evenings and some of them are armed. The arms are few, and the men in the units are brave and often very young. They are not a match for the Reichswehr, and the leaders who know it say nothing.
+
+@discipline
+subtitle: No cost.
+on-arrival: rfb_militancy -= 0.02; workers_kpd += 1*campaign_mult
+go-to: root
+
+The units march in step and keep to the party's orders. The parades impress the neighbourhood, and the Left calls it the militarisation of the movement for the sake of display.
+
+@joint
+subtitle: No cost.
+on-arrival: y23_unity += 1; kf_left_dissent += 3
+go-to: root
+
+In a few towns, young workers of the Reichsbanner and of our units stand together against the Nazis. The SPD leaders are against it and the Left calls it treachery; the workers' sons do not ask whose they are when the brownshirts come.

@@ -1,0 +1,34 @@
+title: The party press
+subtitle: The Rote Fahne has more readers than the party has members.
+new-page: true
+is-card: true
+card-image: img/vorwarts_2.jpg
+frequency: 150
+tags: kpd_mass
+view-if: mass_press_timer <= 0
+on-arrival: month_actions += 1; mass_press_timer = 3
+
+= The party press
+
+A daily newspaper explains events to the workers in the party's own terms, and it also lets Moscow's line arrive in every district within a day. We have to choose what the paper is for.
+
+- @campaign: Run a campaign in the paper on the workers' own demands.
+- @line: Print the Comintern's resolutions in full.
+- @root: Not this month.
+- @easy_discard
+
+@campaign
+choose-if: resources >= 1
+subtitle: -1 resources
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; workers_kpd += 2*campaign_mult; unemployed_kpd += 1*campaign_mult
+go-to: root
+
+The paper prints letters from the factories and sets out the demands in plain language. Circulation rises. The paper that tells the workers what they already know about their lives is a better paper than the one that tells them what the Comintern thinks about them.
+
+@line
+subtitle: No cost.
+on-arrival: comintern_trust += 3; kf_apparatus_strength += 1; workers_kpd -= 1
+go-to: root
+
+Page after page of resolutions, and the readers' eyes glaze over. Moscow is pleased and reads the paper with approval. Many of our members read the sports page and the death notices.
