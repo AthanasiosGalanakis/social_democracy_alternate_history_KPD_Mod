@@ -1,0 +1,30 @@
+title: A change of leadership in Moscow
+subtitle: The men who run the International are not the ones they were.
+new-page: true
+tags: kpd_event
+view-if: moscow_change_pending = 1
+on-arrival: {!
+Q.moscow_change_pending = 0;
+var names = {right: 'the Right', left: 'the Left', centre: 'the Centre', apparatus: 'the Moscow apparatus'};
+Q.mc_fav_name = names[Q.moscow_favored];
+Q.mc_aligned = (Q.party_line == Q.moscow_favored) ? 1 : 0;
+if (Q.mc_aligned) { Q.comintern_trust += 5; } else { Q.comintern_trust -= 5; }
+Q.mc_left = (Q.moscow_leader == "Trotsky-Radek") ? 1 : 0;
+Q.mc_troika = (Q.moscow_leader == "Zinoviev-Kamenev-Stalin") ? 1 : 0;
+Q.mc_bukharin = (Q.moscow_leader == "Stalin-Bukharin") ? 1 : 0;
+Q.mc_stalin = (Q.moscow_leader == "Stalin") ? 1 : 0;
+!}
+
+= A change of leadership in Moscow
+
+[? if mc_left = 1 : The Left Opposition has won the argument in the Russian party. Trotsky and Radek lead the International, and the line is world revolution: the German proletariat must be called to the offensive at the first opportunity. ?]
+[? if mc_troika = 1 : The Zinoviev, Kamenev and Stalin group runs the International. The line is the workers' government, the united front from above and below, and a careful eye on the German leadership. ?]
+[? if mc_bukharin = 1 : Stalin and Bukharin have broken the troika. The line is socialism in one country; the revolution is an affair for later, and the International serves the Soviet Union's security first. ?]
+[? if mc_stalin = 1 : Stalin governs alone. The International is being remade into an instrument of one party and one man, and its line, the Third Period, expects social democracy to be treated as the main enemy and a coming revolutionary crisis to be near. ?]
+
+This line favours [+ mc_fav_name +].
+
+[? if mc_aligned = 1 : Our own line already matches it and Moscow notes it with approval (+5 trust). ?]
+[? if mc_aligned = 0 : Our own line does not match it, and Moscow notes it (−5 trust). Every month that this continues will add to its impatience. ?]
+
+- @root: Continue.
