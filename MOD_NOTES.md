@@ -86,3 +86,9 @@ Build with `dendrynexus make-html` (see README.md).
 - Thresholds: the Prussian general strike holds at front 55 and saves Prussia. The 30 January general strike stops Hitler at front 75 (65 if Prussia was saved). Armed resistance needs RFB strength 100 and starts a four-month war (our strength = front + 20, +25 if Prussia was saved; the state starts at 100 + half the Nazi vote, +6 a month). Otherwise the party goes underground after the fire and the March election.
 - Endings added: strike_stops_hitler, antinazi_victory, antinazi_long_war, antinazi_defeat, underground.
 - To verify: the 1.2 million signatures for the cruiser referendum, the Altona toll (18), the Programme Declaration date (24 August 1930), the Antifaschistische Aktion dates, the BVG strike dates (3 to 7 November), Thälmann's arrest (3 March 1933).
+
+## M10 Release prep (release/v0.1)
+- Pruned 146 unused SPD-era state variables from root.scene.dry and the dead timers from Q.timers.
+- Library: added a "what happened in our history, 1924 to 1933" page, the Third Period and front rules, and the later factions.
+- Known gaps for after v0.1: KPD-specific art (mostly base-game images), dollar-rate approximations, the unverified facts listed above, working title and author line.
+- Passive playthrough (the headless bot) ends in the underground ending with the Nazis at about 48 percent; a diligent playthrough can reach the three October endings, the January general strike and the antinazi war endings.
