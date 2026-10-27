@@ -7,7 +7,7 @@ tags: kpd_party
 view-if: line_action_timer <= 0
 on-arrival: month_actions += 1; line_action_timer = 3
 
-# One step of the current faction's plan. Each line offers two actions; each adds 1 to that plan's progress.
+# One step of the current faction's plan. Each line offers two actions.
 # First-pass effects; they will be re-balanced when the 1923 events are written.
 
 = Work for the Party Line
@@ -32,7 +32,7 @@ view-if: party_line = "right"
 choose-if: resources >= 1
 subtitle: -1 resources
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; plan_right_progress += 1; y23_unity += 1; workers_kpd += 3*campaign_mult; kf_left_dissent += 4
+on-arrival: resources -= 1; y23_unity += 1; workers_kpd += 3*campaign_mult; kf_left_dissent += 4
 
 Several SPD and union locals agree to talk, usually over the heads of their leaders. The Left calls it capitulation to the people who killed Liebknecht and Luxemburg, and they are not entirely wrong to ask what the SPD leaders will actually do in a crisis.
 
@@ -41,7 +41,7 @@ view-if: party_line = "right"
 choose-if: resources >= 1
 subtitle: -1 resources
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; plan_right_progress += 1; y23_unity += 1; workers_kpd += 3*campaign_mult; workers_spd -= 1
+on-arrival: resources -= 1; y23_unity += 1; workers_kpd += 3*campaign_mult; workers_spd -= 1
 
 Joint committees against hoarding and price gouging are set up in several towns. Workers of both parties sit on them, and it is the first time in a long while that the two parties' members have acted together.
 
@@ -50,7 +50,7 @@ view-if: party_line = "left"
 choose-if: resources >= 1
 subtitle: -1 resources
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; plan_left_progress += 1; y23_hundreds += 1; rfb_strength += 20; rfb_militancy += 0.02; kf_right_dissent += 4
+on-arrival: resources -= 1; y23_hundreds += 1; rfb_strength += 20; rfb_militancy += 0.02; kf_right_dissent += 4
 
 The Proletarian Hundreds grow and drill openly, especially in Saxony and Hamburg. Their strength is real, but so is the risk: a state with an army and police will not let armed workers' units grow for ever.
 
@@ -59,7 +59,7 @@ view-if: party_line = "left"
 choose-if: resources >= 1
 subtitle: -1 resources
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; plan_left_progress += 1; y23_strikes += 1; workers_kpd += 4*campaign_mult; workers_spd -= 2; kf_right_dissent += 3
+on-arrival: resources -= 1; y23_strikes += 1; workers_kpd += 4*campaign_mult; workers_spd -= 2; kf_right_dissent += 3
 
 A wave of offensive strikes sweeps the Ruhr and central Germany. The anger is real, but a strike called without the unions' backing is easily isolated, and many SPD workers see only a party that wants them to follow it.
 
@@ -68,7 +68,7 @@ view-if: party_line = "centre"
 choose-if: resources >= 1
 subtitle: -1 resources
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; plan_centre_progress += 1; unemployed_kpd += 5*campaign_mult
+on-arrival: resources -= 1; unemployed_kpd += 5*campaign_mult
 
 Councils of the unemployed appear in the industrial towns. They give people a place to organise instead of only waiting in line, and they bind the unemployed to the party.
 
@@ -77,21 +77,21 @@ view-if: party_line = "centre"
 choose-if: resources >= 1
 subtitle: -1 resources
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; plan_centre_progress += 1; workers_kpd += 3*campaign_mult; kf_left_dissent += 2
+on-arrival: resources -= 1; workers_kpd += 3*campaign_mult; kf_left_dissent += 2
 
 Our members in the free unions form fractions and begin to win local posts. The union bureaucracy answers with expulsions, and the Left complains that this is slow, patient work.
 
 @apparatus_cells
 view-if: party_line = "apparatus"
 subtitle: No cost.
-on-arrival: plan_apparatus_progress += 1; kf_apparatus_strength += 3; kf_centre_dissent += 3; workers_kpd -= 1
+on-arrival: kf_apparatus_strength += 3; kf_centre_dissent += 3; workers_kpd -= 1
 
 The old residence-based branches are broken up and replaced by cells in the factories. Discipline improves; some of the older members, who liked arguing about politics, feel the party is no longer theirs.
 
 @apparatus_report
 view-if: party_line = "apparatus"
 subtitle: No cost.
-on-arrival: plan_apparatus_progress += 1; comintern_trust += 4
+on-arrival: comintern_trust += 4
 
 A full report goes to Moscow. It is welcomed, and it is also exactly what the Comintern's leaders want to hear: the more complete the report, the more they believe they understand German conditions from a distance.
 
@@ -100,13 +100,13 @@ view-if: party_line = "conciliators"
 choose-if: resources >= 1
 subtitle: -1 resources
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; plan_conciliators_progress += 1; y23_unity += 1; workers_kpd += 3*campaign_mult
+on-arrival: resources -= 1; y23_unity += 1; workers_kpd += 3*campaign_mult
 
 The party returns to the work that the offensive had neglected: union fractions, factory councils, joint meetings with the SPD workers. It is not exciting and it is what produces members.
 
 @conciliators_moscow
 view-if: party_line = "conciliators"
 subtitle: No cost.
-on-arrival: plan_conciliators_progress += 1; comintern_trust += 3; kf_apparatus_dissent += 3
+on-arrival: comintern_trust += 3; kf_apparatus_dissent += 3
 
 Our delegates tell the Comintern's officials that the party's mass base is shrinking, in language chosen not to sound like criticism. Moscow notes the facts and the manner, and the apparatus resents it.

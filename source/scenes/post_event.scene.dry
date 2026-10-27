@@ -123,6 +123,8 @@ Q.kf_dissent = Math.min(0.95, Q.kf_dissent_percent/100);
 Q.holder_dissent = Q['kf_' + Q.party_line + '_dissent'];
 Q.campaign_mult = (1 - Q.kf_dissent)*(1 - 0.04*Q.zigzag);
 if (Q.kpd_banned) { Q.campaign_mult = Q.campaign_mult/2; }
+// Moscow's displeasure: an open letter (tier 3) costs 10 percent of campaign strength, the Comintern's emissaries (tier 4) 20 percent
+if (Q.moscow_tier >= 4) { Q.campaign_mult = Q.campaign_mult*0.8; } else if (Q.moscow_tier >= 3) { Q.campaign_mult = Q.campaign_mult*0.9; }
 // readiness for an October rising: five visible parts (unity with the SPD left, Hundreds, strikes, workers' governments, Moscow).
 Q.y23_s = Math.min(30, Q.y23_unity*5);
 Q.y23_h = Math.min(30, Q.y23_hundreds*6);
@@ -151,16 +153,6 @@ if (Q.month_actions >= 1) {
     }
     Q.party_line_months += 1;
     if (Q.kpd_banned && Q.time >= Q.kpd_ban_end) { Q.kpd_banned = 0; }
-    // plans: the faction in power keeps its progress, the others lose a quarter step per month. Progress is capped at 5.
-    for (var f of Q.kpd_factions) {
-        var key = 'plan_' + f + '_progress';
-        if (f != Q.party_line && Q[key] > 0) {
-            Q[key] = Math.max(0, Q[key] - 0.25);
-        }
-        if (Q[key] > 5) {
-            Q[key] = 5;
-        }
-    }
     // zigzag credibility recovers by 1 every 6 months
     if (Q.zigzag > 0 && Q.time % 6 == 0) {
         Q.zigzag -= 1;
@@ -184,18 +176,24 @@ if (Q.month_actions >= 1) {
         Q.moscow_favored = m_fav;
         Q.moscow_change_pending = 1;
     }
-    // Disobedience ladder: months with a line Moscow does not favour. Trust of 75 or more halves the rate.
-    if (Q.party_line != Q.moscow_favored) {
-        Q.moscow_divergence_pts += (Q.comintern_trust >= 75) ? 0.5 : 1;
+    // Trust: the favoured faction's line earns trust, any other line loses it. Moscow's tier of displeasure follows from trust.
+    if (Q.party_line == Q.moscow_favored) {
+        Q.comintern_trust += 1;
     } else {
-        Q.moscow_divergence_pts = Math.max(0, Q.moscow_divergence_pts - 2);
+        Q.comintern_trust -= 1;
     }
-    var m_step = Math.min(5, Math.floor(Q.moscow_divergence_pts/3));
-    if (m_step > Q.moscow_divergence) {
-        Q.moscow_step_pending = 1;
-    } else if (m_step < Q.moscow_divergence) {
-        Q.moscow_divergence = m_step;
+    Q.comintern_trust = Math.max(0, Math.min(100, Q.comintern_trust));
+    var m_tier = 0;
+    if (Q.comintern_trust < 15) { m_tier = 4; }
+    else if (Q.comintern_trust < 30) { m_tier = 3; }
+    else if (Q.comintern_trust < 40) { m_tier = 2; }
+    else if (Q.comintern_trust < 50) { m_tier = 1; }
+    if (m_tier > Q.moscow_tier) {
+        Q.moscow_tier_pending = m_tier;
     }
+    Q.moscow_tier = m_tier;
+    // the subsidy is cut while trust is under 40 and resumes when trust recovers
+    Q.soviet_subsidy = (Q.subsidy_granted == 1 && m_tier < 2) ? 1 : 0;
     // the Soviet subsidy pays one resource a quarter while it lasts
     if (Q.soviet_subsidy == 1 && Q.time % 3 == 0) { Q.resources += 1; }
     // governments: the line must stay Right or Centre for a cabinet seat or toleration to last; Land cabinets pay and cost every quarter; the Reich intervenes if the armed units grow past 250.
@@ -213,11 +211,6 @@ if (Q.month_actions >= 1) {
         Q.rfb_strength = 200;
         Q.state_intervention = 1;
     }
-    // under the Third Period, work with the SPD is itself an act of disobedience: each gained point of joint work costs 2 patience points
-    if (Q.comintern_line == 'third_period' && Q.y23_unity > Q.unity_last) {
-        Q.moscow_divergence_pts += 2*(Q.y23_unity - Q.unity_last);
-    }
-    Q.unity_last = Q.y23_unity;
     // scripted unemployment, as a share of the electorate, from January 1929
     if (Q.month == 1 && Q.year >= 1929 && Q.year <= 1932) {
         var unemp = {1929: 10, 1930: 15, 1931: 22, 1932: 30};

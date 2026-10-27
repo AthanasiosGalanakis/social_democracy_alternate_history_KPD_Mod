@@ -1,0 +1,11 @@
+title: The end of the first act
+subtitle: The year 1923 is over.
+new-page: true
+tags: kpd_event
+view-if: year >= 1924 and civil_war = 0 and kpd_ending = "none"
+on-arrival: kpd_ending = "act_one"
+go-to: game_over
+
+= January 1924
+
+The German October is over, and the history that follows is not yet written in this game.
