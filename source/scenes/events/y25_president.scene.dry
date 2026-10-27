@@ -1,0 +1,37 @@
+title: The second round
+subtitle: 26 April. Hindenburg or Marx, with a Communist candidate in between.
+new-page: true
+tags: kpd_event
+view-if: year = 1925 and month = 4 and y25_ebert_done = 1 and civil_war = 0 and y25_president_done = 0
+on-arrival: {!
+Q.y25_president_done = 1;
+Q.y25_can_withdraw = (Q.gv_line_ok_now == 1 && Q.comintern_trust >= 40 && Q.y23_unity >= 6) ? 1 : 0;
+!}
+
+= The second round
+
+Karl Jarres is gone, and Paul von Hindenburg, the retired field marshal who commanded the army that lost the war and who stands for the monarchist Right, is put up by the DNVP, the DVP and, in the end, the Bavarian People's Party. Marx, the Centre candidate, is supported by the SPD and the DDP. In the first round, our candidate won about 7 percent of the vote.
+
+The second round needs only a plurality. A candidate who splits the left is a candidate who helps Hindenburg. The numbers last time were close: in the first round, Marx and the SPD's Braun, together with the DDP's Hellpach, had a margin of about 5 percent over the nationalists.
+
+[? if y25_can_withdraw = 0 : The line we hold, Moscow's trust or our work with the SPD does not allow us to withdraw: Thälmann runs. ?]
+
+- @run: Thälmann runs again.
+- @withdraw: Withdraw Thälmann and tell our voters to back Marx.
+
+@run
+subtitle: Hindenburg wins.
+on-arrival: president = 'Hindenburg'; kf_apparatus_strength += 2; comintern_trust += 2
+go-to: root
+
+Thälmann receives 1.9 million votes. Hindenburg wins with 48.3 percent against Marx's 45.3. The margin is about 900,000, and the SPD's press runs the headline "Hindenburg by the grace of Thälmann". It is not an entirely fair charge, since most of the new second-round voters backed Hindenburg. It is not an entirely false one either.
+
+A field marshal who never wished the republic well takes the oath to the constitution. It will matter in 1932.
+
+@withdraw
+subtitle: Needs the Right or the Centre in the lead, trust of 40 and joint work 6. Marx wins.
+view-if: y25_can_withdraw = 1
+on-arrival: president = 'Marx'; y23_unity += 1; kf_left_dissent += 10; comintern_trust -= 4; pro_republic += 5
+go-to: root
+
+The party's paper tells its readers to vote for Marx, for the sake of not having Hindenburg. It is a bitter thing to do and the Left says so. Marx wins by a margin of about 900,000 votes, and the Centre politician who owes the Communists his office does not thank them.

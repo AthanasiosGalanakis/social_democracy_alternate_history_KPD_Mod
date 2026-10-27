@@ -22,6 +22,8 @@ The party line is only words until someone does the work. What does the leadersh
 - @centre_unions: Build KPD fractions in the free trade unions.
 - @apparatus_cells: Reorganise the local branches into factory cells.
 - @apparatus_report: Send a full report to the Comintern's executive.
+- @conciliators_mass: Rebuild mass work in the unions and the factory councils.
+- @conciliators_moscow: Argue the German case in Moscow, quietly.
 - @root: Not this month.
 - @easy_discard
 
@@ -92,3 +94,19 @@ subtitle: No cost.
 on-arrival: plan_apparatus_progress += 1; comintern_trust += 4
 
 A full report goes to Moscow. It is welcomed, and it is also exactly what the Comintern's leaders want to hear: the more complete the report, the more they believe they understand German conditions from a distance.
+
+@conciliators_mass
+view-if: party_line = "conciliators"
+choose-if: resources >= 1
+subtitle: -1 resources
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; plan_conciliators_progress += 1; y23_unity += 1; workers_kpd += 3*campaign_mult
+
+The party returns to the work that the offensive had neglected: union fractions, factory councils, joint meetings with the SPD workers. It is not exciting and it is what produces members.
+
+@conciliators_moscow
+view-if: party_line = "conciliators"
+subtitle: No cost.
+on-arrival: plan_conciliators_progress += 1; comintern_trust += 3; kf_apparatus_dissent += 3
+
+Our delegates tell the Comintern's officials that the party's mass base is shrinking, in language chosen not to sound like criticism. Moscow notes the facts and the manner, and the apparatus resents it.

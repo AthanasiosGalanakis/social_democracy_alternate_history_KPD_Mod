@@ -3,7 +3,19 @@ new-page: true
 tags: event, kpd_event
 priority: -1
 view-if: (year = next_election_year and month >= next_election_month) or (year > next_election_year)
-on-departure: month_actions += 1; in_election = 0; next_election_year = next_election_year + 4; n_elections += 1; next_election_time = time + 48; papen_chancellor_timer = 4; hindenburg_dismissal_timer = 6;
+on-departure: {!
+Q.month_actions += 1;
+Q.in_election = 0;
+Q.n_elections += 1;
+// Reichstag elections: May 1924, December 1924, May 1928, then every four years.
+if (Q.n_elections == 1) {
+    Q.next_election_year = 1924; Q.next_election_month = 12; Q.next_election_time = Q.time + 7;
+} else if (Q.n_elections == 2) {
+    Q.next_election_year = 1928; Q.next_election_month = 5; Q.next_election_time = Q.time + 41;
+} else {
+    Q.next_election_year = Q.next_election_year + 4; Q.next_election_time = Q.time + 48;
+}
+!}
 set-jump: post_election_1928
 face-image: img/Rothe_Wahlen_1903.jpg
 

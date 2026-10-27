@@ -7,7 +7,7 @@ on-arrival: {!
 Q.moscow_step_pending = 0;
 Q.moscow_divergence += 1;
 Q.md_step = Q.moscow_divergence;
-var names = {right: 'the Right', left: 'the Left', centre: 'the Centre', apparatus: 'the Moscow apparatus'};
+var names = {right: 'the Right', left: 'the Left', centre: 'the Centre', apparatus: 'the Moscow apparatus', conciliators: 'the Conciliators'};
 Q.md_fav_name = names[Q.moscow_favored];
 Q.md_expel = 0;
 if (Q.md_step == 1) {

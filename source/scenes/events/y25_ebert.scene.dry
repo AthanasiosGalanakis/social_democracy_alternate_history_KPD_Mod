@@ -1,0 +1,31 @@
+title: The president is dead
+subtitle: Ebert dies on 28 February.
+new-page: true
+tags: kpd_event
+view-if: year = 1925 and month = 3 and civil_war = 0 and y25_ebert_done = 0
+on-arrival: y25_ebert_done = 1
+
+= Who succeeds Ebert?
+
+Friedrich Ebert dies on 28 February 1925, and the republic has to elect his successor. The man who made the pact with the army in 1918 and sent the Freikorps against the Spartacists will be buried with honour. We do not honour him, and we are asked to choose a candidate.
+
+The first round on 29 March is a contest between blocs: Karl Jarres for the DNVP and DVP, Otto Braun for the SPD, Wilhelm Marx for the Centre, Willy Hellpach for the DDP. Whoever has a majority wins; whoever does not goes to a second round, where a plurality is enough.
+
+- @thaelmann: Nominate Ernst Thälmann.
+- @braun: Back the SPD's Otto Braun in the first round.
+
+@thaelmann
+subtitle: The party's own candidate.
+on-arrival: y25_candidate = 'thaelmann'; kf_apparatus_strength += 2; workers_kpd += 1*campaign_mult
+go-to: root
+
+Thälmann runs on a platform of class struggle and the united front from below. He wins just under 7 percent in the first round, which is less than the party's vote in the Reichstag elections. No one has a majority.
+
+@braun
+subtitle: Needs the Right or the Centre in the lead, trust of 40, and joint work with the SPD at 6.
+choose-if: gv_line_ok_now = 1 and comintern_trust >= 40 and y23_unity >= 6
+unavailable-subtitle: Requirements not met.
+on-arrival: y25_candidate = 'braun'; y23_unity += 1; kf_left_dissent += 8; comintern_trust -= 4
+go-to: root
+
+The party asks its voters to back the SPD's candidate. The Left calls it capitulation, Moscow is annoyed, and Braun, who is Prussia's strongest Social Democrat, is not elected: the first round goes to a second.

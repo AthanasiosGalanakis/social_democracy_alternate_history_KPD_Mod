@@ -1,0 +1,25 @@
+title: Moscow's fifteenth congress
+subtitle: December 1927. The Opposition is dealt with.
+new-page: true
+tags: kpd_event
+view-if: year = 1927 and month = 12 and civil_war = 0 and y27_trotsky_done = 0
+on-arrival: {!
+Q.y27_trotsky_done = 1;
+Q.y27_trotsky_wins = (Q.moscow_balance <= -30) ? 1 : 0;
+if (Q.y27_trotsky_wins) {
+    Q.kf_left_strength += 6;
+    Q.comintern_trust += 3;
+} else {
+    Q.kf_left_dissent += 8;
+    Q.kf_left_strength = Q.kf_left_strength*0.8;
+    Q.comintern_trust += 2;
+}
+!}
+
+= The fifteenth congress
+
+[? if y27_trotsky_wins = 1 : At the Fifteenth Congress of the Russian party, the Opposition's arguments carry the day, and Trotsky and Radek lead the International. For the first time since the revolution, the Soviet leaders agree that a Russian party cannot treat the revolution in other countries as an instrument of its foreign policy. In Berlin there is hope and, among the apparatus, a certain unease. ?][? if y27_trotsky_wins = 0 : At the Fifteenth Congress of the Russian party in December 1927 the Opposition is defeated. Trotsky, Zinoviev and Kamenev are expelled, and Stalin and Bukharin, whose alliance is about to end, take what they have won. The same line is demanded from every section of the Comintern, and in Germany the Left Opposition is next. ?]
+
+Stalin is on the way to being the sole master of the party, and through it of the International. The German party is not asked.
+
+- @root: Continue.

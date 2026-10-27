@@ -1,0 +1,33 @@
+title: The Comintern's resolution
+subtitle: Moscow settles the German leadership dispute.
+new-page: true
+tags: kpd_event
+view-if: year >= 1925 and moscow_leader = "Stalin-Bukharin" and civil_war = 0 and y25_ecci_done = 0
+on-arrival: {!
+Q.y25_ecci_done = 1;
+var names = {right: 'the Right', left: 'the Left', centre: 'the Centre', apparatus: 'the Moscow apparatus', conciliators: 'the Conciliators'};
+Q.ecci_fav_name = names[Q.moscow_favored];
+Q.ecci_changed = 0;
+if (Q.party_line != Q.moscow_favored) {
+    Q.ecci_old_name = names[Q.party_line];
+    Q['kf_' + Q.party_line + '_dissent'] += 15;
+    Q['kf_' + Q.party_line + '_strength'] = Q['kf_' + Q.party_line + '_strength']*0.6;
+    Q.party_line = Q.moscow_favored;
+    Q.party_line_months = 0;
+    Q.party_line_changes += 1;
+    Q.zigzag += 3;
+    Q.line_change_timer = 12;
+    Q.ecci_changed = 1;
+}
+Q.comintern_trust += 4;
+!}
+
+= The resolution
+
+Zinoviev has lost the argument in the Russian party, and with him the Left of the KPD has lost its patron. The Executive Committee of the Comintern, under Stalin and Bukharin, passes a resolution that names Ruth Fischer and Arkadi Maslow and condemns their "ultra-left" policies. They are ordered to stay in Moscow. Ernst Thälmann, who is not named, takes over the party.
+
+[? if ecci_changed = 1 : The line of the party is changed by the resolution: [+ ecci_old_name +] are removed, and [+ ecci_fav_name +] take over. No delegate was asked, and no vote was held. ?][? if ecci_changed = 0 : Our line already matches the resolution, and we are praised. ?]
+
+A party that gets its leaders by decree from abroad is less likely to be asked for its views the next time.
+
+- @root: Continue.

@@ -1,0 +1,29 @@
+title: The Red Front Fighters
+subtitle: A new defence league takes the place of the banned Hundreds.
+new-page: true
+tags: kpd_event
+view-if: year = 1924 and month = 7 and civil_war = 0 and y24_rfb_done = 0
+on-arrival: y24_rfb_done = 1
+
+= The Red Front Fighters' League
+
+The Proletarian Hundreds were banned in the autumn of 1923, and the Nazis and the Bavarian leagues did not stop. In July 1924 the party's first Red Front Fighters' League groups appear in the cities. They march in uniform, protect meetings, and say they are open to all workers, not just party members. Ernst Thälmann will lead the federal organisation from February 1925.
+
+What the League is for is not settled. A shield for meetings is a different organisation from an army for the next October.
+
+- @mass: Make it a mass organisation open to all workers.
+- @army: Make it a disciplined paramilitary force.
+
+@mass
+subtitle: Workers +3, units +20, militancy down.
+on-arrival: workers_kpd += 3*campaign_mult; rfb_strength += 20; rfb_militancy -= 0.03; y23_hundreds += 1; kf_centre_strength += 2
+go-to: root
+
+The League recruits among Social Democratic and non-party workers; two thirds of its members, in time, carry no party card. The marches are large, noisy, and a matter of local pride in the working-class districts.
+
+@army
+subtitle: Units +50, militancy up, Left +3 strength.
+on-arrival: rfb_strength += 50; rfb_militancy += 0.04; y23_hundreds += 1; kf_left_strength += 3; workers_spd -= 1
+go-to: root
+
+The League drills with a military bearing. It is smaller than it could have been and harder than the police like. The state remembers what the Hundreds were meant for.

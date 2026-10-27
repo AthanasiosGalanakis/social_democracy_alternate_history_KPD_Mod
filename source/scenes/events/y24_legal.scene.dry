@@ -1,0 +1,12 @@
+title: The party is legal again
+subtitle: 1 March. The ban ends.
+new-page: true
+tags: kpd_event
+view-if: year = 1924 and month = 3 and y24_legal_done = 0 and y23_ban_done = 1 and civil_war = 0
+on-arrival: y24_legal_done = 1; kpd_banned = 0; workers_kpd += 2*campaign_mult
+
+= The ban is lifted
+
+The ban on the KPD ends on 1 March 1924. The party's papers come back, the offices reopen, and the cell structure built in the winter is kept alongside the legal organisation. The election campaign for May has begun, and the party enters it as a martyr of the Republic, which gives it a vote that no programme could win.
+
+- @root: Continue.

@@ -1,0 +1,14 @@
+title: Fischer and Maslow are expelled
+subtitle: 19 August 1926.
+new-page: true
+tags: kpd_event
+view-if: year = 1926 and month = 8 and y25_ecci_done = 1 and civil_war = 0 and y26_expulsion_done = 0
+on-arrival: y26_expulsion_done = 1; kf_left_strength = kf_left_strength*0.6; kf_left_dissent += 10; comintern_trust += 3; kf_apparatus_strength += 3
+
+= Expulsion
+
+In February Stalin offered Ruth Fischer readmission if she would accept the line. She refused. On 19 August 1926 she and Arkadi Maslow are expelled from the KPD. The party that was once led by Rosa Luxemburg expels one of its former chairs for disagreeing in writing with the General Secretary of a foreign party.
+
+Many of the Left stay and obey. Some do not, and they will make a name for themselves outside. Some leave the party, and many of them are, by now, as bitter as only the disappointed can be.
+
+- @root: Continue.

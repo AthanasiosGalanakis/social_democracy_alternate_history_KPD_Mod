@@ -1,0 +1,37 @@
+title: The Fifth Comintern Congress
+subtitle: June and July 1924. The International demands a party of cells.
+new-page: true
+tags: kpd_event
+view-if: year = 1924 and month = 6 and civil_war = 0 and y24_bolshevisation_done = 0
+on-arrival: y24_bolshevisation_done = 1
+
+= Bolshevisation
+
+The Fifth Congress of the Comintern meets in Moscow from mid-June. The International's leaders, Zinoviev above all, ask every section to become a "Bolshevik party": organised in factory cells, disciplined by the centre, and purged of the unfaithful. The German party's delegation is led by Ruth Fischer, who uses the occasion to denounce Trotsky.
+
+A party so organised is better at holding meetings and passing resolutions than at arguing, which is the worst thing that a mass party in a pluralist country can lose.
+
+- @accept: Accept bolshevisation in full.
+- @adapt: Adopt the cell system but keep the old branches alive.
+- @resist: Resist: the German party needs open discussion.
+
+@accept
+subtitle: Trust +8, Apparatus +6 strength, Centre +8 dissent.
+on-arrival: comintern_trust += 8; kf_apparatus_strength += 6; kf_centre_dissent += 8; workers_kpd -= 1
+go-to: root
+
+The branches are broken up and the factory cells take their place. Discipline improves. The party's newspapers repeat Moscow's formulae and the old members who liked to argue go home. A party that tells its members what they think soon has members who have nothing to say.
+
+@adapt
+subtitle: Trust +3, Apparatus +3 strength.
+on-arrival: comintern_trust += 3; kf_apparatus_strength += 3; kf_centre_strength += 2
+go-to: root
+
+We build the cells and keep the old branches for those who still prefer them. It is untidy, the apparatus calls it half-hearted, and the members, for once, are able to take part.
+
+@resist
+subtitle: Trust -8, Centre +5 strength, Apparatus +8 dissent.
+on-arrival: comintern_trust -= 8; kf_centre_strength += 5; kf_apparatus_dissent += 8; moscow_divergence_pts += 2
+go-to: root
+
+We tell the Comintern that Germany is not Russia. Moscow takes note in writing. The Centre applauds, and the apparatus, which depends on Moscow for its standing, does not.

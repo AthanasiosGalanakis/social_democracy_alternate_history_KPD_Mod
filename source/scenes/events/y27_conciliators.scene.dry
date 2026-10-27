@@ -1,0 +1,26 @@
+title: The Conciliators
+subtitle: A new current forms around Ewert and Eisler.
+new-page: true
+tags: kpd_event
+view-if: year = 1927 and month = 3 and civil_war = 0 and y27_conciliators_done = 0
+on-arrival: {!
+Q.y27_conciliators_done = 1;
+Q.kf_conciliators_active = 1;
+Q.kpd_factions.push('conciliators');
+Q.kf_conciliators_strength = 8;
+Q.kf_conciliators_dissent = 10;
+Q.plan_conciliators_progress = 0;
+Q.kf_centre_strength = Math.max(0, Q.kf_centre_strength - 4);
+Q.kf_right_strength = Math.max(0, Q.kf_right_strength - 2);
+Q.kf_apparatus_strength = Math.max(0, Q.kf_apparatus_strength - 2);
+!}
+
+= A new current
+
+A group around Arthur Ewert and Gerhart Eisler, with the old Spartacist Hugo Eberlein among them, begins to take shape inside the leadership. They are called the Conciliators because they want to reconcile the party's loyalty to Moscow with its need to organise real workers. They are for a mass party, for the unions, and against the more reckless acts of the Thälmann leadership.
+
+They are against nothing the Comintern has actually said. They are about to learn that it is not enough to stay within the letter of the line.
+
+A fifth faction now has a place in the party's contests. It starts weak.
+
+- @root: Continue.

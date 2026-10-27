@@ -10,7 +10,7 @@ on-arrival: month_actions += 1; mass_defence_timer = 3
 
 = Defence units
 
-[? if year >= 1925 or (year = 1924 and month >= 7) : The Red Front Fighters' League (the RFB), founded in July 1924, ?][? if year < 1925 and not (year = 1924 and month >= 7) : The Proletarian Hundreds ?] protect meetings from the Right's squads and stand ready for the day. They are a shield and they are a temptation, since an armed organisation tends to find its own reasons to fight.
+[? if year >= 1925 or (year = 1924 and month >= 7) : The Red Front Fighters' League (the RFB), whose first branches appear in July 1924, ?][? if year < 1925 and not (year = 1924 and month >= 7) : The Proletarian Hundreds ?] protect meetings from the Right's squads and stand ready for the day. They are a shield and they are a temptation, since an armed organisation tends to find its own reasons to fight.
 
 - @drill: Drill and arm the units.
 - @discipline: Stress discipline: parades, uniforms and defence of meetings only.
