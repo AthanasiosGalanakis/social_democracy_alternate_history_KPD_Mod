@@ -6,7 +6,7 @@ go-to: post_event if started = 1; start_menu if started = 0
 new-page: true
 go-to: start_menu_2
 
-= Social Democracy: An Alternate History
+= KPD: An Alternate History (working title)
 
 @start_menu_2
 
@@ -20,8 +20,10 @@ go-to: start_menu_2
 on-arrival: {!
 Q.started = 1;
 // time elapsed (in months)
+// KPD mod: the game starts in January 1923.
+Q.kpd_mode = 1;
 Q.time = 1;
-Q.year = 1928;
+Q.year = 1923;
 Q.month = 1;
 // how many actions have been taken this month?
 Q.month_actions = 0;
@@ -60,6 +62,9 @@ Q.dues = 2;
 // overall dissent reduces every increase in party support.
 Q.dissent = 0.05;
 Q.dissent_percent = 5;
+// KPD faction dissent: recomputed every month in post_event; initial value matches the starting faction numbers.
+Q.kf_dissent = 0.095;
+Q.kf_dissent_percent = 9.5;
 
 // factions
 Q.factions = ['left', 'center', 'labor', 'reformist', 'neorevisionist'];
@@ -336,29 +341,27 @@ Q.catholics_other = 12;
 
 
 // Current Reichstag composition
-// % of Reichstag in Jan 1928
-// source: wikipedia
-// note: the Z figures also include the BVP (Bavarian people's party)
-// since they were ideologically similar, but they were separate parties.
-// They did not have a CDU/CSU-style relationship.
-Q.spd_r = 26;
-Q.kpd_r = 9;
-Q.z_r = 17;
-Q.ddp_r = 6;
-Q.dvp_r = 10;
-Q.dnvp_r = 20;
-Q.nsdap_r = 3;
-Q.other_r = 9;
+// June 1920 result (rounded, from memory - to be checked). The USPD is not in Q.parties; its 17.9% sits in 'other'
+// until the elections and government formation are reworked (milestone M7).
+// The class-by-party support numbers further down are still the 1928 placeholders (milestone M1 follow-up).
+Q.spd_r = 22;
+Q.kpd_r = 2;
+Q.z_r = 18;
+Q.ddp_r = 8;
+Q.dvp_r = 14;
+Q.dnvp_r = 15;
+Q.nsdap_r = 0;
+Q.other_r = 21;
 
 // diff from prev
-Q.old_spd_r = 26;
-Q.old_kpd_r = 9;
-Q.old_z_r = 17;
-Q.old_ddp_r = 6;
-Q.old_dvp_r = 10;
-Q.old_dnvp_r = 20;
-Q.old_nsdap_r = 3;
-Q.old_other_r = 9;
+Q.old_spd_r = 22;
+Q.old_kpd_r = 2;
+Q.old_z_r = 18;
+Q.old_ddp_r = 8;
+Q.old_dvp_r = 14;
+Q.old_dnvp_r = 15;
+Q.old_nsdap_r = 0;
+Q.old_other_r = 21;
 
 // sapd isn't formed yet, but it may be formed
 Q.sapd_r = 0;
@@ -376,15 +379,15 @@ Q.economic_records = [];
 
 
 // State of the government
-Q.president = "Hindenburg";
-// starting chancellor: Wilhelm Marx
-Q.chancellor = "Marx";
-Q.chancellor_party = 'Z';
+Q.president = "Ebert";
+// January 1923: the non-party Cuno cabinet (Z, DVP, DDP and non-party ministers).
+Q.chancellor = "Cuno";
+Q.chancellor_party = 'I';
 Q.spd_in_government = 0;
 Q.z_in_government = 1;
-Q.ddp_in_government = 0;
+Q.ddp_in_government = 1;
 Q.dvp_in_government = 1;
-Q.dnvp_in_government = 1;
+Q.dnvp_in_government = 0;
 Q.kpd_in_government = 0;
 Q.nsdap_in_government = 0;
 
@@ -500,7 +503,7 @@ Q.spd_no_confidence = 0;
 Q.no_confidence_against_spd = 0;
 
 // Advisors/Leaders
-Q.n_advisors = 3;
+Q.n_advisors = 0;
 // timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.
 // let's just put all of the timers here...
 // most party affairs and government affairs cards are on a timer.
@@ -550,9 +553,10 @@ Q.n_elections = 0;
 Q.no_majority_elections = 0;
 // elections are not on a timer, but rather there is an indicator for whether you're in an electoral cycle.
 Q.in_election = 1;
-Q.next_election_year = 1928;
+// next Reichstag election: May 1924 (month 17 counting January 1923 as month 1).
+Q.next_election_year = 1924;
 Q.next_election_month = 5;
-Q.next_election_time = 5;
+Q.next_election_time = 17;
 // government affairs timers
 Q.agricultural_policy_timer = 0;
 Q.domestic_enemies_timer = 0;
@@ -582,12 +586,12 @@ Q.hindenburg_dismissal_timer = 0;
 
 
 // all the initial advisors are centrists.
-Q.wels_advisor = 1; // Otto Wels
-Q.muller_advisor = 1; // Hermann Müller
+Q.wels_advisor = 0; // Otto Wels
+Q.muller_advisor = 0; // Hermann Müller
 Q.muller_dead = 0;
 // okay I know Arthur Crispien was a leader irl but i couldn't find much interesting about him...
 Q.crispien_advisor = 0; // Arthur Crispien
-Q.hilferding_advisor = 1; // Rudolf Hilferding
+Q.hilferding_advisor = 0; // Rudolf Hilferding
 
 // left advisors
 Q.sender_advisor = 0; // Toni Sender
@@ -626,29 +630,29 @@ Q.stampfer_advisor = 0; // Friedrich Stampfer
 set-bg: img/map_2.jpg
 new-page: true
 
-> *"Such a general development cannot be attributed to the false tactics of any single party or to the mistakes of individual leaders. On the contrary, the conduct of individual leaders is determined largely by the sentiments of the people as a whole. It would be erroneous, however, to regard the sentiments of the moment as reflecting the natural make-up and character of the people. They are merely the consequence of the special circumstances which have brought about this profound degradation of the entire nation."*
+> *"Bourgeois society stands at the crossroads, either transition to socialism or regression into barbarism."*
 
- - Karl Kautsky, *Hitlerism and Social Democracy*, 1934
+ - Rosa Luxemburg, *The Junius Pamphlet*, 1916
 
-This is a game of alternate history. While historical accuracy is a major concern, keep in mind that this is a *game*, and that any divergence from actual events will necessarily have to involve some element of make-believe. Nevertheless, please let the author know if there are any glaring mistakes.
+This is a game of alternate history. While historical accuracy is a major concern, keep in mind that this is a *game*, and that any divergence from actual events will necessarily have to involve some element of make-believe. It takes the side of the working class, and for that reason it does not flatter the party you lead: the KPD will make mistakes, some of them of its own making and some imposed from Moscow, and the game will say so. Nothing here is random: if your decisions are right, the outcome follows.
 
-For more information on the politics and government of the German Republic, see the "Library" page on the top left. If this is your first time playing the game, it is strongly recommended that you read at least some of this information.
+You lead the Communist Party of Germany (KPD), starting in January 1923.
 
-- @1928_easy: Begin (easy difficulty)
-- @1928_main: Begin (normal difficulty)
-- @1928_hard: Begin (hard difficulty)
-- @1928_historical: Begin (historical mode)
-- @1928_custom: Customize difficulty settings
+- @1923_easy: Begin (easy difficulty)
+- @1923_main: Begin (normal difficulty)
+- @1923_hard: Begin (hard difficulty)
+- @1923_historical: Begin (historical mode)
+- @1923_custom: Customize difficulty settings
 
-@1928_easy
+@1923_easy
 on-arrival: difficulty = -1; resources = 4; dues = 3; starting_rb_strength = 2500; rb_strength = 2500; left_dissent = 10; kpd_relation = 29; z_relation = 54; dvp_relation = 49; starting_budget = 5; budget = 5; hand_size = 4; starting_dissent = 0; starting_relations = 0;
-go-to: 1928_main
+go-to: 1923_main
 
-@1928_hard
+@1923_hard
 on-arrival: difficulty = 1; resources = 0; starting_resources = 0; dues = 1; starting_rb_strength = 1000; rb_strength = 1000; reformist_dissent = 25; left_dissent = 30; labor_dissent = 25; center_dissent = 25; z_relation = 41; kpd_relation = 16; dvp_relation = 31; starting_budget = 3; budget = 3; discard_disabled = 1; starting_dissent = 2; starting_relations = 2;
-go-to: 1928_main
+go-to: 1923_main
 
-@1928_historical
+@1923_historical
 subtitle: Saving, loading, and polls will be disabled. [? if not achievement_game_completed: Not recommended for a first playthrough. ?]
 on-arrival: {!
 Q.hand_size = 3;
@@ -673,20 +677,20 @@ Q.fundraising_disabled = 1;
 Q.saves_disabled = 1;
 this.state.disableSaves = true;
 !}
-go-to: 1928_main
+go-to: 1923_main
 
-@1928_custom
+@1923_custom
 go-to: custom_difficulty
 
-@1928_main
+@1923_main
 audio: shuffle music/1928_1930/FruhlingsliedMendelssohn.mp3 music/1928_1930/AUF_HOHEN_BERGEN_noise_reduced.mp3 music/1928_1930/MarekWeber.mp3 music/1928_1930/BAUERNKAPELLE.mp3 music/1928_1933/DERLINDENBAUM_normalized.mp3 music/1928_1933/ZurSonne_zurFreiheit.mp3 music/1928_1933/arbeiter_marseille.mp3 music/1928_1933/Wann_wir_schreiten_Seit_an_Seit.mp3 music/1930_1933/Internationale-de_normalized.ogg music/1928_1930/LiedDerPompadour.mp3 music/1928_1933/SozialistenMarsch.mp3
 new-page: true
 go-to: main if hand_size == 3; main.main_easy if hand_size == 4
 
-= 1928
+= January 1923
 
-It is a bright time for German democracy. After a period of struggle, inflation is finally under control, and the economy is expanding steadily. In foreign policy, we have reached agreements with the Western powers and the Soviet Union that might make genuine peace a reality. 
+French and Belgian troops have marched into the Ruhr. The Reich answers with passive resistance paid for by the printing press, and the mark is sliding towards worthlessness. Wages are eaten by prices within days, while the debts of heavy industry melt away. The Cuno government calls this national unity; for those who pay with their wages, it is class war conducted by other means.
 
-Now, the task of Social Democracy is to prepare for the next election. The bourgeois-right government of Wilhelm Marx is unpopular, and we stand to gain. Perhaps the next government will have a socialist majority.
+We lead the KPD, a mass party that was burned by the March Action of 1921, split over Paul Levi, and told by Moscow to find the road to the workers who still follow the SPD. Our factions disagree about almost everything: whether to seek a united front with the Social Democratic leaders who drowned the revolution of 1918 and 1919 in blood, whether the crisis is the moment to strike, and how far to follow Moscow, where Lenin is gravely ill and his heirs are already fighting over the succession.
 
-
+The workers will not wait for our debates to end, and neither will the nationalists in Bavaria. History does not promise that this crisis ends in revolution, or that we are ready for it. We have a year to find out.

@@ -160,4 +160,4 @@ Returning cards to hand: {! <select name="discard_disabled" id="discard_disabled
 - @done: Done
 
 @done
-go-to: root.1928_main
+go-to: root.1923_main

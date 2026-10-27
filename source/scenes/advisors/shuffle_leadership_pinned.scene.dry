@@ -1,5 +1,5 @@
 title: Shuffle Leadership
-view-if: (difficulty < 0 or shuffle_leadership_enabled = 1)
+view-if: kpd_mode = 0 and (difficulty < 0 or shuffle_leadership_enabled = 1)
 new-page: true
 is-card: true
 is-pinned-card: true

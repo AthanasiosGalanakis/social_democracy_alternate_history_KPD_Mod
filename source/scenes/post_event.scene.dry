@@ -486,7 +486,7 @@ if (Q.month_actions >= 1) {
     }
 }
 Q.has_event = 0;
-// check if there are any cards in #event, and then go to main if not.
+// check if there are any cards in #kpd_event (the SPD-era #event scenes stay in the repo, unused, until they are rewritten), and then go to main if not.
 var scene = this.game.scenes['post_event.events_choice'];
 var choices = this._compileChoices(scene);
 if (choices && choices[0].title != "Continue...") {
@@ -514,6 +514,6 @@ go-to: events_choice if has_event = 1; main if has_event = 0 and (difficulty = 0
 
 @events_choice
 
-- #event
+- #kpd_event
 
 # This scene is solely for updating numbers after events, and routing to special events.
