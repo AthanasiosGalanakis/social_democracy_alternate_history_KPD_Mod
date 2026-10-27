@@ -10,6 +10,7 @@ Herein is information about the party, the state it works in, and the rules this
 @menu
 
 - @timeline: Timeline, 1918 to 1923
+- @later: What happened in our history, 1924 to 1933
 - @factions: The factions of the KPD
 - @moscow: Moscow and the Comintern
 - @paramilitaries: Armed groups
@@ -31,6 +32,29 @@ go-to: menu
 
 **1923.** French and Belgian troops occupy the Ruhr in January. The inflation reaches its end in the autumn, and the year ends with the Rentenmark, the Munich putsch and the ban on the KPD. This is where the game begins.
 
+@later
+go-to: menu
+
+This is the history the game departs from. Your party may do something else.
+
+**1924.** Rentenmark stabilisation; the KPD wins 12.6 per cent in May and falls to 8.9 in December. The Dawes Plan brings American loans. The RFB is founded in July.
+
+**1925.** Ebert dies; Hindenburg is elected president in the second round after the KPD runs Thälmann against Marx. The Comintern's fifth congress and the "Bolshevisation" of the party have already begun.
+
+**1926.** The referendum on the expropriation of the princes wins 14.5 million votes and fails. Fischer and Maslow are expelled from the KPD.
+
+**1928.** The SPD wins the May election. The Comintern's Sixth Congress proclaims the Third Period. The Wittorf affair ends with Thälmann restored by Stalin's intervention.
+
+**1929.** Blutmai in Berlin; the RFB is banned. The New York crash in October. The Young Plan referendum fails in December, but gives Hitler a national platform.
+
+**1930.** Brüning governs by emergency decree; in September the NSDAP wins 18.3 per cent.
+
+**1931.** Bank crisis in July; the KPD joins the Nazi-backed Prussian referendum on Moscow's orders. The Harzburg Front in October.
+
+**1932.** Hindenburg is re-elected; Papen lifts the SA ban; Altona; the Prussian coup on 20 July. The NSDAP wins 37.3 per cent in July and 33.1 in November.
+
+**1933.** Hitler is appointed on 30 January. The Reichstag burns on 27 February and the KPD is crushed. The Enabling Act passes on 23 March.
+
 @factions
 go-to: menu
 
@@ -44,7 +68,7 @@ The party is not one body. Four currents fight over the line.
 
 **The Moscow apparatus**: the faction of those whose first loyalty is the line from Moscow. Its danger is that Moscow is far away and has its own interests.
 
-Factions that did not yet exist in 1923, such as the Conciliators, the Leninbund and the Communist Opposition, appear later.
+Factions that did not yet exist in 1923 appear later. The Conciliators (Ewert, Eisler) form in 1927. The Communist Opposition (KPO) and the Leninbund do not take part in the game's contests; they are outside the party after their expulsions.
 
 @moscow
 go-to: menu
@@ -70,6 +94,10 @@ go-to: menu
 Nothing in this game depends on dice. If a result looks surprising, the reason is a number on the status page or in the event text.
 
 The party line is held by the strongest faction, and a change of line needs a contest at a conference. The contest is decided by strength, Moscow's favour, dissent and your own backing.
+
+The anti-fascist front (status page, 0 to 100) adds up joint work with the SPD, defence units, Anti-Fascist Action and its actions. The Prussian strike of July 1932 and the general strike of 30 January 1933 succeed at fixed thresholds that the event text names.
+
+Under the Third Period, every point of joint work with the SPD costs Moscow's patience: the more you build the front, the more you risk the line from Moscow.
 
 The decision at Chemnitz in October 1923 is decided by readiness, the sum of unity with the SPD left, Hundreds, strikes, workers' governments and Moscow's backing.
 
