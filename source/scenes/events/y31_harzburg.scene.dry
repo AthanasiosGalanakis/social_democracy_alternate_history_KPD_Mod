@@ -1,0 +1,37 @@
+title: The Harzburg Front
+subtitle: The DNVP, the Stahlhelm, the Nazis and the bankers meet in a spa town.
+new-page: true
+tags: kpd_event
+view-if: year = 1931 and month >= 10 and civil_war = 0 and y31_harzburg_done = 0
+on-arrival: {!
+Q.y31_harzburg_done = 1;
+Q.old_middle_nsdap += 4; Q.new_middle_nsdap += 3; Q.rural_nsdap += 4; Q.old_middle_dnvp -= 2; Q.rural_dnvp -= 2;
+!}
+
+= Bad Harzburg
+
+On 11 October the "national opposition" meets at Bad Harzburg: Hugenberg for the DNVP, Hitler with his brownshirts, Franz Seldte's Stahlhelm, and men from banking and heavy industry, among them Hjalmar Schacht. They march past one another. Hitler leaves before the Stahlhelm parade ends, to show who is in charge.
+
+The Right now speaks with one voice, the voice of the landowners, the heavy industry and the mass party of the petty bourgeoisie in uniform. In December the SPD, the free trade unions and the Reichsbanner answer with the "Iron Front", whose sign is three arrows against the swastika.
+
+- @offer: Offer the Iron Front joint defence of the workers' organisations.
+- @denounce: Denounce the Iron Front as a prop of the Brüning government.
+
+@offer
+subtitle: Unity +2 (Moscow patience -4 under the Third Period).
+on-arrival: {!
+Q.y23_unity += 2;
+Q.workers_kpd += 1*Q.campaign_mult;
+Q.kf_left_dissent += 3;
+Q.comintern_trust -= (Q.comintern_line == 'third_period') ? 3 : 0;
+!}
+go-to: root
+
+We write openly to the Iron Front's committee, offering common action at the factory gates and at the meetings. The leaders do not answer, and the local branches, in places, do. It is the first time in two years that members of the two parties stand at the same door.
+
+@denounce
+subtitle: Moscow trust +3, apparatus +2.
+on-arrival: comintern_trust += 3; kf_apparatus_strength += 2; kf_right_dissent += 3
+go-to: root
+
+The Iron Front is called a "bourgeois-social-democratic" cover for Brüning, and the party's posters name it "the enemy in our own camp". It is a line that can be defended in Moscow, and it is a difficult one to explain to a Reichsbanner man whose meetings the SA attacks.

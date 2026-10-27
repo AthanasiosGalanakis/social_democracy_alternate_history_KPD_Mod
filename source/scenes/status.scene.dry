@@ -104,6 +104,8 @@ Dollar rate: [+ usd_rate +] marks. Readiness for an October rising: [+ y23_ready
 
 Moscow: [+ moscow_leader +] (line: [+ comintern_line +], favours [+ moscow_favored +]), trust [+ comintern_trust +], balance [+ moscow_balance_r +], subsidy [+ soviet_subsidy +], patience step [+ moscow_divergence +] of 5
 
+[? if year >= 1928 : Anti-fascist front: [+ front +] of 100 (joint work with the SPD [+ front_u +], defence units [+ front_d +], Anti-Fascist Action [+ front_a +], actions [+ front_k +]). ?]
+
 
 @paramilitaries
 on-arrival: {!

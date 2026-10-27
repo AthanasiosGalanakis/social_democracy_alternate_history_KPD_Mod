@@ -1,0 +1,68 @@
+title: The war against the Nazi state
+subtitle: Germany is at war with itself.
+new-page: true
+tags: kpd_event
+view-if: civil_war = 1 and cw_context = "antinazi" and cw_last_time < time and kpd_ending = "none"
+on-arrival: {!
+Q.cw_last_time = Q.time;
+Q.cw_month += 1;
+Q.cw_white += 6;
+if (Q.cw_month > 4) { Q.cw_over = 1; }
+Q.cw_diff = Q.cw_red - Q.cw_white;
+Q.cw_has_moscow = (Q.comintern_trust >= 50) ? 1 : 0;
+Q.cw_has_spd = (Q.front_u >= 24) ? 1 : 0;
+!}
+go-to: cw_end if cw_over = 1
+
+= The campaign, month [+ cw_month +]
+
+The Reichswehr has sided with the government of order, and the SA and SS have been made auxiliary police. Against them stand our defence units, the Reichsbanner locals that have come over, and the factories of the Ruhr and the Berlin districts. Each month decides something, and each side adds to its strength: the state adds six every month through its apparatus.
+
+Our strength: [+ cw_red +]. The state and its armed leagues: [+ cw_white +].
+
+After the fourth month the war is decided: if our strength is more than 10 above theirs, the Nazi government falls. If it is within 10 of theirs, the war goes on. If it is lower than theirs by more than 10, we have lost.
+
+- @mobilise: Call a mass mobilisation of the factories and the unemployed. +8 strength.
+- @moscow: Appeal to Moscow for arms and pressure on Poland. +12 with a trust of 50 or more, otherwise +4.
+- @spd: Win over the SPD's workers and the Reichsbanner. -8 for the enemy with a united front of 24 or more, otherwise -3.
+- @dig_in: Hold the working-class districts and refuse a decisive battle. +3 strength, and -2 for the enemy.
+
+@mobilise
+on-arrival: cw_red += 8; workers_kpd -= 1
+go-to: root
+
+The factories empty and the barracks fill. We send many people who have never held a rifle to learn the use of one. The SA, who have been doing nothing else for ten years, are not afraid of them.
+
+@moscow
+on-arrival: {!
+Q.cw_red += (Q.cw_has_moscow == 1) ? 12 : 4;
+Q.comintern_trust += 3;
+!}
+go-to: root
+
+Moscow sends what it can and promises more. The Soviet leaders are busy with a five-year plan and a collectivisation that has already brought them famine in the villages, and they are careful with anything that could turn into a war on their western border.
+
+@spd
+on-arrival: {!
+Q.cw_white -= (Q.cw_has_spd == 1) ? 8 : 3;
+!}
+go-to: root
+
+We send speakers into the Reichsbanner halls and the union branches. Where the joint work of the last years has built trust, whole units come over. Where it has not, we find an apparatus that was told for four years that we were no better than the Nazis, and which now has the proof ready.
+
+@dig_in
+on-arrival: cw_red += 3; cw_white -= 2
+go-to: root
+
+We hold the working-class districts and let the enemy come. The SA, on the offensive in streets they have not been allowed to enter, lose men; so do we.
+
+@cw_end
+title: The war is decided
+on-arrival: {!
+if (Q.cw_red > Q.cw_white + 10) { Q.kpd_ending = 'antinazi_victory'; }
+else if (Q.cw_red >= Q.cw_white - 10) { Q.kpd_ending = 'antinazi_long_war'; }
+else { Q.kpd_ending = 'antinazi_defeat'; }
+!}
+go-to: game_over
+
+The fourth month has ended and the front has settled.

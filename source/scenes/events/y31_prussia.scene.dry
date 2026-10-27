@@ -1,0 +1,43 @@
+title: The Prussian referendum
+subtitle: The Stahlhelm and the Nazis want to dissolve the Prussian parliament, and Moscow wants us to vote with them.
+new-page: true
+tags: kpd_event
+view-if: year = 1931 and month >= 7 and civil_war = 0 and y31_banks_done = 1 and y31_prussia_done = 0
+on-arrival: y31_prussia_done = 1
+
+= The Prussian referendum
+
+The Stahlhelm, the Nazi party and the DNVP have launched a referendum to dissolve the Prussian Landtag and to remove the Social Democratic state government under Otto Braun, the last republican stronghold with a large police force. Our Central Committee at first calls it a fascist adventure and refuses to take part.
+
+On 22 July the policy is reversed. Moscow, through Stalin, wants the party to join the referendum, calling it the "Red Referendum", on the argument that the Prussian government is the main enemy of the workers and that the people want to be rid of it. The only thing that has changed since the first decision is the voice that issued it.
+
+The meaning is plain. The party will go to the same polling booths as the Nazis, with the same slogan against the Prussian government, three months before the Harzburg Front, with the SPD workers watching.
+
+- @comply: Campaign for the referendum as Moscow orders.
+- @refuse: Refuse. The referendum is the Nazis' and the Stahlhelm's, and we will not help it.
+
+@comply
+subtitle: Moscow trust +6, apparatus +3. Unity -2, workers -2.
+on-arrival: {!
+Q.comintern_trust += 6;
+Q.kf_apparatus_strength += 3;
+Q.y23_unity = Math.max(0, Q.y23_unity - 2);
+Q.workers_kpd -= 2;
+Q.workers_spd += 1;
+Q.y31_prussia_complied = 1;
+!}
+go-to: root
+
+The posters call for a "Red Referendum", and next to them hang the Nazis' own. In the SPD workers' districts the word "traitor" gets a new meaning. In ours, the older members, who remember 1923, turn their faces away and continue their work.
+
+@refuse
+subtitle: Moscow trust -8, patience -5 points.
+on-arrival: {!
+Q.comintern_trust -= 8;
+Q.moscow_divergence_pts += 5;
+Q.kf_right_strength += 2;
+Q.y31_prussia_complied = 0;
+!}
+go-to: root
+
+The Central Committee says that the party will not help the Nazis dissolve the last republican government of the biggest German state. It is the correct decision. Moscow's response is a letter, and the letter is longer than the decision.

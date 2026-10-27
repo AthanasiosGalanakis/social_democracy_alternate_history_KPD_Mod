@@ -1,0 +1,43 @@
+title: The autumn of 1932
+subtitle: Hitler overreaches, the Nazi vote falters, and the BVG strikes.
+new-page: true
+tags: kpd_event
+view-if: year = 1932 and month >= 9 and month <= 11 and civil_war = 0 and y32_coup_done = 1 and y32_schleicher_done = 0
+on-arrival: {!
+Q.y32_schleicher_done = 1;
+Q.old_middle_nsdap -= 18; Q.new_middle_nsdap -= 18; Q.rural_nsdap -= 18; Q.unemployed_nsdap -= 4; Q.workers_nsdap -= 2;
+Q.workers_kpd += 2; Q.unemployed_kpd += 2;
+Q.old_middle_dnvp += 3; Q.rural_dnvp += 4; Q.new_middle_dvp += 1;
+!}
+
+= A pause
+
+The July election gave the Nazi party [+ nsdap_r +] per cent and the largest delegation in the Reichstag. In August Hitler is offered the vice-chancellorship and refuses, demanding the whole of power. In September the Reichstag votes the Papen cabinet down by 512 to 42 and Papen dissolves it again. The Nazi treasury is empty, its voters are weary of campaigns, and the local party organisations are running short of money.
+
+In Berlin the city transport workers go on strike over a wage cut. The KPD's union organisation and the Nazis' factory cells lead the strike together, and the SPD-led free unions oppose it. It is the single episode of the Weimar period that every Social Democrat will remember when told that the Communists were opposed to the Nazis.
+
+- @join: Lead the BVG strike alongside the Nazi cells.
+- @separate: Support the strikers but refuse to share any platform with the Nazis.
+
+@join
+subtitle: Workers +2, unity -2. Moscow trust +2.
+on-arrival: {!
+Q.workers_kpd += 2*Q.campaign_mult;
+Q.workers_spd -= 1;
+Q.y23_unity = Math.max(0, Q.y23_unity - 2);
+Q.comintern_trust += 2;
+!}
+go-to: root
+
+The picket lines are mixed, and photographs of Communist and Nazi pickets in a single line are widely printed. The strike is lost in a week. The wage cut stands and the unions that did not join it have their say in every meeting. The Nazis, who needed to show workers that they stood for them, have been given a gift.
+
+@separate
+subtitle: Workers +1. Moscow trust -2.
+on-arrival: {!
+Q.workers_kpd += 1*Q.campaign_mult;
+Q.comintern_trust -= 2;
+Q.kf_right_strength += 1;
+!}
+go-to: root
+
+We support the strikers and say loudly that we will not stand with the brownshirts who broke strikes last year and will do it again. It earns a rebuke from the apparatus, and it is a distinction that workers on the picket line were glad to have drawn.

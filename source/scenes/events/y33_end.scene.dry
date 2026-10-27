@@ -1,0 +1,16 @@
+title: The fifth of March
+subtitle: The last election of the Republic.
+new-page: true
+tags: kpd_event
+view-if: year = 1933 and month >= 3 and civil_war = 0 and n_elections >= 7 and y33_end_done = 0
+on-arrival: {!
+Q.y33_end_done = 1;
+if (Q.kpd_ending == 'none') { Q.kpd_ending = 'underground'; }
+!}
+go-to: game_over
+
+= The last vote
+
+On 5 March the election takes place in a country where the opposition's press is banned and its meetings are broken up by the SA, which has been made an auxiliary police. The Nazi party wins [+ nsdap_r +] per cent, the SPD [+ spd_r +] and the KPD [+ kpd_r +]. None of our deputies can take their seats: they are in prison, in hiding or in exile.
+
+On 23 March the Reichstag passes the Enabling Act with the votes of the Centre, the DNVP and the liberal parties, the very parties that told their voters for ten years that democracy was the problem. Only the SPD votes against. The Republic is over, and the party that told the workers that it would lead them in that hour has to find out how to survive.

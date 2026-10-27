@@ -1,0 +1,17 @@
+title: The result in Prussia
+subtitle: 9 August 1931.
+new-page: true
+tags: kpd_event
+view-if: year = 1931 and month >= 8 and civil_war = 0 and y31_prussia_done = 1 and y31_prussia_result_done = 0
+on-arrival: {!
+Q.y31_prussia_result_done = 1;
+if (Q.y31_prussia_complied == 1) { Q.workers_kpd -= 1; Q.new_middle_nsdap += 1; }
+!}
+
+= The result
+
+The referendum fails. Of the Prussians who vote, nine in ten say yes, but fewer than four in ten turn out, and the law requires a majority of all eligible voters. The Braun government stays in office. The SPD does not forget which parties wanted it gone.
+
+[? if y31_prussia_complied = 1 : The KPD's own contribution is not small, and the cost is large. The Social Democratic press prints the pictures of Communists and Nazi stormtroopers collecting signatures together. Whatever the Comintern's reasons were, the party has helped to unite its two opponents against it, and that was not necessary. ?][? if y31_prussia_complied != 1 : We kept out of it, and that has a price in Moscow. It also has a benefit that nobody can measure: when Prussia is attacked again, we are not among those who tried to bring the government down last summer. ?]
+
+- @root: Continue.

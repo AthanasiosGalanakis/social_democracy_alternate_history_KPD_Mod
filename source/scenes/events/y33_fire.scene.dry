@@ -1,0 +1,39 @@
+title: The Reichstag fire
+subtitle: 27 February 1933.
+new-page: true
+tags: kpd_event
+view-if: year = 1933 and month >= 2 and civil_war = 0 and y33_hitler_done = 1 and y33_fire_done = 0
+on-arrival: {!
+Q.y33_fire_done = 1;
+Q.kpd_banned = 1;
+Q.workers_kpd -= 6; Q.unemployed_kpd -= 8; Q.workers_spd -= 3; Q.workers_nsdap += 4;
+Q.kpd_ban_end = 999;
+Q.rfb_strength = Math.round(Q.rfb_strength * 0.5);
+!}
+
+= The Reichstag fire
+
+On the night of 27 February the Reichstag building burns. A Dutch Communist, Marinus van der Lubbe, is found inside. Goebbels and Göring announce at once that it is the signal for a Communist uprising. Our party had no such plan, and the party leaders learn of the fire from the police who come to arrest them.
+
+On 28 February Hindenburg signs the "Decree for the Protection of People and State", which suspends the freedoms of speech, press and assembly and the secrecy of the post. Thousands of Communists are arrested that night, and thousands of Social Democrats and trade unionists in the next weeks. The KPD's offices are closed, its papers banned, its deputies put into custody. Not one of them has been given a trial.
+
+Many of the party's cadres have gone into hiding already. How many depends on what we did last month.
+
+- @shelter: Send the party's leaders abroad and the cadres into the cells.
+- @stay: Keep the leadership at home in the hope of calling for resistance.
+
+@shelter
+subtitle: Underground, the party survives.
+on-arrival: {!
+Q.underground_cadres = (Q.underground_prep == 1) ? 2 : 1;
+!}
+go-to: root
+
+The leadership scatters, the cell structure that was prepared in the winter holds in many cities, and the party survives in a form that nobody who knew the old KPD would recognise. The arrests continue anyway. The Gestapo's cellars in Berlin begin to fill.
+
+@stay
+subtitle: The leadership is arrested within weeks.
+on-arrival: underground_cadres = 0
+go-to: root
+
+The leaders try to stay in Berlin and speak to the workers. A few days later most of them are arrested, among them Thälmann on 3 March, who will not see freedom again. The party loses its centre, and the cells in the districts have to act without it.

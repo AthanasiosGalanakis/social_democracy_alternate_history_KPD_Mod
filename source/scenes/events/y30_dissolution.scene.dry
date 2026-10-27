@@ -1,0 +1,33 @@
+title: Brüning dissolves the Reichstag
+subtitle: In July the budget is rejected, and new elections are called for September.
+new-page: true
+tags: kpd_event
+view-if: year = 1930 and month >= 7 and civil_war = 0 and y30_muller_done = 1 and y30_dissolution_done = 0
+on-arrival: {!
+Q.y30_dissolution_done = 1;
+Q.old_middle_nsdap += 18; Q.new_middle_nsdap += 18; Q.rural_nsdap += 22; Q.unemployed_nsdap += 4; Q.workers_nsdap += 2; Q.catholics_nsdap += 1;
+Q.old_middle_dnvp -= 18; Q.old_middle_other -= 2; Q.new_middle_other -= 2; Q.rural_other -= 2; Q.workers_dnvp -= 3; Q.old_middle_dvp -= 8; Q.new_middle_dvp -= 8; Q.new_middle_ddp -= 8; Q.rural_dnvp -= 15; Q.rural_dvp -= 4; Q.old_middle_ddp -= 3;
+!}
+
+= Dissolved
+
+On 16 July the Reichstag rejects Brüning's budget by a narrow majority. The next day the President issues the budget as a decree, and when the Reichstag votes to revoke it, Brüning dissolves it on 18 July. The election is called for 14 September.
+
+Brüning expects the voters to give him a majority of the middle. They will give the Nazi party the biggest gain in the history of German parliaments. The Nazis promise work to the unemployed, land to the farmers, protection to the shopkeeper against the department store and the cartel, and to everyone a scapegoat. The DNVP, the DVP and the DDP, which have been telling their voters for years that parliament was the problem, find those voters now leave for the party that wants to abolish it.
+
+- @campaign: Make the campaign about wages, rent and bread.
+- @nazis: Make the campaign about the Nazis and what they will do to the workers' organisations.
+
+@campaign
+subtitle: Workers +2, unemployed +3.
+on-arrival: workers_kpd += 2*campaign_mult; unemployed_kpd += 3*campaign_mult
+go-to: root
+
+Our posters speak plainly about the price of bread and the rent, and the response in the working-class districts is strong. The effect on the clerk who is afraid of the proletarian future is the reverse, and we have not made an argument aimed at him.
+
+@nazis
+subtitle: Workers +1, unity +1.
+on-arrival: workers_kpd += 1*campaign_mult; y23_unity += 1; workers_nsdap -= 1
+go-to: root
+
+Our speakers explain what the Nazis say about the unions and the Marxists, with quotations. A working-class audience listens to this, and the SPD workers in the audience nod. It is not a message that wins the clerks, whom the Nazis speak to better.

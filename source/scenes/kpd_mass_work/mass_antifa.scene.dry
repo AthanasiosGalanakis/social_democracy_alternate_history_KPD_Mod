@@ -1,0 +1,49 @@
+title: Anti-Fascist Action
+subtitle: Patrols, committees and meetings against the SA.
+new-page: true
+is-card: true
+card-image: img/protest.jpg
+frequency: 150
+tags: kpd_mass
+view-if: mass_antifa_timer <= 0 and antifa_open >= 1
+on-arrival: month_actions += 1; mass_antifa_timer = 3
+
+= Anti-Fascist Action
+
+The committees in the working-class districts have names, flags and members. What they do depends on what we ask of them.
+
+- @patrol: Organise patrols and counter-demonstrations against the SA.
+- @committees: Set up joint committees of defence in the factories and the streets.
+- @reichsbanner: Approach the Reichsbanner's locals for joint action.
+- @root: Not this month.
+- @easy_discard
+
+@patrol
+choose-if: resources >= 1
+subtitle: -1 resources
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; antifa_actions += 1; rfb_strength += 10; workers_kpd += 1*campaign_mult
+go-to: root
+
+The patrols are out on the streets on the evenings of the SA marches. They block the route in some places, and are beaten in others. They are real and their casualties are real, and the workers who see them know what they are for.
+
+@committees
+choose-if: resources >= 1
+subtitle: -1 resources
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; y23_unity += 1; antifa_actions += 1; workers_kpd += 1*campaign_mult
+go-to: root
+
+Delegates from the factories and the tenement blocks meet to organise watches, alarm signals and relief for the families of the injured. SPD members attend in numbers that the party leaders in Berlin find embarrassing.
+
+@reichsbanner
+view-if: antifa_open >= 2
+subtitle: No cost. Moscow patience -2 points under the Third Period.
+on-arrival: {!
+Q.y23_unity += 1;
+Q.antifa_actions += 1;
+if (Q.comintern_line == 'third_period') { Q.moscow_divergence_pts += 2; }
+!}
+go-to: root
+
+We send our members to the Reichsbanner halls, openly, to propose joint action. The reception varies from a handshake to a thrown beer mug. Most of the locals are willing to talk. The Comintern's observers note who goes, and what is said.

@@ -1,0 +1,75 @@
+title: The Thirtieth of January
+subtitle: Hindenburg appoints Hitler Chancellor.
+new-page: true
+tags: kpd_event
+view-if: year = 1933 and month >= 1 and civil_war = 0 and y33_hitler_done = 0
+on-arrival: {!
+Q.y33_hitler_done = 1;
+// the chancellor's bonus and the terror of February: the middle classes and the farmers follow the winner
+Q.old_middle_nsdap += 45; Q.new_middle_nsdap += 45; Q.rural_nsdap += 45; Q.workers_nsdap += 10; Q.unemployed_nsdap += 8; Q.catholics_nsdap += 5;
+Q.old_middle_dnvp -= 5; Q.rural_dnvp -= 8; Q.old_middle_other -= 2; Q.new_middle_other -= 2; Q.rural_other -= 2;
+!}
+
+= Hitler is Chancellor
+
+After the November election the Nazi party stands at [+ nsdap_r +] per cent, the SPD at [+ spd_r +] and we at [+ kpd_r +].[? if spd_r + kpd_r > nsdap_r : The two workers' parties together outpoll the Nazis, and have for a year. ?] In December General Kurt von Schleicher, the new Chancellor, tried to build a majority from the unions to the Nazi left, and failed. Papen, with the backing of landowners and industrialists, then arranged with Hindenburg's circle that Hitler would be made Chancellor in a cabinet where the conservatives held nearly every other seat.
+
+At noon on 30 January 1933 Hindenburg swears Hitler in. In the evening the SA marches with torches through the Brandenburg Gate. Papen is saying that he has Hitler "boxed in".
+
+We have called for a general strike against exactly this for years. The party's leaders now have to say whether there is a general strike to be called, and what it will take.
+
+- @strike: Call the general strike.
+- @armed: Call for armed resistance.
+- @wait: Wait, build the front and prepare the party for what comes.
+
+@strike
+subtitle: The strike holds if the front is 75 or more (65 if Prussia was saved).
+on-arrival: {!
+var need = Q.prussia_saved == 1 ? 65 : 75;
+Q.y33_strike_ok = (Q.front >= need) ? 1 : 0;
+if (Q.y33_strike_ok == 1) { Q.kpd_ending = 'strike_stops_hitler'; }
+!}
+go-to: strike_wins if y33_strike_ok = 1; strike_fails if y33_strike_ok = 0
+
+@strike_wins
+title: The general strike
+go-to: game_over
+
+The call goes out on the evening of the thirtieth. By the next morning the trains have stopped, the Ruhr is silent, and in Berlin the Reichsbanner, the unions and our defence units hold the same streets. The Reichswehr, which has not been asked and does not want to be, stays in its barracks. At the end of the week Hindenburg's circle looks at the factories, looks at the generals, and decides that the experiment is not worth the price.
+
+The Hitler government resigns. It is the first time, and not the last, that Germany has learned what its working class could do when it acts as one.
+
+@strike_fails
+title: The strike that nobody joins
+go-to: root
+
+The call goes out, and the party's members stop work. Almost nobody else does. The unions' leaders say that the government has been appointed lawfully, that the elections in March will decide, and that the workers should not give the new Chancellor a pretext. The SPD's executive agrees. They are quite right that a pretext is wanted, and quite wrong about the meaning of "lawful".
+
+Our members strike alone, are dismissed, and the SA is ready to answer.
+
+@armed
+choose-if: rfb_strength >= 100
+subtitle: Starts a civil war against the Nazi state. Needs defence strength 100.
+unavailable-subtitle: Our armed units are too weak to try.
+on-arrival: {!
+Q.civil_war = 1;
+Q.cw_context = 'antinazi';
+Q.cw_month = 0;
+Q.cw_red = Q.front + 20 + (Q.prussia_saved == 1 ? 25 : 0);
+Q.cw_white = 100 + Math.round(Q.nsdap_r/2);
+Q.cw_last_time = Q.time;
+Q.cw_over = 0;
+!}
+go-to: root
+
+The party leadership issues the call and the Hundreds go to the arms depots they have been told about for ten years. There are fewer than they expected and more than the generals thought. The Reichswehr hesitates for a day and then takes the side of the order. Germany is at war with itself again.
+
+@wait
+subtitle: Defence units on alert; the party prepares to go underground.
+on-arrival: {!
+Q.underground_prep = 1;
+Q.kf_apparatus_strength += 2;
+!}
+go-to: root
+
+We say that the workers must hold their forces for the decisive moment, and prepare the apparatus. That is the policy of the SPD leaders on that day, and the one that the unions' leaders choose, and in four weeks it will have cost everything.

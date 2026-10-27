@@ -130,6 +130,12 @@ Q.y23_t = Math.min(10, Q.y23_strikes*3);
 Q.y23_g = 10*Q.y23_saxony + 5*Q.y23_thuringia;
 Q.y23_m = 5*Q.soviet_subsidy + (Q.moscow_leader == "Trotsky-Radek" ? 10 : 0) + (Q.comintern_trust >= 60 ? 5 : 0);
 Q.y23_ready = Q.y23_s + Q.y23_h + Q.y23_t + Q.y23_g + Q.y23_m;
+// the anti-fascist front: joint work with the SPD, defence units, the Anti-Fascist Action and its actions (max 100)
+Q.front_u = Math.min(40, 4*Q.y23_unity);
+Q.front_d = Math.min(25, (Q.rfb_banned ? 0.5 : 1)*Q.rfb_strength/10);
+Q.front_a = 10*Q.antifa_open;
+Q.front_k = Math.min(15, 5*Q.antifa_actions);
+Q.front = Math.round(Q.front_u + Q.front_d + Q.front_a + Q.front_k);
 
 // 1. update dates
 if (Q.month_actions >= 1) {
@@ -206,6 +212,18 @@ if (Q.month_actions >= 1) {
         Q.workers_kpd -= 2;
         Q.rfb_strength = 200;
         Q.state_intervention = 1;
+    }
+    // under the Third Period, work with the SPD is itself an act of disobedience: each gained point of joint work costs 2 patience points
+    if (Q.comintern_line == 'third_period' && Q.y23_unity > Q.unity_last) {
+        Q.moscow_divergence_pts += 2*(Q.y23_unity - Q.unity_last);
+    }
+    Q.unity_last = Q.y23_unity;
+    // scripted unemployment, as a share of the electorate, from January 1929
+    if (Q.month == 1 && Q.year >= 1929 && Q.year <= 1932) {
+        var unemp = {1929: 10, 1930: 15, 1931: 22, 1932: 30};
+        var delta = unemp[Q.year] - Q.unemployed;
+        Q.unemployed += delta;
+        Q.workers = Math.max(20, Q.workers - delta);
     }
     // Moscow trust stays on a 0 to 100 scale
     Q.comintern_trust = Math.max(0, Math.min(100, Q.comintern_trust));

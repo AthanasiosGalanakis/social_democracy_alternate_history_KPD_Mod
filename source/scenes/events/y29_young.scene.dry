@@ -1,0 +1,35 @@
+title: The Young Plan referendum
+subtitle: Hugenberg and Hitler gather signatures against reparations.
+new-page: true
+tags: kpd_event
+view-if: year = 1929 and month >= 12 and civil_war = 0 and y29_young_done = 0
+on-arrival: {!
+Q.y29_young_done = 1;
+Q.old_middle_nsdap += 6; Q.new_middle_nsdap += 4; Q.rural_nsdap += 6; Q.workers_nsdap += 1;
+Q.old_middle_dnvp -= 3; Q.rural_dnvp -= 3;
+!}
+
+= The Young Plan
+
+The Young Plan, a revised schedule for reparations, is approved by the Reichstag. Alfred Hugenberg, the press owner who leads the DNVP, joins forces with the Stahlhelm and the Nazi party in a committee against it. The "Freedom Law" would make signing the plan treason, and ministers who sign it punishable by prison.
+
+On 22 December the referendum is held and fails: fewer than one in seven German voters say yes, far short of the half required. But Hitler, who had been a provincial agitator with a few thousand followers, has been in every newspaper that Hugenberg owns for months. Hugenberg thought he was borrowing a drummer. He has made a leader.
+
+The DNVP and the industrialists who finance it will keep making this mistake for three years.
+
+- @both: Oppose the Young Plan and Hugenberg's Freedom Law alike.
+- @expose: Concentrate the campaign on Hugenberg and the Nazi party as the bankers' hirelings.
+
+@both
+subtitle: Moscow trust +2, Left +1.
+on-arrival: comintern_trust += 2; kf_left_strength += 1
+go-to: root
+
+We denounce the plan as a chain on the German worker and the Freedom Law as a trick played by the same bankers and landowners who made the plan necessary. Both claims are true. A voter who has heard both has been told nothing about which side to take.
+
+@expose
+subtitle: Workers +1. Centre +2.
+on-arrival: workers_kpd += 1*campaign_mult; kf_centre_strength += 2; workers_nsdap -= 1
+go-to: root
+
+We publish the names of the industrial and landowning donors to the committee, the Nazi party's debts and the sums its leaders spend on uniforms and cars. It lands in the factories. It does not land with those who are not in the factories, and who need their own explanation.

@@ -2,7 +2,7 @@ title: The campaign
 subtitle: Germany is at war with itself.
 new-page: true
 tags: kpd_event
-view-if: civil_war = 1 and cw_last_time < time and kpd_ending = "none"
+view-if: civil_war = 1 and cw_context = "october" and cw_last_time < time and kpd_ending = "none"
 on-arrival: {!
 Q.cw_last_time = Q.time;
 Q.cw_month += 1;

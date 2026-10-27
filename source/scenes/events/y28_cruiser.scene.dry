@@ -1,0 +1,31 @@
+title: Children's meals, not battleships
+subtitle: The SPD campaigned against the cruiser, then voted for it.
+new-page: true
+tags: kpd_event
+view-if: year = 1928 and month >= 8 and civil_war = 0 and y28_cruiser_done = 0
+on-arrival: y28_cruiser_done = 1
+
+= Panzerkreuzer A
+
+In the election campaign the SPD promised "Children's meals, not battleships". In August the new Müller cabinet, with four SPD ministers, approved the first armoured cruiser of the Weimar navy, and the party's ministers voted for it. The SPD leaders explained that they were bound by the coalition, which is what they always say.
+
+It is the best chance we have had since the election to speak to SPD voters who feel cheated. A petition for a referendum against the cruiser would put the question to the whole country, and we know, as do the workers, that the signatures required are many more than we can gather alone.
+
+- @petition: Launch the petition for a referendum against the cruiser, with our own organisation.
+- @joint: Ask the SPD's left wing and the unions to sponsor the petition with us.
+
+@petition
+choose-if: resources >= 1
+subtitle: -1 resources, workers +2.
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; workers_kpd += 2*campaign_mult; workers_spd -= 1; kf_apparatus_strength += 1
+go-to: root
+
+In October the party's collectors gather about 1.2 million signatures, well short of the roughly 4 million that the law requires. The petition fails, and the campaign proves the point about the SPD better than a hundred speeches. But it also proves that we cannot do alone what only the workers together can.
+
+@joint
+subtitle: Unity +1, Left dissent +3.
+on-arrival: y23_unity += 1; kf_left_dissent += 3; workers_spd -= 1; workers_kpd += 1*campaign_mult
+go-to: root
+
+Several SPD locals sign the appeal, the leaders in Berlin disown it, and the petition fails all the same. But for a few weeks the cruiser has made workers in two parties talk to each other, and the Left tells us that was the point of the exercise.

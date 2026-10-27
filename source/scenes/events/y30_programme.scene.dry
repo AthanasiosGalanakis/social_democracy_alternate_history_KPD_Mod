@@ -1,0 +1,29 @@
+title: The Programme Declaration
+subtitle: The party tries to win nationalist voters from the Nazis.
+new-page: true
+tags: kpd_event
+view-if: year = 1930 and month >= 8 and civil_war = 0 and y30_dissolution_done = 1 and y30_programme_done = 0
+on-arrival: y30_programme_done = 1
+
+= National and social liberation
+
+Moscow's idea is that the Nazis are winning votes because they speak of the national humiliation of Versailles, and that the KPD must speak of it too. The result is the "Programme Declaration for the National and Social Liberation of the German People", published in August, which promises to cancel Versailles and the reparations and calls the Weimar state a tool of the victors.
+
+It is a bad idea. It repeats the language of the other side, accepts the question the Right has set, and tells the voters who are being whipped into nationalism that they were right to be. The Nazis will not lose a single voter to a communist who uses their words.
+
+- @issue: Publish the Declaration as Moscow wants.
+- @class: Publish a class-based version without the nationalist vocabulary.
+
+@issue
+subtitle: Moscow trust +4, Left +2. Workers -1.
+on-arrival: comintern_trust += 4; kf_left_strength += 2; kf_apparatus_strength += 1; workers_kpd -= 1; new_middle_kpd += 1
+go-to: root
+
+The Declaration is read in the working-class districts, where it means little, and in the nationalist ones, where it is read as a clumsy imitation. In the party it is praised and in the factories it is ignored. Within a few months it will be the main example the SPD uses to show that the Communists and the Nazis are cousins.
+
+@class
+subtitle: Moscow trust -3. Workers +1.
+on-arrival: comintern_trust -= 3; workers_kpd += 1*campaign_mult; kf_right_strength += 1
+go-to: root
+
+We publish a declaration that promises the cancelling of the reparations and says that the debt was made by German capital, not by the German worker, and should be paid by those who made it. It is the line that has the virtue of being true, and in the eyes of Moscow the vice of being too modest.
