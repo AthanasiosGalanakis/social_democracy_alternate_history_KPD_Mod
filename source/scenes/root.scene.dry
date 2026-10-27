@@ -118,6 +118,30 @@ Q.moscow_change_pending = 0;
 Q.moscow_action_timer = 0;
 // Which faction's line Moscow currently favours (updated by Moscow events, milestone M4). Matching it gives a faction extra weight in line contests.
 Q.moscow_favored = 'right';
+// 1923 campaign state (milestone M5). Flags are 0/1; the readiness parts feed the Chemnitz decision and are shown on the status page.
+Q.hyper_script = 1;
+Q.usd_rate = "about 18,000";
+Q.kpd_banned = 0;
+Q.y23_unity = 0;
+Q.y23_hundreds = 0;
+Q.y23_strikes = 0;
+Q.y23_saxony = 0;
+Q.y23_thuringia = 0;
+Q.y23_s = 0; Q.y23_h = 0; Q.y23_t = 0; Q.y23_g = 0; Q.y23_m = 0; Q.y23_ready = 0;
+Q.y23_outcome = "none";
+Q.y23_exec_pending = 0;
+Q.y23_hamburg_pending = 0;
+Q.y23_failed = 0;
+Q.saxony_survives = 0;
+Q.civil_war = 0;
+Q.cw_month = 0;
+Q.cw_last_time = -1;
+Q.cw_red = 0;
+Q.cw_white = 0;
+Q.kpd_ending = "none";
+for (var y23_flag of ['ruhr', 'leipzig', 'prices', 'ruhr_strike', 'schlageter', 'antifa', 'cuno', 'moscow', 'emergency', 'saxony', 'thuringia', 'chemnitz', 'exec', 'hamburg', 'beerhall', 'rentenmark', 'ban', 'blame', 'cw_start']) {
+    Q['y23_' + y23_flag + '_done'] = 0;
+}
 // plan progress: each faction's plan has 5 steps. Progress only grows while that faction holds the party line, and decays while it does not.
 Q.plan_right_progress = 0;
 Q.plan_left_progress = 0;

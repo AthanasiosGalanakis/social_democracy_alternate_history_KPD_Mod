@@ -1,0 +1,38 @@
+title: The Ruhr occupation
+subtitle: French and Belgian troops have crossed the Rhine.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 1 and y23_ruhr_done = 0
+on-arrival: y23_ruhr_done = 1
+
+= French troops in the Ruhr
+
+On 11 January French and Belgian troops march into the Ruhr to enforce the reparations deliveries Germany has defaulted on. Chancellor Cuno answers with passive resistance: the miners and railwaymen are told to stop work, and the Ruhr industrialists, who are in no hurry to pay anything, are compensated for their losses out of the printing press. Every day that the strike continues, the mark loses more of its worth.
+
+The question for the party is simple to state and hard to answer. A German government that serves the coal and steel barons is calling on workers to defend the nation, and a French government that serves the French coal and steel barons has sent soldiers to take the coal. Both lines are bourgeois. What do we say to the miners?
+
+- @both: Fight French imperialism and Cuno's Ruhr kings together.
+- @committees: Organise factory committees to feed the strikers and watch the profiteers.
+- @distance: Call it a quarrel between capitalists and keep out of it.
+
+@both
+subtitle: The Zentrale's line. Moscow approves.
+on-arrival: workers_kpd += 2*campaign_mult; comintern_trust += 3; kf_left_dissent += 2
+go-to: root
+
+The party's paper carries the headline "Against Poincare and Cuno". It is a correct line that satisfies nobody who is actually hungry: the miners want to know who will pay their wages next week. The slogan is accurate and it is also very easy to ignore.
+
+@committees
+subtitle: Costs 1 resources.
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; y23_unity += 1; workers_kpd += 3*campaign_mult; workers_spd -= 1
+go-to: root
+
+Factory committees organise food distribution and inspect the books of the local profiteers. Social Democratic and union members sit on them next to ours. It is small and concrete work, and it shows the SPD rank and file that the party can do something besides shout.
+
+@distance
+on-arrival: workers_kpd -= 1; kf_left_dissent += 3; comintern_trust -= 4
+go-to: root
+
+We stay out of it. Abstention is a position, and the workers read it as one: the Left accuses the leadership of failing to lead, and Moscow, which expects a revolutionary party to use a national crisis, is not pleased.

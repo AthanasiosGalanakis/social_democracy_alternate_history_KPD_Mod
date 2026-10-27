@@ -1,0 +1,14 @@
+title: The Rentenmark
+subtitle: The hyperinflation ends, and the workers pay for it.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 11 and y23_rentenmark_done = 0 and y23_chemnitz_done = 1
+on-arrival: y23_rentenmark_done = 1; unemployed += 3; pro_republic -= 3
+
+= The end of the inflation
+
+On 15 November the new Rentenmark is introduced, secured on mortgages on land and industry and fixed at 4.2 billion marks of the old money to the dollar. The printing presses stop and the prices stop rising. The government's solution is neither gentle nor fair: public servants are dismissed by the tens of thousands, the unemployment payments are cut, and in December an emergency decree opens the way to a longer working day.
+
+The inflation wiped out the savings of the middle classes and the debts of the industrialists, and the stabilisation will be paid for by the workers. The money Stinnes and Krupp owed is gone, and the unemployed are told to be grateful.
+
+- @root: Continue.

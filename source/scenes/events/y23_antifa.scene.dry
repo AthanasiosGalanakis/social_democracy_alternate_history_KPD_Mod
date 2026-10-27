@@ -1,0 +1,26 @@
+title: Anti-Fascist Day
+subtitle: 29 July. Demonstrations against the Bavarian Right.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 7 and y23_antifa_done = 0
+on-arrival: y23_antifa_done = 1
+
+= Anti-Fascist Day
+
+The Bavarian Right is arming. The Reichswehr there looks away, the Bavarian government protects its Völkisch leagues, and the NSDAP, led by Adolf Hitler, a man who has spent two years learning how to fill beer halls with hatred of Jews, democrats and Marxists, is growing. The party calls for a day of demonstrations on 29 July. Several states ban them, among them Prussia's, and the question is whether to defy the bans.
+
+- @march: March, ban or no ban, with the Proletarian Hundreds.
+- @comply: Hold meetings indoors where the law allows them.
+
+@march
+subtitle: Hundreds +1, Left +3 strength, SPD workers -1.
+on-arrival: y23_hundreds += 1; rfb_strength += 20; workers_kpd += 2*campaign_mult; workers_spd -= 1; kf_left_strength += 3
+go-to: root
+
+The marches are large and orderly in some cities and violent in others, where the police and the Hundreds meet. The day shows the strength of the movement and also its edge: the SPD ministers who banned the marches are our actual opponents in half of Germany.
+
+@comply
+on-arrival: workers_kpd += 1*campaign_mult; kf_right_strength += 2; kf_left_dissent += 5
+go-to: root
+
+The meetings are packed and quiet. The Left asks what the point is of an anti-fascist day that never leaves the hall, and the Right replies that you do not fight Nazis by being shot at by Prussian police.

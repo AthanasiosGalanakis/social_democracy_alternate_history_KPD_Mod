@@ -1,0 +1,27 @@
+title: Cuno must go
+subtitle: Berlin's workers are on the move in August.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 8 and y23_cuno_done = 0
+on-arrival: y23_cuno_done = 1
+
+= The fall of Cuno
+
+By August the mark is worth almost nothing. Berlin's printers and then its tram workers stop work, the factory councils meet, and in the streets the cry is "Cuno must go". The SPD, which had tolerated the government, withdraws its support in the Reichstag, and on 12 August Chancellor Cuno resigns. On the 13th Gustav Stresemann forms a Great Coalition of the SPD, Centre, DDP and DVP.
+
+The question for the party was what to do when the strike began. A party that waits for a revolutionary situation to call a strike will be told it was late. A party that calls one at the wrong time will be told it was a fool.
+
+- @strike: Call for a political general strike, with the factory councils in the lead.
+- @support: Support the councils without issuing a call of our own.
+
+@strike
+on-arrival: y23_strikes += 1; workers_kpd += 3*campaign_mult; workers_spd -= 2; chancellor = 'Stresemann'; kf_left_strength += 2
+go-to: root
+
+The party's call goes out with those of the councils. Cuno falls, and many workers credit the strike. In truth, the SPD's withdrawal sealed it. The new coalition includes the SPD, whom the Left calls the hangmen of 1919, and the KPD enters a political contest with them with new supporters and no new organisation.
+
+@support
+on-arrival: workers_kpd += 2*campaign_mult; chancellor = 'Stresemann'; kf_right_strength += 2; comintern_trust += 2
+go-to: root
+
+We back the councils, and the strike does its work. Cuno falls, Stresemann's coalition is formed, and the SPD ministers look as if they had won it, while we gain a good name with the factory councils and little else.
