@@ -16,7 +16,7 @@ if (Q.kpd_banned && Q.kpd_ban_end <= Q.time) { Q.kpd_banned = 0; }
 
 = The post-mortem
 
-In Moscow the Comintern's executive meets to ask what went wrong. The leadership of the Russian party, divided against itself, wants an answer that does not blame the Russian leaders who set the date. Zinoviev will blame Brandler and the Right, and he will say that the party was too cautious to carry out an obviously correct plan. In Germany, Ruth Fischer and Arkadi Maslow's Left says the same, and has the advantage of having been right about the Social Democrats' unreliability.
+In Moscow the Comintern's executive meets to ask what went wrong. The leadership of the Russian party, divided against itself, wants an answer that does not blame the Russian leaders who set the date. Zinoviev will blame Brandler and Thalheimer, and he will say that the party was too cautious to carry out an obviously correct plan. In Germany, Ruth Fischer and Arkadi Maslow's Left says the same, and has the advantage of having been right about the Social Democrats' unreliability.
 
 In the Russian party, Trotsky and the Opposition criticise the Politburo, and are in turn accused of factionalism. In the German party, the fight over the Party Line is open. The old leadership is blamed and an extraordinary conference is in the air.
 
