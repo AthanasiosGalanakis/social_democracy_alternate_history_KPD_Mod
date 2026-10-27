@@ -1,0 +1,21 @@
+title: The government in crisis
+subtitle: The partners are leaving.
+new-page: true
+tags: kpd_event
+view-if: (kpd_in_government = 1 or kpd_tolerating = 1) and (gv_line_ok_now = 0 or comintern_trust < 20)
+on-arrival: {!
+Q.gc_reich = (Q.kpd_in_government == 1) ? 1 : 0;
+Q.kpd_in_government = 0;
+Q.kpd_tolerating = 0;
+Q.kf_right_dissent += 10;
+Q.workers_spd -= 2;
+Q.y23_unity = Math.max(0, Q.y23_unity - 3);
+!}
+
+= The partnership ends
+
+The line has changed, or Moscow has withdrawn its approval. [? if gc_reich = 1 : The SPD ministers leave the cabinet and the workers' government falls. ?][? if gc_reich = 0 : The SPD leaders announce that they cannot rely on a party that changes its mind every few months, and the toleration ends. ?]
+
+What was built has not been entirely lost. The workers who saw that the two parties could work together remember. So do the Social Democratic leaders who saw that we could not be relied on.
+
+- @root: Continue.

@@ -55,3 +55,11 @@ Build with `dendrynexus make-html` (see README.md).
 - Seven cards: strikes and factory councils, unemployed councils, workers' relief, the party press, defence units (Proletarian Hundreds, RFB from July 1924), parliamentary tactics, underground work (only while banned).
 - The actions do not depend on the party line. They feed the same counters as the line actions (y23_unity, y23_hundreds, y23_strikes), so every faction can prepare for October, which is what makes the Chemnitz thresholds reachable.
 - To verify: the RFB founding date (July 1924), Münzenberg's International Workers' Aid.
+
+## M7 Governments and elections (feat/kpd-government)
+- The election results page now leads to kpd_aftermath instead of the SPD coalition menu. The Reich government is formed from the result alone (Weimar, Grand, bourgeois, right, or a minority cabinet); the player decides only where the KPD stands.
+- Options: opposition; tolerate an SPD-led minority cabinet; propose a workers' government. Requirements are visible: Right or Centre leads the party, Moscow trust 40+, joint work with the SPD 6+ (y23_unity), and for the workers' government SPD+KPD above 50%.
+- Land governments (card "The Land governments", Mass Work deck, from 1924): Saxony and Thuringia need unity 6, Prussia unity 10. Each pays 1 resource a quarter and adds 1 Left dissent. The Reich removes the Saxony and Thuringia cabinets if the armed units exceed 250.
+- If the line changes away from Right/Centre, or trust falls under 20, a government crisis ends the partnership.
+- The revolutionary government path is the October civil war branch from M5 (endings in kpd_endings.scene.dry). A second route is left for M8 to M10.
+- Still SPD-era: much of election_1928.scene.dry below the results page (coalition scenes, now unreachable), and the base-game endings.
