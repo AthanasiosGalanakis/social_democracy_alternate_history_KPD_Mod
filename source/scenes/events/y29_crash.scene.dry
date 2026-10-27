@@ -1,0 +1,35 @@
+title: The crash
+subtitle: New York falls, and Germany's American loans are called in.
+new-page: true
+tags: kpd_event
+view-if: year = 1929 and month >= 10 and civil_war = 0 and y29_crash_done = 0
+on-arrival: {!
+Q.y29_crash_done = 1;
+Q.old_middle_nsdap += 8; Q.new_middle_nsdap += 6; Q.rural_nsdap += 8;
+Q.old_middle_dnvp -= 4; Q.old_middle_dvp -= 3; Q.new_middle_ddp -= 3; Q.rural_dnvp -= 5;
+!}
+
+= The crash
+
+On 24 October, Black Thursday, the New York stock exchange collapses. German industry has been living on American loans since the Dawes Plan, and now the loans are recalled. Within months the factories begin to close.
+
+The unemployed will reach three million by the end of 1930 and six million by the end of 1932. The savings of the small shopkeeper, the artisan, the clerk and the farmer are wiped out for the second time in a decade. They did not understand 1923 and they will not understand this. Someone will explain it to them, and the man who explains it will blame the Jews and the Marxists, as he did before.
+
+Marx predicted such crises. He did not predict that the bourgeois parties would offer the ruined middle class nothing, and leave the field to the one man who does.
+
+- @collapse: Declare the final crisis of capitalism has come.
+- @relief: Put forward a concrete programme of unemployment relief and public works.
+
+@collapse
+subtitle: Moscow trust +3, Left +2.
+on-arrival: comintern_trust += 3; kf_left_strength += 2; unemployed_kpd += 1*campaign_mult
+go-to: root
+
+Our press announces the beginning of the end. It is not wrong that the system is failing. It is wrong about the question that matters, which is what happens to a society that has lost faith in its own order, and who is waiting for that moment with a flag.
+
+@relief
+subtitle: Unemployed +4 for the party. Centre +2.
+on-arrival: unemployed_kpd += 4*campaign_mult; kf_centre_strength += 2; comintern_trust -= 1
+go-to: root
+
+We demand public works, a shorter working week, rent relief and a tax on the great fortunes to pay for them. Every item is sensible and none is passed. But the unemployed read the demands and know whose they are, and when the dole runs out our local committees are the only ones still organising them.

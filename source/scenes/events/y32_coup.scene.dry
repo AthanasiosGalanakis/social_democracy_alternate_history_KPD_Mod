@@ -1,0 +1,60 @@
+title: The Prussian coup
+subtitle: 20 July 1932. A captain and ten soldiers dismiss the government of the biggest German state.
+new-page: true
+tags: kpd_event
+view-if: year = 1932 and month >= 7 and civil_war = 0 and y32_papen_done = 1 and y32_coup_done = 0
+on-arrival: y32_coup_done = 1
+
+= The Preußenschlag
+
+On 20 July Papen declares a state of emergency in Berlin and Brandenburg, names himself Reich Commissioner for Prussia and dismisses the Braun government on the pretext that it has lost control of public order. A detachment of soldiers arrests the police chief of Berlin. The Prussian police, some ninety thousand men under Social Democratic command, hold their weapons and wait for orders.
+
+The SPD and the trade unions decide not to strike. Six million are unemployed, the unions say, and a general strike now would break in a week. They file a complaint with the constitutional court, which will rule in October that the coup was in part illegal and in part allowed. The Prussian government has been dismissed for good.
+
+The KPD calls a general strike. The question is whether anyone will answer.
+
+- @strike: Call the general strike, and tell the SPD and union locals to join us.
+- @wait: Hold the party back, since a strike called by Communists alone would be isolated.
+
+@strike
+subtitle: The strike holds if the front is 55 or more.
+on-arrival: {!
+Q.comintern_trust += 2;
+if (Q.front >= 55) {
+    Q.prussia_saved = 1;
+    Q.workers_spd -= 2; Q.workers_kpd += 3;
+} else {
+    Q.prussia_saved = 0;
+    Q.workers_kpd -= 1;
+}
+!}
+go-to: strike_wins if prussia_saved = 1; strike_fails if prussia_saved = 0
+
+@strike_wins
+title: The Prussian police hold
+subtitle: Prussia is saved.
+
+The call goes out at night. By morning the transport workers of Berlin have stopped, the Ruhr docks are idle, and the Reichsbanner in the Rhineland has put on its uniforms without waiting for orders. Our patrols and theirs stand together at the police headquarters, and it is understood by the soldiers who came to arrest the police chief that the police will not give him up.
+
+Papen's commissioner is obeyed in no ministry. The Prussian government resumes its work in the afternoon, the Reichswehr stays in the barracks, and the army's high command learns something about the willingness of the German working class to act. Papen's cabinet will not last the autumn.
+
+It is the first defeat of the Right since Brüning's dismissal, and it has been won by a front that did not exist two years before.
+
+- @root: Continue.
+
+@strike_fails
+title: Nobody follows
+subtitle: The strike fizzles.
+
+The call goes out, and the few who answer it find themselves alone. The unions are not for it, the SPD is not for it, the Reichsbanner stays at home on the leaders' orders, and the six million unemployed have nothing to withdraw. A handful of towns see a stoppage, no more. The Prussian police wait and then obey the new commissioner.
+
+The Weimar Republic's largest state is lost without a shot. Everyone has learned what the working class could do, if it were one. Nobody has learned how to make it one.
+
+- @root: Continue.
+
+@wait
+subtitle: Moscow trust -3. Workers -1.
+on-arrival: prussia_saved = 0; comintern_trust -= 3; workers_kpd -= 1
+go-to: root
+
+We say that a strike by a single party is a defeat in advance. It is a defensible analysis, and a party that has spent three years describing the SPD as its main enemy cannot make it. The Prussian police wait, hold their weapons and obey the new commissioner.

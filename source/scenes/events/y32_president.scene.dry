@@ -1,0 +1,47 @@
+title: The presidential election
+subtitle: Hindenburg, Hitler, and a Communist candidate.
+new-page: true
+tags: kpd_event
+view-if: year = 1932 and month >= 2 and civil_war = 0 and y32_president_done = 0
+on-arrival: y32_president_done = 1
+
+= Hindenburg or Hitler
+
+Hindenburg's term ends in 1932. The aged Field Marshal, himself a monarchist, is now the only candidate the SPD, the trade unions and the Centre can put up against Hitler, and they put him up. The Nazis, the DNVP's right wing and the Stahlhelm contest with Hitler and Theodor Duesterberg.
+
+The KPD has to choose how to answer. Thälmann can run, as he did in 1925, in the name of the class. The SPD's voters will not vote for him, and many will stay with the old general as the lesser evil.
+
+- @thaelmann: Run Ernst Thälmann.
+- @joint: First propose a single left candidate to the SPD and the unions. Run Thälmann when they refuse.
+
+@thaelmann
+subtitle: Workers +1. Moscow trust +3.
+on-arrival: comintern_trust += 3; workers_kpd += 1*campaign_mult
+go-to: y32_president.result
+
+The party runs Thälmann under the slogan "A vote for Hindenburg is a vote for Hitler, a vote for Thälmann is a vote against Hitler". The first half of the slogan is wrong and everyone knows it, since Hindenburg is the one candidate who can keep Hitler out. The second half would be an argument if the vote were not split.
+
+@joint
+subtitle: Unity +1, workers +1. Moscow trust -5.
+on-arrival: {!
+Q.y23_unity += 1;
+Q.workers_kpd += 1*Q.campaign_mult;
+Q.comintern_trust -= 5;
+Q.kf_right_strength += 1;
+!}
+go-to: y32_president.result
+
+Our offer is published in all the papers. The SPD's executive refuses within a day, since it has decided already to back Hindenburg. But the offer was read by many SPD workers, who were told by their own paper that the Communists were not interested in unity, and discovered that the Communists were.
+
+@result
+title: The vote
+on-arrival: {!
+Q.workers_nsdap += 3; Q.old_middle_nsdap += 12; Q.new_middle_nsdap += 12; Q.rural_nsdap += 12; Q.unemployed_nsdap += 4;
+Q.old_middle_other -= 3; Q.new_middle_other -= 3; Q.rural_other -= 3; Q.old_middle_dvp -= 4; Q.new_middle_dvp -= 5; Q.new_middle_ddp -= 6; Q.old_middle_dnvp -= 4; Q.rural_dnvp -= 8;
+!}
+
+On 13 March Hindenburg receives 49.5 per cent, Hitler 30.1, Thälmann 13.2 and Duesterberg 6.8. In the runoff on 10 April Hindenburg wins with 53.1 per cent, Hitler has 36.8 and Thälmann 10.2. The Republic is saved, by an old man who despises it, and with the votes of the party that is hated in the barracks and at the Stahlhelm.
+
+Within two months he will dismiss the Chancellor who was elected with those votes.
+
+- @root: Continue.

@@ -2,7 +2,7 @@ title: Reichstag Elections
 new-page: true
 tags: event, kpd_event
 priority: -1
-view-if: (year = next_election_year and month >= next_election_month) or (year > next_election_year)
+view-if: civil_war = 0 and ((year = next_election_year and month >= next_election_month) or (year > next_election_year))
 on-departure: {!
 Q.month_actions += 1;
 Q.in_election = 0;
@@ -12,8 +12,14 @@ if (Q.n_elections == 1) {
     Q.next_election_year = 1924; Q.next_election_month = 12; Q.next_election_time = Q.time + 7;
 } else if (Q.n_elections == 2) {
     Q.next_election_year = 1928; Q.next_election_month = 5; Q.next_election_time = Q.time + 41;
+} else if (Q.n_elections == 3) {
+    Q.next_election_year = 1930; Q.next_election_month = 9; Q.next_election_time = Q.time + 28;
+} else if (Q.n_elections == 4) {
+    Q.next_election_year = 1932; Q.next_election_month = 7; Q.next_election_time = Q.time + 22;
+} else if (Q.n_elections == 5) {
+    Q.next_election_year = 1932; Q.next_election_month = 11; Q.next_election_time = Q.time + 4;
 } else {
-    Q.next_election_year = Q.next_election_year + 4; Q.next_election_time = Q.time + 48;
+    Q.next_election_year = 1933; Q.next_election_month = 3; Q.next_election_time = Q.time + 4;
 }
 !}
 set-jump: post_election_1928
@@ -280,7 +286,7 @@ if (window && d3) {
     d3.select("#reichstag").datum(data).call(parliament);
 }
 !}
-go-to: kpd_aftermath
+go-to: y33_end if n_elections >= 7; kpd_aftermath if n_elections < 7
 
 = Election results
 

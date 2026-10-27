@@ -1,0 +1,33 @@
+title: The bank crisis
+subtitle: The Danat Bank closes its counters.
+new-page: true
+tags: kpd_event
+view-if: year = 1931 and month >= 7 and civil_war = 0 and y31_banks_done = 0
+on-arrival: {!
+Q.y31_banks_done = 1;
+Q.old_middle_nsdap += 4; Q.new_middle_nsdap += 4; Q.rural_nsdap += 3;
+Q.old_middle_dvp -= 2; Q.new_middle_dvp -= 2; Q.new_middle_ddp -= 2;
+!}
+
+= Bank holiday
+
+In May the Austrian Creditanstalt fails, and in July the Danat Bank, one of the great German banks, cannot meet its obligations. The government declares two bank holidays and the savers queue outside closed doors. Brüning's answer is a new emergency decree, with cuts to wages, benefits and civil service salaries, and a guarantee for the banks.
+
+The banks, in short, are rescued by those whose jobs and wages they have destroyed. This is the plainest lesson of the capitalist crisis that has been given to German workers in years.
+
+- @nationalise: Demand the banks and the heavy industry be taken into public ownership under workers' control.
+- @savers: Demand that small savers be paid in full and the large shareholders be made to carry the losses.
+
+@nationalise
+subtitle: Moscow trust +2, Left +2, unemployed +1.
+on-arrival: comintern_trust += 2; kf_left_strength += 2; unemployed_kpd += 1*campaign_mult
+go-to: root
+
+The demand to seize the banks is simple and fits the facts of the matter. A government of the workers' parties could carry it out, and the Right knows it. But a slogan that all parties of the left share, and none of them will carry out alone, is only a slogan until the workers' parties sit at the same table.
+
+@savers
+subtitle: New middle +1 for the party, Centre +2.
+on-arrival: new_middle_kpd += 1; old_middle_kpd += 1; kf_centre_strength += 2
+go-to: root
+
+We speak to those who lost their savings, the shopkeepers and clerks, and tell them that the thieves are on the boards of the banks. The Nazis tell them something else. Where the clerks are listening to us, they have been waiting a long time to be addressed at all.

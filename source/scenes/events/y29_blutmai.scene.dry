@@ -1,0 +1,40 @@
+title: Blutmai
+subtitle: The Berlin police chief, a Social Democrat, has banned the May Day march.
+new-page: true
+tags: kpd_event
+view-if: year = 1929 and month >= 5 and civil_war = 0 and y29_blutmai_done = 0
+on-arrival: {!
+Q.y29_blutmai_done = 1;
+Q.rfb_banned = 1;
+Q.rfb_strength = Math.round(Q.rfb_strength * 0.5);
+!}
+
+= Blutmai
+
+Berlin's police chief Karl Zörgiebel, a Social Democrat, has banned all open-air demonstrations. The KPD marches on 1 May regardless. In the working-class districts of Wedding and Neukölln the police shoot into the crowds and at the windows, and barricades go up. In three days thirty-three civilians are dead, nearly all of them workers, and more than a thousand are arrested.
+
+The RFB is banned in Prussia and soon in all of Germany. Our members, who have been told for months that the Social Democrats are fascists, now have a body count to prove it. The SPD leaders, who have been told for months that the Communists want civil war, have something to point at too.
+
+Both sides are partly right. Neither will say so.
+
+- @fascism: Declare it proof of "social fascism".
+- @inquiry: Demand an inquiry, and ask SPD and union locals to join it.
+
+@fascism
+subtitle: Moscow trust +4, apparatus +3. Workers -1; unity does not rise.
+on-arrival: comintern_trust += 4; kf_apparatus_strength += 3; kf_left_strength += 2; workers_spd -= 1; workers_kpd += 1*campaign_mult
+go-to: root
+
+The funeral processions are huge and our posters name the "social fascist murderers". Moscow is pleased. The Social Democratic worker who sees his own party's police shoot at workers is angry, and the party that has called him a fascist for a year does not give him anywhere to put the anger.
+
+@inquiry
+subtitle: Unity +1 (Moscow patience -2 under the Third Period). Left dissent +3.
+on-arrival: {!
+Q.y23_unity += 1;
+Q.kf_left_dissent += 3;
+Q.workers_kpd += 1*Q.campaign_mult;
+if (Q.comintern_line == 'third_period') { Q.comintern_trust -= 3; }
+!}
+go-to: root
+
+The call goes out to the SPD and union locals for a joint commission on the shootings. The leaders in Berlin refuse; some of the locals do not. It is a small thing, and it is the sort of small thing that every historian of the Weimar Republic will later wish had been larger.

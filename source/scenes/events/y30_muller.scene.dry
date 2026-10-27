@@ -1,0 +1,34 @@
+title: The Müller cabinet falls
+subtitle: Over half a percent of the unemployment insurance contribution.
+new-page: true
+tags: kpd_event
+view-if: year = 1930 and month >= 3 and civil_war = 0 and y30_muller_done = 0
+on-arrival: y30_muller_done = 1
+
+= The last parliamentary government
+
+On 27 March 1930 the last government of the Weimar Republic that enjoyed a parliamentary majority collapses. The coalition parties cannot agree on whether employers and workers should each contribute half a percentage point more to the unemployment insurance fund. The SPD will not cut the benefit and the DVP, speaking for the employers, will not raise the contribution.
+
+President Hindenburg appoints Heinrich Brüning of the Centre. He governs by presidential emergency decree under Article 48 and the Reichstag, which can revoke the decrees but fears new elections, tolerates him. The SPD does the same, with the argument that Brüning is a lesser evil than what might follow.
+
+- @fascist: Brüning's cabinet is the first step of fascism, and the SPD is its partner.
+- @defend: Brüning's decrees must be fought by joint action to defend wages and the unions.
+
+@fascist
+subtitle: Moscow trust +3, apparatus +2.
+on-arrival: comintern_trust += 3; kf_apparatus_strength += 2; workers_spd -= 1
+go-to: root
+
+The party calls the presidential cabinet fascist and the SPD its supporter. The first is exaggerated and the second is half true, and the combination is an obstacle to understanding what is happening. Brüning is not Hitler. He is the man who prepares the ground for a government without parliament, and the question is who comes next.
+
+@defend
+subtitle: Unity +1 (Moscow patience -2 under the Third Period).
+on-arrival: {!
+Q.y23_unity += 1;
+Q.workers_kpd += 1*Q.campaign_mult;
+Q.kf_right_strength += 1;
+Q.comintern_trust -= (Q.comintern_line == 'third_period') ? 3 : 0;
+!}
+go-to: root
+
+We call for joint resistance to wage cuts and to the emergency decrees, and write letters to every union branch. Some reply. In a Reich where six million workers' votes are split between two parties that denounce each other, a letter is a small thing, and a shared meeting a rare one.

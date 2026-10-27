@@ -1,0 +1,60 @@
+title: The Wittorf Affair
+subtitle: The Hamburg party's treasurer has taken money, and Thälmann has covered for him.
+new-page: true
+tags: kpd_event
+view-if: year = 1928 and month >= 9 and civil_war = 0 and y28_sixth_done = 1 and y28_wittorf_done = 0
+on-arrival: y28_wittorf_done = 1
+
+= The Wittorf Affair
+
+John Wittorf, the party's boss in Hamburg and a close friend of the party's chairman Ernst Thälmann, has embezzled party funds. Thälmann knew and hushed it up. When the matter comes out the Central Committee, in an angry session on 26 September, removes Thälmann from his posts. Only two of the thirty-five present vote for him.
+
+The Committee's majority is a mixture of Conciliators, Rightists, and people who think a party chairman should not cover for thieves. Moscow sees something else: the end of a leader who is its own man.
+
+Stalin sends a telegram on 1 October. On the sixth the Comintern's executive demands the decision be reversed, and the Central Committee is told to sit again.
+
+- @obey: Reverse the vote and restore Thälmann, as Moscow demands.
+- @resist: Stand by the Central Committee's decision.
+
+@obey
+subtitle: Moscow trust +8, apparatus +6; Conciliators and Right weakened.
+on-arrival: {!
+Q.comintern_trust += 8;
+Q.kf_apparatus_strength += 6;
+Q.kf_right_strength = Math.max(0, Q.kf_right_strength - 5);
+Q.kf_centre_strength = Math.max(0, Q.kf_centre_strength - 2);
+if (Q.kf_conciliators_active) { Q.kf_conciliators_strength = Math.max(0, Q.kf_conciliators_strength - 6); Q.kf_conciliators_dissent += 6; }
+Q.moscow_balance += 6;
+!}
+go-to: root
+
+On 20 October the Central Committee votes again, and Thälmann returns. The party has learned a lesson in Bolshevisation: a decision is valid only if Moscow agrees with it. The Conciliators, whose only crime was an honest vote, are marked, and in the coming months they are removed from the leadership one by one.
+
+Thälmann's friend Wittorf is expelled from the party. Nobody is surprised.
+
+@resist
+subtitle: Depends on Moscow's balance (25 or more: severe consequences).
+on-arrival: {!
+if (Q.moscow_balance >= 25) {
+    Q.comintern_trust -= 10;
+    Q.moscow_divergence_pts += 6;
+    Q.kf_apparatus_strength += 3;
+    Q.y28_wittorf_resisted = 1;
+} else {
+    Q.comintern_trust -= 3;
+    Q.kf_apparatus_strength = Math.max(0, Q.kf_apparatus_strength - 5);
+    Q.kf_right_strength += 3;
+    if (Q.kf_conciliators_active) { Q.kf_conciliators_strength += 5; }
+    Q.y28_wittorf_resisted = 2;
+}
+!}
+go-to: y28_wittorf_after
+
+Our Central Committee holds its ground and says that a party chairman who hides embezzlement is not fit for office. It is, in principle, correct, and it is the first time since 1923 that the German party has told Moscow no.
+
+@y28_wittorf_after
+title: Moscow's answer
+
+[? if y28_wittorf_resisted = 1 : Moscow is not in a mood to argue. Within weeks the Comintern's executive condemns the Committee's majority, reinstates Thälmann by its own authority and warns that the party is infected by "conciliation towards the Right". The Central Committee has no means to refuse, only to obey a few weeks later, in worse standing. Trust is shaken and the patience of Moscow is shortened. ?][? if y28_wittorf_resisted = 2 : [+ moscow_leader +] have other worries than a German treasurer, and nobody orders a reversal. Thälmann stays out of the chairmanship, the apparatus is in disarray, and the Conciliators gain standing. For the moment, the party is led by the people it chooses. ?]
+
+- @root: Continue.

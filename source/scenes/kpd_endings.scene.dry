@@ -24,3 +24,44 @@ tags: endings
 go-to: game_over.eg_menu
 
 The Reichswehr takes the last of our cities in the winter. Thousands are shot or imprisoned, the party is outlawed and its leaders are in exile or in the cellars. The Right in Bavaria, and the generals who restored order, are now in command. The path to what comes later runs through these months.
+
+
+@strike_stops_hitler
+title: The general strike of January
+view-if: kpd_ending = "strike_stops_hitler"
+tags: endings
+go-to: game_over.eg_menu
+
+Hitler held the office of Chancellor for four days. The general strike of the thirtieth, backed by the unions, the Reichsbanner and the defence units of both workers' parties, forced Hindenburg's circle to retreat, and the generals had no wish to try their strength against it. The republic is saved, for the moment, by those it had treated badly. The Right will try again, and the parties of the workers' movement, which had been brought together by the fear of a common enemy, have to decide whether they can stay together without it. History has more to tell, and this game does not.
+
+@antinazi_victory
+title: The Nazi state falls
+view-if: kpd_ending = "antinazi_victory"
+tags: endings
+go-to: game_over.eg_menu
+
+The Reichswehr stays divided, the SA is broken in the cities, and the Nazi government falls in the fourth month of the war. The country is in ruins and the workers' organisations, which won it, hold the streets. What they will build is a matter for those who held them. The Social Democrats and the Communists, who came very close to killing each other in the years before, will have to decide whether they can govern together. They have a very short time.
+
+@antinazi_long_war
+title: The German civil war
+view-if: kpd_ending = "antinazi_long_war"
+tags: endings
+go-to: game_over.eg_menu
+
+The Nazi government cannot beat the workers' districts, and the workers' districts cannot beat the Reichswehr. The Ruhr, Saxony and Berlin's east are held by committees. Bavaria, East Prussia and the great landed estates are held by the new state. Foreign powers watch and wait for the war to wear down both sides. It will take years, and nobody can say who will be left.
+
+@antinazi_defeat
+title: The workers are defeated in arms
+view-if: kpd_ending = "antinazi_defeat"
+tags: endings
+go-to: game_over.eg_menu
+
+The war ends in the fourth month, in the cities one by one. The prisons and the camps fill up with the leaders of both workers' parties and of the unions, who had stood aside until the war was over. The people who are left will say in the coming years that if the two parties had acted together earlier, it might have turned out differently. They will be right.
+
+@underground
+title: The party underground
+view-if: kpd_ending = "underground"
+tags: endings
+go-to: game_over.eg_menu
+
+The Nazi government is in power, the Republic is gone, and the workers' parties are banned one after the other. The KPD has lost its legal existence, its press, its deputies, and in the next years tens of thousands of its members to prison, camps and the executioner. Where the cells survive, the party will fight on in secret, and in exile its leaders will argue about why the greatest workers' movement in Europe could not stop a minority of the middle class. The honest answer includes the Comintern's line, the SPD's policy, the bourgeois parties that opened the door, and our own mistakes.

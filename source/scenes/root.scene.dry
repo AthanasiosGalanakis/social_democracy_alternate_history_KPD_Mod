@@ -162,6 +162,26 @@ Q.princes_expropriated = 0;
 Q.kf_conciliators_strength = 0;
 Q.kf_conciliators_dissent = 0;
 Q.plan_conciliators_progress = 0;
+// 1928 to 1933 state (milestone M9)
+Q.third_period = 0;
+Q.unity_last = 0;
+Q.front = 0;
+Q.front_u = 0; Q.front_d = 0; Q.front_a = 0; Q.front_k = 0;
+Q.antifa_open = 0;
+Q.antifa_actions = 0;
+Q.rfb_banned = 0;
+Q.kpo_exists = 0;
+Q.prussia_saved = 0;
+Q.y33_strike_ok = 0;
+Q.underground_prep = 0;
+Q.underground_cadres = 0;
+Q.y28_wittorf_resisted = 0;
+Q.y31_prussia_complied = 0;
+Q.mass_antifa_timer = 0;
+Q.cw_context = 'october';
+for (var y28_flag of ['y28_sixth', 'y28_cruiser', 'y28_wittorf', 'y28_right', 'y29_blutmai', 'y29_crash', 'y29_young', 'y30_muller', 'y30_dissolution', 'y30_programme', 'y31_banks', 'y31_prussia', 'y31_prussia_result', 'y31_harzburg', 'y32_president', 'y32_antifa', 'y32_papen', 'y32_coup', 'y32_schleicher', 'y33_hitler', 'y33_fire', 'y33_end']) {
+    Q[y28_flag + '_done'] = 0;
+}
 // plan progress: each faction's plan has 5 steps. Progress only grows while that faction holds the party line, and decays while it does not.
 Q.plan_right_progress = 0;
 Q.plan_left_progress = 0;
@@ -604,7 +624,7 @@ Q.timers = ['advisor_action', 'confronting_nazis', 'crisis_program',
             'homosexual_rights', 'economic_policy', 'coalition_affairs',
             'war_guilt', 'womens_rights', 'economic_democracy',
             'dealing_with_toleration', 'line_change', 'line_action', 'moscow_action',
-            'state_gov', 'mass_strikes', 'mass_unemployed', 'mass_relief', 'mass_press', 'mass_defence', 'mass_parliament', 'mass_underground',
+            'state_gov', 'mass_strikes', 'mass_unemployed', 'mass_relief', 'mass_press', 'mass_defence', 'mass_parliament', 'mass_underground', 'mass_antifa',
             'constitutional_reform', 'labor_rights',
             'education_science', 'curriculum',
             // events

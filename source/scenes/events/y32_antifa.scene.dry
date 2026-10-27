@@ -1,0 +1,34 @@
+title: Anti-Fascist Action
+subtitle: A new name for the old question of the united front.
+new-page: true
+tags: kpd_event
+view-if: year = 1932 and month >= 5 and civil_war = 0 and y32_president_done = 1 and y32_antifa_done = 0
+on-arrival: y32_antifa_done = 1
+
+= Anti-Fascist Action
+
+Brüning is dismissed at the end of May. Franz von Papen, a landowner and member of the Centre's right wing, is appointed Chancellor of the "cabinet of barons". Hitler has secretly promised him toleration if the ban on the SA is lifted. On 16 June it is.
+
+The party announces "Anti-Fascist Action", in the hope of regaining the initiative. The Comintern's idea is a "united front from below": a front of workers against the Nazis, in which the SPD's leaders have no place. Our own idea may differ. The SA is marching, and the question is what Anti-Fascist Action will be: a name on a new flag, or a front.
+
+- @below: Form Anti-Fascist Action as a front "from below", as Moscow proposes.
+- @open: Form it as an open front, and invite the SPD's, the Reichsbanner's and the unions' leaders to join.
+
+@below
+subtitle: Moscow trust +3. The front opens, to rank and file only.
+on-arrival: comintern_trust += 3; antifa_open = 1; kf_apparatus_strength += 2
+go-to: root
+
+Anti-Fascist Action appears in the working-class districts: committees, patrols, a new emblem of two red flags. It is a real thing and it acts. But the leaders of the other parties, who control the money and the halls, are not asked, and the leaders are what the rank and file will be asked to follow.
+
+@open
+subtitle: Moscow trust -4 (patience -4 points under the Third Period). The front opens to all.
+on-arrival: {!
+Q.antifa_open = 2;
+Q.comintern_trust -= 4;
+if (Q.comintern_line == 'third_period') { Q.moscow_divergence_pts += 4; }
+Q.kf_right_strength += 2;
+!}
+go-to: root
+
+The invitation goes to the SPD executive, the Reichsbanner and the unions' headquarters. They refuse, as they have refused before, but not all of their locals do. In some towns the Reichsbanner men and our patrols are now in the same cellar. The Comintern's representatives in Berlin say nothing, which in this case is a bad sign.

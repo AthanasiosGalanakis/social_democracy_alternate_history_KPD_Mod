@@ -1,0 +1,42 @@
+title: Bloody Sunday in Altona
+subtitle: The SA is let off the leash.
+new-page: true
+tags: kpd_event
+view-if: year = 1932 and month >= 6 and civil_war = 0 and y32_antifa_done = 1 and y32_papen_done = 0
+on-arrival: {!
+Q.y32_papen_done = 1;
+Q.workers_nsdap += 3; Q.old_middle_nsdap += 16; Q.new_middle_nsdap += 16; Q.rural_nsdap += 16; Q.unemployed_nsdap += 3;
+Q.old_middle_other -= 3; Q.new_middle_other -= 3; Q.rural_other -= 3; Q.workers_other -= 4;
+Q.old_middle_dnvp -= 2; Q.rural_dnvp -= 2; Q.old_middle_dvp -= 2; Q.new_middle_dvp -= 2;
+!}
+
+= Altona
+
+With the SA ban lifted, the street fighting in June and July kills over eighty people in Prussia alone. On 17 July, "Altona Bloody Sunday", the SA marches through a Communist district of Hamburg. The shooting that follows leaves eighteen dead, most of them workers; four of our members will be executed for it a year later by the Nazis.
+
+Papen uses the violence as the excuse for the next step against the SPD government of Prussia. We have three days to find out whether our front exists in any form that matters.
+
+- @defend: Mobilise the defence units and Anti-Fascist Action in the working-class districts.
+- @appeal: Appeal publicly for a common strike in case Prussia is attacked.
+
+@defend
+subtitle: Defence +20 (halved if the RFB is banned). Workers +1.
+on-arrival: {!
+Q.rfb_strength += Q.rfb_banned ? 10 : 20;
+Q.workers_kpd += 1*Q.campaign_mult;
+Q.antifa_actions += (Q.antifa_open >= 1) ? 1 : 0;
+!}
+go-to: root
+
+Our defence squads and Anti-Fascist Action patrols are in the streets, with whatever arms there are. The fighting is hard. The police, who in the Prussian state are loyal to the Social Democrats, are often on the other side of the barricade from us, and the workers they shoot have to be buried before they can be mobilised.
+
+@appeal
+subtitle: Unity +1 (Moscow patience -2 under the Third Period).
+on-arrival: {!
+Q.y23_unity += 1;
+Q.comintern_trust -= (Q.comintern_line == 'third_period') ? 2 : 0;
+Q.kf_left_dissent += 2;
+!}
+go-to: root
+
+An open letter to the SPD and the unions: if the Reichswehr marches on the Prussian government, we will strike, and we ask them to strike with us. They do not reply. A good many of their members read it anyway.

@@ -1,0 +1,39 @@
+title: The Right is expelled
+subtitle: Brandler, Thalheimer and their friends are out.
+new-page: true
+tags: kpd_event
+view-if: year = 1929 and month >= 1 and civil_war = 0 and y28_wittorf_done = 1 and y28_right_done = 0
+on-arrival: y28_right_done = 1
+
+= The Right
+
+Heinrich Brandler and August Thalheimer, who had been sent to Moscow after October 1923, are accused of conducting a "Right-wing opposition" from outside. Their followers in the districts keep the faith with them. The Comintern demands that the party expel the open supporters of the "Right deviation", and a new group, the Communist Party Opposition (KPO), is already forming.
+
+Their politics are in dispute: they were wrong about the Saxon coalition of 1923, and they are largely right about the danger of the Third Period. The question is not whether they are correct, but whether the party can afford to discard the only people who say so.
+
+- @expel: Expel them, as the Comintern demands.
+- @keep: Keep them in the party and fight them in the open.
+
+@expel
+subtitle: Moscow trust +4, Right -8, apparatus +2. The KPO forms outside.
+on-arrival: {!
+Q.comintern_trust += 4;
+Q.kf_right_strength = Math.max(0, Q.kf_right_strength - 8);
+Q.kf_apparatus_strength += 2;
+Q.kpo_exists = 1;
+Q.workers_kpd -= 1;
+!}
+go-to: root
+
+Several thousand members, many of them skilled workers with long union records, leave or are expelled in the following months. The KPO, with its newspaper and its fraternal parties abroad, will grow to a small group. It will turn out to have been right on the main question, a fact that will do it no good.
+
+@keep
+subtitle: Moscow trust -6, patience -3 points. Right +2.
+on-arrival: {!
+Q.comintern_trust -= 6;
+Q.moscow_divergence_pts += 3;
+Q.kf_right_strength += 2;
+!}
+go-to: root
+
+We tell the comrades that discussion is permitted and that a party that expels everyone who disagrees will soon not have a party. Moscow takes this as a challenge and does not forget it.

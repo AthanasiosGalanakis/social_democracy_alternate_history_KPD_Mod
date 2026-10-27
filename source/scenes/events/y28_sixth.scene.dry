@@ -1,0 +1,38 @@
+title: The Sixth World Congress
+subtitle: Moscow announces a new period.
+new-page: true
+tags: kpd_event
+view-if: year = 1928 and month >= 7 and civil_war = 0 and y28_sixth_done = 0
+on-arrival: {!
+Q.y28_sixth_done = 1;
+if (Q.comintern_line == 'third_period') { Q.third_period = 1; }
+!}
+
+= The Sixth World Congress
+
+From July to September the Comintern meets in Moscow for the first time in four years. The report is delivered by Bukharin, who is already losing the fight with Stalin, and the congress is told that capitalism's "relative stabilisation" is ending.
+
+[? if comintern_line = "third_period" : The congress names a "Third Period" of sharpening crisis, imminent wars and revolutions. The parties of the Second International are called "social fascist", twins of the fascists rather than their opponents, and the main blow is to be struck against them. A communist who proposes joint action with social democratic leaders will have to explain it. ?][? if comintern_line != "third_period" : The congress is held under [+ moscow_leader +], who hold that the line is "[+ comintern_line +]". It talks of sharpening crisis, but the congress does not tell the German party to treat the Social Democrats as its main enemy, and our delegation returns with room to move. ?]
+
+The congress is also the moment when Stalin's grip on the Russian party passes from a faction to a system. The Comintern's German section will feel that before it understands it.
+
+- @accept: Return and carry out the congress line in full.
+- @argue: Return and apply the line as the German situation allows.
+
+@accept
+subtitle: Moscow trust +5, apparatus +3, Left +2.
+on-arrival: comintern_trust += 5; kf_apparatus_strength += 3; kf_left_strength += 2; kf_right_strength -= 2; workers_spd -= 1
+go-to: root
+
+The district leaders get the resolutions and the new word for the SPD. It is simple, it is easy to shout, and it is a gift to an apparatus that has been looking for something to discipline the members with. In the factories, SPD workers who are told they are fascists tend to ask who said so.
+
+@argue
+subtitle: Right +3 strength. Moscow trust -4 (-6 with the Third Period).
+on-arrival: {!
+Q.kf_right_strength += 3;
+Q.comintern_trust -= 4;
+if (Q.comintern_line == 'third_period') { Q.comintern_trust -= 2; Q.moscow_divergence_pts += 3; }
+!}
+go-to: root
+
+We accept the congress in public and read it carefully in private, looking for what it does not say. Moscow's observers do the same, and they are better at it. Quietly noted: this is how a section begins to be marked as unreliable.
