@@ -287,7 +287,7 @@ if (window && d3) {
     d3.select("#reichstag").datum(data).call(parliament);
 }
 !}
-go-to: coalition_menu
+go-to: kpd_aftermath
 
 = Election results
 
@@ -332,7 +332,7 @@ Right-wing Coalition (Z + BVP + DVP + Others + DNVP): [+ right_coalition +]%
 
 [? if anti_democratic_coalition >= 50 : Together, the anti-democratic KPD, DNVP, and NSDAP have a majority in the Reichstag. A stable governing majority will be almost impossible. ?]
 
-There are some potential coalition arrangements.
+The parties that the votes allow will now negotiate a government, and we have to decide where we stand.
 
 @coalition_menu
 

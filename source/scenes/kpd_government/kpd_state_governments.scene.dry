@@ -1,0 +1,71 @@
+title: The Land governments
+subtitle: Saxony, Thuringia and Prussia.
+new-page: true
+is-card: true
+card-image: img/reichstag_1.jpg
+frequency: 120
+tags: kpd_mass
+view-if: state_gov_timer <= 0 and year >= 1924
+on-arrival: {!
+Q.month_actions += 1;
+Q.state_gov_timer = 3;
+Q.sg_line_ok = (Q.party_line == 'right' || Q.party_line == 'centre') ? 1 : 0;
+Q.sg_trust_ok = (Q.comintern_trust >= 40) ? 1 : 0;
+Q.sg_saxony = Q.state_saxony;
+Q.sg_thuringia = Q.state_thuringia;
+Q.sg_prussia = Q.state_prussia;
+!}
+
+= The state governments
+
+The Länder run the police, the schools and, in practice, a good share of the real power. Entering a Land government is a step the party can take without the Reich, but it has a cost: the Reich can send in the army, as it did in Saxony in 1923, if our Hundreds grow stronger than Berlin will allow.
+
+Our position: Saxony [? if sg_saxony = 2 : in government ?][? if sg_saxony = 1 : tolerating ?][? if sg_saxony = 0 : opposition ?]. Thuringia [? if sg_thuringia = 2 : in government ?][? if sg_thuringia = 1 : tolerating ?][? if sg_thuringia = 0 : opposition ?]. Prussia [? if sg_prussia = 2 : in government ?][? if sg_prussia = 1 : tolerating ?][? if sg_prussia = 0 : opposition ?].
+
+Entry needs the Right or the Centre to lead the party, Moscow's trust of 40 or more, and joint work with the SPD at 6 (Saxony, Thuringia) or 10 (Prussia). Joint work stands at [+ y23_unity +]. The Reich intervenes if our armed units exceed 250, and they stand at [+ rfb_strength +].
+
+Each state in government pays one resource a quarter and costs us 1 Left dissent a quarter.
+
+- @saxony: Saxony: enter the cabinet.
+- @thuringia: Thuringia: enter the cabinet.
+- @prussia: Prussia: enter the cabinet.
+- @leave: Leave a Land government.
+- @root: Not this month.
+- @easy_discard
+
+@saxony
+view-if: state_saxony < 2
+choose-if: sg_line_ok = 1 and sg_trust_ok = 1 and y23_unity >= 6
+subtitle: Requirements as above.
+unavailable-subtitle: Requirements not met.
+on-arrival: state_saxony = 2; kf_left_dissent += 4; comintern_trust += 2; rfb_strength += 20
+go-to: root
+
+Our ministers return to Dresden, this time with an agreement. The Saxon SPD left remembers 1923 as well as we do, and its price is that we do not repeat it.
+
+@thuringia
+view-if: state_thuringia < 2
+choose-if: sg_line_ok = 1 and sg_trust_ok = 1 and y23_unity >= 6
+subtitle: Requirements as above.
+unavailable-subtitle: Requirements not met.
+on-arrival: state_thuringia = 2; kf_left_dissent += 4; comintern_trust += 2
+go-to: root
+
+Thuringia's cabinet makes room for us. The state is small, but it is next to Bavaria, and the Right is watching.
+
+@prussia
+view-if: state_prussia < 2
+choose-if: sg_line_ok = 1 and sg_trust_ok = 1 and y23_unity >= 10
+subtitle: Requirements as above, and the highest.
+unavailable-subtitle: Requirements not met.
+on-arrival: state_prussia = 2; kf_left_dissent += 8; kf_right_strength += 4; comintern_trust += 4; workers_kpd += 2
+go-to: root
+
+Prussia is the largest state and the republic's strongest fortress. Its police is the one force in Germany that has been used against the Right. For a communist to hold part of it is a different matter from holding a ministry in Dresden.
+
+@leave
+view-if: state_saxony = 2 or state_thuringia = 2 or state_prussia = 2
+on-arrival: state_saxony = 0; state_thuringia = 0; state_prussia = 0; kf_left_dissent -= 5
+go-to: root
+
+We leave the Land cabinets. The Left breathes more easily and the SPD left goes back to its old arithmetic.

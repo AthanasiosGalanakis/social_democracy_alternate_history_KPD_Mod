@@ -1,0 +1,78 @@
+title: After the election
+subtitle: The Reichstag has met. Who governs, and where do we stand?
+new-page: true
+on-arrival: {!
+// Reich government formed from the result alone (no player input). Thresholds are on the results page.
+if (Q.weimar_coalition >= 50) {
+    Q.gov_type = 'weimar';
+    Q.gov_name = 'a Weimar Coalition of the SPD, the Centre and the liberals';
+} else if (Q.grand_coalition >= 50) {
+    Q.gov_type = 'grand';
+    Q.gov_name = 'a Grand Coalition from the SPD to the DVP';
+} else if (Q.bourgeois_coalition >= 50) {
+    Q.gov_type = 'bourgeois';
+    Q.gov_name = 'a bourgeois coalition of the Centre, the liberals and the DVP';
+} else if (Q.right_coalition >= 50) {
+    Q.gov_type = 'right';
+    Q.gov_name = 'a coalition of the Centre, the DVP and the DNVP';
+} else {
+    Q.gov_type = 'minority';
+    Q.gov_name = 'a minority cabinet of the bourgeois parties, which survives on the SPD\'s toleration';
+}
+Q.gv_line_ok = (Q.party_line == 'right' || Q.party_line == 'centre') ? 1 : 0;
+Q.gv_trust_ok = (Q.comintern_trust >= 40) ? 1 : 0;
+Q.gv_unity_ok = (Q.y23_unity >= 6) ? 1 : 0;
+Q.gv_majority = (Q.spd_r + Q.kpd_r >= 50) ? 1 : 0;
+Q.gv_dnvp = (Q.gov_type == 'right') ? 1 : 0;
+Q.gv_nsdap = (Q.nsdap_r >= 10) ? 1 : 0;
+Q.gv_pos_text = (Q.kpd_in_government == 1) ? 'in government' : ((Q.kpd_tolerating == 1) ? 'tolerating the government' : 'in opposition');
+!}
+
+= The Reichstag meets
+
+After the votes were counted, the parties negotiated, and the result is [+ gov_name +]. We are [+ gv_pos_text +].
+
+[? if gv_dnvp = 1 : The DNVP, the party of the East Elbian landowners, of the heavy industrialists and of the Pan-German racists who call the republic a Jewish invention, sits in the cabinet with the Centre and the DVP. The same parties that call themselves defenders of order now share power with a party whose newspapers defend every murder of a republican since 1919. ?]
+
+[? if gv_nsdap = 1 : The NSDAP, with [+ nsdap_r +]% of the votes, sits in the Reichstag on the benches of the extreme right. Its deputies are men who want the Jews driven out and the workers' movement smashed. The bourgeois parties are already discussing how they might live with them. ?]
+
+Our own position depends on the party that holds the line, and on Moscow. A government in which the KPD sits, or one which we tolerate, can only exist if the party leadership accepts it, the Social Democratic leaders accept us, and the Comintern does not forbid it.
+
+Checks, as of today:
+
+The leading faction is [+ party_line +] and must be the Right or the Centre: [? if gv_line_ok = 1 : met. ?][? if gv_line_ok = 0 : not met. ?]
+
+Moscow's trust is [+ comintern_trust +] and must be 40 or more: [? if gv_trust_ok = 1 : met. ?][? if gv_trust_ok = 0 : not met. ?]
+
+Joint work with the SPD stands at [+ y23_unity +] and must be 6 or more: [? if gv_unity_ok = 1 : met. ?][? if gv_unity_ok = 0 : not met. ?]
+
+The SPD and the KPD together hold [? if gv_majority = 1 : a majority of the Reichstag. ?][? if gv_majority = 0 : fewer than half of the seats. ?]
+
+- @oppose: Stay in opposition.
+- @tolerate: Offer to tolerate an SPD-led minority cabinet from outside.
+- @workers_government: Propose a workers' government with the SPD.
+
+@oppose
+subtitle: No requirements.
+on-arrival: kpd_in_government = 0; kpd_tolerating = 0
+go-to: root
+
+We remain in opposition. Our deputies vote against the cabinet and speak for the party in the country. It is a clean position and it also changes nothing for the workers who need a government that acts on their behalf.
+
+@tolerate
+subtitle: Needs the Right or the Centre in the lead, Moscow's trust of 40, joint work 6, and the SPD with more than 20% of the vote.
+choose-if: gv_line_ok = 1 and gv_trust_ok = 1 and gv_unity_ok = 1 and spd_r >= 20
+unavailable-subtitle: Requirements not met: see the checks above.
+on-arrival: kpd_tolerating = 1; kpd_in_government = 0; y23_unity += 1; workers_spd -= 1; kf_left_dissent += 5; comintern_trust -= 3
+go-to: root
+
+We announce that our deputies will not vote with the Right to bring down an SPD-led cabinet. The Left calls it betrayal. The SPD leaders accept, with the air of men who have been offered a hand by someone who recently shot at them.
+
+@workers_government
+subtitle: Needs the Right or the Centre in the lead, Moscow's trust of 40, joint work 6, and a majority of SPD and KPD together.
+choose-if: gv_line_ok = 1 and gv_trust_ok = 1 and gv_unity_ok = 1 and gv_majority = 1
+unavailable-subtitle: Requirements not met: see the checks above.
+on-arrival: kpd_in_government = 1; kpd_tolerating = 0; y23_unity += 2; kf_left_dissent += 10; kf_right_strength += 5; comintern_trust += 3; resources += 2
+go-to: root
+
+A workers' government is formed from the two parties of the working class. Our ministers sit in the cabinet. The SPD's ministers are not friends of the revolution, and the army and the civil service are still the army and the civil service of the old state. We are inside the building and, for a moment, we have the keys to some of the doors.

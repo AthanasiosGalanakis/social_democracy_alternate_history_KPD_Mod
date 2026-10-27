@@ -1,0 +1,14 @@
+title: Berlin intervenes
+subtitle: The Reich removes the workers' cabinets.
+new-page: true
+tags: kpd_event
+view-if: state_intervention = 1
+on-arrival: state_intervention = 0
+
+= Executive power, again
+
+Our armed units have grown past what Berlin will tolerate. The Reich government, once again, invokes Article 48, and the police and the Reichswehr remove our ministers from the Land cabinets of Saxony and Thuringia. The Social Democrats who sat with us say they were warned.
+
+It is the same story as in 1923: a state with an army will not let armed workers grow for ever. The units are cut back to 200, and the party must decide whether it governed or armed.
+
+- @root: Continue.

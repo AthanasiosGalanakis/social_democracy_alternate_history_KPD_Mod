@@ -188,6 +188,21 @@ if (Q.month_actions >= 1) {
     }
     // the Soviet subsidy pays one resource a quarter while it lasts
     if (Q.soviet_subsidy == 1 && Q.time % 3 == 0) { Q.resources += 1; }
+    // governments: the line must stay Right or Centre for a cabinet seat or toleration to last; Land cabinets pay and cost every quarter; the Reich intervenes if the armed units grow past 250.
+    Q.gv_line_ok_now = (Q.party_line == 'right' || Q.party_line == 'centre') ? 1 : 0;
+    if (Q.time % 3 == 0) {
+        var n_states = (Q.state_saxony == 2 ? 1 : 0) + (Q.state_thuringia == 2 ? 1 : 0) + (Q.state_prussia == 2 ? 1 : 0);
+        Q.resources += n_states;
+        Q.kf_left_dissent += n_states;
+    }
+    if (Q.rfb_strength > 250 && (Q.state_saxony == 2 || Q.state_thuringia == 2)) {
+        Q.state_saxony = 0;
+        Q.state_thuringia = 0;
+        Q.kf_right_dissent += 5;
+        Q.workers_kpd -= 2;
+        Q.rfb_strength = 200;
+        Q.state_intervention = 1;
+    }
     // Moscow trust stays on a 0 to 100 scale
     Q.comintern_trust = Math.max(0, Math.min(100, Q.comintern_trust));
     // decrement timers
