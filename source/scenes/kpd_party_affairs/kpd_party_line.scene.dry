@@ -1,0 +1,37 @@
+title: Party Line
+subtitle: Which faction's line runs the party, and how far its plan has come.
+is-pinned-card: true
+tags: kpd_pinned
+card-image: img/Vorwaerts_nr_1.png
+view-if: kpd_mode = 1
+new-page: true
+on-arrival: {!
+var names = {right: 'the Right (Brandler, Thalheimer)', left: 'the Left (Fischer, Maslow)', centre: 'the Centre (Meyer, Zetkin, Pieck)', apparatus: 'the Moscow apparatus'};
+Q.party_line_name = names[Q.party_line];
+Q.moscow_favored_name = names[Q.moscow_favored];
+Q.plan_step = Math.floor(Q['plan_' + Q.party_line + '_progress']);
+Q.plan_right_disp = Math.floor(Q.plan_right_progress);
+Q.plan_left_disp = Math.floor(Q.plan_left_progress);
+Q.plan_centre_disp = Math.floor(Q.plan_centre_progress);
+Q.plan_apparatus_disp = Math.floor(Q.plan_apparatus_progress);
+!}
+
+= The Party Line
+
+The party is currently run by [+ party_line_name +], and has been for [+ party_line_months +] months. Moscow's present line is closest to [+ moscow_favored_name +].
+
+[? if party_line = "right" : **Plan: a workers' government.** Win the SPD and union rank and file for joint action, build joint control committees in the factories, and use the workers' governments in the states as a base. This is a united front from above and below, and it is also a bet that the SPD leaders who betrayed 1919 can be forced to act. ?]
+
+[? if party_line = "left" : **Plan: the offensive.** Arm the Proletarian Hundreds, win the factory councils, call mass strikes and prepare the uprising. The theory of the offensive treats every crisis as the revolution's hour. It also treats the SPD workers as enemies, and a party that attacks its own class allies alone tends to be isolated by the police. ?]
+
+[? if party_line = "centre" : **Plan: a mass party.** Organise the unemployed, build fractions in the free trade unions, win the youth and the press. It is the slowest plan, and the one least likely to be attacked by Moscow, but the crisis does not always leave time for it. ?]
+
+[? if party_line = "apparatus" : **Plan: bolshevisation.** Rebuild the party on factory cells and Comintern discipline. It produces a disciplined party and a loyal one; whether that party can think for itself is another question. ?]
+
+Progress of the current plan: step [+ plan_step +] of 5.
+
+Plans of the other factions (they lose progress while they are out of power): Right [+ plan_right_disp +]/5, Left [+ plan_left_disp +]/5, Centre [+ plan_centre_disp +]/5, Apparatus [+ plan_apparatus_disp +]/5.
+
+[? if zigzag > 0 : Our recent changes of line have cost us credibility with the workers (zigzag [+ zigzag +]). ?]
+
+- @root: Return to main

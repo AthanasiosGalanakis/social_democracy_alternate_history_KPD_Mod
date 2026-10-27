@@ -16,6 +16,7 @@ max-cards: 3
 
 - @party
 - #advisor
+- @kpd_party_line
 - @shuffle_leadership_pinned
 
 @main_easy
@@ -36,6 +37,7 @@ max-cards: 4
 
 - @party
 - #advisor
+- @kpd_party_line
 - @shuffle_leadership_pinned
 
 

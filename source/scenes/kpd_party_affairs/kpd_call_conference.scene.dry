@@ -1,0 +1,18 @@
+title: Call an extraordinary conference
+subtitle: The line is not working. Put it to the delegates.
+new-page: true
+is-card: true
+card-image: img/Vorwaerts_nr_1.png
+frequency: 200
+tags: kpd_party
+view-if: line_change_timer <= 0 and line_change_open = 0 and holder_dissent >= 20
+on-arrival: month_actions += 1; line_change_open = 1
+
+= An extraordinary party conference
+
+The faction in power has lost the confidence of too many members. We can call an extraordinary conference, but this means asking the party to decide who it follows, in the middle of a crisis, and Moscow will watch the result.
+
+The conference will meet in the coming month. The contest between the factions is decided on strength, Moscow's favour and our own backing, not by chance.
+
+- @root: Call the conference.
+- @easy_discard
