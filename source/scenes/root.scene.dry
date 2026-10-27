@@ -529,7 +529,19 @@ Q.spd_no_confidence = 0;
 Q.no_confidence_against_spd = 0;
 
 // Advisors/Leaders
-Q.n_advisors = 0;
+// KPD advisers (1923): Brandler, Pieck and Eberlein advise at the start; the others can be brought in.
+Q.n_advisors = 3;
+Q.brandler_advisor = 1;
+Q.thalheimer_advisor = 0;
+Q.walcher_advisor = 0;
+Q.fischer_advisor = 0;
+Q.maslow_advisor = 0;
+Q.thaelmann_advisor = 0;
+Q.meyer_advisor = 0;
+Q.zetkin_advisor = 0;
+Q.pieck_advisor = 1;
+Q.radek_advisor = 0;
+Q.eberlein_advisor = 1;
 // timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.
 // let's just put all of the timers here...
 // most party affairs and government affairs cards are on a timer.

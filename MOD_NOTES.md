@@ -36,3 +36,9 @@ Build with `dendrynexus make-html` (see README.md).
 - Divergence ladder: each month with a line Moscow does not favour adds 1 point (0.5 at trust 75+); 3 points per step. Steps: warning, subsidy cut, Moscow backs the favoured faction, Open Letter, removal by decree (forced line change). Aligned months remove 2 points.
 - Soviet subsidy gives 1 resource a quarter while active.
 - Events: moscow_divergence, moscow_change. Balance numbers are placeholders to tune in M5.
+## Status (milestone M3, KPD advisers)
+
+- Eleven advisers as pinned cards, tagged by faction: Right (Brandler, Thalheimer, Walcher), Left (Fischer, Maslow, Thälmann), Centre (Meyer, Zetkin, Pieck), Moscow apparatus (Radek, Eberlein). Two actions each, one action every 4 months (`advisor_action_timer`). Effects are first-pass numbers.
+- Start: Brandler, Pieck and Eberlein advise; at most 3 advisers at a time.
+- "Reshape the leadership" card (every 8 months): bringing someone in gives their faction +4 strength; removing someone is a purge (+5 dissent for their faction).
+- Biographical lines are written from memory and need a fact check before release. Gating by date (e.g. Fischer joining the leadership in April 1923 by Comintern order) comes with the 1923 events (M5); for now all are available.
