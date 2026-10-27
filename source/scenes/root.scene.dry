@@ -107,6 +107,15 @@ Q.comintern_line = "workers_government";
 Q.comintern_trust = 60;
 Q.soviet_subsidy = 1;
 Q.moscow_divergence = 0;
+// Moscow power balance: -100 (Left Opposition) to +100 (Stalin). Drifts +0.8 a month; our delegations push it back or forward. Thresholds: <= -30 Trotsky-Radek, below 25 the troika, 25-59 Stalin-Bukharin, 60+ Stalin.
+Q.moscow_balance = 0;
+Q.moscow_balance_r = 0;
+Q.moscow_drift = 0.8;
+// months of disobedience, counted in points (3 per ladder step), and the pending ladder step / leadership change notices.
+Q.moscow_divergence_pts = 0;
+Q.moscow_step_pending = 0;
+Q.moscow_change_pending = 0;
+Q.moscow_action_timer = 0;
 // Which faction's line Moscow currently favours (updated by Moscow events, milestone M4). Matching it gives a faction extra weight in line contests.
 Q.moscow_favored = 'right';
 // plan progress: each faction's plan has 5 steps. Progress only grows while that faction holds the party line, and decays while it does not.
@@ -549,7 +558,7 @@ Q.timers = ['advisor_action', 'confronting_nazis', 'crisis_program',
             'police', 'prussian_affairs', 'shuffle_cabinet', 'social_welfare',
             'homosexual_rights', 'economic_policy', 'coalition_affairs',
             'war_guilt', 'womens_rights', 'economic_democracy',
-            'dealing_with_toleration', 'line_change', 'line_action',
+            'dealing_with_toleration', 'line_change', 'line_action', 'moscow_action',
             'constitutional_reform', 'labor_rights',
             'education_science', 'curriculum',
             // events

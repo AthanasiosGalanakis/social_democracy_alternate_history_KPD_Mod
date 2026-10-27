@@ -100,7 +100,7 @@ Centre strength: [+ kf_centre_strength : strength +], dissent: [+ kf_centre_diss
 
 Moscow apparatus strength: [+ kf_apparatus_strength : strength +], dissent: [+ kf_apparatus_dissent : dissent +]
 
-Moscow: [+ moscow_leader +], trust [+ comintern_trust +]
+Moscow: [+ moscow_leader +] (line: [+ comintern_line +], favours [+ moscow_favored +]), trust [+ comintern_trust +], balance [+ moscow_balance_r +], subsidy [+ soviet_subsidy +], patience step [+ moscow_divergence +] of 5
 
 
 @paramilitaries
