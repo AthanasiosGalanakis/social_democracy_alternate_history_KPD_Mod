@@ -1,0 +1,31 @@
+title: Arkadi Maslow
+is-pinned-card: true
+tags: advisor, left
+view-if: maslow_advisor = 1
+new-page: true
+
+= Arkadi Maslow
+
+Maslow is Fischer's closest ally, born in Russia and raised in Berlin, and with her the author of the theory of the offensive. He is a sharp writer and a rougher politician; he does not hide that he regards the SPD leaders as enemies.
+
+- @against_spd
+- @districts
+- @root: Return to main
+
+@against_spd
+title: Write against the SPD leaders
+subtitle: Attack the SPD leadership in the party press.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; kf_left_strength += 4; workers_spd -= 2; kf_centre_dissent += 2
+
+Maslow's articles on the SPD leaders are harsh and widely read. Some SPD workers are won over; more of them feel attacked.
+
+@districts
+title: Organize the party's left in the districts
+subtitle: Build the Left's network in the districts.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; kf_left_dissent -= 5; kf_left_strength += 3
+
+Maslow gives the Left a district network. The Left becomes more disciplined, and the leadership becomes more worried about it.

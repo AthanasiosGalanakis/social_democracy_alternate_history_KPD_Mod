@@ -1,0 +1,31 @@
+title: Hugo Eberlein
+is-pinned-card: true
+tags: advisor, apparatus
+view-if: eberlein_advisor = 1
+new-page: true
+
+= Hugo Eberlein
+
+Eberlein is a veteran Spartacist who handles the party's finances and its illegal work, and is close to the Comintern. He knows where the party's money and secrets are kept, which makes him useful and difficult to remove.
+
+- @illegal_work
+- @accounts
+- @root: Return to main
+
+@illegal_work
+title: Prepare the illegal apparatus
+subtitle: Build the party's secret organization.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; plan_apparatus_progress += 1; kf_apparatus_strength += 2
+
+Eberlein builds a parallel apparatus that can work if the party is banned. It is also an organization that answers to a handful of people, not to the membership.
+
+@accounts
+title: Submit the accounts to the Comintern
+subtitle: Open our books to Moscow.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; comintern_trust += 3; resources += 1
+
+The accounts go to Moscow. Trust rises, and so does the Comintern's sense that it has a right to look.
