@@ -14,3 +14,10 @@ Decisions so far:
 Keep from the base game: look, monthly ticks, hand/deck/advisor cards, elections, events, modifiers.
 
 Build with `dendrynexus make-html` (see README.md).
+
+## Status (milestone M1, shell conversion)
+
+- Starts January 1923; the first election is May 1924. The Reichstag starts from the June 1920 result (rounded, USPD inside "other").
+- The hand holds the KPD Party Affairs deck (Campaigning, Fundraising) and no advisors yet. The SPD Government Affairs deck is no longer in the hand.
+- Only scenes tagged `kpd_event` run as events. The old SPD-era `event` scenes stay in the repo, unused, until they are rewritten. The Reichstag election scene is tagged for both so elections still happen.
+- Known gaps: class-by-party support numbers are still the 1928 placeholders; the election aftermath and government formation are still the SPD versions (milestone M7); the Library and credits still describe the base game.

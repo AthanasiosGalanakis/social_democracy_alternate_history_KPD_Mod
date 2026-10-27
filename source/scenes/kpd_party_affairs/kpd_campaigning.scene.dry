@@ -1,0 +1,72 @@
+title: Campaigning
+new-page: true
+on-arrival: month_actions += 1
+max-visits: 60
+is-card: true
+card-image: img/flags.jpg
+frequency: 100
+tags: kpd_party
+
+# KPD version of the base game's Campaigning card. Gains are multiplied by (1 - kf_dissent), the KPD faction dissent.
+# 1923 first pass: numbers are placeholders to be balanced once the class data for 1923 is checked.
+
+= Campaigning
+
+Whether or not an election is near, the party has to win people over, and the inflation has made the old certainties disappear. Who should we focus our efforts on?
+
+- @workers: The factory workers, many of whom still follow the SPD and the unions.
+- @unemployed: The unemployed and those on short time, hit first by the crisis.
+- @rural: Agricultural labourers and small farmers.
+- @new_middle: Clerks, civil servants and white-collar employees, whose savings are being wiped out.
+- @old_middle: Small shopkeepers and artisans, ruined by the inflation.
+- @catholics: Catholic workers, who typically vote for the Center Party.
+- @root: We either don't want to or cannot campaign right now.
+- @easy_discard
+
+@workers
+subtitle: -1 resources
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: workers_kpd += 6*(1-kf_dissent); workers_spd -= 2*(1-kf_dissent); resources -= 1
+
+We have increased our work in the factories and the works councils. Many workers see the failures of the SPD leadership; others still remember the March Action and do not trust us.
+
+@unemployed
+subtitle: -1 resources
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: unemployed_kpd += 6*(1-kf_dissent); resources -= 1
+
+We have organized among the unemployed. Hunger and short wages make our message easy to hear, but anger alone does not build a movement.
+
+@rural
+subtitle: -1 resources
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: rural_kpd += 3*(1-kf_dissent); resources -= 1
+
+We have sent speakers to the estates and villages. The party has little standing in the countryside, and the large landowners have no trouble turning the villages against us.
+
+@new_middle
+subtitle: -1 resources
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: new_middle_kpd += 2*(1-kf_dissent); resources -= 1
+
+The inflation has ruined many white-collar savings, but most of them still look to the nationalists for an answer. Our gains are small.
+
+@old_middle
+subtitle: -1 resources
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: old_middle_kpd += 2*(1-kf_dissent); resources -= 1
+
+The small shopkeepers and artisans are angry, but their anger is easily turned against the workers and against Jews. We have only a hearing here, not their trust.
+
+@catholics
+subtitle: -1 resources
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: catholics_kpd += 2*(1-kf_dissent); resources -= 1
+
+We have spoken to Catholic workers in the Rhineland and Ruhr. The Center Party's hold on them runs through the church and the Catholic unions, and it does not give way easily.

@@ -1,0 +1,39 @@
+title: Fundraising
+new-page: true
+view-if: fundraising_timer <= 0 and (not historical_mode)
+on-arrival: fundraising_timer = 6; month_actions += 1
+frequency: 300
+is-card: true
+card-image: img/poster_2.jpg
+tags: kpd_party
+
+# KPD version of the base game's Fundraising card. Moscow's subsidy is not included yet (milestone M4).
+
+= Fundraising
+
+The party cannot exist without money, and in the inflation the dues are worth less every week.
+
+- @maintain: Maintain our current dues.
+- @reduce: Reduce dues.
+- @increase: Increase dues.
+- @easy_discard
+
+@maintain
+subtitle: [+ dues +] resources gained.
+on-arrival: resources += dues;
+
+We maintain our current dues.
+
+@reduce
+subtitle: [+ dues - 1 +] resources gained.
+choose-if: dues > 1
+on-arrival: dues -= 1; resources += dues; kf_right_dissent -= 8; kf_left_dissent -= 8; kf_centre_dissent -= 8; kf_apparatus_dissent -= 8
+
+Our members, many of them unemployed, appreciate this, but no one joins a party because of low dues.
+
+@increase
+subtitle: [+ dues + 1 +] resources gained. [? if unemployed >= 15 : Given the present economic situation, this may be painful. ?]
+on-arrival: dues += 1; resources += dues; workers_kpd -= 3; unemployed_kpd -= 3; workers_kpd -= 3*dues if dues >= 5; unemployed_kpd -= 3*dues if dues >= 5
+view-if: dues <= 4
+
+Our members grumble at this, and some of the less committed leave. But now we have access to additional resources.
