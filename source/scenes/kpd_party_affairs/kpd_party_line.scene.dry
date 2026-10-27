@@ -1,5 +1,5 @@
 title: Party Line
-subtitle: Which faction's line runs the party, and how far its plan has come.
+subtitle: Which faction's line runs the party, and what Moscow thinks of it.
 is-pinned-card: true
 tags: kpd_pinned
 card-image: img/Vorwaerts_nr_1.png
@@ -9,12 +9,6 @@ on-arrival: {!
 var names = {right: 'the Right (Brandler, Thalheimer)', left: 'the Left (Fischer, Maslow)', centre: 'the Centre (Meyer, Zetkin, Pieck)', apparatus: 'the Moscow apparatus', conciliators: 'the Conciliators (Ewert, Eisler)'};
 Q.party_line_name = names[Q.party_line];
 Q.moscow_favored_name = names[Q.moscow_favored];
-Q.plan_step = Math.floor(Q['plan_' + Q.party_line + '_progress']);
-Q.plan_right_disp = Math.floor(Q.plan_right_progress);
-Q.plan_left_disp = Math.floor(Q.plan_left_progress);
-Q.plan_centre_disp = Math.floor(Q.plan_centre_progress);
-Q.plan_apparatus_disp = Math.floor(Q.plan_apparatus_progress);
-Q.plan_conciliators_disp = Math.floor(Q.plan_conciliators_progress);
 !}
 
 = The Party Line
@@ -29,9 +23,7 @@ The party is currently run by [+ party_line_name +], and has been for [+ party_l
 
 [? if party_line = "apparatus" : **Plan: bolshevisation.** Rebuild the party on factory cells and Comintern discipline. It produces a disciplined party and a loyal one; whether that party can think for itself is another question. ?]
 
-Progress of the current plan: step [+ plan_step +] of 5.
-
-Plans of the other factions (they lose progress while they are out of power): Right [+ plan_right_disp +]/5, Left [+ plan_left_disp +]/5, Centre [+ plan_centre_disp +]/5, Apparatus [+ plan_apparatus_disp +]/5[? if kf_conciliators_active = 1 : , Conciliators [+ plan_conciliators_disp +]/5 ?].
+Trust with Moscow: [+ comintern_trust +]. Above 50 it unlocks government options; below it the Comintern starts to punish us (see the status page).
 
 [? if party_line = "conciliators" : **Plan: a mass party with a hearing in Moscow.** Keep the party's line aligned with the Comintern's while resisting its worst demands, rebuild the united front with the SPD workers and keep the unions. It is a policy that tries to please both sides, and sooner or later both notice. ?]
 

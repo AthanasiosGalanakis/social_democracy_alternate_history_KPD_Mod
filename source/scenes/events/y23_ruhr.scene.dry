@@ -2,7 +2,7 @@ title: The Ruhr occupation
 subtitle: French and Belgian troops have crossed the Rhine.
 new-page: true
 tags: kpd_event
-view-if: year = 1923 and month = 1 and y23_ruhr_done = 0
+view-if: year = 1923 and month >= 1 and y23_ruhr_done = 0
 on-arrival: y23_ruhr_done = 1
 
 = French troops in the Ruhr

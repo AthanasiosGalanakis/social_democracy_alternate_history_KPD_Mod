@@ -11,8 +11,9 @@ Q.y23_t = Math.min(10, Q.y23_strikes*3);
 Q.y23_g = 10*Q.y23_saxony + 5*Q.y23_thuringia;
 Q.y23_m = 5*Q.soviet_subsidy + (Q.moscow_leader == "Trotsky-Radek" ? 10 : 0) + (Q.comintern_trust >= 60 ? 5 : 0);
 Q.y23_ready = Q.y23_s + Q.y23_h + Q.y23_t + Q.y23_g + Q.y23_m;
-Q.y23_has_s = (Q.y23_s >= 15) ? 1 : 0;
+Q.y23_has_s = (Q.y23_s >= 10) ? 1 : 0;
 Q.y23_has_r = (Q.y23_ready >= 85) ? 1 : 0;
+Q.y23_has_t = (Q.y23_ready >= 45) ? 1 : 0;
 !}
 
 = The Chemnitz conference
@@ -21,20 +22,22 @@ The conference of Saxony's factory councils, about 450 delegates, meets in Chemn
 
 Before anything else, here is what we have, with no estimates added or subtracted.
 
-Readiness for a rising: [+ y23_ready +] points. The rising needs 85, and an alliance with the SPD left worth at least 15, which it must have, since without it the strike does not spread beyond the KPD. A general strike without a rising holds at 65 points with the same alliance.
+Readiness for a rising: [+ y23_ready +] points. A general strike holds at 45 points, with an alliance with the SPD left worth at least 10, which it must have, since without it the strike does not spread beyond the KPD. A rising is not yet available in this version of the game.
 
-Unity with the SPD left: [+ y23_s +] of 30 (needed: 15)[? if y23_has_s = 1 : . We have it. ?][? if y23_has_s = 0 : . We do not have it. ?]
+Unity with the SPD left: [+ y23_s +] of 30 (needed: 10)[? if y23_has_s = 1 : . We have it. ?][? if y23_has_s = 0 : . We do not have it. ?]
 
 Proletarian Hundreds: [+ y23_h +] of 30. Strikes: [+ y23_t +] of 10. Workers' governments: [+ y23_g +] of 15. Moscow: [+ y23_m +] of 20.
 
 The SPD ministers in the Saxon cabinet are unwilling to call a general strike. Without them, the strike will not leave the Communist-led districts. We can still go through with it.
 
-- @rising: Call the general strike and the armed rising.
+- @rising: Call the general strike and the armed rising. (Not implemented yet.)
 - @strike: Call the general strike, but no rising.
 - @calloff: Call it off. The party cannot win this fight.
 
 @rising
-subtitle: Needs readiness 85 and unity 15. Otherwise, a defeat.
+subtitle: Not implemented yet.
+choose-if: 1 = 0
+unavailable-subtitle: Not implemented yet.
 on-arrival: {!
 if (Q.y23_has_r == 1 && Q.y23_has_s == 1) {
     Q.y23_outcome = 'rising_success';
@@ -73,9 +76,9 @@ Hundreds of workers are dead or arrested. The party is ruined, and Moscow will l
 - @root: Continue.
 
 @strike
-subtitle: Needs readiness 65 and unity 15 to hold.
+subtitle: Needs readiness 45 and unity 10 to hold.
 on-arrival: {!
-if (Q.y23_ready >= 65 && Q.y23_has_s == 1) {
+if (Q.y23_has_t == 1 && Q.y23_has_s == 1) {
     Q.y23_outcome = 'strike_holds';
     Q.saxony_survives = 1;
     Q.workers_kpd += 4;
@@ -104,12 +107,14 @@ The call is made and the strike does not leave the Communist districts. The Reic
 - @root: Continue.
 
 @calloff
-subtitle: The historical choice.
+subtitle: The historical choice, and it cost the party dearly. Trust -10, Hamburg fights alone, the party is banned.
 on-arrival: {!
 Q.y23_outcome = 'called_off';
-Q.comintern_trust -= 5;
+Q.comintern_trust -= 10;
 Q.kf_left_dissent += 10;
-if (Q.party_line == 'left') { Q.y23_hamburg_pending = 1; }
+Q.kf_right_dissent += 10;
+Q.workers_kpd -= 3;
+Q.y23_hamburg_pending = 1;
 !}
 go-to: root
 

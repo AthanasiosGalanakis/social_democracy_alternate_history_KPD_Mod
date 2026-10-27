@@ -26,6 +26,6 @@ title: Push the offensive
 subtitle: Argue that the crisis is the hour of the revolution.
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 4; plan_left_progress += 1; workers_spd -= 1
+on-arrival: advisor_action_timer = 4; workers_spd -= 1
 
 Fischer calls every crisis the revolution's hour. The enthusiasm is real, and so is the risk of calling a strike no one else will join.

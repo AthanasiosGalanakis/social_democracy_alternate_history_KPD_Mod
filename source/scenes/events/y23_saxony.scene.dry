@@ -15,7 +15,9 @@ This is the workers' government of Moscow's slogan. Is it a stepping stone to a 
 - @refuse: Refuse. A workers' government is no use if it sits at the pleasure of Berlin.
 
 @enter
-subtitle: Governments +10, Hundreds armed, Berlin will notice.
+subtitle: Governments +10, Hundreds armed, Berlin will notice. Needs Moscow's trust of 50.
+choose-if: comintern_trust >= 50
+unavailable-subtitle: Government options need Moscow's trust of 50.
 on-arrival: y23_saxony = 1; y23_unity += 1; rfb_strength += 40; comintern_trust += 5; kf_right_strength += 3
 go-to: root
 

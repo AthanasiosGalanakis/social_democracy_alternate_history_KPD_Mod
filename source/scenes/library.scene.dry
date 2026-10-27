@@ -58,17 +58,19 @@ This is the history the game departs from. Your party may do something else.
 @factions
 go-to: menu
 
-The party is not one body. Four currents fight over the line.
+The party is not one body. Four currents fight for influence in 1923; a fifth, the Conciliators, belongs to the later years that are not yet in the game.
 
-**The Right** (Brandler, Thalheimer): the united front with Social Democratic workers, workers' governments in the states, patient work in the unions and factory councils. Its danger is waiting on leaders who will not fight.
+**The Right** (Brandler, Thalheimer). The leadership that took over after the March Action and Paul Levi's expulsion in 1921. It holds the majority at Leipzig in 1923 and believes in the united front with Social Democratic workers, workers' governments in the states, and patient work in the unions and factory councils. Its danger is waiting on leaders who will never act.
 
-**The Left** (Fischer, Maslow, later Thälmann's followers): an offensive, armed workers' units, a hard break with the SPD leaders. Its danger is calling a fight that the workers have not chosen.
+**The Left** (Fischer, Maslow, later Thälmann). The opposition in the Berlin, Hamburg and Ruhr districts, the heirs of the March Action's offensive. It wants armed workers' units and a hard break with the SPD leaders, and calls every crisis the hour of the revolution. Its danger is calling a fight that the workers have not chosen.
 
-**The Centre** (Meyer, Zetkin, Pieck): mass politics, unity of the party, mediation between the two. Its danger is that it has no line of its own.
+**The Centre** (Meyer, Zetkin, Pieck). The "middle group" that formed around Ernst Meyer after 1921, between the two wings, for mass politics and the unity of the party. It sided with the Right in 1922 and 1923, and would side with the Left in 1924. Its danger is that it has no line of its own.
 
-**The Moscow apparatus**: the faction of those whose first loyalty is the line from Moscow. Its danger is that Moscow is far away and has its own interests.
+**The Moscow apparatus** (the Comintern's emissaries and the cadres whose first loyalty is the Executive). This is a modelling choice rather than an organised group in 1923: Radek, the Russian commission and the German officials who follow Moscow's line without argument. It stands for the pull of the International, which becomes a real faction only with Bolshevisation after 1924. Its danger is that Moscow is far away and has its own interests.
 
-Factions that did not yet exist in 1923 appear later. The Conciliators (Ewert, Eisler) form in 1927. The Communist Opposition (KPO) and the Leninbund do not take part in the game's contests; they are outside the party after their expulsions.
+**The Conciliators** (Ewert, Eisler, Eberlein). They form in 1927 as the "Versöhnler" between Thälmann's leadership and the Right, and are broken after the Wittorf affair of 1928. They appear in the game only when the later years are added.
+
+The Communist Opposition (KPO) and the Leninbund do not take part in the game's contests; they are outside the party after their expulsions.
 
 @moscow
 go-to: menu
@@ -93,14 +95,12 @@ go-to: menu
 
 Nothing in this game depends on dice. If a result looks surprising, the reason is a number on the status page or in the event text.
 
-The party line is held by the strongest faction, and a change of line needs a contest at a conference. The contest is decided by strength, Moscow's favour, dissent and your own backing.
+The Right holds the party line from the start. In this version of the game the line does not change; the factions matter through their strength and dissent, which set how well your campaigning works, and through Moscow's opinion of the line.
 
-The anti-fascist front (status page, 0 to 100) adds up joint work with the SPD, defence units, Anti-Fascist Action and its actions. The Prussian strike of July 1932 and the general strike of 30 January 1933 succeed at fixed thresholds that the event text names.
+Trust with Moscow runs from 0 to 100. A month with a line Moscow favours adds a point; a month with another line takes one away. Events and cards add or subtract more. Trust of 50 or more opens government options. Below 50 Moscow punishes the party in stages: under 50 a letter, under 40 the subsidy is cut, under 30 an open letter to the membership and a tenth off campaigning, under 15 emissaries take over the districts and campaigning is a fifth less effective. The penalties lift as trust recovers.
 
-Under the Third Period, every point of joint work with the SPD costs Moscow's patience: the more you build the front, the more you risk the line from Moscow.
+The decision at Chemnitz in October 1923 is decided by readiness, the sum of unity with the SPD left, Hundreds, strikes, workers' governments and Moscow's backing. A general strike holds at readiness 45 with unity of 10. The rising is not yet implemented.
 
-The decision at Chemnitz in October 1923 is decided by readiness, the sum of unity with the SPD left, Hundreds, strikes, workers' governments and Moscow's backing.
-
-Governments depend on which faction leads the party, Moscow's trust and joint work with the SPD.
+Nothing in this version of the game continues beyond December 1923.
 
 The original game was written by Autumn Chen. This mod keeps its engine and look.

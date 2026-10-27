@@ -17,7 +17,7 @@ title: Prepare the illegal apparatus
 subtitle: Build the party's secret organization.
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 4; plan_apparatus_progress += 1; kf_apparatus_strength += 2
+on-arrival: advisor_action_timer = 4; kf_apparatus_strength += 2
 
 Eberlein builds a parallel apparatus that can work if the party is banned. It is also an organization that answers to a handful of people, not to the membership.
 

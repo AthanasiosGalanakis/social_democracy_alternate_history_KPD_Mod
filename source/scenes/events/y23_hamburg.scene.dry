@@ -3,7 +3,7 @@ subtitle: The signal never reached the harbour.
 new-page: true
 tags: kpd_event
 view-if: y23_hamburg_pending = 1 and y23_hamburg_done = 0
-on-arrival: y23_hamburg_done = 1; y23_hamburg_pending = 0; workers_kpd -= 2; unemployed_kpd -= 1; kf_left_dissent += 5; kf_right_dissent += 8; comintern_trust -= 3
+on-arrival: y23_hamburg_done = 1; y23_hamburg_pending = 0; workers_kpd -= 4; unemployed_kpd -= 2; rfb_strength -= 50; kf_left_dissent += 5; kf_right_dissent += 8; comintern_trust -= 5
 
 = The Hamburg uprising
 
