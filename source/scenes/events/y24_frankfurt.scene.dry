@@ -1,0 +1,14 @@
+title: The Frankfurt congress
+subtitle: April 1924. The Left asks for the leadership.
+new-page: true
+tags: kpd_event
+view-if: year = 1924 and month = 4 and y23_failed = 1 and civil_war = 0 and y24_frankfurt_done = 0
+on-arrival: y24_frankfurt_done = 1; line_change_open = 1; line_change_timer = 0
+
+= The ninth party congress
+
+The party meets in Frankfurt, in half-legal conditions, in April 1924. Ruth Fischer and Arkadi Maslow, with Ernst Thälmann, have won the district delegations in Berlin, the Ruhr and Hamburg on one argument: the October failed because the leadership did not trust the workers. The Right answers that the October failed because the workers, the SPD left and the Reichswehr were not what Moscow thought they were. Neither side will find it easy to hear the other.
+
+Moscow, whose line is now bolshevisation, favours the Left. The contest for the party line will decide who runs the party.
+
+- @root: To the delegates.

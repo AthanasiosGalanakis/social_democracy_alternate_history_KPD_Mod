@@ -1,0 +1,14 @@
+title: The DNVP in government
+subtitle: January 1927. The Right takes office.
+new-page: true
+tags: kpd_event
+view-if: year = 1927 and month = 1 and civil_war = 0 and y27_dnvp_done = 0
+on-arrival: y27_dnvp_done = 1; pro_republic -= 3; workers_spd += 1
+
+= The Bürgerblock
+
+In January 1927 Wilhelm Marx forms a cabinet of the Centre, the DVP, the BVP and, for the first time, the DNVP. The DNVP, the party that voted against the republic's constitution, has Reichswehr officers and East Elbian landowners in its leadership. Its newspapers call the republic a Jewish invention and defend every political murder of a republican. It is now part of the government.
+
+Centrists and liberals explain that taking responsibility will make the nationalists moderate. They will not. The bourgeois parties are learning to share power with enemies of the republic when the enemy is on the Left, a habit that they will not unlearn.
+
+- @root: Continue.

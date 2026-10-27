@@ -5,7 +5,7 @@ tags: kpd_event
 view-if: line_change_open = 1
 on-arrival: {!
 // Deterministic contest between the faction holding the line and the strongest challenger. No random rolls.
-var names = {right: 'the Right', left: 'the Left', centre: 'the Centre', apparatus: 'the Moscow apparatus'};
+var names = {right: 'the Right', left: 'the Left', centre: 'the Centre', apparatus: 'the Moscow apparatus', conciliators: 'the Conciliators'};
 function power(f, backed) {
     var p = Q['kf_' + f + '_strength'] - 0.2*Q['kf_' + f + '_dissent'];
     if (f == Q.moscow_favored) { p += 10; }
@@ -60,7 +60,7 @@ go-to: resolve
 
 @resolve
 on-arrival: {!
-var names = {right: 'the Right', left: 'the Left', centre: 'the Centre', apparatus: 'the Moscow apparatus'};
+var names = {right: 'the Right', left: 'the Left', centre: 'the Centre', apparatus: 'the Moscow apparatus', conciliators: 'the Conciliators'};
 Q.lc_over = 1;
 Q.line_change_open = 0;
 Q.line_change_timer = 12;

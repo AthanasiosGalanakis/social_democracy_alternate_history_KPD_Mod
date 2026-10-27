@@ -1,0 +1,32 @@
+title: The vote on 20 June
+subtitle: The quorum is half of all eligible voters.
+new-page: true
+tags: kpd_event
+view-if: year = 1926 and month = 6 and y26_princes_done = 1 and civil_war = 0 and y26_princes_result_done = 0
+on-arrival: {!
+Q.y26_princes_result_done = 1;
+// turnout for the yes side: 30 percent, plus 2.5 for each point of joint work with the SPD
+Q.y26_turnout = Math.min(60, 30 + 2.5*Q.y23_unity);
+Q.y26_turnout_r = Math.round(Q.y26_turnout);
+Q.y26_passed = (Q.y26_turnout >= 50) ? 1 : 0;
+if (Q.y26_passed) {
+    Q.princes_expropriated = 1;
+    Q.pro_republic += 4;
+    Q.workers_spd += 2;
+    Q.workers_kpd += 2;
+    Q.kf_right_strength += 3;
+} else {
+    Q.workers_spd -= 1;
+    Q.kf_left_dissent += 3;
+}
+!}
+
+= The referendum
+
+On 20 June 1926, about 14.4 million voters, over 96 percent of all those who voted, back the expropriation. Turnout is 39 percent of those eligible. The quorum is 50 percent. The referendum fails, and President Hindenburg's remark that it is an infringement on the rights of property did the rest.
+
+Counting our own joint work with the SPD workers, the yes vote in this version of events stands at [+ y26_turnout_r +] percent of all eligible voters.
+
+[? if y26_passed = 1 : It passes. The princes' property is expropriated without compensation, and the republic's workers have won a fight that the republic's parties thought no one could win. ?][? if y26_passed = 0 : It fails. The working class voted for it in the millions, and the SPD leaders, who preferred a respectable defeat to a messy victory, are able to put the issue away. ?]
+
+- @root: Continue.

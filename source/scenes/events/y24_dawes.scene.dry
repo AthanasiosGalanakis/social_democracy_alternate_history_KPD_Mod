@@ -1,0 +1,29 @@
+title: The Dawes Plan
+subtitle: Reparations are rescheduled, and who pays is not in doubt.
+new-page: true
+tags: kpd_event
+view-if: year = 1924 and month = 8 and civil_war = 0 and y24_dawes_done = 0
+on-arrival: y24_dawes_done = 1; workers_kpd -= 3; unemployed_kpd -= 3; workers_spd += 3; pro_republic += 4
+
+= The Dawes Plan
+
+An international committee under the American banker Charles Dawes sets a new schedule for German reparations, supported by a loan from American banks. On 29 August the Reichstag passes the plan with the votes of the SPD and half of the DNVP, whose leaders call it a second Versailles in public and sign it in private.
+
+The loan stabilises the mark, brings foreign capital into German industry, and makes German workers the borrowers' guarantee. For a while there is work and wages, and the republic has its best years since 1919. The party that said the republic would never recover has some difficult explaining to do.
+
+- @denounce: Denounce the plan as the enslavement of German labour.
+- @analyse: Say what it means for wages and hours, and what it does not.
+
+@denounce
+subtitle: Left +3 strength, workers -1.
+on-arrival: kf_left_strength += 3; workers_kpd -= 1; comintern_trust += 2
+go-to: root
+
+The posters read "Dawes Plan: slavery for the German worker". The first claim is true of the debt and the second is not true of the wages that rise in the autumn. Workers who read the posters and then looked at their wage packets can be forgiven for looking elsewhere.
+
+@analyse
+subtitle: Right +3 strength, workers +1.
+on-arrival: kf_right_strength += 3; workers_kpd += 1*campaign_mult; comintern_trust -= 2
+go-to: root
+
+We publish an analysis of the loan, the railway bonds and the industrial mortgages, and what they mean for wages and hours. It is long, accurate and read by many more workers than the posters; Moscow, which wants a stronger denunciation, says so.

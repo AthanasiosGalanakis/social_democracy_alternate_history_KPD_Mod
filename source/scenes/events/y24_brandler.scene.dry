@@ -1,0 +1,14 @@
+title: Brandler is recalled
+subtitle: The post-mortem finds its culprit.
+new-page: true
+tags: kpd_event
+view-if: year = 1924 and month = 1 and y23_failed = 1 and civil_war = 0 and y24_brandler_done = 0
+on-arrival: y24_brandler_done = 1; kf_right_strength -= 6; kf_right_dissent += 10; kf_left_strength += 4
+
+= Brandler goes to Moscow
+
+In January the Comintern recalls Heinrich Brandler to Moscow. He will spend most of the next four years there, and he will not lead the German party again. August Thalheimer shares his blame. The Zentrale is reshuffled and the Left, which was right about the SPD left's unreliability and wrong about nearly everything else, is brought in.
+
+The leaders in Moscow who set a date in a foreign capital and sent a committee to carry it out are not among those blamed. A party that cannot ask what went wrong at the top has a short future ahead of it.
+
+- @root: Continue.

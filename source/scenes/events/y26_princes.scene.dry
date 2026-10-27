@@ -1,0 +1,29 @@
+title: Not one penny for the princes
+subtitle: The KPD asks for a referendum on expropriating the former ruling houses.
+new-page: true
+tags: kpd_event
+view-if: year = 1926 and month = 3 and civil_war = 0 and y26_princes_done = 0
+on-arrival: y26_princes_done = 1
+
+= The princes' property
+
+The former ruling houses are claiming back their palaces, estates and forests from a republic in which millions are unemployed. The KPD proposes a referendum on expropriation without compensation. The SPD hesitates and then joins, partly to avoid being outflanked, and the signatures come in.
+
+A referendum needs half of all eligible voters, not just a majority of those who vote. That is a high wall, and only an alliance of the working class can get over it. The more we have worked with the SPD workers over the last three years, the higher the turnout will be.
+
+- @together: Campaign jointly with the SPD and the unions, ward by ward.
+- @alone: Campaign in our own name and our own districts.
+
+@together
+subtitle: Joint work +2. Turnout rises with joint work.
+on-arrival: y23_unity += 2; workers_spd -= 0; kf_left_dissent += 4
+go-to: root
+
+Joint committees collect signatures in the factories, and for a few weeks the dividing line between the two parties is the committee's membership list. Social Democratic workers and Communist workers canvass the same streets.
+
+@alone
+subtitle: Workers +2, no change in joint work.
+on-arrival: workers_kpd += 2*campaign_mult; kf_left_strength += 2
+go-to: root
+
+We campaign through the party press and the RFB. The campaign is lively, and the SPD leaders, who regard it as an electoral manoeuvre, hold back their members from it.
