@@ -120,6 +120,8 @@ for (var f of Q.kpd_factions) {
 }
 Q.kf_dissent_percent = kf_total > 0 ? kf_weighted/100 : 0;
 Q.kf_dissent = Math.min(0.95, Q.kf_dissent_percent/100);
+Q.holder_dissent = Q['kf_' + Q.party_line + '_dissent'];
+Q.campaign_mult = (1 - Q.kf_dissent)*(1 - 0.04*Q.zigzag);
 
 // 1. update dates
 if (Q.month_actions >= 1) {
@@ -134,6 +136,22 @@ if (Q.month_actions >= 1) {
         }
     }
     Q.party_line_months += 1;
+    // plans: the faction in power keeps its progress, the others lose a quarter step per month. Progress is capped at 5.
+    for (var f of Q.kpd_factions) {
+        var key = 'plan_' + f + '_progress';
+        if (f != Q.party_line && Q[key] > 0) {
+            Q[key] = Math.max(0, Q[key] - 0.25);
+        }
+        if (Q[key] > 5) {
+            Q[key] = 5;
+        }
+    }
+    // zigzag credibility recovers by 1 every 6 months
+    if (Q.zigzag > 0 && Q.time % 6 == 0) {
+        Q.zigzag -= 1;
+    }
+    // Moscow trust stays on a 0 to 100 scale
+    Q.comintern_trust = Math.max(0, Math.min(100, Q.comintern_trust));
     // decrement timers
     for (timer of Q.timers) {
         if (Q[timer+'_timer'] && Q[timer+'_timer'] > 0) {

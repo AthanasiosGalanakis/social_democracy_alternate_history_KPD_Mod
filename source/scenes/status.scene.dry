@@ -90,6 +90,8 @@ Economic growth: [+ economic_growth_2 +]%
 
 Party line: [+ party_line +] (in power for [+ party_line_months +] months)
 
+Credibility lost to line changes (zigzag): [+ zigzag +]
+
 Right strength: [+ kf_right_strength : strength +], dissent: [+ kf_right_dissent : dissent +]
 
 Left strength: [+ kf_left_strength : strength +], dissent: [+ kf_left_dissent : dissent +]
