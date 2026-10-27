@@ -12,16 +12,16 @@ Q.y23_g = 10*Q.y23_saxony + 5*Q.y23_thuringia;
 Q.y23_m = 5*Q.soviet_subsidy + (Q.moscow_leader == "Trotsky-Radek" ? 10 : 0) + (Q.comintern_trust >= 60 ? 5 : 0);
 Q.y23_ready = Q.y23_s + Q.y23_h + Q.y23_t + Q.y23_g + Q.y23_m;
 Q.y23_has_s = (Q.y23_s >= 15) ? 1 : 0;
-Q.y23_has_r = (Q.y23_ready >= 75) ? 1 : 0;
+Q.y23_has_r = (Q.y23_ready >= 85) ? 1 : 0;
 !}
 
 = The Chemnitz conference
 
-The conference of Saxony's factory councils meets in Chemnitz on 21 October. The Reichswehr is already advancing: General Müller has the Reich government's authority to remove the Saxon cabinet by force. The KPD intends to call a general strike from Chemnitz as the signal for the German October, and Brandler is going to say so.
+The conference of Saxony's factory councils, about 450 delegates, meets in Chemnitz on 21 October. The Reichswehr is already moving: General Müller banned the Proletarian Hundreds on the 13th, and his troops enter Saxony on the 23rd. The KPD intends to call a general strike from Chemnitz as the signal for the German October, and Brandler is going to say so.
 
 Before anything else, here is what we have, with no estimates added or subtracted.
 
-Readiness for a rising: [+ y23_ready +] points. The rising needs 75, and an alliance with the SPD left worth at least 15, which it must have, since without it the strike does not spread beyond the KPD.
+Readiness for a rising: [+ y23_ready +] points. The rising needs 85, and an alliance with the SPD left worth at least 15, which it must have, since without it the strike does not spread beyond the KPD. A general strike without a rising holds at 65 points with the same alliance.
 
 Unity with the SPD left: [+ y23_s +] of 30 (needed: 15)[? if y23_has_s = 1 : . We have it. ?][? if y23_has_s = 0 : . We do not have it. ?]
 
@@ -34,13 +34,13 @@ The SPD ministers in the Saxon cabinet are unwilling to call a general strike. W
 - @calloff: Call it off. The party cannot win this fight.
 
 @rising
-subtitle: Needs readiness 75 and unity 15. Otherwise, a defeat.
+subtitle: Needs readiness 85 and unity 15. Otherwise, a defeat.
 on-arrival: {!
 if (Q.y23_has_r == 1 && Q.y23_has_s == 1) {
     Q.y23_outcome = 'rising_success';
     Q.civil_war = 1;
     Q.cw_red = Q.y23_ready;
-    Q.cw_white = 85;
+    Q.cw_white = 95;
     Q.cw_month = 0;
 } else {
     Q.y23_outcome = 'rising_crushed';
@@ -73,9 +73,9 @@ Hundreds of workers are dead or arrested. The party is ruined, and Moscow will l
 - @root: Continue.
 
 @strike
-subtitle: Needs readiness 60 and unity 15 to hold.
+subtitle: Needs readiness 65 and unity 15 to hold.
 on-arrival: {!
-if (Q.y23_ready >= 60 && Q.y23_has_s == 1) {
+if (Q.y23_ready >= 65 && Q.y23_has_s == 1) {
     Q.y23_outcome = 'strike_holds';
     Q.saxony_survives = 1;
     Q.workers_kpd += 4;

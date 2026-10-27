@@ -6,7 +6,7 @@ view-if: civil_war = 1 and cw_last_time < time and kpd_ending = "none"
 on-arrival: {!
 Q.cw_last_time = Q.time;
 Q.cw_month += 1;
-Q.cw_white += 5;
+Q.cw_white += 6;
 if (Q.cw_month > 4) { Q.cw_over = 1; }
 Q.cw_diff = Q.cw_red - Q.cw_white;
 Q.cw_has_moscow = (Q.comintern_trust >= 50) ? 1 : 0;
@@ -16,7 +16,7 @@ go-to: cw_end if cw_over = 1
 
 = The campaign, month [+ cw_month +]
 
-The Reichswehr, the Freikorps and the Bavarian leagues have gathered against the councils of Saxony, and our Hundreds, strengthened by the Saxon police and by the factory militias, fight them in the field. Each month decides something. Each side adds to its strength, and the Reichswehr adds five every month with its reserves and its railways. We have no luck to count on, and every number that decides the result is on this page.
+The Reichswehr, the Freikorps and the Bavarian leagues have gathered against the councils of Saxony, and our Hundreds, strengthened by the Saxon police and by the factory militias, fight them in the field. Each month decides something. Each side adds to its strength, and the Reichswehr adds six every month with its reserves and its railways. We have no luck to count on, and every number that decides the result is on this page.
 
 Our strength: [+ cw_red +]. The Reichswehr and Freikorps: [+ cw_white +].
 

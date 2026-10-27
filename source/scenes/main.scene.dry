@@ -18,7 +18,6 @@ max-cards: 3
 - @mass
 - #advisor
 - @kpd_party_line
-- @shuffle_leadership_pinned
 
 @main_easy
 set-bg: img/map_2.jpg
@@ -40,7 +39,6 @@ max-cards: 4
 - @mass
 - #advisor
 - @kpd_party_line
-- @shuffle_leadership_pinned
 
 
 @mass
@@ -56,11 +54,3 @@ card-image: img/Vorwaerts_nr_1.png
 is-deck: true
 
 - #kpd_party
-
-@govt
-title: Government Affairs
-view-if: time >= 6
-card-image: img/reichstag_2.jpg
-is-deck: true
-
-- #govt_affairs
