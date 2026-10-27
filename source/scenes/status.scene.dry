@@ -101,6 +101,20 @@ Economic growth: [+ economic_growth_2 +]%
 
 [? if neorevisionism > 0 : Neorevisionist strength: [+ neorevisionist_strength : strength +], dissent: [+ neorevisionist_dissent : dissent +] ?]
 
+= Internal Factions of the KPD
+
+Party line: [+ party_line +] (in power for [+ party_line_months +] months)
+
+Right strength: [+ kf_right_strength : strength +], dissent: [+ kf_right_dissent : dissent +]
+
+Left strength: [+ kf_left_strength : strength +], dissent: [+ kf_left_dissent : dissent +]
+
+Centre strength: [+ kf_centre_strength : strength +], dissent: [+ kf_centre_dissent : dissent +]
+
+Moscow apparatus strength: [+ kf_apparatus_strength : strength +], dissent: [+ kf_apparatus_dissent : dissent +]
+
+Moscow: [+ moscow_leader +], trust [+ comintern_trust +]
+
 
 @paramilitaries
 on-arrival: {!

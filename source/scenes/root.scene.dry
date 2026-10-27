@@ -75,6 +75,34 @@ Q.reformist_dissent = 5;
 Q.neorevisionist_strength = 5;
 Q.neorevisionist_dissent = 10;
 
+// KPD factions (kf_ prefix keeps them separate from the SPD faction variables above while the SPD game is being converted).
+// Strength and dissent values are placeholders until the 1923 research is checked.
+// party_line is the faction whose line currently runs the party. At the start Brandler's right holds it.
+Q.kpd_factions = ['right', 'left', 'centre', 'apparatus'];
+Q.party_line = 'right';
+Q.kf_right_strength = 40;
+Q.kf_right_dissent = 5;
+Q.kf_left_strength = 30;
+Q.kf_left_dissent = 20;
+Q.kf_centre_strength = 15;
+Q.kf_centre_dissent = 5;
+Q.kf_apparatus_strength = 15;
+Q.kf_apparatus_dissent = 5;
+// factions that appear later in the game (see the design proposal): flags are set by events.
+Q.kf_conciliators_active = 0;
+Q.kf_leninbund_active = 0;
+Q.kf_kpo_active = 0;
+Q.kf_thaelmann_line_active = 0;
+// months the current party line has been in power, and how many line changes have happened.
+Q.party_line_months = 0;
+Q.party_line_changes = 0;
+// Moscow: who leads and what line they expect (visible, deterministic - no random rolls).
+Q.moscow_leader = "Zinoviev-Kamenev-Stalin";
+Q.comintern_line = "workers_government";
+Q.comintern_trust = 60;
+Q.soviet_subsidy = 1;
+Q.moscow_divergence = 0;
+
 // secret events...
 Q.unions_independent = 0;
 Q.centrists_resign = 0;
