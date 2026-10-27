@@ -1,0 +1,31 @@
+title: Karl Radek
+is-pinned-card: true
+tags: advisor, apparatus
+view-if: radek_advisor = 1
+new-page: true
+
+= Karl Radek
+
+Radek is the Comintern's expert on Germany, a brilliant journalist and an old friend of the party, as well as its most severe critic. He has Zinoviev's ear. He is quick to adapt to whichever course Moscow takes next, which is useful to the party and a warning about it.
+
+- @moscows_view
+- @funds
+- @root: Return to main
+
+@moscows_view
+title: Ask for Moscow's view
+subtitle: Find out what the Comintern leaders really think.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; comintern_trust += 6; kf_apparatus_strength += 4; kf_right_dissent += 3
+
+Radek gives us a candid account of what Zinoviev and the Politburo expect from Germany. It is useful to know, and it is also an instruction.
+
+@funds
+title: Request funds from Moscow
+subtitle: Ask the Comintern for money.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; resources += 2; comintern_trust -= 3
+
+Moscow sends money. The party is more comfortable, and a little more dependent on someone else's judgement.

@@ -1,0 +1,17 @@
+title: Reshape the leadership
+new-page: true
+is-card: true
+tags: kpd_party
+view-if: shuffle_leadership_timer = 0
+on-arrival: month_actions += 1; shuffle_leadership_timer = 8
+frequency: 100
+card-image: img/Vorwaerts_nr_1.png
+
+= Reshape the leadership
+
+Our advisers are the party's leadership in practice. Bringing someone in gives their faction strength; removing someone is a purge, and the faction they speak for will not forget it. We can have at most 3 advisers.
+
+- #kpd_add_advisor
+- #kpd_remove_advisor
+- @root: Leave the leadership as it is.
+- @easy_discard

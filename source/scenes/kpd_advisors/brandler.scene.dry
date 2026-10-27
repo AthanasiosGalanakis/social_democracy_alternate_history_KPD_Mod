@@ -1,0 +1,31 @@
+title: Heinrich Brandler
+is-pinned-card: true
+tags: advisor, right
+view-if: brandler_advisor = 1
+new-page: true
+
+= Heinrich Brandler
+
+Brandler is the chairman of the party, a former tiler and union organizer from Chemnitz. He believes the party must win the workers who still follow the SPD and the unions before it can lead them anywhere, and he has the backing of the Right. In Moscow he is treated as a loyal man, and also as a man who may not always do what he is told.
+
+- @workers_governments
+- @argue_moscow
+- @root: Return to main
+
+@workers_governments
+title: Workers' governments
+subtitle: Press for workers' governments in the states.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; kf_right_strength += 6; kf_left_dissent += 3
+
+Brandler argues that workers' governments in Saxony and Thuringia would put police and administration at the party's disposal, and that this is the way to bring SPD workers with us. The Left says it only ties us to the same SPD leaders who put down the revolution.
+
+@argue_moscow
+title: Argue our case in Moscow
+subtitle: The German party's view must be heard by the Comintern.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; comintern_trust += 5; kf_apparatus_dissent += 2
+
+Brandler travels to Moscow and argues the German case. The Comintern's leaders listen, and note what they hear. The Moscow apparatus in our own party dislikes having its role described by someone else.

@@ -1,0 +1,31 @@
+title: Clara Zetkin
+is-pinned-card: true
+tags: advisor, centre
+view-if: zetkin_advisor = 1
+new-page: true
+
+= Clara Zetkin
+
+Zetkin is the veteran of the old Social Democratic women's movement, now elderly and often in Moscow. She is a Reichstag deputy, and she speaks with an authority that no faction can ignore, even when it ignores her advice.
+
+- @unity
+- @women
+- @root: Return to main
+
+@unity
+title: Appeal for unity
+subtitle: Appeal to the party's members to stay together.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; kf_right_dissent -= 2; kf_left_dissent -= 2; kf_centre_dissent -= 2; kf_apparatus_dissent -= 2; comintern_trust += 2
+
+Zetkin's appeal for unity is read at every meeting. It cools tempers for a while, and Moscow notices that the old guard is still behind the party.
+
+@women
+title: Organize the women's work
+subtitle: Build the party's work among women.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; workers_kpd += 2*campaign_mult; kf_centre_strength += 2
+
+The party's work among women, long neglected, begins to produce results, especially among the unemployed and in the textile towns.

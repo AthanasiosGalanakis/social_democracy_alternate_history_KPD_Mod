@@ -1,0 +1,31 @@
+title: August Thalheimer
+is-pinned-card: true
+tags: advisor, right
+view-if: thalheimer_advisor = 1
+new-page: true
+
+= August Thalheimer
+
+Thalheimer is the party's leading theorist and a close ally of Brandler. He sees the crisis as a long struggle whose outcome depends on how many workers the party can win, not on a single decisive day. His opponents call this cowardice dressed up as theory; on the evidence so far, the question is open.
+
+- @analysis
+- @against_offensive
+- @root: Return to main
+
+@analysis
+title: Analyse the crisis
+subtitle: Publish a theoretical analysis in the party press.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; kf_right_strength += 4; kf_centre_dissent -= 3
+
+Thalheimer's articles on the Ruhr occupation and the inflation are read in every district. They give the membership a framework, and they give the Right an argument to stand on.
+
+@against_offensive
+title: Argue against the offensive
+subtitle: Take the theory of the offensive apart in public.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; kf_left_dissent += 4; kf_right_dissent -= 4
+
+Thalheimer attacks the theory of the offensive as a substitute for politics. The Right is pleased, and the Left treats it as a declaration of war.

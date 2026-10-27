@@ -1,0 +1,31 @@
+title: Ernst Meyer
+is-pinned-card: true
+tags: advisor, centre
+view-if: meyer_advisor = 1
+new-page: true
+
+= Ernst Meyer
+
+Meyer led the party briefly in 1922 and is its mediator. He is a follower of Levi's mass-politics course without having left with Levi, and he is trusted by neither extreme.
+
+- @mediate
+- @mass_party
+- @root: Return to main
+
+@mediate
+title: Mediate between the factions
+subtitle: Calm the quarrels between the factions.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; kf_right_dissent -= 3; kf_left_dissent -= 3; kf_centre_dissent -= 3; kf_apparatus_dissent -= 3
+
+Meyer brings the factions to the table and drafts a compromise that none of them likes, and all can live with. The calm will not last unless something changes.
+
+@mass_party
+title: Argue for the mass party
+subtitle: Make the case for a long, patient course.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; kf_centre_strength += 5; kf_left_dissent += 2
+
+Meyer argues that a party of a few hundred thousand cannot make a revolution alone. The Left calls it a retreat; the members who have seen the March Action are less sure.

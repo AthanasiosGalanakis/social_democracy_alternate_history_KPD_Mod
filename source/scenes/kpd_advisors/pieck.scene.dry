@@ -1,0 +1,31 @@
+title: Wilhelm Pieck
+is-pinned-card: true
+tags: advisor, centre
+view-if: pieck_advisor = 1
+new-page: true
+
+= Wilhelm Pieck
+
+Pieck is a former carpenter and old Spartacist, and a quiet organizer who keeps the party's machine running. He avoids the factional quarrels and is trusted by most of the leadership.
+
+- @organization
+- @finances
+- @root: Return to main
+
+@organization
+title: Reorganize the party
+subtitle: Tighten the party's organization.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; kf_apparatus_strength += 2; kf_centre_strength += 3
+
+Pieck reorganizes the districts. The party works better, and the apparatus gains a little more control over it.
+
+@finances
+title: Put the finances in order
+subtitle: Collect arrears and cut waste.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; resources += 1; kf_centre_strength += 1
+
+Pieck gets the accounts in order and the arrears collected. In an inflation this is harder than it sounds.

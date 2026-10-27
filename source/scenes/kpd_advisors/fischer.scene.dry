@@ -1,0 +1,31 @@
+title: Ruth Fischer
+is-pinned-card: true
+tags: advisor, left
+view-if: fischer_advisor = 1
+new-page: true
+
+= Ruth Fischer
+
+Fischer is the leader of the Berlin organization and of the party's left. Born in Vienna, she wants an offensive against the government and the SPD leaders now, and she has a mass following among Berlin's members. The Comintern ordered her onto the Central Committee against the wishes of the leadership.
+
+- @berlin
+- @offensive
+- @root: Return to main
+
+@berlin
+title: Mobilize Berlin
+subtitle: Mobilize the Berlin organization behind the Left.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; kf_left_strength += 6; kf_right_dissent += 4
+
+Fischer's Berlin organization turns out in thousands. The Left shows its strength, and the leadership is reminded that it does not control the capital's party.
+
+@offensive
+title: Push the offensive
+subtitle: Argue that the crisis is the hour of the revolution.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 4; plan_left_progress += 1; workers_spd -= 1
+
+Fischer calls every crisis the revolution's hour. The enthusiasm is real, and so is the risk of calling a strike no one else will join.
