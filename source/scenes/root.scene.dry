@@ -501,28 +501,21 @@ Q.electoral_threshold = 0;
 // was the last SPD government taken down in a vote of no confidence by right-wing coalition partners?
 
 // Advisors/Leaders
-// KPD advisers (1923): Brandler, Pieck and Eberlein advise at the start; the others can be brought in.
-Q.n_advisors = 3;
-Q.brandler_advisor = 1;
-Q.thalheimer_advisor = 0;
-Q.walcher_advisor = 0;
-Q.fischer_advisor = 0;
-Q.maslow_advisor = 0;
-Q.thaelmann_advisor = 0;
-Q.meyer_advisor = 0;
-Q.zetkin_advisor = 0;
-Q.pieck_advisor = 1;
-Q.radek_advisor = 0;
-Q.eberlein_advisor = 1;
+// KPD advisers (1923): the head of the party (the leader of the line-holding faction) plus one adviser card per faction.
+// the flags stay 1 because the adviser-gated card options are always open; a walk-out is a six-month absence (the person's timer).
+Q.brandler_advisor = 1; Q.thalheimer_advisor = 1; Q.walcher_advisor = 1; Q.heckert_advisor = 1;
+Q.fischer_advisor = 1; Q.maslow_advisor = 1; Q.thaelmann_advisor = 1; Q.scholem_advisor = 1;
+Q.meyer_advisor = 1; Q.zetkin_advisor = 1; Q.pieck_advisor = 1; Q.radek_advisor = 1; Q.eberlein_advisor = 1;
 // timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.
 // let's just put all of the timers here...
 // most party affairs and government affairs cards are on a timer.
-Q.timers = ['brandler', 'thalheimer', 'walcher', 'radek', 'pieck', 'meyer', 'zetkin', 'eberlein', 'fischer', 'maslow', 'thaelmann',
-            'demand_right', 'demand_centre', 'demand_left', 'fundraising', 'shuffle_leadership',
+Q.timers = ['head', 'brandler', 'thalheimer', 'walcher', 'radek', 'heckert', 'pieck', 'meyer', 'zetkin', 'eberlein', 'fischer', 'maslow', 'thaelmann', 'scholem',
+            'demand_right', 'demand_centre', 'demand_left', 'fundraising',
             'line_change', 'line_action', 'moscow_action', 'state_gov',
             'mass_strikes', 'mass_unemployed', 'mass_relief', 'mass_press', 'mass_defence', 'mass_parliament', 'mass_underground', 'mass_antifa',
             'understanding_enemy'];
 // each adviser has their own cooldown, in months
+Q.head_timer = 0; Q.heckert_timer = 0; Q.scholem_timer = 0;
 Q.brandler_timer = 0;
 Q.thalheimer_timer = 0;
 Q.walcher_timer = 0;
@@ -537,10 +530,12 @@ Q.thaelmann_timer = 0;
 // factional demands: which faction is waiting to be heard, and cooldowns after one was answered
 Q.demand_f = 'none';
 Q.demand_right_timer = 0; Q.demand_centre_timer = 0; Q.demand_left_timer = 0;
-Q.seats_right = 0; Q.seats_centre = 0; Q.seats_left = 0;
+// the month each faction's adviser card was last used (the faction grows angry if it is not consulted for 6 months)
+Q.adv_right_last = 0; Q.adv_centre_last = 0; Q.adv_left_last = 0;
+// the head of the party's buff to campaign strength, set each month
+Q.head_mult = 1;
 // party affairs timers
 Q.fundraising_timer = 0;
-Q.shuffle_leadership_timer = 0;
 // n_elections is the number of elections that have happened since the start of the game.
 Q.n_elections = 0;
 // number of elections without a clear majority.

@@ -385,6 +385,49 @@
       window.updateSidebar();
   };
 
+
+  /* party names in their own colours, in the story text and the sidebar */
+  var partyClasses = {'KPD': 'p-kpd', 'SPD': 'p-spd', 'USPD': 'p-uspd', 'DNVP': 'p-dnvp', 'DVP': 'p-dvp', 'DDP': 'p-ddp',
+                      'NSDAP': 'p-nsdap', 'Nazis': 'p-nsdap', 'Nazi': 'p-nsdap', 'BVP': 'p-bvp', 'Zentrum': 'p-zentrum',
+                      'Centre Party': 'p-zentrum', 'Center Party': 'p-zentrum'};
+  var partyRegex = /\b(KPD|SPD|USPD|DNVP|DVP|DDP|NSDAP|BVP|Zentrum|Centre Party|Center Party|Nazis|Nazi)\b/g;
+  var colouring = false;
+  window.colourParties = function() {
+      if (colouring) { return; }
+      colouring = true;
+      try {
+          ['content', 'sidebar', 'qualities', 'tools_wrapper'].forEach(function(id) {
+              var root = document.getElementById(id);
+              if (!root) { return; }
+              var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+              var nodes = [];
+              while (walker.nextNode()) { nodes.push(walker.currentNode); }
+              nodes.forEach(function(node) {
+                  var parent = node.parentNode;
+                  if (!parent || /^(SCRIPT|STYLE|TEXTAREA)$/.test(parent.nodeName) || (parent.className && /\bp-(kpd|spd|uspd|dnvp|dvp|ddp|nsdap|bvp|zentrum)\b/.test(parent.className))) { return; }
+                  partyRegex.lastIndex = 0;
+                  if (!partyRegex.test(node.nodeValue)) { return; }
+                  partyRegex.lastIndex = 0;
+                  var frag = document.createDocumentFragment();
+                  var text = node.nodeValue, last = 0, m;
+                  while ((m = partyRegex.exec(text)) !== null) {
+                      frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+                      var span = document.createElement('span');
+                      span.className = 'party ' + partyClasses[m[1]];
+                      span.textContent = m[1];
+                      frag.appendChild(span);
+                      last = m.index + m[1].length;
+                  }
+                  frag.appendChild(document.createTextNode(text.slice(last)));
+                  parent.replaceChild(frag, node);
+              });
+          });
+      } finally { colouring = false; }
+  };
+  document.addEventListener('DOMContentLoaded', function() {
+      new MutationObserver(function() { window.colourParties(); }).observe(document.body, {childList: true, subtree: true, characterData: true});
+  });
+
   // the opening screens (title, introduction, credits) have no sidebar
   window.onDisplayContent = function() {
       var sceneId = window.dendryUI.dendryEngine.state.sceneId;
@@ -394,6 +437,7 @@
       if (!opening) {
           window.updateSidebar();
       }
+      window.colourParties();
   };
 
   /*

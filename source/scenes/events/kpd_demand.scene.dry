@@ -1,17 +1,13 @@
 title: A faction makes a demand
-subtitle: The leadership is a map of the party, and the party has views.
+subtitle: The party has views, and a faction that is angry enough says so.
 new-page: true
 tags: kpd_event
 view-if: demand_f != "none"
 on-arrival: {!
 Q.dm_f = Q.demand_f;
 Q.demand_f = 'none';
-var adv_by = {right: ['brandler', 'thalheimer', 'walcher', 'radek'], centre: ['pieck', 'meyer', 'zetkin', 'eberlein'], left: ['fischer', 'maslow', 'thaelmann']};
-var full = {brandler: 'Heinrich Brandler', thalheimer: 'August Thalheimer', walcher: 'Jacob Walcher', radek: 'Karl Radek', pieck: 'Wilhelm Pieck', meyer: 'Ernst Meyer', zetkin: 'Clara Zetkin', eberlein: 'Hugo Eberlein', fischer: 'Ruth Fischer', maslow: 'Arkadi Maslow', thaelmann: 'Ernst Thälmann'};
-Q.dm_who = '';
-for (var a of adv_by[Q.dm_f]) {
-    if (Q.dm_who == '' && Q[a + '_advisor'] == 1) { Q.dm_who = full[a]; }
-}
+var spokes = {right: 'August Thalheimer', centre: 'Ernst Meyer', left: 'Ruth Fischer'};
+Q.dm_who = spokes[Q.dm_f];
 !}
 
 = A faction makes a demand
@@ -83,24 +79,19 @@ go-to: leave_check
 on-arrival: {!
 Q.dm_left = 0;
 if (Q['kf_' + Q.dm_f + '_dissent'] >= 50) {
-    var adv_by = {right: ['brandler', 'thalheimer', 'walcher', 'radek'], centre: ['pieck', 'meyer', 'zetkin', 'eberlein'], left: ['fischer', 'maslow', 'thaelmann']};
-    for (var a of adv_by[Q.dm_f]) {
-        if (Q.dm_left == 0 && Q[a + '_advisor'] == 1) {
-            Q[a + '_advisor'] = 0;
-            Q.n_advisors -= 1;
-            Q['kf_' + Q.dm_f + '_strength'] = Math.max(0, Q['kf_' + Q.dm_f + '_strength'] - 5);
-            Q.dm_left = 1;
-        }
-    }
+    var lead = {right: 'thalheimer', centre: 'meyer', left: 'fischer'};
+    Q[lead[Q.dm_f] + '_timer'] = 6;
+    Q['kf_' + Q.dm_f + '_strength'] = Math.max(0, Q['kf_' + Q.dm_f + '_strength'] - 5);
+    Q.dm_left = 1;
 }
 !}
 go-to: left_msg if dm_left = 1; root if dm_left = 0
 
 @left_msg
-title: The adviser walks out
+title: The spokesman walks out
 
-= The adviser walks out
+= The spokesman walks out
 
-[+ dm_who +] has been refused too often. The resignation is read out at the Central Committee, and the faction takes it as a declaration that its views no longer count. The leadership loses a seat, and the faction loses 5 strength to the districts that no longer follow Berlin. A new adviser can be brought in at the Reshape the Leadership card.
+[+ dm_who +] has been refused too often. The resignation is read out at the Central Committee, and the faction takes it as a declaration that its views no longer count. He will not sit at the table for six months, so his option on the faction's adviser card is closed, and the faction loses 5 strength to districts that no longer follow Berlin.
 
 - @root: Continue.

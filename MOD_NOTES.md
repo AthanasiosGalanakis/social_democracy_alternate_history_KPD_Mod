@@ -113,9 +113,10 @@ The title screen has Start game, Credits and Achievements only. The election sim
 ## Three factions (28 October)
 The Moscow apparatus is no longer a faction. The party has Right (45 strength, 5 dissent), Centre (25, 5) and Left (30, 20). Moscow acts through trust, the balance of power and the penalty tiers. A letter or a cut subsidy now strengthens the faction Moscow favours. Stalin alone favours the Centre. Radek counts as Right and Eberlein as Centre. Shelved content still mentions the apparatus and must be adapted when it returns.
 
-## Advisers as the party's leadership (28 October)
-- Each adviser has their own 3-month cooldown (`<name>_timer`), replacing the shared 4-month lock. Adviser actions still cost no month.
-- Leadership seats: a faction with a seat loses 1 dissent a month, a faction of strength 20 or more without a seat gains 1, and a leadership of three from one faction adds 1 dissent to the other two.
-- A seated faction whose dissent reaches 30 makes a demand (event `kpd_demand`): grant it (dissent −15, faction-specific effect) or refuse (dissent +5, cooldown 4). Refusing at dissent 50 or more makes the adviser walk out: seat lost, faction −5 strength.
-- Five cards gain an option when the right adviser is seated: Defence units (Thälmann), Strikes (Walcher), Moscow delegation (Radek), Campaigning (Zetkin), Fundraising (Pieck).
-- Factions of the advisers: Right Brandler, Thalheimer, Walcher, Radek; Centre Pieck, Meyer, Zetkin, Eberlein; Left Fischer, Maslow, Thälmann.
+## Head of party and faction advisers (28 October, replaces the seats model)
+- **Head of the Party** card (leader of the faction holding the line; Brandler for the Right, the only line in 1923): 4 choices, one use every 3 months (`head_timer`), and while the Right leads the campaign multiplier is ×1.1 (`head_mult`). Left (Fischer) and Centre (Meyer) heads are not written yet, because the line cannot change in 1923.
+- **One adviser card per faction** (Right, Centre, Left), shown while the faction has strength. Each has 4 options, one per person, each with a 3-month timer: Right Thalheimer, Walcher, Radek, Heckert; Centre Meyer, Zetkin, Pieck, Eberlein; Left Fischer, Maslow, Thälmann, Scholem. Heckert and Scholem are new.
+- Neglect: each use stamps `adv_<faction>_last`; a faction with strength 20 or more that has not been consulted for 6 months gains 1 dissent a month. Seats, `n_advisors` and the Reshape the Leadership card are gone.
+- Demands now come from any faction with dissent 30 or more (event `kpd_demand`): grant (dissent −15, faction effect) or refuse (dissent +5, cooldown 4). Refusing at 50 or more makes the faction's spokesman (Thalheimer, Meyer or Fischer) walk out: his option is closed for 6 months and the faction loses 5 strength.
+- Five cards keep an option from a named person (Defence units, Strikes, Moscow delegation, Campaigning, Fundraising); the `<name>_advisor` flags are always 1.
+- Party names (KPD, SPD, USPD, DNVP, DVP, DDP, NSDAP, BVP, Zentrum, Centre Party) are coloured in all text by `colourParties` in game.js, with light and dark variants in game.css.

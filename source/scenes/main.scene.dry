@@ -2,15 +2,15 @@ title: Next month
 set-bg: img/map_2.jpg
 is-hand: true
 on-arrival: {!
-var adv_ids = ['brandler', 'thalheimer', 'walcher', 'radek', 'pieck', 'meyer', 'zetkin', 'eberlein', 'fischer', 'maslow', 'thaelmann'];
-var adv_in = 0, adv_ready = 0;
-for (var a of adv_ids) {
-    if (Q[a + '_advisor'] == 1) {
+var adv_by = {right: ['thalheimer', 'walcher', 'radek', 'heckert'], centre: ['meyer', 'zetkin', 'pieck', 'eberlein'], left: ['fischer', 'maslow', 'thaelmann', 'scholem']};
+var adv_in = 1, adv_ready = (Q.head_timer <= 0 ? 1 : 0);
+for (var f of Q.kpd_factions) {
+    if (Q['kf_' + f + '_strength'] > 0) {
         adv_in += 1;
-        if (Q[a + '_timer'] <= 0) { adv_ready += 1; }
+        for (var a of adv_by[f]) { if (Q[a + '_timer'] <= 0) { adv_ready += 1; break; } }
     }
 }
-Q.pinnedCardsDescription = 'Advisors - ' + adv_ready + ' of ' + adv_in + ' ready to act.';
+Q.pinnedCardsDescription = 'Head of party and faction advisers - ' + adv_ready + ' of ' + adv_in + ' can act.';
 !}
 max-cards: 3
 
@@ -25,15 +25,15 @@ max-cards: 3
 set-bg: img/map_2.jpg
 is-hand: true
 on-arrival: {!
-var adv_ids = ['brandler', 'thalheimer', 'walcher', 'radek', 'pieck', 'meyer', 'zetkin', 'eberlein', 'fischer', 'maslow', 'thaelmann'];
-var adv_in = 0, adv_ready = 0;
-for (var a of adv_ids) {
-    if (Q[a + '_advisor'] == 1) {
+var adv_by = {right: ['thalheimer', 'walcher', 'radek', 'heckert'], centre: ['meyer', 'zetkin', 'pieck', 'eberlein'], left: ['fischer', 'maslow', 'thaelmann', 'scholem']};
+var adv_in = 1, adv_ready = (Q.head_timer <= 0 ? 1 : 0);
+for (var f of Q.kpd_factions) {
+    if (Q['kf_' + f + '_strength'] > 0) {
         adv_in += 1;
-        if (Q[a + '_timer'] <= 0) { adv_ready += 1; }
+        for (var a of adv_by[f]) { if (Q[a + '_timer'] <= 0) { adv_ready += 1; break; } }
     }
 }
-Q.pinnedCardsDescription = 'Advisors - ' + adv_ready + ' of ' + adv_in + ' ready to act.';
+Q.pinnedCardsDescription = 'Head of party and faction advisers - ' + adv_ready + ' of ' + adv_in + ' can act.';
 !}
 max-cards: 4
 

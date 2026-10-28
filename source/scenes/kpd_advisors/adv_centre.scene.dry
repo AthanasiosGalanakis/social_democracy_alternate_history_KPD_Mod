@@ -1,0 +1,51 @@
+title: The Centre: advisers
+is-pinned-card: true
+tags: advisor
+view-if: kf_centre_strength > 0
+new-page: true
+
+= The Centre: advisers
+
+The Centre is the party of its apparatus: Meyer who mediates, Zetkin who keeps the women and the unity, Pieck who counts the money, Eberlein who keeps the books for the Comintern. Each can act once every three months. A faction that is not consulted for six months while it still has real strength grows angry.
+
+- @meyer
+- @zetkin
+- @pieck
+- @eberlein
+- @root: Return to main
+
+@meyer
+title: Ernst Meyer: mediate between the wings
+subtitle: Bring Left and Right to one table. · dev: kf_right_dissent −3, kf_centre_dissent −3, kf_left_dissent −3, adv_centre_last = time
+unavailable-subtitle: [? if meyer_timer > 0 : [+ meyer_timer +] months before Meyer can act again. ?]
+choose-if: meyer_timer = 0
+on-arrival: meyer_timer = 3; kf_right_dissent -= 3; kf_centre_dissent -= 3; kf_left_dissent -= 3; adv_centre_last = time
+
+Meyer, who has carried the party through the quarrels since the March Action, finds a formula in which both wings can read their own case. It will not hold forever, and for this month it does.
+
+@zetkin
+title: Clara Zetkin: appeal for unity
+subtitle: A letter from the old comrade. · dev: kf_right_dissent −2, kf_centre_dissent −2, kf_left_dissent −2, trust +2, adv_centre_last = time
+unavailable-subtitle: [? if zetkin_timer > 0 : [+ zetkin_timer +] months before Zetkin can act again. ?]
+choose-if: zetkin_timer = 0
+on-arrival: zetkin_timer = 3; kf_right_dissent -= 2; kf_centre_dissent -= 2; kf_left_dissent -= 2; comintern_trust += 2; adv_centre_last = time
+
+Zetkin, who knew Rosa, writes to the whole party. Few will contradict her, and the letter is read aloud in district meetings from Stuttgart to Königsberg.
+
+@pieck
+title: Wilhelm Pieck: put the finances in order
+subtitle: Collect the arrears and the dues. · dev: resources +1, kf_centre_strength +1, adv_centre_last = time
+unavailable-subtitle: [? if pieck_timer > 0 : [+ pieck_timer +] months before Pieck can act again. ?]
+choose-if: pieck_timer = 0
+on-arrival: pieck_timer = 3; resources += 1; kf_centre_strength += 1; adv_centre_last = time
+
+Pieck goes through the books of the districts, one by one, and the arrears begin to come in. The party is a membership organisation, and it runs on dues.
+
+@eberlein
+title: Hugo Eberlein: account to the Comintern
+subtitle: Report on money and cadres. · dev: trust +3, resources +1, adv_centre_last = time
+unavailable-subtitle: [? if eberlein_timer > 0 : [+ eberlein_timer +] months before Eberlein can act again. ?]
+choose-if: eberlein_timer = 0
+on-arrival: eberlein_timer = 3; comintern_trust += 3; resources += 1; adv_centre_last = time
+
+Eberlein, who has carried the party's secret funds and its contacts to Moscow, makes his report. The Comintern is never unwilling to check the accounts of a party it pays for.
