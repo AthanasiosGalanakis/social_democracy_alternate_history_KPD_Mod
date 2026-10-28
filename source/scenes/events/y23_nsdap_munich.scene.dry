@@ -1,0 +1,39 @@
+title: The Nazis meet in Munich
+subtitle: Hitler's party holds its first Reich party day on 27 and 28 January.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 1 and jan_week = 4 and y23_nsdap_munich_done = 0
+on-arrival: y23_nsdap_munich_done = 1
+
+= Munich, 27 and 28 January
+
+The National Socialist German Workers' Party holds its first Reich party day in Munich. Several thousand men of its stormtroops march through the city, and Adolf Hitler consecrates their standards in the open air. They are ruined shopkeepers, clerks and demobilised soldiers, and they are being taught to blame the Jews and the Marxists for a crisis that the coal barons and the bankers have made. The Bavarian authorities, who regard the Left as the enemy, do not trouble them very much.
+
+Most of the Social Democratic press treats it as a Bavarian curiosity. The question for us is whether to say something now, or to wait until it is no longer a curiosity.
+
+- @warn: Warn the workers in the party press.
+- @front: Propose joint defence to the SPD and the unions.
+- @ignore: Treat it as a Bavarian sideshow and keep to the Ruhr.
+
+@warn
+subtitle: Costs 1 resources. · dev: resources −1, workers_kpd +2×m, kf_centre_strength +1
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; workers_kpd += 2*campaign_mult; kf_centre_strength += 1
+go-to: root
+
+The party press prints a series on the new movement: who pays it, whom it recruits, and what it promises the shopkeepers that it cannot deliver. It is read, because the workers in Munich and Nuremberg know the stormtroops by sight.
+
+@front
+subtitle: The SPD will hesitate. · dev: y23_unity +1, kf_left_dissent +2, trust +2
+on-arrival: y23_unity += 1; kf_left_dissent += 2; comintern_trust += 2
+go-to: root
+
+We write to the SPD and the union leaders and propose that the workers' organisations in Bavaria defend their halls together. The SPD answers slowly, and the Left says we should not ask it for anything. Moscow notes with approval that the united front is being applied.
+
+@ignore
+subtitle: The Left will say we saw nothing. · dev: kf_left_dissent +2
+on-arrival: kf_left_dissent += 2
+go-to: root
+
+We keep to the Ruhr. It is a defensible choice, since the Ruhr is where the workers are, and the Left says that this is how a party misses something that will not stay in Bavaria.
