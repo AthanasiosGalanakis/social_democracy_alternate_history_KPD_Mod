@@ -389,8 +389,15 @@
       window.updateSidebar();
   };
 
+  // the opening screens (title, introduction, credits) have no sidebar
   window.onDisplayContent = function() {
-      window.updateSidebar();
+      var sceneId = window.dendryUI.dendryEngine.state.sceneId;
+      var opening = sceneId == 'root' || sceneId.startsWith('root.start') || sceneId == 'credits';
+      document.getElementById('tools_wrapper').style.display = opening ? 'none' : '';
+      document.body.classList.toggle('opening', opening);
+      if (!opening) {
+          window.updateSidebar();
+      }
   };
 
   /*

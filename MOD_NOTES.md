@@ -100,3 +100,6 @@ Build with `dendrynexus make-html` (see README.md).
 - Chemnitz: the rising is greyed out. A general strike now holds at readiness 45 with unity part 10 (2 joint actions). Calling off is as punishing as it was: trust -10, Left and Right dissent +10, workers -3, Hamburg always fights alone (workers -4, unemployed -2, RFB -50, trust -5), then the ban and the blame.
 - The Leipzig congress and the Ruhr occupation were set for January, the month the game starts, so they never fired. They now fire at the first month change (February).
 - Everything after December 1923 is moved out of the build to /shelved (events 1924 to 1933, elections, the government deck, Anti-Fascist Action, the later endings). The game ends in January 1924 with "End of the first act". The shelved files compile again by moving them back to source/scenes, but they still need adapting to the trust model.
+
+## Opening screen
+The title screen has Start game, Credits and Achievements only. The election simulation and custom difficulty are removed (election_algorithm and the full credits are kept in /shelved). The opening screens (title, introduction, credits) hide the sidebar and centre the panel; the header shows only the title, centred above the Library / Save / Options links. Credits name only the base game and its author.

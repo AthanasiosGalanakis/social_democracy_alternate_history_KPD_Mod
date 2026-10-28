@@ -11,7 +11,6 @@ go-to: start_menu_2
 @start_menu_2
 
 - @start: Start game
-- @election_simulation: Election simulation
 - @credits: Credits
 - @game_over.achievements
 
@@ -567,13 +566,12 @@ new-page: true
 
 This is a game of alternate history. While historical accuracy is a major concern, keep in mind that this is a *game*, and that any divergence from actual events will necessarily have to involve some element of make-believe. It takes the side of the working class, and for that reason it does not flatter the party you lead: the KPD will make mistakes, some of them of its own making and some imposed from Moscow, and the game will say so. Nothing here is random: if your decisions are right, the outcome follows.
 
-You lead the Communist Party of Germany (KPD), starting in January 1923.
+It is January 1923. The Central Committee has met, and it has chosen you to lead the Communist Party of Germany (KPD). Moscow has sent its congratulations, the factions have sent their demands, and the workers of the Ruhr and of Saxony are waiting to see what kind of leader you will be. The party is yours now, with all that it has inherited.
 
 - @1923_easy: Begin (easy difficulty)
 - @1923_main: Begin (medium difficulty)
 - @1923_hard: Begin (hard difficulty)
 - @1923_historical: Begin (historical mode)
-- @1923_custom: Customize difficulty settings
 
 @1923_easy
 choose-if: 1 = 0
@@ -615,14 +613,8 @@ this.state.disableSaves = true;
 !}
 go-to: 1923_main
 
-@1923_custom
-choose-if: 1 = 0
-subtitle: Not implemented yet.
-unavailable-subtitle: Not implemented yet.
-go-to: custom_difficulty
-
 @1923_main
-subtitle: Hand of 4, 3 resources, dues of 2. Cards can always be put back.
+subtitle: This is the way the game is meant to be played.
 on-arrival: difficulty = -1; hand_size = 4; resources = 3; starting_resources = 3; dues = 2; starting_dues = 2; discard_disabled = 1; annual_income = 0
 audio: shuffle music/1928_1930/FruhlingsliedMendelssohn.mp3 music/1928_1930/AUF_HOHEN_BERGEN_noise_reduced.mp3 music/1928_1930/MarekWeber.mp3 music/1928_1930/BAUERNKAPELLE.mp3 music/1928_1933/DERLINDENBAUM_normalized.mp3 music/1928_1933/ZurSonne_zurFreiheit.mp3 music/1928_1933/arbeiter_marseille.mp3 music/1928_1933/Wann_wir_schreiten_Seit_an_Seit.mp3 music/1930_1933/Internationale-de_normalized.ogg music/1928_1930/LiedDerPompadour.mp3 music/1928_1933/SozialistenMarsch.mp3
 new-page: true
