@@ -19,7 +19,7 @@ The party's strength lies in the workplace, in the factory councils and the stri
 
 @councils
 choose-if: resources >= 1
-subtitle: -1 resources
+subtitle: -1 resources · dev: resources −1, y23_strikes +1, workers_kpd +3×m, workers_spd −1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_strikes += 1; workers_kpd += 3*campaign_mult; workers_spd -= 1
 go-to: root
@@ -27,7 +27,7 @@ go-to: root
 The councils call the workers out over wages and hours. The strike is solid in some plants and a failure in others, and the union leaders, who did not call it, spend the week denouncing it. The workers do not forget who walked out with them.
 
 @opposition
-subtitle: No cost.
+subtitle: No cost. · dev: y23_unity +1, workers_kpd +2×m, kf_left_dissent +2
 on-arrival: y23_unity += 1; workers_kpd += 2*campaign_mult; kf_left_dissent += 2
 go-to: root
 

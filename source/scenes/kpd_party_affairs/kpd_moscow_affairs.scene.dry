@@ -22,7 +22,7 @@ Moscow's balance of power runs from -100 (the Left Opposition) to +100 (Stalin) 
 
 @back_opposition
 choose-if: resources >= 2
-subtitle: -2 resources, -9 on the balance of power, -6 trust
+subtitle: -2 resources, -9 on the balance of power, -6 trust · dev: resources −2, moscow_balance −9, trust −6
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 2; moscow_balance -= 9; comintern_trust -= 6
 
@@ -30,14 +30,14 @@ We argue the Left Opposition's case in the corridors of the Comintern: that the 
 
 @back_apparatus
 choose-if: resources >= 2
-subtitle: -2 resources, +8 on the balance of power, +4 trust
+subtitle: -2 resources, +8 on the balance of power, +4 trust · dev: resources −2, moscow_balance +8, trust +4
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 2; moscow_balance += 8; comintern_trust += 4
 
 We lend our voices to the majority in the Russian party. The Secretariat is grateful and says so. It is also the faction that will remember, when the time comes, who was useful and who was not.
 
 @report_loyal
-subtitle: No cost, +5 trust
+subtitle: No cost, +5 trust · dev: trust +5
 on-arrival: comintern_trust += 5
 
 A full, careful report goes to the ECCI. It says what they wish to read, and it is an easy way to buy their goodwill, if the cost of goodwill is that Moscow will see Germany as it sees us, not as it is.

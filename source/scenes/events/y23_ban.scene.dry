@@ -15,14 +15,14 @@ The party has to choose how to survive.
 - @legal: Fight the ban in the courts and keep to legal forms.
 
 @underground
-subtitle: Apparatus +5 strength, 3 months banned.
+subtitle: Apparatus +5 strength, 3 months banned. · dev: kpd_banned = 1, kpd_ban_end = time + 3, kf_apparatus_strength +5, resources −1, workers_kpd −1
 on-arrival: kpd_banned = 1; kpd_ban_end = time + 3; kf_apparatus_strength += 5; resources -= 1; workers_kpd -= 1
 go-to: root
 
 The party falls back on cells and false names. This is a world the apparatus knows. The Comintern's agents, who have seen this before, are in their element, and the more the party depends on them the less it depends on its own members.
 
 @legal
-subtitle: Right +4 strength, 3 months banned.
+subtitle: Right +4 strength, 3 months banned. · dev: kpd_banned = 1, kpd_ban_end = time + 3, kf_right_strength +4, kf_apparatus_strength −2, resources −1
 on-arrival: kpd_banned = 1; kpd_ban_end = time + 3; kf_right_strength += 4; kf_apparatus_strength -= 2; resources -= 1
 go-to: root
 

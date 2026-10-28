@@ -125,13 +125,6 @@ Q.campaign_mult = (1 - Q.kf_dissent)*(1 - 0.04*Q.zigzag);
 if (Q.kpd_banned) { Q.campaign_mult = Q.campaign_mult/2; }
 // Moscow's displeasure: an open letter (tier 3) costs 10 percent of campaign strength, the Comintern's emissaries (tier 4) 20 percent
 if (Q.moscow_tier >= 4) { Q.campaign_mult = Q.campaign_mult*0.8; } else if (Q.moscow_tier >= 3) { Q.campaign_mult = Q.campaign_mult*0.9; }
-// readiness for an October rising: five visible parts (unity with the SPD left, Hundreds, strikes, workers' governments, Moscow).
-Q.y23_s = Math.min(30, Q.y23_unity*5);
-Q.y23_h = Math.min(30, Q.y23_hundreds*6);
-Q.y23_t = Math.min(10, Q.y23_strikes*3);
-Q.y23_g = 10*Q.y23_saxony + 5*Q.y23_thuringia;
-Q.y23_m = 5*Q.soviet_subsidy + (Q.moscow_leader == "Trotsky-Radek" ? 10 : 0) + (Q.comintern_trust >= 60 ? 5 : 0);
-Q.y23_ready = Q.y23_s + Q.y23_h + Q.y23_t + Q.y23_g + Q.y23_m;
 // the anti-fascist front: joint work with the SPD, defence units, the Anti-Fascist Action and its actions (max 100)
 Q.front_u = Math.min(40, 4*Q.y23_unity);
 Q.front_d = Math.min(25, (Q.rfb_banned ? 0.5 : 1)*Q.rfb_strength/10);

@@ -30,7 +30,7 @@ The party line is only words until someone does the work. What does the leadersh
 @right_unity
 view-if: party_line = "right"
 choose-if: resources >= 1
-subtitle: -1 resources
+subtitle: -1 resources · dev: resources −1, y23_unity +1, workers_kpd +3×m, kf_left_dissent +4
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_unity += 1; workers_kpd += 3*campaign_mult; kf_left_dissent += 4
 
@@ -39,7 +39,7 @@ Several SPD and union locals agree to talk, usually over the heads of their lead
 @right_committees
 view-if: party_line = "right"
 choose-if: resources >= 1
-subtitle: -1 resources
+subtitle: -1 resources · dev: resources −1, y23_unity +1, workers_kpd +3×m, workers_spd −1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_unity += 1; workers_kpd += 3*campaign_mult; workers_spd -= 1
 
@@ -48,7 +48,7 @@ Joint committees against hoarding and price gouging are set up in several towns.
 @left_hundreds
 view-if: party_line = "left"
 choose-if: resources >= 1
-subtitle: -1 resources
+subtitle: -1 resources · dev: resources −1, y23_hundreds +1, rfb_strength +20, rfb_militancy +0.02, kf_right_dissent +4
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_hundreds += 1; rfb_strength += 20; rfb_militancy += 0.02; kf_right_dissent += 4
 
@@ -57,7 +57,7 @@ The Proletarian Hundreds grow and drill openly, especially in Saxony and Hamburg
 @left_strike
 view-if: party_line = "left"
 choose-if: resources >= 1
-subtitle: -1 resources
+subtitle: -1 resources · dev: resources −1, y23_strikes +1, workers_kpd +4×m, workers_spd −2, kf_right_dissent +3
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_strikes += 1; workers_kpd += 4*campaign_mult; workers_spd -= 2; kf_right_dissent += 3
 
@@ -66,7 +66,7 @@ A wave of offensive strikes sweeps the Ruhr and central Germany. The anger is re
 @centre_unemployed
 view-if: party_line = "centre"
 choose-if: resources >= 1
-subtitle: -1 resources
+subtitle: -1 resources · dev: resources −1, unemployed_kpd +5×m
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; unemployed_kpd += 5*campaign_mult
 
@@ -75,7 +75,7 @@ Councils of the unemployed appear in the industrial towns. They give people a pl
 @centre_unions
 view-if: party_line = "centre"
 choose-if: resources >= 1
-subtitle: -1 resources
+subtitle: -1 resources · dev: resources −1, workers_kpd +3×m, kf_left_dissent +2
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; workers_kpd += 3*campaign_mult; kf_left_dissent += 2
 
@@ -83,14 +83,14 @@ Our members in the free unions form fractions and begin to win local posts. The 
 
 @apparatus_cells
 view-if: party_line = "apparatus"
-subtitle: No cost.
+subtitle: No cost. · dev: kf_apparatus_strength +3, kf_centre_dissent +3, workers_kpd −1
 on-arrival: kf_apparatus_strength += 3; kf_centre_dissent += 3; workers_kpd -= 1
 
 The old residence-based branches are broken up and replaced by cells in the factories. Discipline improves; some of the older members, who liked arguing about politics, feel the party is no longer theirs.
 
 @apparatus_report
 view-if: party_line = "apparatus"
-subtitle: No cost.
+subtitle: No cost. · dev: trust +4
 on-arrival: comintern_trust += 4
 
 A full report goes to Moscow. It is welcomed, and it is also exactly what the Comintern's leaders want to hear: the more complete the report, the more they believe they understand German conditions from a distance.
@@ -98,7 +98,7 @@ A full report goes to Moscow. It is welcomed, and it is also exactly what the Co
 @conciliators_mass
 view-if: party_line = "conciliators"
 choose-if: resources >= 1
-subtitle: -1 resources
+subtitle: -1 resources · dev: resources −1, y23_unity +1, workers_kpd +3×m
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_unity += 1; workers_kpd += 3*campaign_mult
 
@@ -106,7 +106,7 @@ The party returns to the work that the offensive had neglected: union fractions,
 
 @conciliators_moscow
 view-if: party_line = "conciliators"
-subtitle: No cost.
+subtitle: No cost. · dev: trust +3, kf_apparatus_dissent +3
 on-arrival: comintern_trust += 3; kf_apparatus_dissent += 3
 
 Our delegates tell the Comintern's officials that the party's mass base is shrinking, in language chosen not to sound like criticism. Moscow notes the facts and the manner, and the apparatus resents it.

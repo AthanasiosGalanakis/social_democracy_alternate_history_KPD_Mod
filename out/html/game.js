@@ -54,12 +54,10 @@
           "decrease_font_button": "- verkleinern",
           "increase_font_button": "+ vergrößern",
           // save/load menu
-          "import_save_label": "Importiere Speicherstand:"
       };
       var text_label_map_classes = {
           //"save_button":"Speichern",
           "delete_button": "Löschen",
-          "export_button": "Exportieren",
           "load_button": "Laden",
           "label_on": "An",
           "label_off": "Aus",
@@ -104,12 +102,10 @@
           "decrease_font_button": "- decrease",
           "increase_font_button": "+ increase",
           // save/load menu
-          "import_save_label": "Import save file:"
       };
       var text_label_map_classes = {
           //"save_button":"Save",
           "delete_button": "Delete",
-          "export_button": "Export",
           "load_button": "Load",
           "label_on": "On",
           "label_off": "Off",

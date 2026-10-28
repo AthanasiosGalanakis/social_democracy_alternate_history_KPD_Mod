@@ -18,14 +18,14 @@ Our deputies sit in the Reichstag and in the Landtage and they have to decide wh
 - @easy_discard
 
 @tribune
-subtitle: No cost.
+subtitle: No cost. · dev: workers_kpd +1×m, pro_republic −1, kf_left_strength +1
 on-arrival: workers_kpd += 1*campaign_mult; pro_republic -= 1; kf_left_strength += 1
 go-to: root
 
 Our deputies speak for the benefit of the printed record. The speeches are reprinted in the party press and read at meetings. Nobody in the Reichstag is persuaded and nobody expected them to be.
 
 @motions
-subtitle: No cost.
+subtitle: No cost. · dev: y23_unity +1, workers_spd −1, kf_right_strength +1
 on-arrival: y23_unity += 1; workers_spd -= 1; kf_right_strength += 1
 go-to: root
 

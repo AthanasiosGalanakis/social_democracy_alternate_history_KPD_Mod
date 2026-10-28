@@ -23,7 +23,7 @@ The party is currently run by [+ party_line_name +], and has been for [+ party_l
 
 [? if party_line = "apparatus" : **Plan: bolshevisation.** Rebuild the party on factory cells and Comintern discipline. It produces a disciplined party and a loyal one; whether that party can think for itself is another question. ?]
 
-Trust with Moscow: [+ comintern_trust +]. Above 50 it unlocks government options; below it the Comintern starts to punish us (see the status page).
+Trust with Moscow: [+ comintern_trust +]. Below 50 the Comintern starts to punish us, and a step into government without its blessing would anger it severely (see the status page).
 
 [? if party_line = "conciliators" : **Plan: a mass party with a hearing in Moscow.** Keep the party's line aligned with the Comintern's while resisting its worst demands, rebuild the united front with the SPD workers and keep the unions. It is a policy that tries to please both sides, and sooner or later both notice. ?]
 

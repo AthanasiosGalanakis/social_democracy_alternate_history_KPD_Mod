@@ -19,20 +19,20 @@ The party cannot exist without money, and in the inflation the dues are worth le
 - @easy_discard
 
 @maintain
-subtitle: [+ dues +] resources gained.
+subtitle: [+ dues +] resources gained. · dev: resources +dues
 on-arrival: resources += dues;
 
 We maintain our current dues.
 
 @reduce
-subtitle: [+ dues - 1 +] resources gained.
+subtitle: [+ dues - 1 +] resources gained. · dev: dues −1, resources +dues, kf_right_dissent −8, kf_left_dissent −8, kf_centre_dissent −8, kf_apparatus_dissent −8
 choose-if: dues > 1
 on-arrival: dues -= 1; resources += dues; kf_right_dissent -= 8; kf_left_dissent -= 8; kf_centre_dissent -= 8; kf_apparatus_dissent -= 8
 
 Our members, many of them unemployed, appreciate this, but no one joins a party because of low dues.
 
 @increase
-subtitle: [+ dues + 1 +] resources gained. [? if unemployed >= 15 : Given the present economic situation, this may be painful. ?]
+subtitle: [+ dues + 1 +] resources gained. [? if unemployed >= 15 : Given the present economic situation, this may be painful. ?] · dev: dues +1, resources +dues, workers_kpd −3, unemployed_kpd −3, workers_kpd −3*dues (if dues >= 5), unemployed_kpd −3*dues (if dues >= 5)
 on-arrival: dues += 1; resources += dues; workers_kpd -= 3; unemployed_kpd -= 3; workers_kpd -= 3*dues if dues >= 5; unemployed_kpd -= 3*dues if dues >= 5
 view-if: dues <= 4
 

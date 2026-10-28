@@ -15,12 +15,14 @@ The question for the party was what to do when the strike began. A party that wa
 - @support: Support the councils without issuing a call of our own.
 
 @strike
+subtitle: dev: y23_strikes +1, workers_kpd +3×m, workers_spd −2, chancellor = 'Stresemann', kf_left_strength +2
 on-arrival: y23_strikes += 1; workers_kpd += 3*campaign_mult; workers_spd -= 2; chancellor = 'Stresemann'; kf_left_strength += 2
 go-to: root
 
 The party's call goes out with those of the councils. Cuno falls, and many workers credit the strike. In truth, the SPD's withdrawal sealed it. The new coalition includes the SPD, whom the Left calls the hangmen of 1919, and the KPD enters a political contest with them with new supporters and no new organisation.
 
 @support
+subtitle: dev: workers_kpd +2×m, chancellor = 'Stresemann', kf_right_strength +2, trust +2
 on-arrival: workers_kpd += 2*campaign_mult; chancellor = 'Stresemann'; kf_right_strength += 2; comintern_trust += 2
 go-to: root
 
