@@ -12,9 +12,9 @@ body {
   --tab-hover-color: #ececec;
   --card-border-color: #ccc; 
   --card-bg-color: #ddd; 
-  --p-kpd: #8b0000; --p-spd: #e3000f; --p-uspd: #d4572a; --p-dnvp: #2f5fb3; --p-dvp: #b8960c; --p-ddp: #f0dd6e;
+  --p-kpd: #700000; --p-spd: #c00000; --p-uspd: #D47B9B; --p-dnvp: #3E88B3; --p-dvp: #D5AC27; --p-ddp: #D3C24D;
   --f-right: #d9902f; --f-centre: #8f8f8f; --f-left: #b5504a;
-  --p-nsdap: #7b4a1e; --p-bvp: #89cff0; --p-zentrum: #111;
+  --p-nsdap: #7A3C00; --p-bvp: #95ccc7; --p-zentrum: #000;
   font-family: "Minion Pro", Georgia, serif;
   background-color: var(--bg-color);
   padding: 0;
@@ -629,12 +629,10 @@ table {
 .card-placeholder { display: flex; align-items: center; justify-content: center; font-size: 2.2em; color: var(--text-color); background-color: var(--card-bg-color); box-sizing: border-box; }
 
 /* the head of the party: a portrait alone in a banded strip */
-#leadership_bar { display: flex; justify-content: center; margin: -1em -1.5em 1.5em -1.5em; padding: 1em 0 0.4em 0; background-color: rgba(0, 0, 0, 0.06); border-bottom: 3px double var(--border-color); }
-#leadership_bar li { list-style: none; margin-right: 0; text-align: center; }
 
 /* party names that are pale on the light page get a thin outline */
-.p-ddp, .p-bvp { text-shadow: 0 0 1px rgba(0, 0, 0, 0.55), 0 0 1px rgba(0, 0, 0, 0.55); }
-body.dark-mode .p-ddp, body.dark-mode .p-bvp { text-shadow: none; }
+.p-ddp, .p-bvp, .p-dvp { text-shadow: 0 0 1px rgba(0, 0, 0, 0.55), 0 0 1px rgba(0, 0, 0, 0.55); }
+body.dark-mode .p-ddp, body.dark-mode .p-bvp, body.dark-mode .p-dvp { text-shadow: none; }
 body.dark-mode .p-kpd { text-shadow: 0 0 1px rgba(255, 255, 255, 0.25); }
 
 /* faction names in the Politics tab */
@@ -643,8 +641,12 @@ body.dark-mode .p-kpd { text-shadow: 0 0 1px rgba(255, 255, 255, 0.25); }
 .fw-centre { color: var(--f-centre); }
 .fw-left { color: var(--f-left); }
 
-/* the head of the party: a larger portrait in a plain black frame, the full name underneath */
-#leadership_bar .leader-card a.card { width: 160px; height: 200px; border: 4px solid #000; box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); }
-#leadership_bar .leader-card .card-img { width: 160px; height: 200px; }
-#leadership_bar .leader-card .card-caption { font-size: 1.15em; font-weight: bold; margin-top: 0.4em; }
-body.dark-mode #leadership_bar .leader-card a.card { border-color: #fff; }
+/* the head of the party: party title, portrait, name and role (layout of the DDP mod's leader card) */
+.leader-card { text-align: center; padding: 1em 1.2em 1.5em 1.2em; margin: 0 0 1em 0; background-color: var(--content-bg-color); box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2); clear: both; }
+.leader-card .leader-party { font-size: 1.3em; font-weight: normal; margin: 0 0 0.75em 0; padding-bottom: 0.75em; border-bottom: 1px solid var(--border-color); }
+.leader-card .leader-abbr { font-weight: bold; }
+.leader-card a.leader-portrait { display: block; margin: 0 auto 0.5em auto; width: 170px; height: 210px; border: 5px solid var(--card-border-color); box-shadow: none; box-sizing: content-box; }
+.leader-card a.leader-portrait:hover { left: 0; top: 0; box-shadow: 0 0 6px rgba(0, 0, 0, 0.4); }
+.leader-card .card-img { width: 170px; height: 210px; object-fit: cover; }
+.leader-card .leader-name { text-indent: 0; font-weight: bold; margin: 0; }
+.leader-card .leader-role { text-indent: 0; color: var(--unavailable-color); font-style: italic; margin: 0; }
