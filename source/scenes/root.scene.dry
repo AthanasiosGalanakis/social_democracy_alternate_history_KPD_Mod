@@ -147,7 +147,13 @@ Q.cw_last_time = -1;
 Q.cw_red = 0;
 Q.cw_white = 0;
 Q.kpd_ending = "none";
-for (var y23_flag of ['ruhr', 'leipzig', 'prices', 'ruhr_strike', 'schlageter', 'antifa', 'cuno', 'moscow', 'emergency', 'saxony', 'thuringia', 'chemnitz', 'exec', 'hamburg', 'beerhall', 'rentenmark', 'ban', 'blame', 'cw_start']) {
+// Lenin's Testament chain (April to August 1923). test_stage: 0 not offered, 1 copy read, 2 path chosen, 3 Moscow answered, 4 plenum held, 9 declined.
+// testament_path: 0 none, 1 Left Opposition, 2 Right Opposition, 3 published, 4 held back.
+Q.test_stage = 0;
+Q.testament_path = 0;
+Q.y23_stalin_cornered = 0;
+Q.y23_stalin_removed = 0;
+for (var y23_flag of ['ruhr', 'leipzig', 'prices', 'ruhr_strike', 'schlageter', 'antifa', 'cuno', 'moscow', 'emergency', 'saxony', 'thuringia', 'chemnitz', 'exec', 'hamburg', 'beerhall', 'rentenmark', 'ban', 'blame', 'cw_start', 'testament_plenum']) {
     Q['y23_' + y23_flag + '_done'] = 0;
 }
 for (var y24_flag of ['y24_brandler', 'y24_legal', 'y24_frankfurt', 'y24_bolshevisation', 'y24_rfb', 'y24_dawes', 'y25_ebert', 'y25_president', 'y25_ecci', 'y26_princes', 'y26_princes_result', 'y26_expulsion', 'y27_dnvp', 'y27_conciliators', 'y27_trotsky']) {

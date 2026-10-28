@@ -5,6 +5,8 @@ tags: kpd_event
 view-if: year = 1923 and month = 12 and y23_chemnitz_done = 1 and y23_blame_done = 0 and civil_war = 0
 on-arrival: {!
 Q.y23_blame_done = 1;
+Q.tb_left = (Q.y23_stalin_removed == 1 && Q.testament_path == 1) ? 1 : 0;
+Q.tb_right = (Q.y23_stalin_removed == 1 && Q.testament_path == 2) ? 1 : 0;
 if (Q.y23_outcome != 'strike_holds') {
     Q.y23_failed = 1;
     Q.kf_right_dissent += 15;
@@ -17,6 +19,9 @@ if (Q.kpd_banned && Q.kpd_ban_end <= Q.time) { Q.kpd_banned = 0; }
 = The post-mortem
 
 In Moscow the Comintern's executive meets to ask what went wrong. The leadership of the Russian party, divided against itself, wants an answer that does not blame the Russian leaders who set the date. Zinoviev will blame Brandler and Thalheimer, and he will say that the party was too cautious to carry out an obviously correct plan. In Germany, Ruth Fischer and Arkadi Maslow's Left says the same, and has the advantage of having been right about the Social Democrats' unreliability.
+
+[? if tb_left = 1 : With Stalin out of the Secretariat and Zinoviev's troika broken, the men who set the date are the men who now lead the International, and they will not blame themselves. Radek will say that the failure was one of execution and leave it to the party to supply the names. ?]
+[? if tb_right = 1 : With Stalin out of the Secretariat, Bukharin and Rykov do not look for scapegoats, and say, to the relief of Brandler's friends, that a rising had never been the right instrument. The Left calls this cowardice and says so in public. ?]
 
 In the Russian party, Trotsky and the Opposition criticise the Politburo, and are in turn accused of factionalism. In the German party, the fight over the Party Line is open. The old leadership is blamed and an extraordinary conference is in the air.
 

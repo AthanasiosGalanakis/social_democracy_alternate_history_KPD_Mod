@@ -13,6 +13,7 @@ Q.mc_left = (Q.moscow_leader == "Trotsky-Radek") ? 1 : 0;
 Q.mc_troika = (Q.moscow_leader == "Zinoviev-Kamenev-Stalin") ? 1 : 0;
 Q.mc_bukharin = (Q.moscow_leader == "Stalin-Bukharin") ? 1 : 0;
 Q.mc_stalin = (Q.moscow_leader == "Stalin") ? 1 : 0;
+Q.mc_rykov = (Q.moscow_leader == "Bukharin-Rykov") ? 1 : 0;
 !}
 
 = A change of leadership in Moscow
@@ -20,6 +21,7 @@ Q.mc_stalin = (Q.moscow_leader == "Stalin") ? 1 : 0;
 [? if mc_left = 1 : The Left Opposition has won the argument in the Russian party. Trotsky and Radek lead the International, and the line is world revolution: the German proletariat must be called to the offensive at the first opportunity. ?]
 [? if mc_troika = 1 : The Zinoviev, Kamenev and Stalin group runs the International. The line is the workers' government, the united front from above and below, and a careful eye on the German leadership. ?]
 [? if mc_bukharin = 1 : Stalin and Bukharin have broken the troika. The line is socialism in one country; the revolution is an affair for later, and the International serves the Soviet Union's security first. ?]
+[? if mc_rykov = 1 : Bukharin and Rykov lead the International, after the Russian party has set aside its General Secretary. The line is the NEP at home and the united front abroad: patience, trade, no adventures. The German party is asked to build, not to storm. ?]
 [? if mc_stalin = 1 : Stalin governs alone. The International is being remade into an instrument of one party and one man, and its line, the Third Period, expects social democracy to be treated as the main enemy and a coming revolutionary crisis to be near. ?]
 
 This line favours [+ mc_fav_name +].
