@@ -389,8 +389,8 @@
   /* party names in their own colours, in the story text and the sidebar */
   var partyClasses = {'KPD': 'p-kpd', 'SPD': 'p-spd', 'DNVP': 'p-dnvp', 'DVP': 'p-dvp', 'DDP': 'p-ddp',
                       'NSDAP': 'p-nsdap', 'Nazis': 'p-nsdap', 'Nazi': 'p-nsdap', 'BVP': 'p-bvp', 'Zentrum': 'p-zentrum',
-                      'Centre Party': 'p-zentrum', 'Center Party': 'p-zentrum'};
-  var partyRegex = /\b(KPD|SPD|DNVP|DVP|DDP|NSDAP|BVP|Zentrum|Centre Party|Center Party|Nazis|Nazi)\b/g;
+                      'Centre Party': 'p-zentrum', 'Z': 'p-zentrum', 'Center Party': 'p-zentrum'};
+  var partyRegex = /\b(KPD|SPD|DNVP|DVP|DDP|NSDAP|BVP|Zentrum|Centre Party|Center Party|Nazis|Nazi)\b|\b(Z)(?= \+|:)/g;
   var factionRegex = /^(\s*)(Right|Left|Centre)(?= strength)/;
   var colouring = false;
   window.colourParties = function() {
@@ -425,10 +425,11 @@
                   while ((m = partyRegex.exec(text)) !== null) {
                       frag.appendChild(document.createTextNode(text.slice(last, m.index)));
                       var span = document.createElement('span');
-                      span.className = 'party ' + partyClasses[m[1]];
-                      span.textContent = m[1];
+                      var tok = m[1] || m[2];
+                      span.className = 'party ' + partyClasses[tok];
+                      span.textContent = tok;
                       frag.appendChild(span);
-                      last = m.index + m[1].length;
+                      last = m.index + tok.length;
                   }
                   frag.appendChild(document.createTextNode(text.slice(last)));
                   parent.replaceChild(frag, node);

@@ -630,11 +630,6 @@ table {
 
 /* the head of the party: a portrait alone in a banded strip */
 
-/* party names that are pale on the light page get a thin outline */
-.p-ddp, .p-bvp, .p-dvp { text-shadow: 0 0 1px rgba(0, 0, 0, 0.55), 0 0 1px rgba(0, 0, 0, 0.55); }
-body.dark-mode .p-ddp, body.dark-mode .p-bvp, body.dark-mode .p-dvp { text-shadow: none; }
-body.dark-mode .p-kpd { text-shadow: 0 0 1px rgba(255, 255, 255, 0.25); }
-
 /* faction names in the Politics tab */
 .faction-word { font-weight: bold; }
 .fw-right { color: var(--f-right); }
