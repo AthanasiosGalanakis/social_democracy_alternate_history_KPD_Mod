@@ -432,7 +432,7 @@
   });
 
 
-  /* leadership bar: the head of the party's portrait with a button, and the party line card beside it;
+  /* leadership bar: the head of the party's portrait, alone in its own panel above the page, clickable;
      faction adviser cards get a frame and caption in their faction's colour */
   var factionOfCard = {'adv_right': 'right', 'adv_centre': 'centre', 'adv_left': 'left'};
   window.arrangeLeadership = function() {
@@ -441,31 +441,19 @@
       if (old) { old.parentNode.removeChild(old); }
       if (!pinned) { return; }
       var items = pinned.querySelectorAll('li.pinned-card');
-      var head = null, line = null;
+      var head = null;
       Array.prototype.forEach.call(items, function(li) {
           var a = li.querySelector('a.card');
           var id = a ? a.getAttribute('card-id') : '';
           if (factionOfCard[id]) { li.classList.add('faction-' + factionOfCard[id]); }
           if (id == 'head') { head = li; }
-          if (id == 'kpd_party_line') { line = li; }
       });
-      if (!head && !line) { return; }
+      if (!head) { return; }
       var bar = document.createElement('div');
       bar.id = 'leadership_bar';
-      if (head) {
-          head.classList.add('leader-card');
-          var btn = document.createElement('a');
-          btn.href = '#';
-          btn.className = 'leader-button';
-          btn.textContent = 'Consult the chairman';
-          btn.onclick = function(e) {
-              e.preventDefault();
-              head.querySelector('a.card').click();
-          };
-          head.appendChild(btn);
-          bar.appendChild(head);
-      }
-      if (line) { bar.appendChild(line); }
+      head.classList.add('leader-card');
+      bar.appendChild(head);
+      // a banded strip across the top of the story panel
       var content = document.getElementById('content');
       content.insertBefore(bar, content.firstChild);
   };
