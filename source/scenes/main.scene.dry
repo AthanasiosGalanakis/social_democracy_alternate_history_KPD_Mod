@@ -19,7 +19,6 @@ max-cards: 3
 - @party
 - @mass
 - #advisor
-- @kpd_party_line
 
 @main_easy
 set-bg: img/map_2.jpg
@@ -42,7 +41,6 @@ max-cards: 4
 - @party
 - @mass
 - #advisor
-- @kpd_party_line
 
 
 @mass
