@@ -14,7 +14,7 @@ Eberlein is a veteran Spartacist who handles the party's finances and its illega
 
 @illegal_work
 title: Prepare the illegal apparatus
-subtitle: Build the party's secret organization.
+subtitle: Build the party's secret organization. · dev: kf_apparatus_strength +2
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 4; kf_apparatus_strength += 2
@@ -23,7 +23,7 @@ Eberlein builds a parallel apparatus that can work if the party is banned. It is
 
 @accounts
 title: Submit the accounts to the Comintern
-subtitle: Open our books to Moscow.
+subtitle: Open our books to Moscow. · dev: trust +3, resources +1
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 4; comintern_trust += 3; resources += 1

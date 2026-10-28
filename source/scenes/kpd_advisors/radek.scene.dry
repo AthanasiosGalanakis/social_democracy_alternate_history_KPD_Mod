@@ -14,7 +14,7 @@ Radek is the Comintern's expert on Germany, a brilliant journalist and an old fr
 
 @moscows_view
 title: Ask for Moscow's view
-subtitle: Find out what the Comintern leaders really think.
+subtitle: Find out what the Comintern leaders really think. · dev: trust +6, kf_apparatus_strength +4, kf_right_dissent +3
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 4; comintern_trust += 6; kf_apparatus_strength += 4; kf_right_dissent += 3
@@ -23,7 +23,7 @@ Radek gives us a candid account of what Zinoviev and the Politburo expect from G
 
 @funds
 title: Request funds from Moscow
-subtitle: Ask the Comintern for money.
+subtitle: Ask the Comintern for money. · dev: resources +2, trust −3
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 4; resources += 2; comintern_trust -= 3

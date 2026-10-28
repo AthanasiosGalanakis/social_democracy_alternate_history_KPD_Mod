@@ -18,7 +18,7 @@ The unemployed are outside the factories and the unions. They are queueing at th
 - @easy_discard
 
 @councils
-subtitle: No cost.
+subtitle: No cost. · dev: unemployed_kpd +5×m
 on-arrival: unemployed_kpd += 5*campaign_mult
 go-to: root
 
@@ -26,7 +26,7 @@ The councils meet at the labour exchanges. They do small, concrete things: they 
 
 @march
 choose-if: resources >= 1
-subtitle: -1 resources
+subtitle: -1 resources · dev: resources −1, unemployed_kpd +4×m, pro_republic −1, y23_strikes +0
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; unemployed_kpd += 4*campaign_mult; pro_republic -= 1; y23_strikes += 0
 go-to: root

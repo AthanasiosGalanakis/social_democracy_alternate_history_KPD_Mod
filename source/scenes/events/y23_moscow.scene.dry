@@ -15,14 +15,14 @@ It is a strange situation: a revolution in Germany is being planned in a foreign
 - @warn: Tell Moscow honestly that Germany is not ready.
 
 @accept
-subtitle: Trust +8, subsidy secured, Right +6 dissent.
+subtitle: Trust +8, subsidy secured, Right +6 dissent. · dev: trust +8, subsidy_granted = 1, soviet_subsidy = 1, kf_right_dissent +6, kf_apparatus_strength +3, y23_hundreds +1
 on-arrival: comintern_trust += 8; subsidy_granted = 1; soviet_subsidy = 1; kf_right_dissent += 6; kf_apparatus_strength += 3; y23_hundreds += 1
 go-to: root
 
 We accept. Money and a few arms are on their way; so are the advisers. The Right, who know the German workers better than Moscow does, are uneasy, and the apparatus, which has just seen its stock rise, is not.
 
 @warn
-subtitle: Trust -8, Right +4 strength.
+subtitle: Trust -8, Right +4 strength. · dev: trust −8, kf_right_strength +4, kf_left_dissent +5
 on-arrival: comintern_trust -= 8; kf_right_strength += 4; kf_left_dissent += 5
 go-to: root
 

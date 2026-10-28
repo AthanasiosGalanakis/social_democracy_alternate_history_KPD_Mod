@@ -14,7 +14,7 @@ Fischer is the leader of the Berlin organization and of the party's left. Born i
 
 @berlin
 title: Mobilize Berlin
-subtitle: Mobilize the Berlin organization behind the Left.
+subtitle: Mobilize the Berlin organization behind the Left. · dev: kf_left_strength +6, kf_right_dissent +4
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 4; kf_left_strength += 6; kf_right_dissent += 4
@@ -23,7 +23,7 @@ Fischer's Berlin organization turns out in thousands. The Left shows its strengt
 
 @offensive
 title: Push the offensive
-subtitle: Argue that the crisis is the hour of the revolution.
+subtitle: Argue that the crisis is the hour of the revolution. · dev: workers_spd −1
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 4; workers_spd -= 1

@@ -14,7 +14,7 @@ Meyer is a former chairman of the party and its mediator. He is a follower of Le
 
 @mediate
 title: Mediate between the factions
-subtitle: Calm the quarrels between the factions.
+subtitle: Calm the quarrels between the factions. · dev: kf_right_dissent −3, kf_left_dissent −3, kf_centre_dissent −3, kf_apparatus_dissent −3
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 4; kf_right_dissent -= 3; kf_left_dissent -= 3; kf_centre_dissent -= 3; kf_apparatus_dissent -= 3
@@ -23,7 +23,7 @@ Meyer brings the factions to the table and drafts a compromise that none of them
 
 @mass_party
 title: Argue for the mass party
-subtitle: Make the case for a long, patient course.
+subtitle: Make the case for a long, patient course. · dev: kf_centre_strength +5, kf_left_dissent +2
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 4; kf_centre_strength += 5; kf_left_dissent += 2

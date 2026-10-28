@@ -31,7 +31,7 @@ if (Q.md_tier == 1) {
 
 = Moscow's displeasure
 
-[? if md_tier = 1 : **A letter.** The Executive Committee of the International writes to the Central Committee. The tone is polite and the content is not: the line we follow is not the one the International expects, and our government options are closed until trust is above 50 again. The apparatus, which reads the letter first, gains 2 strength. ?]
+[? if md_tier = 1 : **A letter.** The Executive Committee of the International writes to the Central Committee. The tone is polite and the content is not: the line we follow is not the one the International expects, and any step into government without Moscow's blessing will anger it severely until trust is back above 50. Nothing is forbidden to us. The apparatus, which reads the letter first, gains 2 strength. ?]
 
 [? if md_tier = 2 : **The subsidy is cut.** The Soviet subsidy is stopped, and the quarterly payment and the 5 points of readiness it gave us are gone, until trust is back above 40. The holding faction gains 5 dissent for losing the money, and the apparatus gains 2 strength. ?]
 

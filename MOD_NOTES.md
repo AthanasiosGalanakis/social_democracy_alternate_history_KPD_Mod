@@ -103,3 +103,9 @@ Build with `dendrynexus make-html` (see README.md).
 
 ## Opening screen
 The title screen has Start game, Credits and Achievements only. The election simulation and custom difficulty are removed (election_algorithm and the full credits are kept in /shelved). The opening screens (title, introduction, credits) hide the sidebar and centre the panel; the header shows only the title, centred above the Library / Save / Options links. Credits name only the base game and its author.
+
+## Dev build changes (28 October)
+- Save import and export removed from the Save/Load screen.
+- Trust no longer blocks anything. Entering the Saxon cabinet with trust under 50 costs 15 trust (Moscow is furious); with 50 or more it gains 5. Listening to Moscow still raises trust.
+- The October readiness mechanic is gone. The Chemnitz event stays, without numbers. The general strike holds if at least two joint actions with the SPD left were taken (y23_unity >= 2). Interim rule, to be revisited.
+- Dev site: a "Dev" sidebar tab shows the numbers behind the game, and every choice shows its numeric effects after " · dev: " in its subtitle. `python3 tools/dev_effects.py` refreshes those suffixes after any edit, and `--strip` removes them for a release.

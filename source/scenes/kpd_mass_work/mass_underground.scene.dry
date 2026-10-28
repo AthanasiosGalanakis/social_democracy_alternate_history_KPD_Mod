@@ -18,7 +18,7 @@ The offices are closed and the papers are confiscated. The party's members meet 
 - @easy_discard
 
 @cells
-subtitle: No cost.
+subtitle: No cost. · dev: kf_apparatus_strength +2, workers_kpd +1×m
 on-arrival: kf_apparatus_strength += 2; workers_kpd += 1*campaign_mult
 go-to: root
 
@@ -26,7 +26,7 @@ Each cell knows only its own members and one contact. The structure is hard to b
 
 @fronts
 choose-if: resources >= 1
-subtitle: -1 resources
+subtitle: -1 resources · dev: resources −1, kpd_ban_end = kpd_ban_end - 1, workers_kpd +1×m
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; kpd_ban_end = kpd_ban_end - 1; workers_kpd += 1*campaign_mult
 go-to: root

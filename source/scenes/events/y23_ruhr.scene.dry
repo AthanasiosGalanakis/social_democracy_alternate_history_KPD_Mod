@@ -16,14 +16,14 @@ The question for the party is simple to state and hard to answer. A German gover
 - @distance: Call it a quarrel between capitalists and keep out of it.
 
 @both
-subtitle: The Zentrale's line. Moscow approves.
+subtitle: The Zentrale's line. Moscow approves. · dev: workers_kpd +2×m, trust +3, kf_left_dissent +2
 on-arrival: workers_kpd += 2*campaign_mult; comintern_trust += 3; kf_left_dissent += 2
 go-to: root
 
 The party's paper carries the headline "Against Poincare and Cuno". It is a correct line that satisfies nobody who is actually hungry: the miners want to know who will pay their wages next week. The slogan is accurate and it is also very easy to ignore.
 
 @committees
-subtitle: Costs 1 resources.
+subtitle: Costs 1 resources. · dev: resources −1, y23_unity +1, workers_kpd +3×m, workers_spd −1
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_unity += 1; workers_kpd += 3*campaign_mult; workers_spd -= 1
@@ -32,6 +32,7 @@ go-to: root
 Factory committees organise food distribution and inspect the books of the local profiteers. Social Democratic and union members sit on them next to ours. It is small and concrete work, and it shows the SPD rank and file that the party can do something besides shout.
 
 @distance
+subtitle: dev: workers_kpd −1, kf_left_dissent +3, trust −4
 on-arrival: workers_kpd -= 1; kf_left_dissent += 3; comintern_trust -= 4
 go-to: root
 

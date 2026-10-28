@@ -14,7 +14,7 @@ Pieck is a former carpenter and old Spartacist, and a quiet organizer who keeps 
 
 @organization
 title: Reorganize the party
-subtitle: Tighten the party's organization.
+subtitle: Tighten the party's organization. · dev: kf_apparatus_strength +2, kf_centre_strength +3
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 4; kf_apparatus_strength += 2; kf_centre_strength += 3
@@ -23,7 +23,7 @@ Pieck reorganizes the districts. The party works better, and the apparatus gains
 
 @finances
 title: Put the finances in order
-subtitle: Collect arrears and cut waste.
+subtitle: Collect arrears and cut waste. · dev: resources +1, kf_centre_strength +1
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 4; resources += 1; kf_centre_strength += 1

@@ -14,7 +14,7 @@ Thalheimer is the party's leading theorist and a close ally of Brandler. He sees
 
 @analysis
 title: Analyse the crisis
-subtitle: Publish a theoretical analysis in the party press.
+subtitle: Publish a theoretical analysis in the party press. · dev: kf_right_strength +4, kf_centre_dissent −3
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 4; kf_right_strength += 4; kf_centre_dissent -= 3
@@ -23,7 +23,7 @@ Thalheimer's articles on the Ruhr occupation and the inflation are read in every
 
 @against_offensive
 title: Argue against the offensive
-subtitle: Take the theory of the offensive apart in public.
+subtitle: Take the theory of the offensive apart in public. · dev: kf_left_dissent +4, kf_right_dissent −4
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 4; kf_left_dissent += 4; kf_right_dissent -= 4

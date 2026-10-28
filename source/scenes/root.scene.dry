@@ -136,7 +136,6 @@ Q.y23_hundreds = 0;
 Q.y23_strikes = 0;
 Q.y23_saxony = 0;
 Q.y23_thuringia = 0;
-Q.y23_s = 0; Q.y23_h = 0; Q.y23_t = 0; Q.y23_g = 0; Q.y23_m = 0; Q.y23_ready = 0;
 Q.y23_outcome = "none";
 Q.y23_exec_pending = 0;
 Q.y23_hamburg_pending = 0;

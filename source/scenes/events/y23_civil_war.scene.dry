@@ -10,7 +10,7 @@ Q.cw_white += 6;
 if (Q.cw_month > 4) { Q.cw_over = 1; }
 Q.cw_diff = Q.cw_red - Q.cw_white;
 Q.cw_has_moscow = (Q.comintern_trust >= 50) ? 1 : 0;
-Q.cw_has_spd = (Q.y23_s >= 15) ? 1 : 0;
+Q.cw_has_spd = (Q.y23_unity >= 3) ? 1 : 0;
 !}
 go-to: cw_end if cw_over = 1
 
@@ -28,6 +28,7 @@ After the fourth month the campaign is decided: if our strength is more than 10 
 - @dig_in: Hold the cities and refuse a decisive battle. +3 strength, and -2 for the enemy.
 
 @mobilise
+subtitle: dev: workers_kpd −1
 on-arrival: cw_red += 8; workers_kpd -= 1
 go-to: root
 

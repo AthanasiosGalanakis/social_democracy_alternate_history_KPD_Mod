@@ -3,32 +3,13 @@ subtitle: 21 October. The factory councils of Saxony are waiting for our call.
 new-page: true
 tags: kpd_event
 view-if: year = 1923 and month = 10 and y23_saxony_done = 1 and y23_chemnitz_done = 0
-on-arrival: {!
-Q.y23_chemnitz_done = 1;
-Q.y23_s = Math.min(30, Q.y23_unity*5);
-Q.y23_h = Math.min(30, Q.y23_hundreds*6);
-Q.y23_t = Math.min(10, Q.y23_strikes*3);
-Q.y23_g = 10*Q.y23_saxony + 5*Q.y23_thuringia;
-Q.y23_m = 5*Q.soviet_subsidy + (Q.moscow_leader == "Trotsky-Radek" ? 10 : 0) + (Q.comintern_trust >= 60 ? 5 : 0);
-Q.y23_ready = Q.y23_s + Q.y23_h + Q.y23_t + Q.y23_g + Q.y23_m;
-Q.y23_has_s = (Q.y23_s >= 10) ? 1 : 0;
-Q.y23_has_r = (Q.y23_ready >= 85) ? 1 : 0;
-Q.y23_has_t = (Q.y23_ready >= 45) ? 1 : 0;
-!}
+on-arrival: y23_chemnitz_done = 1
 
 = The Chemnitz conference
 
 The conference of Saxony's factory councils, about 450 delegates, meets in Chemnitz on 21 October. The Reichswehr is already moving: General Müller banned the Proletarian Hundreds on the 13th, and his troops enter Saxony on the 23rd. The KPD intends to call a general strike from Chemnitz as the signal for the German October, and Brandler is going to say so.
 
-Before anything else, here is what we have, with no estimates added or subtracted.
-
-Readiness for a rising: [+ y23_ready +] points. A general strike holds at 45 points, with an alliance with the SPD left worth at least 10, which it must have, since without it the strike does not spread beyond the KPD. A rising is not yet available in this version of the game.
-
-Unity with the SPD left: [+ y23_s +] of 30 (needed: 10)[? if y23_has_s = 1 : . We have it. ?][? if y23_has_s = 0 : . We do not have it. ?]
-
-Proletarian Hundreds: [+ y23_h +] of 30. Strikes: [+ y23_t +] of 10. Workers' governments: [+ y23_g +] of 15. Moscow: [+ y23_m +] of 20.
-
-The SPD ministers in the Saxon cabinet are unwilling to call a general strike. Without them, the strike will not leave the Communist-led districts. We can still go through with it.
+The SPD ministers in the Saxon cabinet are unwilling to call a general strike. Whether a strike spreads beyond the Communist-led districts depends on the ground we have laid with the SPD left in the months before this conference. A rising is not yet available in this version of the game.
 
 - @rising: Call the general strike and the armed rising. (Not implemented yet.)
 - @strike: Call the general strike, but no rising.
@@ -39,10 +20,10 @@ subtitle: Not implemented yet.
 choose-if: 1 = 0
 unavailable-subtitle: Not implemented yet.
 on-arrival: {!
-if (Q.y23_has_r == 1 && Q.y23_has_s == 1) {
+if (Q.y23_unity >= 4) {
     Q.y23_outcome = 'rising_success';
     Q.civil_war = 1;
-    Q.cw_red = Q.y23_ready;
+    Q.cw_red = 60;
     Q.cw_white = 95;
     Q.cw_month = 0;
 } else {
@@ -69,16 +50,16 @@ title: The rising is crushed
 
 The call goes out and the response is a patchwork. In Saxony the Hundreds hold a few towns for days before the Reichswehr takes them. The SPD left withdraws its support, and the councils, which do not feel ready, stay at the machines. Moscow had a date and the party had a plan, and neither had the workers.
 
-[? if y23_has_s = 0 : The SPD left's refusal was fatal. ?][? if y23_has_s = 1 : The alliance with the SPD left held, but the Hundreds and the other forces were not enough. ?]
+[? if y23_unity < 2 : The SPD left's refusal was fatal. ?][? if y23_unity >= 2 : The alliance with the SPD left held, but the other forces were not enough. ?]
 
 Hundreds of workers are dead or arrested. The party is ruined, and Moscow will look for someone to blame.
 
 - @root: Continue.
 
 @strike
-subtitle: Needs readiness 45 and unity 10 to hold.
+subtitle: Holds only if the SPD left has been brought into joint action.
 on-arrival: {!
-if (Q.y23_has_t == 1 && Q.y23_has_s == 1) {
+if (Q.y23_unity >= 2) {
     Q.y23_outcome = 'strike_holds';
     Q.saxony_survives = 1;
     Q.workers_kpd += 4;

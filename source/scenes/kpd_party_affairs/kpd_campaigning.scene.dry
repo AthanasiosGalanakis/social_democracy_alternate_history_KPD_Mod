@@ -24,7 +24,7 @@ Whether or not an election is near, the party has to win people over, and the in
 - @easy_discard
 
 @workers
-subtitle: -1 resources
+subtitle: -1 resources · dev: workers_kpd +6×m, workers_spd −2×m, resources −1
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: workers_kpd += 6*campaign_mult; workers_spd -= 2*campaign_mult; resources -= 1
@@ -32,7 +32,7 @@ on-arrival: workers_kpd += 6*campaign_mult; workers_spd -= 2*campaign_mult; reso
 We have increased our work in the factories and the works councils. Many workers see the failures of the SPD leadership; others still remember the March Action and do not trust us.
 
 @unemployed
-subtitle: -1 resources
+subtitle: -1 resources · dev: unemployed_kpd +6×m, resources −1
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: unemployed_kpd += 6*campaign_mult; resources -= 1
@@ -40,7 +40,7 @@ on-arrival: unemployed_kpd += 6*campaign_mult; resources -= 1
 We have organized among the unemployed. Hunger and short wages make our message easy to hear, but anger alone does not build a movement.
 
 @rural
-subtitle: -1 resources
+subtitle: -1 resources · dev: rural_kpd +3×m, resources −1
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: rural_kpd += 3*campaign_mult; resources -= 1
@@ -48,7 +48,7 @@ on-arrival: rural_kpd += 3*campaign_mult; resources -= 1
 We have sent speakers to the estates and villages. The party has little standing in the countryside, and the large landowners have no trouble turning the villages against us.
 
 @new_middle
-subtitle: -1 resources
+subtitle: -1 resources · dev: new_middle_kpd +2×m, resources −1
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: new_middle_kpd += 2*campaign_mult; resources -= 1
@@ -56,7 +56,7 @@ on-arrival: new_middle_kpd += 2*campaign_mult; resources -= 1
 The inflation has ruined many white-collar savings, but most of them still look to the nationalists for an answer. Our gains are small.
 
 @old_middle
-subtitle: -1 resources
+subtitle: -1 resources · dev: old_middle_kpd +2×m, resources −1
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: old_middle_kpd += 2*campaign_mult; resources -= 1
@@ -64,7 +64,7 @@ on-arrival: old_middle_kpd += 2*campaign_mult; resources -= 1
 The small shopkeepers and artisans are angry, but their anger is easily turned against the workers and against Jews. We have only a hearing here, not their trust.
 
 @catholics
-subtitle: -1 resources
+subtitle: -1 resources · dev: catholics_kpd +2×m, resources −1
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: catholics_kpd += 2*campaign_mult; resources -= 1

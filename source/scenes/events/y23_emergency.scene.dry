@@ -16,7 +16,7 @@ We have a few weeks. What do we use them for?
 - @unions: Prepare the factory councils for a general strike.
 
 @hundreds
-subtitle: Costs 1 resources.
+subtitle: Costs 1 resources. · dev: resources −1, y23_hundreds +2, rfb_strength +40
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_hundreds += 2; rfb_strength += 40
@@ -25,12 +25,14 @@ go-to: root
 Arms come in small quantities from sources the party does not describe, and the Hundreds drill in the evenings. The Reichswehr's intelligence officers watch, and the Hundreds are far from a match for an army.
 
 @unity
+subtitle: dev: y23_unity +2, workers_spd −1, kf_left_dissent +4
 on-arrival: y23_unity += 2; workers_spd -= 1; kf_left_dissent += 4
 go-to: root
 
 The talks are long, and the SPD left promises what it can: support, if it comes to a defence of Saxony. It is not a promise to make a revolution, and it is worth asking whether our own side hears the difference.
 
 @unions
+subtitle: dev: y23_strikes +1, y23_unity +1, workers_kpd +2×m
 on-arrival: y23_strikes += 1; y23_unity += 1; workers_kpd += 2*campaign_mult
 go-to: root
 

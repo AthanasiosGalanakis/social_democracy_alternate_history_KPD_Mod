@@ -13,7 +13,7 @@ In May a wave of wage strikes spreads through the Ruhr coalfield. The miners are
 - @support: Support the strikers from outside, with funds and leaflets.
 
 @lead
-subtitle: Costs 1 resources.
+subtitle: Costs 1 resources. · dev: resources −1, y23_strikes +1, workers_kpd +4×m, workers_spd −2, kf_left_strength +2
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_strikes += 1; workers_kpd += 4*campaign_mult; workers_spd -= 2; kf_left_strength += 2
@@ -22,6 +22,7 @@ go-to: root
 Our organisers go into the pits and win places on the strike committees. The government answers with police, the SPD leaders with disapproval, and the miners, who see who is on their side, with votes of confidence that the party remembers.
 
 @support
+subtitle: dev: workers_kpd +2×m, kf_right_strength +2
 on-arrival: workers_kpd += 2*campaign_mult; kf_right_strength += 2
 go-to: root
 
