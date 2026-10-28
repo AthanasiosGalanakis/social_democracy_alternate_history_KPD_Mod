@@ -6,7 +6,6 @@ if (Q.month_actions > 0) {
     Q.month_actions -= 1;
 }
 if (Q.last_advisor_action) {
-    Q.advisor_action_timer = 0;
     Q.last_advisor_action = 0;
 }
 if (Q.last_cabinet_action) {

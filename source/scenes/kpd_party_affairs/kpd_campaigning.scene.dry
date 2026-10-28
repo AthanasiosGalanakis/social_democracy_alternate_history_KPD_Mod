@@ -20,8 +20,18 @@ Whether or not an election is near, the party has to win people over, and the in
 - @new_middle: Clerks, civil servants and white-collar employees, whose savings are being wiped out.
 - @old_middle: Small shopkeepers and artisans, ruined by the inflation.
 - @catholics: Catholic workers, who typically vote for the Center Party.
+- @women: Women workers and the wives of the unemployed, with Zetkin's organisers.
 - @root: We either don't want to or cannot campaign right now.
 - @easy_discard
+
+@women
+view-if: zetkin_advisor = 1
+choose-if: resources >= 1
+subtitle: Zetkin is in the leadership. · dev: workers_kpd +3×m, unemployed_kpd +2×m, resources −1, kf_centre_strength +1
+unavailable-subtitle: Not enough resources.
+on-arrival: workers_kpd += 3*campaign_mult; unemployed_kpd += 2*campaign_mult; resources -= 1; kf_centre_strength += 1
+
+Zetkin's women's committees hold meetings at the markets and the labour exchanges. Women who have stood in the queues since dawn say what they think of the Reich's prices, and a good many of them join.
 
 @workers
 subtitle: -1 resources · dev: workers_kpd +6×m, workers_spd −2×m, resources −1

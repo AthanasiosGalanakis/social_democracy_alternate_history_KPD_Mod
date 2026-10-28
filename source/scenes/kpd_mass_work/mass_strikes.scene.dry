@@ -14,8 +14,17 @@ The party's strength lies in the workplace, in the factory councils and the stri
 
 - @councils: Organise a strike through the factory councils.
 - @opposition: Build a communist opposition inside the free unions.
+- @fractions: Put Walcher's union fractions behind the strike committees.
 - @root: Not this month.
 - @easy_discard
+
+@fractions
+view-if: walcher_advisor = 1
+subtitle: Walcher is in the leadership. · dev: y23_unity +1, y23_strikes +1, workers_kpd +3×m, kf_right_strength +1
+on-arrival: y23_unity += 1; y23_strikes += 1; workers_kpd += 3*campaign_mult; kf_right_strength += 1
+go-to: root
+
+Walcher's union men, who know every works committee in the Ruhr and in Stuttgart, bring the strike committees and the union locals to the same table. The strike is solid, and the SPD locals notice who made it so.
 
 @councils
 choose-if: resources >= 1

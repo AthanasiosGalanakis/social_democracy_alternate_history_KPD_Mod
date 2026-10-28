@@ -15,17 +15,17 @@ Walcher is a former metalworker who handles the party's union work and its work 
 @union_work
 title: Work in the unions
 subtitle: Strengthen the party's position in the union leadership. · dev: workers_kpd +3×m, kf_right_strength +3
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 4; workers_kpd += 3*campaign_mult; kf_right_strength += 3
+unavailable-subtitle: [? if walcher_timer > 0 : [+ walcher_timer +] months before this adviser can act again. ?]
+choose-if: walcher_timer = 0
+on-arrival: walcher_timer = 3; workers_kpd += 3*campaign_mult; kf_right_strength += 3
 
 Walcher's work in the metalworkers' union brings a few local posts and a better hearing. The union bureaucracy answers with expulsions wherever it can.
 
 @factory_councils
 title: Build factory-council networks
 subtitle: Link the factory councils across districts. · dev: workers_kpd +2×m, kf_centre_strength +2
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 4; workers_kpd += 2*campaign_mult; kf_centre_strength += 2
+unavailable-subtitle: [? if walcher_timer > 0 : [+ walcher_timer +] months before this adviser can act again. ?]
+choose-if: walcher_timer = 0
+on-arrival: walcher_timer = 3; workers_kpd += 2*campaign_mult; kf_centre_strength += 2
 
 The factory councils begin to coordinate across districts. They are the closest thing we have to an organization of workers' power, and also the first thing the authorities will try to break.

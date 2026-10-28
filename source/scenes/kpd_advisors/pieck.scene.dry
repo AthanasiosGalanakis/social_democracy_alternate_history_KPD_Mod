@@ -15,17 +15,17 @@ Pieck is a former carpenter and old Spartacist, and a quiet organizer who keeps 
 @organization
 title: Reorganize the party
 subtitle: Tighten the party's organization. · dev: kf_centre_strength +3
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 4; kf_centre_strength += 3
+unavailable-subtitle: [? if pieck_timer > 0 : [+ pieck_timer +] months before this adviser can act again. ?]
+choose-if: pieck_timer = 0
+on-arrival: pieck_timer = 3; kf_centre_strength += 3
 
 Pieck reorganizes the districts. The party works better, and the Centre, who run the machine, gain a little more control over it.
 
 @finances
 title: Put the finances in order
 subtitle: Collect arrears and cut waste. · dev: resources +1, kf_centre_strength +1
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 4; resources += 1; kf_centre_strength += 1
+unavailable-subtitle: [? if pieck_timer > 0 : [+ pieck_timer +] months before this adviser can act again. ?]
+choose-if: pieck_timer = 0
+on-arrival: pieck_timer = 3; resources += 1; kf_centre_strength += 1
 
 Pieck gets the accounts in order and the arrears collected. In an inflation this is harder than it sounds.

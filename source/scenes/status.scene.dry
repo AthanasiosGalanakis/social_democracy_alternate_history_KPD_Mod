@@ -98,6 +98,8 @@ Left strength: [+ kf_left_strength : strength +], dissent: [+ kf_left_dissent : 
 
 Centre strength: [+ kf_centre_strength : strength +], dissent: [+ kf_centre_dissent : dissent +]
 
+Seats in the leadership: Right [+ seats_right +], Centre [+ seats_centre +], Left [+ seats_left +]
+
 Dollar rate: [+ usd_rate +] marks.
 
 Moscow: [+ moscow_leader +] (line: [+ comintern_line +], favours [+ moscow_favored +]), trust [+ comintern_trust +], balance [+ moscow_balance_r +], subsidy [+ soviet_subsidy +], displeasure tier [+ moscow_tier +] of 4
@@ -133,7 +135,7 @@ Month [+ month +] [+ year +], time [+ time +]. Resources [+ resources +], dues [
 
 **Factions** (strength / dissent)
 
-Right [+ dv_rs +] / [+ dv_rd +]. Left [+ dv_ls +] / [+ dv_ld +]. Centre [+ dv_cs +] / [+ dv_cd +]. Party line: [+ party_line +], [+ party_line_months +] months.
+Right [+ dv_rs +] / [+ dv_rd +]. Left [+ dv_ls +] / [+ dv_ld +]. Centre [+ dv_cs +] / [+ dv_cd +]. Party line: [+ party_line +], [+ party_line_months +] months. Leadership seats: Right [+ seats_right +], Centre [+ seats_centre +], Left [+ seats_left +]. Demand cooldowns (months): Right [+ demand_right_timer +], Centre [+ demand_centre_timer +], Left [+ demand_left_timer +].
 
 **Moscow**
 
@@ -145,7 +147,9 @@ Joint actions with the SPD left (unity) [+ y23_unity +]. Hundreds [+ y23_hundred
 
 **Cooldowns (months left)**
 
-Advisers [+ advisor_action_timer +]. Fundraising [+ fundraising_timer +]. Line action [+ line_action_timer +]. Leadership [+ shuffle_leadership_timer +]. Strikes card [+ mass_strikes_timer +]. Defence [+ mass_defence_timer +]. Unemployed [+ mass_unemployed_timer +]. Parliament [+ mass_parliament_timer +]. Press [+ mass_press_timer +]. Relief [+ mass_relief_timer +].
+Advisers: Brandler [+ brandler_timer +], Thalheimer [+ thalheimer_timer +], Walcher [+ walcher_timer +], Radek [+ radek_timer +], Pieck [+ pieck_timer +], Meyer [+ meyer_timer +], Zetkin [+ zetkin_timer +], Eberlein [+ eberlein_timer +], Fischer [+ fischer_timer +], Maslow [+ maslow_timer +], Thälmann [+ thaelmann_timer +].
+
+Fundraising [+ fundraising_timer +]. Line action [+ line_action_timer +]. Leadership [+ shuffle_leadership_timer +]. Strikes card [+ mass_strikes_timer +]. Defence [+ mass_defence_timer +]. Unemployed [+ mass_unemployed_timer +]. Parliament [+ mass_parliament_timer +]. Press [+ mass_press_timer +]. Relief [+ mass_relief_timer +].
 
 **KPD support within each class (percent of class votes)**
 

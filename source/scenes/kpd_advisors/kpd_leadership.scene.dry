@@ -9,7 +9,7 @@ card-image: img/Vorwaerts_nr_1.png
 
 = Reshape the leadership
 
-Our advisers are the party's leadership in practice. Bringing someone in gives their faction strength; removing someone is a purge, and the faction they speak for will not forget it. We can have at most 3 advisers.
+Our advisers are the Zentrale in practice, and the leadership is a map of the party. A faction with a seat calms down by a point of dissent a month. A strong faction without a seat grows angrier by a point a month, and a leadership drawn from one faction alone angers the other two. A seated faction whose dissent reaches 30 will make a demand, and if it is refused until dissent reaches 50 its adviser walks out. Bringing someone in gives their faction strength; removing someone is a purge, and the faction they speak for will not forget it. We can have at most 3 advisers.
 
 - #kpd_add_advisor
 - #kpd_remove_advisor

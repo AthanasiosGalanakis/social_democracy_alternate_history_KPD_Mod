@@ -1,0 +1,106 @@
+title: A faction makes a demand
+subtitle: The leadership is a map of the party, and the party has views.
+new-page: true
+tags: kpd_event
+view-if: demand_f != "none"
+on-arrival: {!
+Q.dm_f = Q.demand_f;
+Q.demand_f = 'none';
+var adv_by = {right: ['brandler', 'thalheimer', 'walcher', 'radek'], centre: ['pieck', 'meyer', 'zetkin', 'eberlein'], left: ['fischer', 'maslow', 'thaelmann']};
+var full = {brandler: 'Heinrich Brandler', thalheimer: 'August Thalheimer', walcher: 'Jacob Walcher', radek: 'Karl Radek', pieck: 'Wilhelm Pieck', meyer: 'Ernst Meyer', zetkin: 'Clara Zetkin', eberlein: 'Hugo Eberlein', fischer: 'Ruth Fischer', maslow: 'Arkadi Maslow', thaelmann: 'Ernst Thälmann'};
+Q.dm_who = '';
+for (var a of adv_by[Q.dm_f]) {
+    if (Q.dm_who == '' && Q[a + '_advisor'] == 1) { Q.dm_who = full[a]; }
+}
+!}
+
+= A faction makes a demand
+
+[? if dm_f = "right" : [+ dm_who +] comes to the leadership on behalf of the Right. The comrades in the districts are tired of being told that patience is cowardice. They ask for the united front to be taken seriously: joint action with the SPD locals and the unions first, and no gamble on a rising until the workers have seen that we can be trusted to stand beside them. ?]
+
+[? if dm_f = "left" : [+ dm_who +] comes to the leadership on behalf of the Left. The Berlin, Hamburg and Ruhr districts do not hide their impatience. The inflation is destroying the workers, the Reichswehr is arming, and every month of waiting is a month the nationalists use. They ask that the Hundreds be drilled and armed in earnest, and that the party stop apologising for the March Action. ?]
+
+[? if dm_f = "centre" : [+ dm_who +] comes to the leadership on behalf of the Centre. The party is being worn down by its own quarrels, and the districts are tired of two wings pulling in opposite directions. They ask for an end to the factional campaign, a settled line for the next months, and the unity of the organisation before anything else. ?]
+
+The faction is angry enough that its adviser will not take silence for an answer.
+
+- @concede_right
+- @concede_left
+- @concede_centre
+- @refuse_right
+- @refuse_left
+- @refuse_centre
+
+@concede_right
+title: Grant it: more patience and joint action
+view-if: dm_f = "right"
+subtitle: The united front comes first. · dev: y23_unity +1, kf_right_dissent −15, kf_left_dissent +6, trust +2
+on-arrival: demand_right_timer = 4; y23_unity += 1; kf_right_dissent -= 15; kf_left_dissent += 6; comintern_trust += 2
+go-to: root
+
+We commit the party to joint action first. The Right is satisfied, and the Left says that the leadership has once again chosen the SPD leaders over the workers.
+
+@concede_left
+title: Grant it: arm the Hundreds
+view-if: dm_f = "left"
+subtitle: The offensive is not shelved. · dev: y23_hundreds +1, rfb_strength +20, kf_left_dissent −15, kf_right_dissent +6, trust −3
+on-arrival: demand_left_timer = 4; y23_hundreds += 1; rfb_strength += 20; kf_left_dissent -= 15; kf_right_dissent += 6; comintern_trust -= 3
+go-to: root
+
+We order the districts to drill and arm the units. The Left is satisfied. The Right warns that arms are not an argument and that Moscow does not like being surprised.
+
+@concede_centre
+title: Grant it: settle the line and the unity
+view-if: dm_f = "centre"
+subtitle: The quarrel is stopped by decree. · dev: kf_centre_dissent −10, kf_right_dissent −4, kf_left_dissent −4, workers_kpd −1
+on-arrival: demand_centre_timer = 4; kf_centre_dissent -= 10; kf_right_dissent -= 4; kf_left_dissent -= 4; workers_kpd -= 1
+go-to: root
+
+A plenum is called and a resolution is passed. The meetings take a month of the districts' time and satisfy no one entirely. For now the party speaks with a single voice, and the Centre is content.
+
+@refuse_right
+title: Refuse
+view-if: dm_f = "right"
+subtitle: The Right will not forget it. · dev: kf_right_dissent +5
+on-arrival: demand_right_timer = 4; kf_right_dissent += 5
+go-to: leave_check
+
+@refuse_left
+title: Refuse
+view-if: dm_f = "left"
+subtitle: The Left will not forget it. · dev: kf_left_dissent +5
+on-arrival: demand_left_timer = 4; kf_left_dissent += 5
+go-to: leave_check
+
+@refuse_centre
+title: Refuse
+view-if: dm_f = "centre"
+subtitle: The Centre will not forget it. · dev: kf_centre_dissent +5
+on-arrival: demand_centre_timer = 4; kf_centre_dissent += 5
+go-to: leave_check
+
+@leave_check
+on-arrival: {!
+Q.dm_left = 0;
+if (Q['kf_' + Q.dm_f + '_dissent'] >= 50) {
+    var adv_by = {right: ['brandler', 'thalheimer', 'walcher', 'radek'], centre: ['pieck', 'meyer', 'zetkin', 'eberlein'], left: ['fischer', 'maslow', 'thaelmann']};
+    for (var a of adv_by[Q.dm_f]) {
+        if (Q.dm_left == 0 && Q[a + '_advisor'] == 1) {
+            Q[a + '_advisor'] = 0;
+            Q.n_advisors -= 1;
+            Q['kf_' + Q.dm_f + '_strength'] = Math.max(0, Q['kf_' + Q.dm_f + '_strength'] - 5);
+            Q.dm_left = 1;
+        }
+    }
+}
+!}
+go-to: left_msg if dm_left = 1; root if dm_left = 0
+
+@left_msg
+title: The adviser walks out
+
+= The adviser walks out
+
+[+ dm_who +] has been refused too often. The resignation is read out at the Central Committee, and the faction takes it as a declaration that its views no longer count. The leadership loses a seat, and the faction loses 5 strength to the districts that no longer follow Berlin. A new adviser can be brought in at the Reshape the Leadership card.
+
+- @root: Continue.

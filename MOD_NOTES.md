@@ -112,3 +112,10 @@ The title screen has Start game, Credits and Achievements only. The election sim
 
 ## Three factions (28 October)
 The Moscow apparatus is no longer a faction. The party has Right (45 strength, 5 dissent), Centre (25, 5) and Left (30, 20). Moscow acts through trust, the balance of power and the penalty tiers. A letter or a cut subsidy now strengthens the faction Moscow favours. Stalin alone favours the Centre. Radek counts as Right and Eberlein as Centre. Shelved content still mentions the apparatus and must be adapted when it returns.
+
+## Advisers as the party's leadership (28 October)
+- Each adviser has their own 3-month cooldown (`<name>_timer`), replacing the shared 4-month lock. Adviser actions still cost no month.
+- Leadership seats: a faction with a seat loses 1 dissent a month, a faction of strength 20 or more without a seat gains 1, and a leadership of three from one faction adds 1 dissent to the other two.
+- A seated faction whose dissent reaches 30 makes a demand (event `kpd_demand`): grant it (dissent −15, faction-specific effect) or refuse (dissent +5, cooldown 4). Refusing at dissent 50 or more makes the adviser walk out: seat lost, faction −5 strength.
+- Five cards gain an option when the right adviser is seated: Defence units (Thälmann), Strikes (Walcher), Moscow delegation (Radek), Campaigning (Zetkin), Fundraising (Pieck).
+- Factions of the advisers: Right Brandler, Thalheimer, Walcher, Radek; Centre Pieck, Meyer, Zetkin, Eberlein; Left Fischer, Maslow, Thälmann.
