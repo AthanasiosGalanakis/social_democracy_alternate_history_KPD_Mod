@@ -1,4 +1,5 @@
-title: The Left: advisers
+title: The Left: Fischer
+card-image: img/portraits/fischer.jpg
 is-pinned-card: true
 tags: advisor
 view-if: kf_left_strength > 0

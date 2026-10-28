@@ -13,6 +13,7 @@ body {
   --card-border-color: #ccc; 
   --card-bg-color: #ddd; 
   --p-kpd: #8b0000; --p-spd: #e8112d; --p-uspd: #d4572a; --p-dnvp: #2b4b7a; --p-dvp: #4a7ab5; --p-ddp: #b38f00;
+  --f-right: #5fb0e8; --f-centre: #b58ad0; --f-left: #c0392b;
   --p-nsdap: #7b4a1e; --p-bvp: #2a9bd6; --p-zentrum: #222;
   font-family: "Minion Pro", Georgia, serif;
   background-color: var(--bg-color);
@@ -33,6 +34,7 @@ body.dark-mode {
   --card-border-color: #4c4c4c;
   --card-bg-color: #3f3f3f;
   --p-kpd: #ff7b7b; --p-spd: #ff3347; --p-uspd: #ff8a5c; --p-dnvp: #7f9fd6; --p-dvp: #8fb4e8; --p-ddp: #f2c500;
+  --f-right: #7cc4f5; --f-centre: #c9a2e0; --f-left: #ef5a4c;
   --p-nsdap: #c98a4a; --p-bvp: #5cc0f0; --p-zentrum: #d8d8d8;
 }
 body.dark-mode #content {
@@ -616,3 +618,19 @@ table {
 .p-nsdap { color: var(--p-nsdap); }
 .p-bvp { color: var(--p-bvp); }
 .p-zentrum { color: var(--p-zentrum); }
+
+/* faction adviser cards: frame and name in the faction's colour */
+.faction-right a.card { border-color: var(--f-right); }
+.faction-centre a.card { border-color: var(--f-centre); }
+.faction-left a.card { border-color: var(--f-left); }
+.faction-right .card-caption { color: var(--f-right); font-weight: bold; }
+.faction-centre .card-caption { color: var(--f-centre); font-weight: bold; }
+.faction-left .card-caption { color: var(--f-left); font-weight: bold; }
+.card-placeholder { display: flex; align-items: center; justify-content: center; font-size: 2.2em; color: var(--text-color); background-color: var(--card-bg-color); box-sizing: border-box; }
+
+/* the head of the party and the party line, at the top of the page */
+#leadership_bar { display: flex; justify-content: center; align-items: flex-start; gap: 1.5em; margin-bottom: 0.5em; padding-bottom: 0.5em; border-bottom: 1px solid var(--border-color); }
+#leadership_bar li { list-style: none; margin-right: 0; text-align: center; }
+#leadership_bar .leader-card a.card { border-color: var(--f-right); }
+.leader-button { display: block; margin-top: 0.3em; padding: 0.2em 0.4em; border: 1px solid var(--border-color); font-size: 0.85em; text-decoration: none; }
+.leader-button:hover { background-color: var(--link-hover-color); }

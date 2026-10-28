@@ -1,4 +1,5 @@
-title: The Head of the Party
+title: Heinrich Brandler
+card-image: img/portraits/brandler.jpg
 is-pinned-card: true
 tags: advisor
 view-if: party_line = "right"
