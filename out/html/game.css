@@ -63,13 +63,13 @@ footer a {
   padding-right: 1em;
 }
 header {
-  text-align: right
+  text-align: center;
 }
 #header-links {
-  text-align: left;
-  float: left;
-  display: inline-block;
-  margin-bottom: 0.5em;
+  text-align: center;
+  display: block;
+  width: fit-content;
+  margin: 0.5em auto;
   padding-left: 1em;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
   background-color: var(--bg-color);
@@ -187,6 +187,11 @@ blockquote + blockquote.attribution {
 #page {
   margin: 0 auto;
   position: relative;
+}
+/* opening screens have no sidebar, so the panel is centred */
+body.opening #mid_panel {
+  margin: 0 auto;
+  max-width: 46em;
 }
 #tools_wrapper {
   position: absolute;
