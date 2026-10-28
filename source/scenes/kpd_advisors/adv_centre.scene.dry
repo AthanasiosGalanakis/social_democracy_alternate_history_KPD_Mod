@@ -1,4 +1,5 @@
-title: The Centre: advisers
+title: The Centre: Meyer
+card-image: img/portraits/meyer.jpg
 is-pinned-card: true
 tags: advisor
 view-if: kf_centre_strength > 0

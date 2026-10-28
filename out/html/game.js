@@ -425,8 +425,63 @@
       } finally { colouring = false; }
   };
   document.addEventListener('DOMContentLoaded', function() {
-      new MutationObserver(function() { window.colourParties(); }).observe(document.body, {childList: true, subtree: true, characterData: true});
+      new MutationObserver(function() {
+          if (!document.getElementById('leadership_bar') && document.querySelector('#content ul.pinned-cards') && !document.body.classList.contains('opening')) { window.arrangeLeadership(); }
+          window.colourParties();
+      }).observe(document.body, {childList: true, subtree: true, characterData: true});
   });
+
+
+  /* leadership bar: the head of the party's portrait with a button, and the party line card beside it;
+     faction adviser cards get a frame and caption in their faction's colour */
+  var factionOfCard = {'adv_right': 'right', 'adv_centre': 'centre', 'adv_left': 'left'};
+  window.arrangeLeadership = function() {
+      var pinned = document.querySelector('#content ul.pinned-cards');
+      var old = document.getElementById('leadership_bar');
+      if (old) { old.parentNode.removeChild(old); }
+      if (!pinned) { return; }
+      var items = pinned.querySelectorAll('li.pinned-card');
+      var head = null, line = null;
+      Array.prototype.forEach.call(items, function(li) {
+          var a = li.querySelector('a.card');
+          var id = a ? a.getAttribute('card-id') : '';
+          if (factionOfCard[id]) { li.classList.add('faction-' + factionOfCard[id]); }
+          if (id == 'head') { head = li; }
+          if (id == 'kpd_party_line') { line = li; }
+      });
+      if (!head && !line) { return; }
+      var bar = document.createElement('div');
+      bar.id = 'leadership_bar';
+      if (head) {
+          head.classList.add('leader-card');
+          var btn = document.createElement('a');
+          btn.href = '#';
+          btn.className = 'leader-button';
+          btn.textContent = 'Consult the chairman';
+          btn.onclick = function(e) {
+              e.preventDefault();
+              head.querySelector('a.card').click();
+          };
+          head.appendChild(btn);
+          bar.appendChild(head);
+      }
+      if (line) { bar.appendChild(line); }
+      var content = document.getElementById('content');
+      content.insertBefore(bar, content.firstChild);
+  };
+
+  /* a portrait that is missing is replaced by a plain frame with initials */
+  document.addEventListener('error', function(e) {
+      var img = e.target;
+      if (!img || img.tagName != 'IMG' || !/card-img/.test(img.className)) { return; }
+      var a = img.closest('a.card');
+      var title = a ? (a.getAttribute('title') || '') : '';
+      var initials = title.split(/[\s:]+/).filter(function(w) { return /^[A-ZÄÖÜ]/.test(w); }).map(function(w) { return w[0]; }).slice(-2).join('');
+      var ph = document.createElement('div');
+      ph.className = 'card-img card-placeholder';
+      ph.textContent = initials;
+      img.parentNode.replaceChild(ph, img);
+  }, true);
 
   // the opening screens (title, introduction, credits) have no sidebar
   window.onDisplayContent = function() {
@@ -434,10 +489,11 @@
       var opening = sceneId == 'root' || sceneId.startsWith('root.start') || sceneId == 'credits';
       document.getElementById('tools_wrapper').style.display = opening ? 'none' : '';
       document.body.classList.toggle('opening', opening);
+      if (!opening) { window.arrangeLeadership(); }
+      window.colourParties();
       if (!opening) {
           window.updateSidebar();
       }
-      window.colourParties();
   };
 
   /*

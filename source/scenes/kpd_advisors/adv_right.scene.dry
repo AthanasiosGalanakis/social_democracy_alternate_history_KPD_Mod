@@ -1,4 +1,5 @@
-title: The Right: advisers
+title: The Right: Thalheimer
+card-image: img/portraits/thalheimer.jpg
 is-pinned-card: true
 tags: advisor
 view-if: kf_right_strength > 0
