@@ -12,9 +12,9 @@ body {
   --tab-hover-color: #ececec;
   --card-border-color: #ccc; 
   --card-bg-color: #ddd; 
-  --p-kpd: #8b0000; --p-spd: #e8112d; --p-uspd: #d4572a; --p-dnvp: #2b4b7a; --p-dvp: #4a7ab5; --p-ddp: #b38f00;
+  --p-kpd: #8b0000; --p-spd: #e3000f; --p-uspd: #d4572a; --p-dnvp: #2f5fb3; --p-dvp: #b8960c; --p-ddp: #f0dd6e;
   --f-right: #d9902f; --f-centre: #8f8f8f; --f-left: #b5504a;
-  --p-nsdap: #7b4a1e; --p-bvp: #2a9bd6; --p-zentrum: #222;
+  --p-nsdap: #7b4a1e; --p-bvp: #89cff0; --p-zentrum: #111;
   font-family: "Minion Pro", Georgia, serif;
   background-color: var(--bg-color);
   padding: 0;
@@ -33,9 +33,9 @@ body.dark-mode {
   --tab-hover-color: #242424;
   --card-border-color: #4c4c4c;
   --card-bg-color: #3f3f3f;
-  --p-kpd: #ff7b7b; --p-spd: #ff3347; --p-uspd: #ff8a5c; --p-dnvp: #7f9fd6; --p-dvp: #8fb4e8; --p-ddp: #f2c500;
+  --p-kpd: #c0392b; --p-spd: #ff2a3a; --p-uspd: #ff8a5c; --p-dnvp: #5b8be0; --p-dvp: #d4ae2a; --p-ddp: #f5e68a;
   --f-right: #e8a64f; --f-centre: #b5b5b5; --f-left: #d9726b;
-  --p-nsdap: #c98a4a; --p-bvp: #5cc0f0; --p-zentrum: #d8d8d8;
+  --p-nsdap: #c98a4a; --p-bvp: #a8dcf5; --p-zentrum: #e8e8e8;
 }
 body.dark-mode #content {
   border-style: double;
@@ -631,4 +631,20 @@ table {
 /* the head of the party: a portrait alone in a banded strip */
 #leadership_bar { display: flex; justify-content: center; margin: -1em -1.5em 1.5em -1.5em; padding: 1em 0 0.4em 0; background-color: rgba(0, 0, 0, 0.06); border-bottom: 3px double var(--border-color); }
 #leadership_bar li { list-style: none; margin-right: 0; text-align: center; }
-#leadership_bar .leader-card a.card { border-color: var(--f-right); }
+
+/* party names that are pale on the light page get a thin outline */
+.p-ddp, .p-bvp { text-shadow: 0 0 1px rgba(0, 0, 0, 0.55), 0 0 1px rgba(0, 0, 0, 0.55); }
+body.dark-mode .p-ddp, body.dark-mode .p-bvp { text-shadow: none; }
+body.dark-mode .p-kpd { text-shadow: 0 0 1px rgba(255, 255, 255, 0.25); }
+
+/* faction names in the Politics tab */
+.faction-word { font-weight: bold; }
+.fw-right { color: var(--f-right); }
+.fw-centre { color: var(--f-centre); }
+.fw-left { color: var(--f-left); }
+
+/* the head of the party: a larger portrait in a plain black frame, the full name underneath */
+#leadership_bar .leader-card a.card { width: 160px; height: 200px; border: 4px solid #000; box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); }
+#leadership_bar .leader-card .card-img { width: 160px; height: 200px; }
+#leadership_bar .leader-card .card-caption { font-size: 1.15em; font-weight: bold; margin-top: 0.4em; }
+body.dark-mode #leadership_bar .leader-card a.card { border-color: #fff; }

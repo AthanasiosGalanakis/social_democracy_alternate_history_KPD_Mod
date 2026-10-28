@@ -391,6 +391,7 @@
                       'NSDAP': 'p-nsdap', 'Nazis': 'p-nsdap', 'Nazi': 'p-nsdap', 'BVP': 'p-bvp', 'Zentrum': 'p-zentrum',
                       'Centre Party': 'p-zentrum', 'Center Party': 'p-zentrum'};
   var partyRegex = /\b(KPD|SPD|USPD|DNVP|DVP|DDP|NSDAP|BVP|Zentrum|Centre Party|Center Party|Nazis|Nazi)\b/g;
+  var factionRegex = /^(\s*)(Right|Left|Centre)(?= strength)/;
   var colouring = false;
   window.colourParties = function() {
       if (colouring) { return; }
@@ -404,6 +405,17 @@
               while (walker.nextNode()) { nodes.push(walker.currentNode); }
               nodes.forEach(function(node) {
                   var parent = node.parentNode;
+                  var fm = (id == 'qualities' || id == 'sidebar' || id == 'tools_wrapper') && parent && !/\bfaction-word\b/.test(parent.className || '') ? factionRegex.exec(node.nodeValue) : null;
+                  if (fm) {
+                      var fspan = document.createElement('span');
+                      fspan.className = 'faction-word fw-' + fm[2].toLowerCase();
+                      fspan.textContent = fm[2];
+                      var rest = document.createTextNode(node.nodeValue.slice(fm[0].length));
+                      parent.insertBefore(document.createTextNode(fm[1]), node);
+                      parent.insertBefore(fspan, node);
+                      parent.replaceChild(rest, node);
+                      return;
+                  }
                   if (!parent || /^(SCRIPT|STYLE|TEXTAREA)$/.test(parent.nodeName) || (parent.className && /\bp-(kpd|spd|uspd|dnvp|dvp|ddp|nsdap|bvp|zentrum)\b/.test(parent.className))) { return; }
                   partyRegex.lastIndex = 0;
                   if (!partyRegex.test(node.nodeValue)) { return; }
@@ -448,6 +460,12 @@
           if (factionOfCard[id]) { li.classList.add('faction-' + factionOfCard[id]); }
           if (id == 'head') { head = li; }
       });
+      var order = {'adv_left': 0, 'adv_centre': 1, 'adv_right': 2};
+      var lis = Array.prototype.slice.call(pinned.querySelectorAll('li.pinned-card'));
+      lis.sort(function(x, y) {
+          var ix = order[x.querySelector('a.card').getAttribute('card-id')], iy = order[y.querySelector('a.card').getAttribute('card-id')];
+          return (ix === undefined ? 9 : ix) - (iy === undefined ? 9 : iy);
+      }).forEach(function(li) { pinned.appendChild(li); });
       if (!head) { return; }
       var bar = document.createElement('div');
       bar.id = 'leadership_bar';
