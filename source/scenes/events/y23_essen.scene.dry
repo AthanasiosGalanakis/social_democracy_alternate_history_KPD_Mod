@@ -1,0 +1,37 @@
+title: The Essen conference
+subtitle: The Comintern's conference against the war danger meets on 6 and 7 January.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 1 and jan_week = 1 and y23_essen_done = 0
+on-arrival: y23_essen_done = 1
+
+= Essen, 6 and 7 January
+
+French troops are massing on the Rhine, and Seven European communist parties and the red trade union organisations have met in Essen on the threatening war danger, among them the French delegates Cachin and Treint and the French red trade unionist Monmousseau. The Comintern wants a joint appeal against Poincare and against Cuno, addressed to the workers of France, Belgium, England, Germany, Czechoslovakia and Italy, and wants to show that they have a common interest that their governments do not.
+
+It is also a test of the new leadership. The Right sees in it the united front on an international scale. The Left sees a stage on which speeches replace action.
+
+- @sign: Sign the joint appeal against Poincare and Cuno.
+- @lower: Send a small delegation and keep our hands free.
+- @stay: Stay away. The conference is a stage for the Comintern.
+
+@sign
+subtitle: Moscow approves, the Left grumbles. · dev: trust +4, workers_kpd +1×m, kf_left_dissent +2
+on-arrival: comintern_trust += 4; workers_kpd += 1*campaign_mult; kf_left_dissent += 2
+go-to: root
+
+The appeal goes out over the signatures of the communist parties of both countries. French and German workers read the same text on the same day, which is more than the governments of either country wish them to. In Berlin the Left says it is a resolution, and resolutions do not stop troops.
+
+@lower
+subtitle: Moscow notes it, nobody is angry. · dev: trust +1
+on-arrival: comintern_trust += 1
+go-to: root
+
+A small delegation attends and reports back. The Comintern gets its photograph and the party gets its freedom of action. No one in the party is very pleased and no one has reason to be very angry.
+
+@stay
+subtitle: Moscow is displeased, the Right is uneasy. · dev: trust −4, kf_right_dissent +3
+on-arrival: comintern_trust -= 4; kf_right_dissent += 3
+go-to: root
+
+The party stays at home. The conference goes ahead without a German delegation worth the name, and the Executive Committee takes note of it. The Right warns that a party which stays away from Moscow's conferences will not have Moscow's confidence when it needs it.

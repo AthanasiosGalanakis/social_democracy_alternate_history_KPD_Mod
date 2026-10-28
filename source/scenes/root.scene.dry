@@ -24,6 +24,8 @@ Q.kpd_mode = 1;
 Q.time = 1;
 Q.year = 1923;
 Q.month = 1;
+// January 1923 runs in weeks (1 to 4): each action moves one week, and the monthly tick comes after week 4
+Q.jan_week = 1;
 // how many actions have been taken this month?
 Q.month_actions = 0;
 

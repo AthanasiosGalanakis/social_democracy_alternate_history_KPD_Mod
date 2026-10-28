@@ -2,12 +2,12 @@ title: The Leipzig congress
 subtitle: The party congress met from 28 January to 1 February.
 new-page: true
 tags: kpd_event
-view-if: year = 1923 and month >= 2 and y23_leipzig_done = 0
+view-if: year = 1923 and (month >= 2 or jan_week >= 4) and y23_leipzig_done = 0
 on-arrival: y23_leipzig_done = 1
 
 = The Eighth Party Congress, Leipzig
 
-The party has met in Leipzig, from the end of January into the first days of February. Heinrich Brandler's Zentrale has the majority and a plan: the united front, the demand for a workers' government, and patient work in the unions and factory councils. In the corridors, Ruth Fischer and Arkadi Maslow speak for a Left that thinks the party is waiting on the SPD leaders for a revolution that those leaders will never carry out.
+The party meets in Leipzig, from the end of January into the first days of February. Heinrich Brandler's Zentrale has the majority and a plan: the united front, the demand for a workers' government, and patient work in the unions and factory councils. In the corridors, Ruth Fischer and Arkadi Maslow speak for a Left that thinks the party is waiting on the SPD leaders for a revolution that those leaders will never carry out.
 
 Both sides have an argument, and the congress has to give one of them the floor.
 

@@ -2,12 +2,12 @@ title: The Ruhr occupation
 subtitle: French and Belgian troops have crossed the Rhine.
 new-page: true
 tags: kpd_event
-view-if: year = 1923 and month >= 1 and y23_ruhr_done = 0
+view-if: year = 1923 and (month >= 2 or jan_week >= 2) and y23_ruhr_done = 0
 on-arrival: y23_ruhr_done = 1
 
 = French troops in the Ruhr
 
-On 11 January French and Belgian troops march into the Ruhr to enforce the reparations deliveries Germany has defaulted on. Chancellor Cuno answers with passive resistance: the miners and railwaymen are told to stop work, and the Ruhr industrialists, who are in no hurry to pay anything, are compensated for their losses out of the printing press. Every day that the strike continues, the mark loses more of its worth.
+On 9 January the Reparations Commission declared Germany in default on its deliveries of coal and timber. On 11 January French and Belgian troops march into the Ruhr to enforce the reparations deliveries Germany has defaulted on. Chancellor Cuno answers with passive resistance: the miners and railwaymen are told to stop work, and the Ruhr industrialists, who are in no hurry to pay anything, are compensated for their losses out of the printing press. Every day that the strike continues, the mark loses more of its worth.
 
 The question for the party is simple to state and hard to answer. A German government that serves the coal and steel barons is calling on workers to defend the nation, and a French government that serves the French coal and steel barons has sent soldiers to take the coal. Both lines are bourgeois. What do we say to the miners?
 

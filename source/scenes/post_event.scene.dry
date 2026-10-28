@@ -136,8 +136,15 @@ Q.front = Math.round(Q.front_u + Q.front_d + Q.front_a + Q.front_k);
 Q.head_mult = (Q.party_line == 'right') ? 1.1 : 1;
 Q.campaign_mult = Q.campaign_mult*Q.head_mult;
 
+// January 1923 runs in weeks: each action moves one week, and the monthly tick only comes after week 4
+if (Q.jan_week > 0 && Q.jan_week < 4 && Q.month_actions >= 1) {
+    Q.jan_week += 1;
+    Q.month_actions = 0;
+}
+
 // 1. update dates
 if (Q.month_actions >= 1) {
+    Q.jan_week = 0;
     Q.time += 1;
     Q.month_actions = 0;
     Q.month += 1;
@@ -615,7 +622,7 @@ if (typeof window !== "undefined" && window.generateBar) {
 !}
 go-to: events_choice if has_event = 1; main if has_event = 0 and (difficulty = 0 or difficulty = 1 or hand_size == 3); main.main_easy if has_event = 0 and (difficulty < 0 or hand_size == 4)
 
-= [+ month : month +] [+ year +]
+= [? if jan_week > 0 : Week [+ jan_week +] of ?][+ month : month +] [+ year +]
 
 @events_choice
 
