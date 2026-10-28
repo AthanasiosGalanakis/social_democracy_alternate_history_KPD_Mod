@@ -1,0 +1,51 @@
+title: The Left: advisers
+is-pinned-card: true
+tags: advisor
+view-if: kf_left_strength > 0
+new-page: true
+
+= The Left: advisers
+
+The Left is the party of Berlin, Hamburg and the Ruhr, impatient for the offensive: Fischer who agitates, Maslow who organises, Thälmann who drills the Hamburg fighters, Scholem who writes against the SPD leaders. Each can act once every three months. A faction that is not consulted for six months while it still has real strength grows angry.
+
+- @fischer
+- @maslow
+- @thaelmann
+- @scholem
+- @root: Return to main
+
+@fischer
+title: Ruth Fischer: mobilise Berlin
+subtitle: Meetings and mass demonstrations. · dev: kf_left_strength +6, kf_right_dissent +4, adv_left_last = time
+unavailable-subtitle: [? if fischer_timer > 0 : [+ fischer_timer +] months before Fischer can act again. ?]
+choose-if: fischer_timer = 0
+on-arrival: fischer_timer = 3; kf_left_strength += 6; kf_right_dissent += 4; adv_left_last = time
+
+Fischer fills the Berlin halls and speaks for the offensive. The crowds are loud and the Left grows. The Right asks quietly what the party is doing with all that noise.
+
+@maslow
+title: Arkadi Maslow: organise the districts
+subtitle: Set the Left's cadres in the districts. · dev: kf_left_dissent −5, kf_left_strength +3, adv_left_last = time
+unavailable-subtitle: [? if maslow_timer > 0 : [+ maslow_timer +] months before Maslow can act again. ?]
+choose-if: maslow_timer = 0
+on-arrival: maslow_timer = 3; kf_left_dissent -= 5; kf_left_strength += 3; adv_left_last = time
+
+Maslow organises the Left in the districts where Berlin has never been listened to, and gives them tasks. A Left with something to do is quieter than a Left with nothing.
+
+@thaelmann
+title: Ernst Thälmann: train the Hamburg fighters
+subtitle: Drill the defence units. · dev: rfb_strength +15, kf_left_strength +3, adv_left_last = time
+unavailable-subtitle: [? if thaelmann_timer > 0 : [+ thaelmann_timer +] months before Thälmann can act again. ?]
+choose-if: thaelmann_timer = 0
+on-arrival: thaelmann_timer = 3; rfb_strength += 15; kf_left_strength += 3; adv_left_last = time
+
+Thälmann's Hamburg organisation grows. The defence units drill, and the police take note.
+
+@scholem
+title: Werner Scholem: write against the SPD leaders
+subtitle: A pamphlet and a series of articles. · dev: kf_left_strength +4, workers_spd −2, kf_centre_dissent +2, adv_left_last = time
+unavailable-subtitle: [? if scholem_timer > 0 : [+ scholem_timer +] months before Scholem can act again. ?]
+choose-if: scholem_timer = 0
+on-arrival: scholem_timer = 3; kf_left_strength += 4; workers_spd -= 2; kf_centre_dissent += 2; adv_left_last = time
+
+Scholem writes the party's case against the SPD leaders, as sharply as he can. Some SPD workers are won over and many are offended, and the Centre, who would like to keep the united front, flinches.

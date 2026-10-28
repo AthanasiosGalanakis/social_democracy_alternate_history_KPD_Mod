@@ -98,8 +98,6 @@ Left strength: [+ kf_left_strength : strength +], dissent: [+ kf_left_dissent : 
 
 Centre strength: [+ kf_centre_strength : strength +], dissent: [+ kf_centre_dissent : dissent +]
 
-Seats in the leadership: Right [+ seats_right +], Centre [+ seats_centre +], Left [+ seats_left +]
-
 Dollar rate: [+ usd_rate +] marks.
 
 Moscow: [+ moscow_leader +] (line: [+ comintern_line +], favours [+ moscow_favored +]), trust [+ comintern_trust +], balance [+ moscow_balance_r +], subsidy [+ soviet_subsidy +], displeasure tier [+ moscow_tier +] of 4
@@ -113,6 +111,7 @@ Q.dv_trust = r(Q.comintern_trust);
 Q.dv_bal = r(Q.moscow_balance);
 Q.dv_mult = Math.round(Q.campaign_mult*1000)/1000;
 Q.dv_kfd = r(Q.kf_dissent_percent);
+Q.dv_lr = Q.time - Q.adv_right_last; Q.dv_lc = Q.time - Q.adv_centre_last; Q.dv_ll = Q.time - Q.adv_left_last;
 Q.dv_rs = r(Q.kf_right_strength); Q.dv_rd = r(Q.kf_right_dissent);
 Q.dv_ls = r(Q.kf_left_strength); Q.dv_ld = r(Q.kf_left_dissent);
 Q.dv_cs = r(Q.kf_centre_strength); Q.dv_cd = r(Q.kf_centre_dissent);
@@ -135,7 +134,7 @@ Month [+ month +] [+ year +], time [+ time +]. Resources [+ resources +], dues [
 
 **Factions** (strength / dissent)
 
-Right [+ dv_rs +] / [+ dv_rd +]. Left [+ dv_ls +] / [+ dv_ld +]. Centre [+ dv_cs +] / [+ dv_cd +]. Party line: [+ party_line +], [+ party_line_months +] months. Leadership seats: Right [+ seats_right +], Centre [+ seats_centre +], Left [+ seats_left +]. Demand cooldowns (months): Right [+ demand_right_timer +], Centre [+ demand_centre_timer +], Left [+ demand_left_timer +].
+Right [+ dv_rs +] / [+ dv_rd +]. Left [+ dv_ls +] / [+ dv_ld +]. Centre [+ dv_cs +] / [+ dv_cd +]. Party line: [+ party_line +], [+ party_line_months +] months. Head of party buff: ×[+ head_mult +]. Months since adviser card used: Right [+ dv_lr +], Centre [+ dv_lc +], Left [+ dv_ll +]. Demand cooldowns (months): Right [+ demand_right_timer +], Centre [+ demand_centre_timer +], Left [+ demand_left_timer +].
 
 **Moscow**
 

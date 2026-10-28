@@ -1,0 +1,51 @@
+title: The Right: advisers
+is-pinned-card: true
+tags: advisor
+view-if: kf_right_strength > 0
+new-page: true
+
+= The Right: advisers
+
+The Right is the party of the districts and the unions: Thalheimer who thinks, Walcher who knows the factories, Radek who speaks for Moscow, Heckert who sits in the Saxon government. Each can act once every three months. A faction that is not consulted for six months while it still has real strength grows angry.
+
+- @thalheimer
+- @walcher
+- @radek
+- @heckert
+- @root: Return to main
+
+@thalheimer
+title: August Thalheimer: analyse the crisis
+subtitle: A theoretical report on the situation. · dev: kf_right_strength +4, kf_centre_dissent −3, adv_right_last = time
+unavailable-subtitle: [? if thalheimer_timer > 0 : [+ thalheimer_timer +] months before Thalheimer can act again. ?]
+choose-if: thalheimer_timer = 0
+on-arrival: thalheimer_timer = 3; kf_right_strength += 4; kf_centre_dissent -= 3; adv_right_last = time
+
+Thalheimer writes the party its analysis: a crisis of the whole bourgeois order, and a party that must not mistake it for the revolution itself. The Centre, tired of slogans, is glad of a text.
+
+@walcher
+title: Jacob Walcher: win the unions
+subtitle: Fractions in the factory councils and unions. · dev: workers_kpd +3×m, kf_right_strength +3, adv_right_last = time
+unavailable-subtitle: [? if walcher_timer > 0 : [+ walcher_timer +] months before Walcher can act again. ?]
+choose-if: walcher_timer = 0
+on-arrival: walcher_timer = 3; workers_kpd += 3*campaign_mult; kf_right_strength += 3; adv_right_last = time
+
+Walcher knows the works councils and the metalworkers' branches, and the party's fractions are told to stay inside the unions and fight there. It is slow work, and it is the work that wins majorities.
+
+@radek
+title: Karl Radek: ask what Moscow thinks
+subtitle: A letter to the Executive. · dev: trust +6, kf_right_strength +4, kf_left_dissent +3, adv_right_last = time
+unavailable-subtitle: [? if radek_timer > 0 : [+ radek_timer +] months before Radek can act again. ?]
+choose-if: radek_timer = 0
+on-arrival: radek_timer = 3; comintern_trust += 6; kf_right_strength += 4; kf_left_dissent += 3; adv_right_last = time
+
+Radek writes to Moscow, in his own style, and tells Zinoviev what the Zentrale wishes to hear and the Executive wishes to be told. The Right is pleased that its case has a voice in Moscow. The Left suspects that Radek is saving himself.
+
+@heckert
+title: Fritz Heckert: work with the Saxon ministers
+subtitle: A government of workers in Dresden. · dev: y23_unity +1, kf_left_dissent +2, workers_kpd +1×m, adv_right_last = time
+unavailable-subtitle: [? if heckert_timer > 0 : [+ heckert_timer +] months before Heckert can act again. ?]
+choose-if: heckert_timer = 0
+on-arrival: heckert_timer = 3; y23_unity += 1; kf_left_dissent += 2; workers_kpd += 1*campaign_mult; adv_right_last = time
+
+Heckert, who will be a minister if there is a workers' government, works with the SPD ministers in Dresden on the control committees and the proletarian hundreds. It is concrete work and the Left calls it ministerialism.
