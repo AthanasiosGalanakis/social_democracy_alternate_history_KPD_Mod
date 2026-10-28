@@ -1,0 +1,133 @@
+title: A sealed envelope
+subtitle: Zetkin has heard of papers that Moscow would like to keep shut.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 4 and test_stage = 0 and civil_war = 0
+
+= A letter from Clara Zetkin
+
+In April a letter reaches the Zentrale by a route that avoids the Comintern's post. It is from Clara Zetkin, who has known the Russian leaders since before the war and who is shown, to her own discomfort, a great deal that she is not supposed to tell us. Lenin has not spoken since his third stroke in March. In the last weeks before it he dictated notes to his secretaries about the future of the Russian party. They were sealed, and they lie with his wife, Nadezhda Krupskaya, who is to give them to a congress of the party after his death. In the Politburo they are known only to a few, and some of the few have an interest in keeping them in the envelope.
+
+Zetkin writes that the notes are about the leaders, and that one of them is not spared. She does not say who. She says only that an old communist who believes the party's fate should not be settled by a secretary's office might think the German party the right place for a copy to be read, and she asks us to decide if we want one.
+
+It is an unusual thing, a foreign party being asked to hold a secret of the Russian one. It would make us a party to the fight over Lenin's succession, which we have so far watched from the other side of a frontier. It would also be a form of trust: nobody offers such a paper to a party that cannot be relied on to keep silent.
+
+- @ask: Ask Zetkin to send a courier.
+- @decline: Decline. The Russian party's quarrels are not ours.
+
+@decline
+subtitle: Trust +3, Centre +2 strength. The chain ends here. · dev: test_stage = 9, trust +3, kf_centre_strength +2
+on-arrival: test_stage = 9; comintern_trust += 3; kf_centre_strength += 2
+go-to: root
+
+We write back that the German party asks nothing of the Russian party that the Russian party does not wish to tell it. Zetkin accepts the answer with a short note that is not unfriendly. The Centre, which wants nothing to do with the fight in Moscow, is relieved. The envelope stays with Krupskaya, and whatever it says will be read, if it is read, by others.
+
+@ask
+subtitle: Zetkin's courier will come. · dev: test_stage = 1
+on-arrival: test_stage = 1
+go-to: copy
+
+@copy
+title: Lenin's last notes
+subtitle: A copy has arrived.
+
+= What the notes say
+
+The courier comes at night with a small packet. It contains copies, in a secretary's hand, of what Lenin dictated in the last weeks of December 1922 and the first days of January 1923. We read them in the Zentrale with the shutters closed.
+
+The first part is a letter to the next party congress. Lenin proposes to enlarge the Central Committee from its present number to fifty or a hundred, so that the party is no longer governed by a handful of men whose quarrels can split it. He says that the two most capable men in the committee, Stalin and Trotsky, are a danger to its unity. Then he describes them, the one after the other. Stalin, having become General Secretary, has concentrated an enormous power in his hands, and Lenin is not sure that he always knows how to use that power with sufficient caution. Trotsky is perhaps the most capable man in the committee, but too sure of himself, and too taken with the administrative side of things. Zinoviev and Kamenev's stand in October 1917 was not an accident. Bukharin is the party's most valuable theorist, but his views can only with great doubt be called fully Marxist.
+
+The second part is a postscript dated 4 January. Stalin, it says, is too rude. This is tolerable among us communists, and it becomes intolerable in a General Secretary. Lenin proposes that the comrades think of a way to remove Stalin from that post and put in his place a man who is more patient, more loyal, more polite and more considerate to his comrades, less capricious. A third paper, on the question of the nationalities, attacks Stalin, Ordzhonikidze and Dzerzhinsky for the "Great-Russian chauvinism" with which they have treated the Georgian communists.
+
+It is not a programme and it is not a verdict. A man who is dying, and who knows it, is trying to arrange his party's affairs while there is still time. The names in it are the names of the men who will decide the future of the International, and the German party's fortunes will depend on them. The Zentrale has to say what is to be done with a copy of it.
+
+- @council: Call the leadership together.
+
+@council
+title: What the Zentrale decides
+subtitle: Four ways to use a dead man's warning.
+
+= The Zentrale decides
+
+The leadership meets that night in a back room. It does not take long to see how the factions would use it.
+
+Brandler and Thalheimer, who think the party's strength lies in its workers and not in the corridors of the Comintern, would prefer to find a friend among the Russian leaders who thinks as they do. Bukharin is such a man, and so is Rykov, who chairs the Soviet government and looks after the peasants and the market. The Right's old Russian friends would be the stronger for the paper.
+
+The Left, under Fischer and Maslow, would like to be the first to use it, and the people they would use it for are Trotsky and Radek, the ones in the Politburo who still talk of the German revolution as an urgent matter. Thälmann, who is loyal to the secretary's office because it has been loyal to him, is silent and angry. Zetkin's letter had said that a copy might be read here. It had not said what should be done afterwards.
+
+Moscow's response will depend on the choice. The Russian leaders cannot see us decide, but they will know what we did.
+
+- @left: Pass it to Radek and the Left Opposition in Moscow.
+- @right: Pass it to Bukharin, Rykov and the defenders of the NEP.
+- @publish: Print extracts in the party press.
+- @hold: Keep the copy in the safe and say nothing.
+
+@left
+subtitle: Radek's channel. Costs 1 resource. The Left Opposition in Moscow gains massively. Left +12 strength, Right +8 dissent, trust −5.
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: {!
+Q.resources -= 1;
+Q.testament_path = 1;
+Q.test_stage = 2;
+Q.moscow_balance = Math.max(-100, Q.moscow_balance - 30);
+Q.moscow_drift = 0;
+Q.comintern_trust -= 5;
+Q.kf_left_strength += 12;
+Q.kf_right_dissent += 8;
+!}
+go-to: root
+
+A courier takes a copy to Radek, who has been the party's friend in the Comintern and Trotsky's in the Politburo. It is put in the right hands within a week. Radek reads it twice and says only that it must be used at the right time, and not by him.
+
+Within days the Left Opposition in Moscow has a weapon. The balance in the Russian party tips by thirty points against the secretaries, and the drift that had been carrying it toward Stalin stops. Our own Left, which takes the credit, grows by twelve points of strength, and Brandler's wing does not forgive us for having thrown a lighted match into the Russian party without asking it first.
+
+@right
+subtitle: Bukharin's channel. Needs trust of 40. The Right Opposition in Moscow gains massively. Right +12 strength, Left +10 dissent, trust −5.
+choose-if: comintern_trust >= 40
+unavailable-subtitle: Moscow has to trust us enough for Bukharin to receive our messenger (trust 40).
+on-arrival: {!
+Q.testament_path = 2;
+Q.test_stage = 2;
+Q.moscow_balance = Math.max(-100, Q.moscow_balance - 18);
+Q.moscow_drift = 0;
+Q.comintern_trust -= 5;
+Q.kf_right_strength += 12;
+Q.kf_left_dissent += 10;
+!}
+go-to: root
+
+Brandler's channel runs through Bukharin, who is the Right's friend and the party's theorist, and through Rykov and Tomsky, who run the state and the trade unions. They have their own reasons not to want a Secretariat that governs the party by its appointments, and a dead man's opinion is useful to them.
+
+The balance in the Russian party slides by eighteen points, and its drift toward Stalin stops. Our own Right gains twelve points of strength, because it can now claim the friendship of the men who will matter, and the Left, which would have used the paper for a different man, is angrier by ten.
+
+@publish
+subtitle: A public break. Trust −20, Stalin loses ground, both oppositions gain. Left and Right +6 strength, Centre −10 strength and +10 dissent.
+on-arrival: {!
+Q.testament_path = 3;
+Q.test_stage = 2;
+Q.moscow_balance = Math.max(-100, Q.moscow_balance - 25);
+Q.moscow_drift = 0;
+Q.comintern_trust -= 20;
+Q.kf_left_strength += 6;
+Q.kf_right_strength += 6;
+Q.kf_centre_strength -= 10;
+Q.kf_centre_dissent += 10;
+!}
+go-to: root
+
+Extracts go to the party's press on a Sunday, under a headline that does not name the man they are about. By Monday the other papers have them as well, and the SPD's Vorwärts prints them next to an article about the dictatorship inside the Russian party. The men whose names are on the paper read it in the German papers.
+
+The Centre, loyal to the secretariat that has been loyal to it, is dismayed, and loses ten points of strength and gains ten of dissent. Both oppositions, in Berlin as in Moscow, take heart, and the balance in the Russian party moves by twenty-five points against the secretaries. Moscow does not take it quietly, and our standing with the Comintern falls by twenty.
+
+@hold
+subtitle: Trust +3, Centre +2 strength. The paper stays in reserve.
+on-arrival: {!
+Q.testament_path = 4;
+Q.test_stage = 2;
+Q.comintern_trust += 3;
+Q.kf_centre_strength += 2;
+!}
+go-to: root
+
+The copy is locked in the safe of a party that has decided to say nothing. It is a prudent choice and Moscow, when it hears of it, will be glad. It is also a choice to have been trusted with a paper and to have used it for nothing: what the letter says will be said, if at all, by someone else, at a time and in a way that suits them.

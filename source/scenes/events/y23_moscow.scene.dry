@@ -3,11 +3,20 @@ subtitle: The Russian Politburo wants a German October.
 new-page: true
 tags: kpd_event
 view-if: year = 1923 and month = 9 and y23_moscow_done = 0
-on-arrival: y23_moscow_done = 1
+on-arrival: {!
+Q.y23_moscow_done = 1;
+Q.tm_left = (Q.y23_stalin_removed == 1 && Q.testament_path == 1) ? 1 : 0;
+Q.tm_right = (Q.y23_stalin_removed == 1 && Q.testament_path == 2) ? 1 : 0;
+Q.tm_weak = (Q.y23_stalin_cornered == 1 && Q.y23_stalin_removed == 0) ? 1 : 0;
+!}
 
 = Moscow decides
 
 The fall of Cuno, the inflation and the occupation have convinced the Russian leaders that a revolutionary situation exists in Germany. In Moscow the Politburo discusses a date. At a secret meeting on 23 August Radek presses for an aggressive course and Stalin is sceptical; Zinoviev has already told the KPD to prepare, and Trotsky agrees. In September Brandler is summoned to Moscow, where Trotsky insists on a date in November. Brandler, who had doubted that the moment had come, wins only the right to settle the final day himself. A committee of Radek, Józef Unszlicht, Vasily Schmidt and Georgy Pyatakov is to be sent to Germany under false names, and the Soviet embassy holds some 400,000 dollars for the cause.
+
+[? if tm_left = 1 : With Stalin gone from the Secretariat, nobody in Moscow is left to say that Germany is not ready. Trotsky and Radek lead the International, and they have set the date. ?]
+[? if tm_right = 1 : With Stalin gone from the Secretariat, it is Bukharin and Rykov who decide, and they do not want an adventure. The plan for a German October survives only as a contingency, and Moscow asks Brandler for an honest report. ?]
+[? if tm_weak = 1 : Stalin's sceptical voice is still heard, but with his own position in doubt the Politburo does not listen to it. ?]
 
 It is a strange situation: a revolution in Germany is being planned in a foreign capital, by men who have never organised a German workers' strike. This is no insult to their intelligence, but it is a fact about their knowledge.
 
