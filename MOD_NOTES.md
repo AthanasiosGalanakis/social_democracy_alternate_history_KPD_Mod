@@ -109,3 +109,6 @@ The title screen has Start game, Credits and Achievements only. The election sim
 - Trust no longer blocks anything. Entering the Saxon cabinet with trust under 50 costs 15 trust (Moscow is furious); with 50 or more it gains 5. Listening to Moscow still raises trust.
 - The October readiness mechanic is gone. The Chemnitz event stays, without numbers. The general strike holds if at least two joint actions with the SPD left were taken (y23_unity >= 2). Interim rule, to be revisited.
 - Dev site: a "Dev" sidebar tab shows the numbers behind the game, and every choice shows its numeric effects after " · dev: " in its subtitle. `python3 tools/dev_effects.py` refreshes those suffixes after any edit, and `--strip` removes them for a release.
+
+## Three factions (28 October)
+The Moscow apparatus is no longer a faction. The party has Right (45 strength, 5 dissent), Centre (25, 5) and Left (30, 20). Moscow acts through trust, the balance of power and the penalty tiers. A letter or a cut subsidy now strengthens the faction Moscow favours. Stalin alone favours the Centre. Radek counts as Right and Eberlein as Centre. Shelved content still mentions the apparatus and must be adapted when it returns.

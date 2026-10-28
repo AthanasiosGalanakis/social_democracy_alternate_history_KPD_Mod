@@ -82,16 +82,14 @@ Q.neorevisionist_dissent = 10;
 // KPD factions (kf_ prefix keeps them separate from the SPD faction variables above while the SPD game is being converted).
 // Strength and dissent values are placeholders until the 1923 research is checked.
 // party_line is the faction whose line currently runs the party. At the start Brandler's right holds it.
-Q.kpd_factions = ['right', 'left', 'centre', 'apparatus'];
+Q.kpd_factions = ['right', 'centre', 'left'];
 Q.party_line = 'right';
-Q.kf_right_strength = 40;
+Q.kf_right_strength = 45;
 Q.kf_right_dissent = 5;
 Q.kf_left_strength = 30;
 Q.kf_left_dissent = 20;
-Q.kf_centre_strength = 15;
+Q.kf_centre_strength = 25;
 Q.kf_centre_dissent = 5;
-Q.kf_apparatus_strength = 15;
-Q.kf_apparatus_dissent = 5;
 // factions that appear later in the game (see the design proposal): flags are set by events.
 Q.kf_conciliators_active = 0;
 Q.kf_leninbund_active = 0;

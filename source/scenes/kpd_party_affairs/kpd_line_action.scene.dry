@@ -20,8 +20,6 @@ The party line is only words until someone does the work. What does the leadersh
 - @left_strike: Call an offensive strike wave.
 - @centre_unemployed: Organise councils of the unemployed.
 - @centre_unions: Build KPD fractions in the free trade unions.
-- @apparatus_cells: Reorganise the local branches into factory cells.
-- @apparatus_report: Send a full report to the Comintern's executive.
 - @conciliators_mass: Rebuild mass work in the unions and the factory councils.
 - @conciliators_moscow: Argue the German case in Moscow, quietly.
 - @root: Not this month.
@@ -81,19 +79,7 @@ on-arrival: resources -= 1; workers_kpd += 3*campaign_mult; kf_left_dissent += 2
 
 Our members in the free unions form fractions and begin to win local posts. The union bureaucracy answers with expulsions, and the Left complains that this is slow, patient work.
 
-@apparatus_cells
-view-if: party_line = "apparatus"
-subtitle: No cost. · dev: kf_apparatus_strength +3, kf_centre_dissent +3, workers_kpd −1
-on-arrival: kf_apparatus_strength += 3; kf_centre_dissent += 3; workers_kpd -= 1
 
-The old residence-based branches are broken up and replaced by cells in the factories. Discipline improves; some of the older members, who liked arguing about politics, feel the party is no longer theirs.
-
-@apparatus_report
-view-if: party_line = "apparatus"
-subtitle: No cost. · dev: trust +4
-on-arrival: comintern_trust += 4
-
-A full report goes to Moscow. It is welcomed, and it is also exactly what the Comintern's leaders want to hear: the more complete the report, the more they believe they understand German conditions from a distance.
 
 @conciliators_mass
 view-if: party_line = "conciliators"
@@ -106,7 +92,7 @@ The party returns to the work that the offensive had neglected: union fractions,
 
 @conciliators_moscow
 view-if: party_line = "conciliators"
-subtitle: No cost. · dev: trust +3, kf_apparatus_dissent +3
-on-arrival: comintern_trust += 3; kf_apparatus_dissent += 3
+subtitle: No cost. · dev: trust +3, kf_centre_dissent +3
+on-arrival: comintern_trust += 3; kf_centre_dissent += 3
 
 Our delegates tell the Comintern's officials that the party's mass base is shrinking, in language chosen not to sound like criticism. Moscow notes the facts and the manner, and the apparatus resents it.

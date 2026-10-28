@@ -5,7 +5,7 @@ tags: kpd_event
 view-if: moscow_change_pending = 1
 on-arrival: {!
 Q.moscow_change_pending = 0;
-var names = {right: 'the Right', left: 'the Left', centre: 'the Centre', apparatus: 'the Moscow apparatus', conciliators: 'the Conciliators'};
+var names = {right: 'the Right', left: 'the Left', centre: 'the Centre', conciliators: 'the Conciliators'};
 Q.mc_fav_name = names[Q.moscow_favored];
 Q.mc_aligned = (Q.party_line == Q.moscow_favored) ? 1 : 0;
 if (Q.mc_aligned) { Q.comintern_trust += 5; } else { Q.comintern_trust -= 5; }

@@ -25,9 +25,9 @@ on-arrival: resources += dues;
 We maintain our current dues.
 
 @reduce
-subtitle: [+ dues - 1 +] resources gained. · dev: dues −1, resources +dues, kf_right_dissent −8, kf_left_dissent −8, kf_centre_dissent −8, kf_apparatus_dissent −8
+subtitle: [+ dues - 1 +] resources gained. · dev: dues −1, resources +dues, kf_right_dissent −8, kf_left_dissent −8, kf_centre_dissent −8
 choose-if: dues > 1
-on-arrival: dues -= 1; resources += dues; kf_right_dissent -= 8; kf_left_dissent -= 8; kf_centre_dissent -= 8; kf_apparatus_dissent -= 8
+on-arrival: dues -= 1; resources += dues; kf_right_dissent -= 8; kf_left_dissent -= 8; kf_centre_dissent -= 8
 
 Our members, many of them unemployed, appreciate this, but no one joins a party because of low dues.
 

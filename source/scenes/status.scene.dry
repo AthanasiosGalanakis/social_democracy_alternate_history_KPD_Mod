@@ -98,8 +98,6 @@ Left strength: [+ kf_left_strength : strength +], dissent: [+ kf_left_dissent : 
 
 Centre strength: [+ kf_centre_strength : strength +], dissent: [+ kf_centre_dissent : dissent +]
 
-Moscow apparatus strength: [+ kf_apparatus_strength : strength +], dissent: [+ kf_apparatus_dissent : dissent +]
-
 Dollar rate: [+ usd_rate +] marks.
 
 Moscow: [+ moscow_leader +] (line: [+ comintern_line +], favours [+ moscow_favored +]), trust [+ comintern_trust +], balance [+ moscow_balance_r +], subsidy [+ soviet_subsidy +], displeasure tier [+ moscow_tier +] of 4
@@ -116,7 +114,6 @@ Q.dv_kfd = r(Q.kf_dissent_percent);
 Q.dv_rs = r(Q.kf_right_strength); Q.dv_rd = r(Q.kf_right_dissent);
 Q.dv_ls = r(Q.kf_left_strength); Q.dv_ld = r(Q.kf_left_dissent);
 Q.dv_cs = r(Q.kf_centre_strength); Q.dv_cd = r(Q.kf_centre_dissent);
-Q.dv_as = r(Q.kf_apparatus_strength); Q.dv_ad = r(Q.kf_apparatus_dissent);
 Q.dv_tiermult = Q.moscow_tier >= 4 ? 0.8 : (Q.moscow_tier >= 3 ? 0.9 : 1);
 Q.dv_ban = Q.kpd_banned ? 0.5 : 1;
 Q.dv_zig = Math.round((1 - 0.04*Q.zigzag)*100)/100;
@@ -136,7 +133,7 @@ Month [+ month +] [+ year +], time [+ time +]. Resources [+ resources +], dues [
 
 **Factions** (strength / dissent)
 
-Right [+ dv_rs +] / [+ dv_rd +]. Left [+ dv_ls +] / [+ dv_ld +]. Centre [+ dv_cs +] / [+ dv_cd +]. Moscow apparatus [+ dv_as +] / [+ dv_ad +]. Party line: [+ party_line +], [+ party_line_months +] months.
+Right [+ dv_rs +] / [+ dv_rd +]. Left [+ dv_ls +] / [+ dv_ld +]. Centre [+ dv_cs +] / [+ dv_cd +]. Party line: [+ party_line +], [+ party_line_months +] months.
 
 **Moscow**
 
