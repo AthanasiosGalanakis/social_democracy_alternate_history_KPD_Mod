@@ -1,5 +1,5 @@
 title: The Essen conference
-subtitle: The Comintern calls the parties to Essen on 6 and 7 January.
+subtitle: The Comintern's conference against the war danger meets on 6 and 7 January.
 new-page: true
 tags: kpd_event
 view-if: year = 1923 and month = 1 and jan_week = 1 and y23_essen_done = 0
@@ -7,7 +7,7 @@ on-arrival: y23_essen_done = 1
 
 = Essen, 6 and 7 January
 
-French troops are massing on the Rhine, and Moscow has called the communist parties of Germany, France, Czechoslovakia and Britain, with delegates from the unions, to a conference in Essen. The Comintern wants a joint appeal against Poincare and against Cuno, and wants to show that the workers of both countries have an interest in each other's quarrels that their governments do not.
+French troops are massing on the Rhine, and The Comintern has called the key European communist parties, among them the French delegates Cachin and Treint and the French red trade unionist Monmousseau, to a conference in Essen on the threatening war danger. It wants a joint appeal against Poincare and against Cuno, and wants to show that the workers of both countries have a common interest that their governments do not.
 
 It is also a test of the new leadership. The Right sees in it the united front on an international scale. The Left sees a stage on which speeches replace action.
 
