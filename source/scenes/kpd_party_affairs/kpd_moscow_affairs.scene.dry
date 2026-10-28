@@ -17,8 +17,18 @@ Moscow's balance of power runs from -100 (the Left Opposition) to +100 (Stalin) 
 - @back_opposition: Lobby the delegates for the Left Opposition.
 - @back_apparatus: Lobby the delegates for the Party Secretariat.
 - @report_loyal: Send a full and obedient report instead.
+- @radek_brief: Ask Radek to present the German case to the Executive.
 - @root: Not this month.
 - @easy_discard
+
+@radek_brief
+view-if: radek_advisor = 1
+choose-if: resources >= 1
+subtitle: Radek is in the leadership. · dev: resources −1, trust +5, moscow_balance −4
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; comintern_trust += 5; moscow_balance -= 4
+
+Radek has Zinoviev's ear and Trotsky's friendship, and he uses both. The Executive hears the German case from a man it respects, and the Left Opposition hears it too.
 
 @back_opposition
 choose-if: resources >= 2

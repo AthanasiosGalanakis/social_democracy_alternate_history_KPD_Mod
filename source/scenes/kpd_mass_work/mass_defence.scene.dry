@@ -15,8 +15,17 @@ on-arrival: month_actions += 1; mass_defence_timer = 3
 - @drill: Drill and arm the units.
 - @discipline: Stress discipline: parades, uniforms and defence of meetings only.
 - @joint: Propose joint defence with the Reichsbanner locals.
+- @hamburg: Send Thälmann's Hamburg men to train the units.
 - @root: Not this month.
 - @easy_discard
+
+@hamburg
+view-if: thaelmann_advisor = 1
+subtitle: Thälmann is in the leadership. · dev: y23_hundreds +2, rfb_strength +30, kf_left_strength +2
+on-arrival: y23_hundreds += 2; rfb_strength += 30; kf_left_strength += 2
+go-to: root
+
+Thälmann sends dockers from the Hamburg organisation to the other districts. They know how to drill a unit and how to hide its arms, and the Left is pleased to see its methods spread.
 
 @drill
 choose-if: resources >= 1

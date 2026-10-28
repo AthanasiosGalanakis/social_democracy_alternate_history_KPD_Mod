@@ -15,17 +15,17 @@ Fischer is the leader of the Berlin organization and of the party's left. Born i
 @berlin
 title: Mobilize Berlin
 subtitle: Mobilize the Berlin organization behind the Left. · dev: kf_left_strength +6, kf_right_dissent +4
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 4; kf_left_strength += 6; kf_right_dissent += 4
+unavailable-subtitle: [? if fischer_timer > 0 : [+ fischer_timer +] months before this adviser can act again. ?]
+choose-if: fischer_timer = 0
+on-arrival: fischer_timer = 3; kf_left_strength += 6; kf_right_dissent += 4
 
 Fischer's Berlin organization turns out in thousands. The Left shows its strength, and the leadership is reminded that it does not control the capital's party.
 
 @offensive
 title: Push the offensive
 subtitle: Argue that the crisis is the hour of the revolution. · dev: workers_spd −1
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 4; workers_spd -= 1
+unavailable-subtitle: [? if fischer_timer > 0 : [+ fischer_timer +] months before this adviser can act again. ?]
+choose-if: fischer_timer = 0
+on-arrival: fischer_timer = 3; workers_spd -= 1
 
 Fischer calls every crisis the revolution's hour. The enthusiasm is real, and so is the risk of calling a strike no one else will join.

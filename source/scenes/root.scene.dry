@@ -517,11 +517,27 @@ Q.eberlein_advisor = 1;
 // timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.
 // let's just put all of the timers here...
 // most party affairs and government affairs cards are on a timer.
-Q.timers = ['advisor_action', 'fundraising', 'shuffle_leadership',
+Q.timers = ['brandler', 'thalheimer', 'walcher', 'radek', 'pieck', 'meyer', 'zetkin', 'eberlein', 'fischer', 'maslow', 'thaelmann',
+            'demand_right', 'demand_centre', 'demand_left', 'fundraising', 'shuffle_leadership',
             'line_change', 'line_action', 'moscow_action', 'state_gov',
             'mass_strikes', 'mass_unemployed', 'mass_relief', 'mass_press', 'mass_defence', 'mass_parliament', 'mass_underground', 'mass_antifa',
             'understanding_enemy'];
-Q.advisor_action_timer = 0;
+// each adviser has their own cooldown, in months
+Q.brandler_timer = 0;
+Q.thalheimer_timer = 0;
+Q.walcher_timer = 0;
+Q.radek_timer = 0;
+Q.pieck_timer = 0;
+Q.meyer_timer = 0;
+Q.zetkin_timer = 0;
+Q.eberlein_timer = 0;
+Q.fischer_timer = 0;
+Q.maslow_timer = 0;
+Q.thaelmann_timer = 0;
+// factional demands: which faction is waiting to be heard, and cooldowns after one was answered
+Q.demand_f = 'none';
+Q.demand_right_timer = 0; Q.demand_centre_timer = 0; Q.demand_left_timer = 0;
+Q.seats_right = 0; Q.seats_centre = 0; Q.seats_left = 0;
 // party affairs timers
 Q.fundraising_timer = 0;
 Q.shuffle_leadership_timer = 0;

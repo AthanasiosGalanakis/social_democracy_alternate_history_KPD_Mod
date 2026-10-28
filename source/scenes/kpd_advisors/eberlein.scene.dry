@@ -15,17 +15,17 @@ Eberlein is a veteran Spartacist who handles the party's finances and its illega
 @illegal_work
 title: Prepare the illegal apparatus
 subtitle: Build the party's secret organization. · dev: kf_centre_strength +2
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 4; kf_centre_strength += 2
+unavailable-subtitle: [? if eberlein_timer > 0 : [+ eberlein_timer +] months before this adviser can act again. ?]
+choose-if: eberlein_timer = 0
+on-arrival: eberlein_timer = 3; kf_centre_strength += 2
 
 Eberlein builds a parallel apparatus that can work if the party is banned. It is also an organization that answers to a handful of people, not to the membership.
 
 @accounts
 title: Submit the accounts to the Comintern
 subtitle: Open our books to Moscow. · dev: trust +3, resources +1
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 4; comintern_trust += 3; resources += 1
+unavailable-subtitle: [? if eberlein_timer > 0 : [+ eberlein_timer +] months before this adviser can act again. ?]
+choose-if: eberlein_timer = 0
+on-arrival: eberlein_timer = 3; comintern_trust += 3; resources += 1
 
 The accounts go to Moscow. Trust rises, and so does the Comintern's sense that it has a right to look.

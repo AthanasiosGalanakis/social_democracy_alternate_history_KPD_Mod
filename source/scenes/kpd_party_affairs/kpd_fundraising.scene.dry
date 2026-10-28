@@ -16,7 +16,15 @@ The party cannot exist without money, and in the inflation the dues are worth le
 - @maintain: Maintain our current dues.
 - @reduce: Reduce dues.
 - @increase: Increase dues.
+- @arrears: Collect arrears district by district, as Pieck proposes.
 - @easy_discard
+
+@arrears
+view-if: pieck_advisor = 1
+subtitle: Pieck is in the leadership. · dev: resources +dues, resources +1
+on-arrival: resources += dues; resources += 1
+
+Pieck goes through the books and the districts, and finds money that nobody had asked for in months. The comrades grumble at being asked, and pay.
 
 @maintain
 subtitle: [+ dues +] resources gained. · dev: resources +dues

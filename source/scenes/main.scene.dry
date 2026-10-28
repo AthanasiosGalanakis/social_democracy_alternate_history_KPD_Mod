@@ -2,13 +2,15 @@ title: Next month
 set-bg: img/map_2.jpg
 is-hand: true
 on-arrival: {!
-if (Q.advisor_action_timer <= 0) {
-    Q.pinnedCardsDescription = 'Advisors - an action is available.';
-} else if (Q.advisor_action_timer == 1) {
-    Q.pinnedCardsDescription = 'Advisors - next action available in 1 month.';
-} else {
-    Q.pinnedCardsDescription = 'Advisors - next action available in ' + Q.advisor_action_timer + ' months.';
+var adv_ids = ['brandler', 'thalheimer', 'walcher', 'radek', 'pieck', 'meyer', 'zetkin', 'eberlein', 'fischer', 'maslow', 'thaelmann'];
+var adv_in = 0, adv_ready = 0;
+for (var a of adv_ids) {
+    if (Q[a + '_advisor'] == 1) {
+        adv_in += 1;
+        if (Q[a + '_timer'] <= 0) { adv_ready += 1; }
+    }
 }
+Q.pinnedCardsDescription = 'Advisors - ' + adv_ready + ' of ' + adv_in + ' ready to act.';
 !}
 max-cards: 3
 
@@ -23,13 +25,15 @@ max-cards: 3
 set-bg: img/map_2.jpg
 is-hand: true
 on-arrival: {!
-if (Q.advisor_action_timer <= 0) {
-    Q.pinnedCardsDescription = 'Advisors - an action is available.';
-} else if (Q.advisor_action_timer == 1) {
-    Q.pinnedCardsDescription = 'Advisors - next action available in 1 month.';
-} else {
-    Q.pinnedCardsDescription = 'Advisors - next action available in ' + Q.advisor_action_timer + ' months.';
+var adv_ids = ['brandler', 'thalheimer', 'walcher', 'radek', 'pieck', 'meyer', 'zetkin', 'eberlein', 'fischer', 'maslow', 'thaelmann'];
+var adv_in = 0, adv_ready = 0;
+for (var a of adv_ids) {
+    if (Q[a + '_advisor'] == 1) {
+        adv_in += 1;
+        if (Q[a + '_timer'] <= 0) { adv_ready += 1; }
+    }
 }
+Q.pinnedCardsDescription = 'Advisors - ' + adv_ready + ' of ' + adv_in + ' ready to act.';
 !}
 max-cards: 4
 
