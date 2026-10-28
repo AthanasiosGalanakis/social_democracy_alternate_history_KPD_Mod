@@ -6,15 +6,15 @@ view-if: moscow_tier_pending > 0
 on-arrival: {!
 Q.md_tier = Q.moscow_tier_pending;
 Q.moscow_tier_pending = 0;
-var names = {right: 'the Right', left: 'the Left', centre: 'the Centre', apparatus: 'the Moscow apparatus', conciliators: 'the Conciliators'};
+var names = {right: 'the Right', left: 'the Left', centre: 'the Centre', conciliators: 'the Conciliators'};
 Q.md_fav_name = names[Q.moscow_favored];
 Q.md_holder_name = names[Q.party_line];
 if (Q.md_tier == 1) {
-    // a letter
-    Q.kf_apparatus_strength += 2;
+    // a letter: Moscow's favoured faction takes heart
+    Q['kf_' + Q.moscow_favored + '_strength'] += 2;
 } else if (Q.md_tier == 2) {
     // the subsidy is cut (post_event switches it off while trust stays under 40)
-    Q.kf_apparatus_strength += 2;
+    Q['kf_' + Q.moscow_favored + '_strength'] += 2;
     Q['kf_' + Q.party_line + '_dissent'] += 5;
 } else if (Q.md_tier == 3) {
     // an open letter over the heads of the leaders
@@ -31,9 +31,9 @@ if (Q.md_tier == 1) {
 
 = Moscow's displeasure
 
-[? if md_tier = 1 : **A letter.** The Executive Committee of the International writes to the Central Committee. The tone is polite and the content is not: the line we follow is not the one the International expects, and any step into government without Moscow's blessing will anger it severely until trust is back above 50. Nothing is forbidden to us. The apparatus, which reads the letter first, gains 2 strength. ?]
+[? if md_tier = 1 : **A letter.** The Executive Committee of the International writes to the Central Committee. The tone is polite and the content is not: the line we follow is not the one the International expects, and any step into government without Moscow's blessing will anger it severely until trust is back above 50. Nothing is forbidden to us. The faction Moscow favours, [+ md_fav_name +], reads the letter first and gains 2 strength. ?]
 
-[? if md_tier = 2 : **The subsidy is cut.** The Soviet subsidy is stopped, and the quarterly payment and the 5 points of readiness it gave us are gone, until trust is back above 40. The holding faction gains 5 dissent for losing the money, and the apparatus gains 2 strength. ?]
+[? if md_tier = 2 : **The subsidy is cut.** The Soviet subsidy is stopped, and the resource it brought every third month stops, until trust is back above 40. The holding faction gains 5 dissent for losing the money, and [+ md_fav_name +] gains 2 strength. ?]
 
 [? if md_tier = 3 : **An open letter.** The Executive Committee publishes a letter to the membership over the heads of its leaders, calling the present leadership a danger to the party. The holding faction, [+ md_holder_name +], gains 15 dissent. Workers lose faith in a party that is scolded in public (workers -2), and for as long as trust stays under 30 our campaigning is a tenth less effective. ?]
 

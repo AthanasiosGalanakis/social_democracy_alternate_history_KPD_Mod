@@ -157,7 +157,7 @@ if (Q.month_actions >= 1) {
     if (Q.moscow_balance <= -30) { m_leader = "Trotsky-Radek"; m_line = "world_revolution"; m_fav = 'left'; }
     else if (Q.moscow_balance < 25) { m_leader = "Zinoviev-Kamenev-Stalin"; m_line = "workers_government"; m_fav = 'right'; }
     else if (Q.moscow_balance < 60) { m_leader = "Stalin-Bukharin"; m_line = "socialism_in_one_country"; m_fav = 'centre'; }
-    else { m_leader = "Stalin"; m_line = "third_period"; m_fav = 'apparatus'; }
+    else { m_leader = "Stalin"; m_line = "third_period"; m_fav = 'centre'; }
     // after a failed October the troika blames the Right and turns to bolshevisation, which favours the Left
     if (m_leader == "Zinoviev-Kamenev-Stalin" && Q.y23_failed == 1) { m_line = "bolshevisation"; m_fav = 'left'; }
     Q.comintern_line = m_line;

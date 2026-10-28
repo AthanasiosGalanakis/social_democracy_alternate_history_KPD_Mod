@@ -15,15 +15,15 @@ The party has to choose how to survive.
 - @legal: Fight the ban in the courts and keep to legal forms.
 
 @underground
-subtitle: Apparatus +5 strength, 3 months banned. · dev: kpd_banned = 1, kpd_ban_end = time + 3, kf_apparatus_strength +5, resources −1, workers_kpd −1
-on-arrival: kpd_banned = 1; kpd_ban_end = time + 3; kf_apparatus_strength += 5; resources -= 1; workers_kpd -= 1
+subtitle: Centre +5 strength, 3 months banned. · dev: kpd_banned = 1, kpd_ban_end = time + 3, kf_centre_strength +5, resources −1, workers_kpd −1
+on-arrival: kpd_banned = 1; kpd_ban_end = time + 3; kf_centre_strength += 5; resources -= 1; workers_kpd -= 1
 go-to: root
 
-The party falls back on cells and false names. This is a world the apparatus knows. The Comintern's agents, who have seen this before, are in their element, and the more the party depends on them the less it depends on its own members.
+The party falls back on cells and false names. This is a world the organisation men of the Centre know. The Comintern's agents, who have seen this before, are in their element, and the more the party depends on them the less it depends on its own members.
 
 @legal
-subtitle: Right +4 strength, 3 months banned. · dev: kpd_banned = 1, kpd_ban_end = time + 3, kf_right_strength +4, kf_apparatus_strength −2, resources −1
-on-arrival: kpd_banned = 1; kpd_ban_end = time + 3; kf_right_strength += 4; kf_apparatus_strength -= 2; resources -= 1
+subtitle: Right +4 strength, 3 months banned. · dev: kpd_banned = 1, kpd_ban_end = time + 3, kf_right_strength +4, kf_centre_strength −2, resources −1
+on-arrival: kpd_banned = 1; kpd_ban_end = time + 3; kf_right_strength += 4; kf_centre_strength -= 2; resources -= 1
 go-to: root
 
 We file complaints and send delegations to the courts. The judges are patient with us, as they were with the generals in 1920, and they decide nothing. A legalist party under a ban is a party that does very little.

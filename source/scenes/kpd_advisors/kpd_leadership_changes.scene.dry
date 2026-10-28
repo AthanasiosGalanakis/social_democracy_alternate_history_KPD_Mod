@@ -92,23 +92,23 @@ Wilhelm Pieck joins the leadership as an adviser. Centre is strengthened.
 
 @add_radek
 title: Bring in Karl Radek
-subtitle: Apparatus faction · dev: radek_advisor = 1, n_advisors +1, kf_apparatus_strength +4
+subtitle: Right faction · dev: radek_advisor = 1, n_advisors +1, kf_right_strength +4
 tags: kpd_add_advisor
 view-if: radek_advisor = 0 and n_advisors < 3
-on-arrival: radek_advisor = 1; n_advisors += 1; kf_apparatus_strength += 4
+on-arrival: radek_advisor = 1; n_advisors += 1; kf_right_strength += 4
 go-to: root
 
-Karl Radek joins the leadership as an adviser. Apparatus is strengthened.
+Karl Radek joins the leadership as an adviser. Right is strengthened.
 
 @add_eberlein
 title: Bring in Hugo Eberlein
-subtitle: Apparatus faction · dev: eberlein_advisor = 1, n_advisors +1, kf_apparatus_strength +4
+subtitle: Centre faction · dev: eberlein_advisor = 1, n_advisors +1, kf_centre_strength +4
 tags: kpd_add_advisor
 view-if: eberlein_advisor = 0 and n_advisors < 3
-on-arrival: eberlein_advisor = 1; n_advisors += 1; kf_apparatus_strength += 4
+on-arrival: eberlein_advisor = 1; n_advisors += 1; kf_centre_strength += 4
 go-to: root
 
-Hugo Eberlein joins the leadership as an adviser. Apparatus is strengthened.
+Hugo Eberlein joins the leadership as an adviser. Centre is strengthened.
 
 @remove_brandler
 title: Remove Heinrich Brandler
@@ -202,21 +202,21 @@ Wilhelm Pieck is removed from the leadership. Centre regards it as a purge, and 
 
 @remove_radek
 title: Remove Karl Radek
-subtitle: Apparatus faction · dev: radek_advisor = 0, n_advisors −1, kf_apparatus_dissent +5
+subtitle: Right faction · dev: radek_advisor = 0, n_advisors −1, kf_right_dissent +5
 tags: kpd_remove_advisor
 view-if: radek_advisor = 1
-on-arrival: radek_advisor = 0; n_advisors -= 1; kf_apparatus_dissent += 5
+on-arrival: radek_advisor = 0; n_advisors -= 1; kf_right_dissent += 5
 go-to: root
 
-Karl Radek is removed from the leadership. Apparatus regards it as a purge, and its dissent rises.
+Karl Radek is removed from the leadership. Right regards it as a purge, and its dissent rises.
 
 @remove_eberlein
 title: Remove Hugo Eberlein
-subtitle: Apparatus faction · dev: eberlein_advisor = 0, n_advisors −1, kf_apparatus_dissent +5
+subtitle: Centre faction · dev: eberlein_advisor = 0, n_advisors −1, kf_centre_dissent +5
 tags: kpd_remove_advisor
 view-if: eberlein_advisor = 1
-on-arrival: eberlein_advisor = 0; n_advisors -= 1; kf_apparatus_dissent += 5
+on-arrival: eberlein_advisor = 0; n_advisors -= 1; kf_centre_dissent += 5
 go-to: root
 
-Hugo Eberlein is removed from the leadership. Apparatus regards it as a purge, and its dissent rises.
+Hugo Eberlein is removed from the leadership. Centre regards it as a purge, and its dissent rises.
 

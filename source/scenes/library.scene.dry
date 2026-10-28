@@ -58,26 +58,22 @@ This is the history the game departs from. Your party may do something else.
 @factions
 go-to: menu
 
-The party is not one body. Four currents fight for influence in 1923; a fifth, the Conciliators, belongs to the later years that are not yet in the game.
+The party is not one body. Three currents fight for influence in 1923, and each has a historical basis.
 
-**The Right** (Brandler, Thalheimer). The leadership that took over after the March Action and Paul Levi's expulsion in 1921. It holds the majority at Leipzig in 1923 and believes in the united front with Social Democratic workers, workers' governments in the states, and patient work in the unions and factory councils. Its danger is waiting on leaders who will never act.
+**The Right** (Brandler, Thalheimer, Walcher). The leadership that took over after the March Action and Paul Levi's expulsion in 1921. It holds the majority at Leipzig in 1923 and believes in the united front with Social Democratic workers, workers' governments in the states, and patient work in the unions and factory councils. Radek, the Comintern's expert on Germany, backed this line in 1923. Its danger is waiting on leaders who will never act.
 
-**The Left** (Fischer, Maslow, later Thälmann). The opposition in the Berlin, Hamburg and Ruhr districts, the heirs of the March Action's offensive. It wants armed workers' units and a hard break with the SPD leaders, and calls every crisis the hour of the revolution. Its danger is calling a fight that the workers have not chosen.
+**The Centre** (Meyer, Zetkin, Pieck, Eberlein). The "middle group" that formed around Ernst Meyer after 1921, between the two wings, for mass politics, party unity and the machine of the organisation. It sided with the Right in 1922 and 1923, and would side with the Left in 1924. Its danger is that it has no line of its own.
 
-**The Centre** (Meyer, Zetkin, Pieck). The "middle group" that formed around Ernst Meyer after 1921, between the two wings, for mass politics and the unity of the party. It sided with the Right in 1922 and 1923, and would side with the Left in 1924. Its danger is that it has no line of its own.
+**The Left** (Fischer, Maslow, Thälmann). The opposition in the Berlin, Hamburg and Ruhr districts, the heirs of the March Action's offensive. It wants armed workers' units and a hard break with the SPD leaders, and calls every crisis the hour of the revolution. Its danger is calling a fight that the workers have not chosen.
 
-**The Moscow apparatus** (the Comintern's emissaries and the cadres whose first loyalty is the Executive). This is a modelling choice rather than an organised group in 1923: Radek, the Russian commission and the German officials who follow Moscow's line without argument. It stands for the pull of the International, which becomes a real faction only with Bolshevisation after 1924. Its danger is that Moscow is far away and has its own interests.
-
-**The Conciliators** (Ewert, Eisler, Eberlein). They form in 1927 as the "Versöhnler" between Thälmann's leadership and the Right, and are broken after the Wittorf affair of 1928. They appear in the game only when the later years are added.
-
-The Communist Opposition (KPO) and the Leninbund do not take part in the game's contests; they are outside the party after their expulsions.
+Moscow is not a faction. The Comintern's emissaries and its money act on the party from outside, and the game tracks them as trust and the balance of power in the Soviet leadership, not as a group inside the party. The Conciliators form only in 1927, and the Communist Opposition (KPO) and the Leninbund stand outside the party after their expulsions; they are not in the game yet.
 
 @moscow
 go-to: menu
 
 The Communist International, the Comintern, is run from Moscow, and its leaders are fighting for power in the Russian party. When Lenin is incapacitated, the troika of Zinoviev, Kamenev and Stalin faces Trotsky and the Left Opposition. Which group leads in Moscow decides which line the International expects from us.
 
-In this game Moscow's balance of power is a number you can see on the status page, and it moves with your delegations. Trust measures how far Moscow believes the party. A line that Moscow does not favour wears its patience down in five steps, from a warning letter to removal by decree.
+In this game Moscow's balance of power is a number you can see on the status page, and it moves with your delegations. Trust measures how far Moscow believes the party. A line that Moscow does not favour is punished in stages as trust falls, from a warning letter to emissaries who take over the districts.
 
 @paramilitaries
 go-to: menu

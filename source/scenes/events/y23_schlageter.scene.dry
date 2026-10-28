@@ -15,8 +15,8 @@ The reasoning is not stupid: the petty bourgeoisie is being crushed by the infla
 - @reject: Refuse the appeal and keep the party's line on the class struggle.
 
 @endorse
-subtitle: Moscow +6 trust, Left +8 dissent. The nationalists do not change. · dev: trust +6, kf_left_dissent +8, kf_apparatus_strength +2, workers_spd −1
-on-arrival: comintern_trust += 6; kf_left_dissent += 8; kf_apparatus_strength += 2; workers_spd -= 1
+subtitle: Moscow +6 trust, Left +8 dissent. The nationalists do not change. · dev: trust +6, kf_left_dissent +8, kf_right_strength +2, workers_spd −1
+on-arrival: comintern_trust += 6; kf_left_dissent += 8; kf_right_strength += 2; workers_spd -= 1
 go-to: root
 
 Our speakers appear at debates with Völkisch students and with the occasional Freikorps veteran. The nationalist press reports on them with contempt, and printed the same antisemitic slogans the day after as the day before. A handful of young men are won over. Many of our own members, who remember who shot Liebknecht and Luxemburg, are disgusted, and the Left says so loudly.

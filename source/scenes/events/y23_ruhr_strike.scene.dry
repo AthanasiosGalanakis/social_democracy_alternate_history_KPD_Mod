@@ -22,7 +22,7 @@ go-to: root
 Our organisers go into the pits and win places on the strike committees. The government answers with police, the SPD leaders with disapproval, and the miners, who see who is on their side, with votes of confidence that the party remembers.
 
 @support
-subtitle: dev: workers_kpd +2×m, kf_right_strength +2
+subtitle: dev: workers_kpd +2×m, kf_right_strength +2 · dev: workers_kpd +2×m, kf_right_strength +2
 on-arrival: workers_kpd += 2*campaign_mult; kf_right_strength += 2
 go-to: root
 

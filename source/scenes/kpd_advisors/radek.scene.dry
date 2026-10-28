@@ -1,6 +1,6 @@
 title: Karl Radek
 is-pinned-card: true
-tags: advisor, apparatus
+tags: advisor, right
 view-if: radek_advisor = 1
 new-page: true
 
@@ -14,10 +14,10 @@ Radek is the Comintern's expert on Germany, a brilliant journalist and an old fr
 
 @moscows_view
 title: Ask for Moscow's view
-subtitle: Find out what the Comintern leaders really think. · dev: trust +6, kf_apparatus_strength +4, kf_right_dissent +3
+subtitle: Find out what the Comintern leaders really think. · dev: trust +6, kf_right_strength +4, kf_left_dissent +3
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 4; comintern_trust += 6; kf_apparatus_strength += 4; kf_right_dissent += 3
+on-arrival: advisor_action_timer = 4; comintern_trust += 6; kf_right_strength += 4; kf_left_dissent += 3
 
 Radek gives us a candid account of what Zinoviev and the Politburo expect from Germany. It is useful to know, and it is also an instruction.
 
