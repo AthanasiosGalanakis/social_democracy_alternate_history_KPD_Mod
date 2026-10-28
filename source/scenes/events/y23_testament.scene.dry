@@ -58,7 +58,7 @@ on-arrival: {!
 Q.resources -= 1;
 Q.testament_path = 1;
 Q.test_stage = 2;
-Q.moscow_balance = Math.max(-100, Q.moscow_balance - 30);
+Q.moscow_balance = Math.max(-100, Q.moscow_balance - 8);
 Q.moscow_drift = 0;
 Q.comintern_trust -= 5;
 Q.kf_left_strength += 12;
@@ -68,7 +68,7 @@ go-to: root
 
 A courier takes a copy to Radek, who has been the party's friend in the Comintern and Trotsky's in the Politburo. It is put in the right hands within a week. Radek reads it twice and says only that it must be used at the right time, and not by him.
 
-Within days the Left Opposition in Moscow has a weapon. The balance in the Russian party tips by thirty points against the secretaries, and the drift that had been carrying it toward Stalin stops. Our own Left, which takes the credit, grows by twelve points of strength, and Brandler's wing does not forgive us for having thrown a lighted match into the Russian party without asking it first.
+Within days the Left Opposition in Moscow has a weapon. The balance in the Russian party tips against the secretaries, and the drift that had been carrying it toward Stalin stops. Nothing is decided yet; the Central Committee has not met. Our own Left, which takes the credit, grows by twelve points of strength, and Brandler's wing does not forgive us for having thrown a lighted match into the Russian party without asking it first.
 
 @right
 subtitle: Bukharin's channel. Needs trust of 40. The Right Opposition in Moscow gains massively. Right +12 strength, Left +10 dissent, trust −5.
@@ -77,7 +77,7 @@ unavailable-subtitle: Moscow has to trust us enough for Bukharin to receive our 
 on-arrival: {!
 Q.testament_path = 2;
 Q.test_stage = 2;
-Q.moscow_balance = Math.max(-100, Q.moscow_balance - 18);
+Q.moscow_balance = Math.max(-100, Q.moscow_balance - 6);
 Q.moscow_drift = 0;
 Q.comintern_trust -= 5;
 Q.kf_right_strength += 12;
@@ -87,14 +87,14 @@ go-to: root
 
 Brandler's channel runs through Bukharin, who is the Right's friend and the party's theorist, and through Rykov and Tomsky, who run the state and the trade unions. They have their own reasons not to want a Secretariat that governs the party by its appointments, and a dead man's opinion is useful to them.
 
-The balance in the Russian party slides by eighteen points, and its drift toward Stalin stops. Our own Right gains twelve points of strength, because it can now claim the friendship of the men who will matter, and the Left, which would have used the paper for a different man, is angrier by ten.
+The balance in the Russian party slides against the secretaries, and its drift toward Stalin stops. Nothing is decided yet; the Central Committee has not met. Our own Right gains twelve points of strength, because it can now claim the friendship of the men who will matter, and the Left, which would have used the paper for a different man, is angrier by ten.
 
 @publish
 subtitle: A public break. Trust −20, Stalin loses ground, both oppositions gain. Left and Right +6 strength, Centre −10 strength and +10 dissent.
 on-arrival: {!
 Q.testament_path = 3;
 Q.test_stage = 2;
-Q.moscow_balance = Math.max(-100, Q.moscow_balance - 25);
+Q.moscow_balance = Math.max(-100, Q.moscow_balance - 8);
 Q.moscow_drift = 0;
 Q.comintern_trust -= 20;
 Q.kf_left_strength += 6;
@@ -106,7 +106,7 @@ go-to: root
 
 Extracts go to the party's press on a Sunday, under a headline that does not name the man they are about. By Monday the other papers have them as well, and the SPD's Vorwärts prints them next to an article about the dictatorship inside the Russian party. The men whose names are on the paper read it in the German papers.
 
-The Centre, loyal to the secretariat that has been loyal to it, is dismayed, and loses ten points of strength and gains ten of dissent. Both oppositions, in Berlin as in Moscow, take heart, and the balance in the Russian party moves by twenty-five points against the secretaries. Moscow does not take it quietly, and our standing with the Comintern falls by twenty.
+The Centre, loyal to the secretariat that has been loyal to it, is dismayed, and loses ten points of strength and gains ten of dissent. Both oppositions, in Berlin as in Moscow, take heart, and the balance in the Russian party moves against the secretaries, though nothing is decided before the Central Committee meets. Moscow does not take it quietly, and our standing with the Comintern falls by twenty.
 
 @hold
 subtitle: Trust +5, Centre +2 strength. The paper stays in reserve.
