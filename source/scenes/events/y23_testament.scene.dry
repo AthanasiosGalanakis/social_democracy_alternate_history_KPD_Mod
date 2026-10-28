@@ -23,13 +23,9 @@ go-to: root
 We write back that the German party asks nothing of the Russian party that the Russian party does not wish to tell it. Zetkin accepts the answer with a short note that is not unfriendly. The Centre, which wants nothing to do with the fight in Moscow, is relieved. The envelope stays with Krupskaya, and whatever it says will be read, if it is read, by others.
 
 @ask
-subtitle: Zetkin's courier will come. · dev: test_stage = 1
-on-arrival: test_stage = 1
-go-to: copy
-
-@copy
 title: Lenin's last notes
-subtitle: A copy has arrived.
+subtitle: A copy has arrived. · dev: test_stage = 1
+on-arrival: test_stage = 1
 
 = What the notes say
 
@@ -40,14 +36,6 @@ The first part is a letter to the next party congress. Lenin proposes to enlarge
 The second part is a postscript dated 4 January. Stalin, it says, is too rude. This is tolerable among us communists, and it becomes intolerable in a General Secretary. Lenin proposes that the comrades think of a way to remove Stalin from that post and put in his place a man who is more patient, more loyal, more polite and more considerate to his comrades, less capricious. A third paper, on the question of the nationalities, attacks Stalin, Ordzhonikidze and Dzerzhinsky for the "Great-Russian chauvinism" with which they have treated the Georgian communists.
 
 It is not a programme and it is not a verdict. A man who is dying, and who knows it, is trying to arrange his party's affairs while there is still time. The names in it are the names of the men who will decide the future of the International, and the German party's fortunes will depend on them. The Zentrale has to say what is to be done with a copy of it.
-
-- @council: Call the leadership together.
-
-@council
-title: What the Zentrale decides
-subtitle: Four ways to use a dead man's warning.
-
-= The Zentrale decides
 
 The leadership meets that night in a back room. It does not take long to see how the factions would use it.
 
@@ -121,11 +109,11 @@ Extracts go to the party's press on a Sunday, under a headline that does not nam
 The Centre, loyal to the secretariat that has been loyal to it, is dismayed, and loses ten points of strength and gains ten of dissent. Both oppositions, in Berlin as in Moscow, take heart, and the balance in the Russian party moves by twenty-five points against the secretaries. Moscow does not take it quietly, and our standing with the Comintern falls by twenty.
 
 @hold
-subtitle: Trust +3, Centre +2 strength. The paper stays in reserve.
+subtitle: Trust +5, Centre +2 strength. The paper stays in reserve.
 on-arrival: {!
 Q.testament_path = 4;
-Q.test_stage = 2;
-Q.comintern_trust += 3;
+Q.test_stage = 9;
+Q.comintern_trust += 5;
 Q.kf_centre_strength += 2;
 !}
 go-to: root

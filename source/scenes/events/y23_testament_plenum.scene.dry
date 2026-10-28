@@ -2,10 +2,24 @@ title: The August plenum
 subtitle: The Central Committee of the Russian party takes up Lenin's notes.
 new-page: true
 tags: kpd_event
-view-if: year = 1923 and month = 8 and test_stage >= 2 and test_stage <= 3 and y23_testament_plenum_done = 0
+view-if: year = 1923 and month = 8 and test_stage = 2 and testament_path >= 1 and testament_path <= 3 and y23_testament_plenum_done = 0
 on-arrival: {!
 Q.y23_testament_plenum_done = 1;
 Q.test_stage = 4;
+// the Secretariat's retaliation of the summer lands first
+Q.y23_stalin_cornered = 1;
+Q.kf_centre_strength += 4;
+if (Q.testament_path == 1) {
+    Q.moscow_balance = Math.max(-100, Q.moscow_balance - 10);
+    Q.comintern_trust -= 8;
+} else if (Q.testament_path == 2) {
+    Q.moscow_balance = Math.max(-100, Q.moscow_balance - 8);
+    Q.comintern_trust -= 8;
+} else {
+    Q.moscow_balance = Math.max(-100, Q.moscow_balance - 5);
+    Q.comintern_trust -= 10;
+    Q.resources = Math.max(0, Q.resources - 1);
+}
 if (Q.testament_path == 1) {
     Q.y23_stalin_removed = 1;
     Q.moscow_balance = Math.min(Q.moscow_balance, -55);
@@ -30,23 +44,21 @@ if (Q.testament_path == 1) {
     Q.kf_right_strength += 8;
     Q.kf_centre_strength -= 12;
     Q.kf_centre_dissent += 10;
-} else if (Q.testament_path == 4) {
-    Q.comintern_trust += 5;
 }
 Q.pl_left = (Q.testament_path == 1) ? 1 : 0;
 Q.pl_right = (Q.testament_path == 2) ? 1 : 0;
 Q.pl_publish = (Q.testament_path == 3) ? 1 : 0;
-Q.pl_hold = (Q.testament_path == 4) ? 1 : 0;
 !}
 
 = The plenum
+
+By the summer the paper has done its work in Moscow, and the name of the work is fear. A General Secretary whose character has been described by the founder of the party himself cannot behave as if nothing had been said. Stalin does not deny that the notes exist. He says that a sick man's last words deserve respect, and then reads aloud the places where they are hard on his rivals. His apparatus sends emissaries to our district committees with questions about how a Russian paper reached Berlin. Our standing with the Comintern falls ([? if pl_publish = 1 : by ten, and a promised payment is held back, one resource ?][? if pl_publish = 0 : by eight ?]), and the Centre, our most loyal faction, rallies to the secretariat for four points of strength.
 
 In August the Central Committee of the Russian party meets to decide whether the General Secretary should continue, and what its answer to a dead man's letter should be. It is the first time since the Revolution that the party's own founder is quoted against a member of its leadership, and the discussion is held behind closed doors, with no stenographers.
 
 [? if pl_left = 1 : **The Left carries it.** The Opposition, which had the paper first, has also the better argument. Trotsky does not quote Lenin; he lets Lenin be read. Zinoviev and Kamenev, who had counted on the troika and have learned what Lenin thought of them, abstain. It is enough. By a narrow vote, the plenum decides to follow Lenin's advice. Stalin is removed as General Secretary; the post goes to a collective secretariat that Radek's friends can live with. The troika is finished, and Trotsky and Radek, who now carry the International, have no use for a caution that was Zinoviev's. They want the German revolution, and they want it this autumn. ?]
 [? if pl_right = 1 : **The Right carries it.** Bukharin, who is liked, and Rykov, who runs the state, stand together, and Tomsky speaks for the unions. They do not ask for Stalin's head, which would hurt the party; they ask that the Secretariat be stripped of the right to appoint the men who vote on it. It is a more sober way of ending a career than the Left's, and it works. Stalin is removed as General Secretary and keeps a lesser post. The troika is finished, Zinoviev and Kamenev are left without a patron, and the leadership of the International goes to Bukharin and Rykov, who are not interested in a gamble for the German revolution. Their line is the NEP, the united front, and patience. ?]
-[? if pl_publish = 1 : **Nobody carries it.** A paper that was in the German press before it was in the Central Committee's hands cannot be used for anything but a scandal. The oppositions have the better of the debate, and nobody has a majority. Stalin is not removed; he is instead placed under a control commission, and the Secretariat has to answer for its appointments to men who do not trust it. Zinoviev and Kamenev break with him in all but name. The balance has moved against the secretaries, and the Russian party is in a state of semi-paralysis that will last into the autumn. Our standing with the Comintern falls by ten, and the Centre, which dislikes quarrels, loses twelve points of strength. ?]
-[? if pl_hold = 1 : **Nothing happens.** The plenum meets, hears the usual reports, and does not discuss a paper that most of its members have never seen. Stalin is confirmed. The copy in our safe is of no use to anyone, and our caution is noted in Moscow with approval (+5 trust). Krupskaya's envelope, in other hands, may yet be read at a congress, and this is a matter that no longer depends on us. ?]
+[? if pl_publish = 1 : **Nobody carries it.** A paper that was in the German press before it was in the Central Committee's hands cannot be used for anything but a scandal. The oppositions have the better of the debate, and nobody has a majority. Stalin is not removed; he is instead placed under a control commission, and the Secretariat has to answer for its appointments to men who do not trust it. Zinoviev and Kamenev break with him in all but name. The balance has moved against the secretaries, and the Russian party is in a state of semi-paralysis that will last into the autumn. The Centre, which dislikes quarrels, loses twelve points of strength. ?]
 
 [? if pl_left = 1 : Our own Left, which can say it was the first to act, gains fifteen points of strength. The Right, whose cautious leadership is now tied to a Moscow that wants a rising, gains ten of dissent. The Centre, which had trusted the secretariat, loses ten points of strength and gains ten of dissent. ?]
 [? if pl_right = 1 : Our own Right, which was right about Moscow's new masters, gains eighteen points of strength. The Left, which had hoped for a different victory, gains twelve of dissent. The Centre, with no friend left in the secretariat, loses eight points of strength and gains eight of dissent. ?]
