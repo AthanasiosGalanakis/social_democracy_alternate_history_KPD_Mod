@@ -387,10 +387,10 @@
 
 
   /* party names in their own colours, in the story text and the sidebar */
-  var partyClasses = {'KPD': 'p-kpd', 'SPD': 'p-spd', 'USPD': 'p-uspd', 'DNVP': 'p-dnvp', 'DVP': 'p-dvp', 'DDP': 'p-ddp',
+  var partyClasses = {'KPD': 'p-kpd', 'SPD': 'p-spd', 'DNVP': 'p-dnvp', 'DVP': 'p-dvp', 'DDP': 'p-ddp',
                       'NSDAP': 'p-nsdap', 'Nazis': 'p-nsdap', 'Nazi': 'p-nsdap', 'BVP': 'p-bvp', 'Zentrum': 'p-zentrum',
                       'Centre Party': 'p-zentrum', 'Center Party': 'p-zentrum'};
-  var partyRegex = /\b(KPD|SPD|USPD|DNVP|DVP|DDP|NSDAP|BVP|Zentrum|Centre Party|Center Party|Nazis|Nazi)\b/g;
+  var partyRegex = /\b(KPD|SPD|DNVP|DVP|DDP|NSDAP|BVP|Zentrum|Centre Party|Center Party|Nazis|Nazi)\b/g;
   var factionRegex = /^(\s*)(Right|Left|Centre)(?= strength)/;
   var colouring = false;
   window.colourParties = function() {
@@ -467,11 +467,37 @@
           return (ix === undefined ? 9 : ix) - (iy === undefined ? 9 : iy);
       }).forEach(function(li) { pinned.appendChild(li); });
       if (!head) { return; }
+      // the head of the party: party title, portrait (the card itself), name and role, as in the DDP mod
+      var card = head.querySelector('a.card');
+      var title = card.getAttribute('title');
       var bar = document.createElement('div');
       bar.id = 'leadership_bar';
-      head.classList.add('leader-card');
-      bar.appendChild(head);
-      // a banded strip across the top of the story panel
+      bar.className = 'leader-card';
+      var party = document.createElement('h2');
+      party.className = 'leader-party';
+      party.appendChild(document.createTextNode('Kommunistische Partei Deutschlands ('));
+      var abbr = document.createElement('span');
+      abbr.className = 'leader-abbr p-kpd';
+      abbr.textContent = 'KPD';
+      party.appendChild(abbr);
+      party.appendChild(document.createTextNode(')'));
+      bar.appendChild(party);
+      card.classList.add('leader-portrait');
+      card.onclick = function(e) {
+          e.preventDefault();
+          window.dendryUI.dendryEngine.playPinnedCard(card.getAttribute('card-id'));
+          return false;
+      };
+      bar.appendChild(card);
+      var name = document.createElement('p');
+      name.className = 'leader-name';
+      name.textContent = title;
+      bar.appendChild(name);
+      var role = document.createElement('p');
+      role.className = 'leader-role';
+      role.textContent = 'Parteivorsitzender';
+      bar.appendChild(role);
+      pinned.removeChild(head);
       var content = document.getElementById('content');
       content.insertBefore(bar, content.firstChild);
   };
