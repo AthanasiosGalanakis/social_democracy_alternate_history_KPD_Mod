@@ -23,11 +23,6 @@
                  left: ['Left', 'Fischer, Maslow, Thälmann, Scholem']};
 
   // ---- Small pieces ------------------------------------------------------------
-  UI.partyName = function(p) {
-    var n = PARTY[p] || [p.toUpperCase(), ''];
-    return '<span class="party p-' + (p == 'z' ? 'zentrum' : p) + '" title="' + esc(n[1]) + '">' + esc(n[0]) + '</span>';
-  };
-
   // A parliament as a hemicycle: seats in rows, filled from the left (seats: {party: n}).
   UI.hemicycle = function(seats, opts) {
     opts = opts || {};
@@ -64,19 +59,6 @@
     }
     return svg + '</svg>';
   };
-  UI.seatLegend = function(seats, sides) {
-    var total = 0, p;
-    for (p in seats) { total += seats[p]; }
-    var out = '<table class="ktable">';
-    SEAT_ORDER.forEach(function(p) {
-      if (!seats[p]) { return; }
-      out += '<tr><td><span class="kswatch bgf-' + p + '"></span>' + UI.partyName(p) + '</td><td class="knum">' + seats[p] +
-        '</td><td class="knum kdim">' + (100 * seats[p] / total).toFixed(1) + '%</td>' +
-        (sides ? '<td class="kside">' + ({yes: 'for', no: 'against', abstain: 'abstains'}[sides[p] || 'abstain']) + '</td>' : '') + '</tr>';
-    });
-    return out + '</table>';
-  };
-
   // ---- The map -------------------------------------------------------------------
   // A plain silhouette of the Reich in 1923 (rough outline from capitals and borders, for orientation
   // only), with a disc for every district where the party can act now. Colour = organisation.
@@ -237,83 +219,343 @@
   };
 
   // ---- The sidebar tabs, laid out like the base game's ----------------------------------------
-  var tip = function(text, title) { return '<span class="tooltip-text" title="' + esc(title) + '">' + text + '</span>'; };
+  // ---- Hover cards -----------------------------------------------------------------
+  // Anything with data-hov="kind:key" (or plain data-tip text) opens one floating box, kept
+  // inside the window, as in Die Rote Fahne. Works with the mouse, with focus and with a tap.
   var line = function(s) { return '<p>' + s + '</p>'; };
+  var hov = UI.hov = function(label, key, cls) {
+    return '<span class="khov' + (cls ? ' ' + cls : '') + '" tabindex="0" data-hov="' + esc(key) + '">' + label + '</span>';
+  };
+  var tip = function(text, title) { return '<span class="khov" tabindex="0" data-tip="' + esc(title) + '">' + text + '</span>'; };
+  var pname = function(p) { return (PARTY[p] || [p])[0]; };
+  var pspan = function(p, text) { return '<span class="party p-' + (p == 'z' ? 'zentrum' : p) + '">' + (text || esc(pname(p))) + '</span>'; };
+  UI.partyName = function(p) { return hov(pspan(p), 'party:' + p); };
 
-  UI.sidebarMain = function(Q) {
-    var html = '<h1>Status</h1>' + line(esc(Q.date_label)) +
-      line('Resources available: ' + Q.resources) +
-      line(tip('Dues', 'Members in the districts pay dues every month; a stronger organisation pays more') + ': ' + (KPD.duesEstimate(Q) >= 3 ? 'plentiful' : KPD.duesEstimate(Q) == 2 ? 'steady' : KPD.duesEstimate(Q) == 1 ? 'thin' : 'barely trickling') + (Q.soviet_subsidy ? '. Moscow pays a subsidy' : '')) +
-      line('KPD position: ' + (Q.kpd_banned ? 'banned' : 'legal opposition') + (Q.y23_saxony ? ', in the Saxon government' : '')) +
-      line('Party line: ' + FACTION[Q.party_line][0]) +
-      line('Internal dissent: ' + KPD.dissentWord(Q.kf_dissent_percent));
-    html += '<h1>Factions</h1>';
-    Q.kpd_factions.forEach(function(f) {
-      html += line(tip('<span class="faction-word fw-' + f + '">' + FACTION[f][0] + '</span>', FACTION[f][1]) + ' strength: ' + KPD.strengthWord(Q['kf_' + f + '_strength']) +
-        ', dissent: ' + KPD.dissentWord(Q['kf_' + f + '_dissent']));
-    });
-    html += '<h1>Moscow</h1>' +
-      line('Leadership: ' + esc(Q.moscow_leader.replace(/-/g, ', ')) + ', favouring the <span class="faction-word fw-' + Q.moscow_favored + '">' + FACTION[Q.moscow_favored][0] + '</span>') +
-      line(tip('Trust in us', 'Below satisfied Moscow writes letters; if displeased it cuts the subsidy and writes open letters; if angry it sends emissaries') + ': ' + KPD.trustWord(Q.comintern_trust));
-    if (Q.dir_active) {
-      html += line('Directive: ' + esc(Q.dir_target) + ' (' + esc(Q.dir_progress) + '), ' + met(Q.dir_ok) + '. Judged by ' + esc(Q.dir_by) + '.');
+  // colour scales: level 0 is good for us (green), 4 is bad (dark red), after the DDP mod
+  var sc = function(word, level) { return '<span class="ksc ksc-' + Math.max(0, Math.min(4, level)) + '">' + esc(word) + '</span>'; };
+  var lvl = function(x, cuts) { var i = 0; while (i < cuts.length && x >= cuts[i]) { i++; } return i; };
+  var fword = function(f, text) { return '<span class="faction-word fw-' + f + '">' + (text || FACTION[f][0]) + '</span>'; };
+
+  var LEADER = {
+    kpd: 'brandler', spd: 'wels', ddp: 'petersen', z: 'marx', bvp: 'held', dvp: 'stresemann', dnvp: 'hergt', nsdap: 'graefe'
+  };
+  var IDEOLOGY = {
+    kpd: ['Communism', 'Power to the working class through workers\' councils and a dictatorship of the proletariat. A section of the Communist International.'],
+    spd: ['Social democracy', 'Socialism by the ballot and by reform. In practice: coalitions with the bourgeoisie and the defence of the Republic as it stands, generals and judges included.'],
+    ddp: ['Social liberalism', 'Parliamentary democracy, free trade and the Weimar constitution, which its own Hugo Preuss drafted. A party of officials, professors and Jewish and liberal businessmen, losing voters every year.'],
+    z: ['Political Catholicism', 'The defence of the Church, its schools and its unions, across every class. Will govern with the SPD or the DNVP, whichever the bishops can live with.'],
+    bvp: ['Bavarian Catholic conservatism', 'Federalism, the Church and order in Bavaria. Broke with the Centre in 1920; its governments in Munich shelter the armed leagues.'],
+    dvp: ['National liberalism', 'The party of heavy industry and the export trade: free enterprise, the end of the eight-hour day and a cautious peace with the Republic.'],
+    dnvp: ['National conservatism', 'The monarchy, the Junker estates, the officer corps and anti-Semitism. Wants Versailles torn up and the Republic overthrown.'],
+    nsdap: ['Völkisch nationalism', 'Race hatred, the "stab in the back" and the armed street league: fascism in its first German form. The DVFP sits in the Reichstag; Hitler\'s NSDAP marches in Munich.'],
+    other: ['Various', 'Regional, agrarian and single-issue groups.']
+  };
+  // People: [name, years, party, faction or '', text]. No portraits yet: we only use fully free
+  // pictures, and we have none of these men; the hover card draws initials instead.
+  var PEOPLE = {
+    brandler: ['Heinrich Brandler', '1881-1967', 'kpd', 'right', 'Building worker and union organiser from Saxony, at the head of the Zentrale since the Leipzig congress of January 1923. Practical and patient: he believes in the united front and doubts that the party is ready for power.'],
+    ebert: ['Friedrich Ebert', '1871-1925', 'spd', '', 'Saddler, party secretary, Reich President since 1919. He made the pact with the generals in November 1918 and let the Freikorps drown the revolution. Rules now by emergency decree under Article 48.'],
+    cuno: ['Wilhelm Cuno', '1876-1933', 'other', '', 'Director-general of the Hapag shipping line, without a party but close to the DVP. Answers the occupation of the Ruhr with passive resistance, paid for by printing money.'],
+    stresemann: ['Gustav Stresemann', '1878-1929', 'dvp', '', 'Chairman of the DVP. An annexationist in the war, a "republican by reason" since. Speaks for industry that has learned it can rule through the Republic.'],
+    marx: ['Wilhelm Marx', '1863-1946', 'z', '', 'Judge from Cologne and chairman of the Centre Party. A careful Catholic who will serve any coalition that leaves the Church its schools.'],
+    wels: ['Otto Wels', '1873-1939', 'spd', '', 'Co-chairman of the SPD with Hermann Müller. Commanded Berlin for the government in December 1918. The apparatus man of German social democracy.'],
+    petersen: ['Carl Petersen', '1868-1933', 'ddp', '', 'Hamburg lawyer and senator, chairman of the DDP. Liberal, patrician and loyal to every coalition the DDP can still find.'],
+    hergt: ['Oskar Hergt', '1869-1967', 'dnvp', '', 'Former Prussian finance minister of the Kaiser, chairman of the DNVP. Leads a party of Junkers and generals that waits for the Republic to fall.'],
+    held: ['Heinrich Held', '1868-1938', 'bvp', '', 'Leader of the BVP in the Bavarian Landtag. Federalist and Catholic, hostile to Berlin and far more hostile to the Left.'],
+    graefe: ['Albrecht von Graefe', '1868-1933', 'nsdap', '', 'Mecklenburg landowner who left the DNVP in 1922 to found the German Völkisch Freedom Party with Wulle and Henning. In Munich, Hitler leads the NSDAP.'],
+    seeckt: ['Hans von Seeckt', '1866-1936', 'other', '', 'Chief of the Army Command. Keeps the Reichswehr "above politics", which means loyal to itself: it marches against the Left and will not march against the Right.'],
+    severing: ['Carl Severing', '1875-1952', 'spd', '', 'Social Democratic interior minister of Prussia. Commands the strongest police in Germany and uses it against the Hundreds as readily as against the völkisch leagues.']
+  };
+  var FACTION_INFO = {
+    right: ['Brandler, Thalheimer, Walcher', 'Saxony, Thuringia, Württemberg', 'United front from above and below: joint action with the SPD\'s leaders where possible, workers\' governments with the left Social Democrats, patient work in the free unions.'],
+    centre: ['Meyer, Zetkin, Pieck, Eberlein', 'the apparatus, scattered', 'United front, with sharper criticism of the SPD leaders. Holds the Zentrale together between Right and Left.'],
+    left: ['Fischer, Maslow, Thälmann, Scholem', 'Berlin, Hamburg, the Ruhr', 'United front from below only: no deals with the SPD leaders, workers\' government as a slogan for agitation, strike towards the seizure of power.']
+  };
+  var TACTIC = {right: 'united front from above, free unions', centre: 'united front, sharp with the SPD', left: 'united front from below only'};
+
+  var portrait = function(id) {
+    var p = PEOPLE[id], ini = p[0].split(' ').filter(function(w) { return w != 'von'; }).map(function(w) { return w[0]; });
+    var cls = p[3] ? 'kport-f-' + p[3] : 'kport-p-' + p[2];
+    return '<div class="kport ' + cls + '">' + esc(ini[0] + ini[ini.length - 1]) + '</div>';
+  };
+  UI.person = function(id) { var p = PEOPLE[id]; return hov(p[3] ? fword(p[3], esc(p[0])) : esc(p[0]), 'person:' + id); };
+
+  UI.hoverHTML = function(key, Q) {
+    var k = key.split(':'), kind = k[0], id = k[1];
+    var head = function(title, sub) { return '<div class="khv-title">' + title + '</div>' + (sub ? '<div class="khv-sub">' + sub + '</div>' : ''); };
+    var row = function(a, b) { return '<div class="khv-row"><span>' + a + '</span><b>' + b + '</b></div>'; };
+    var seats = Q.rt_seats || {}, total = 0, p;
+    for (p in seats) { total += seats[p]; }
+    if (kind == 'person') {
+      var pp = PEOPLE[id];
+      return '<div class="khv-head">' + portrait(id) + '<div>' + head(esc(pp[0]), esc(pp[1]) + ' · ' + pspan(pp[2]) + (pp[3] ? ', ' + fword(pp[3]) : '')) + '</div></div>' +
+        '<div class="khv-body">' + esc(pp[4]) + '</div>';
     }
-    if (Q.oct_show) { html += '<h1>The German October</h1>' + UI.october(Q); }
-    html += '<h1>The class</h1>' +
-      line('Workers\' mood: ' + esc(KPD.moodWord(Q.mood))) +
-      line(tip('United front', 'Joint action with the workers of the SPD, the free unions and the factory councils') + ': ' + KPD.unityWord(Q.y23_unity)) +
-      line('Organisation in the districts: ' + Object.keys(KPD.DISTRICTS).map(function(d) { return esc(KPD.DISTRICTS[d].short || KPD.DISTRICTS[d].name) + ' ' + esc(KPD.orgWord(Q['d_' + d + '_org'])); }).join(', '));
-    return html;
+    if (kind == 'party') {
+      var cab = KPD.cabinet(Q), role = cab.parties.indexOf(id) >= 0 ? 'in government' : cab.tolerated.indexOf(id) >= 0 ? 'tolerates the cabinet' : 'opposition';
+      if (id == 'kpd' && Q.kpd_banned) { role = 'banned'; }
+      return head(pspan(id, esc(PARTY[id][1])), esc(PARTY[id][0])) + '<div class="khv-body">' +
+        (LEADER[id] ? row('Leader', esc(PEOPLE[LEADER[id]][0])) : '') +
+        (IDEOLOGY[id] ? row('Ideology', esc(IDEOLOGY[id][0])) : '') +
+        (seats[id] ? row('Reichstag', seats[id] + ' seats, ' + (100 * seats[id] / total).toFixed(1) + '%') : '') +
+        row('Position', role) +
+        (STANCE[id] ? '<p>' + esc(STANCE[id]) + '</p>' : '') + '</div>';
+    }
+    if (kind == 'ideology') { return head(esc(IDEOLOGY[id][0]), pspan(id)) + '<div class="khv-body">' + esc(IDEOLOGY[id][1]) + '</div>'; }
+    if (kind == 'cabinet') {
+      var c = KPD.cabinet(Q), n = 0;
+      c.parties.forEach(function(q) { n += seats[q] || 0; });
+      var need = Math.floor(total / 2) + 1;
+      return head(esc(c.name), esc(c.since)) + '<div class="khv-body">' +
+        row('Parties', c.parties.map(function(q) { return pspan(q); }).join(', ') + (c.experts ? ' and experts' : '')) +
+        row('Seats', n + ' of ' + total) +
+        row('Majority', n >= need ? sc('majority of ' + (2 * n - total), 0) : sc('minority, ' + (need - n) + ' short', 3)) +
+        (c.tolerated.length ? row('Tolerated by', c.tolerated.map(function(q) { return pspan(q); }).join(', ')) : '') +
+        '<p>' + esc(c.note) + '</p></div>';
+    }
+    if (kind == 'faction') {
+      var fi = FACTION_INFO[id];
+      return head(fword(id, esc(FACTION[id][0])), esc(fi[0])) + '<div class="khv-body">' + row('Strongholds', esc(fi[1])) + '<p>' + esc(fi[2]) + '</p></div>';
+    }
+    if (kind == 'force') {
+      var fo = UI.forces(Q).filter(function(x) { return x.id == id; })[0];
+      return head(fo.party ? pspan(fo.party, esc(fo.name)) : esc(fo.name), esc(fo.sub)) + '<div class="khv-body">' + esc(fo.text) + '</div>';
+    }
+    if (kind == 'organ') {
+      var o = UI.organs(Q).filter(function(x) { return x.id == id; })[0];
+      return head(esc(o.name), esc(o.sub)) + '<div class="khv-body">' + esc(o.text) + '</div>';
+    }
+    return '';
   };
 
+  UI.initHover = function() {
+    if (UI.hoverReady) { return; }
+    UI.hoverReady = true;
+    var box = document.createElement('div');
+    box.id = 'kpd-hov';
+    box.setAttribute('role', 'tooltip');
+    document.body.appendChild(box);
+    var cur = null;
+    var show = function(el) {
+      var html = el.hasAttribute('data-hov') ? UI.hoverHTML(el.getAttribute('data-hov'), Qnow()) : '<div class="khv-body">' + esc(el.getAttribute('data-tip')) + '</div>';
+      if (!html) { return; }
+      cur = el;
+      box.innerHTML = html;
+      box.style.display = 'block';
+      var r = el.getBoundingClientRect(), w = box.offsetWidth, h = box.offsetHeight;
+      var x = r.right + 10 + w < window.innerWidth ? r.right + 10 : Math.max(8, r.left - 10 - w);
+      if (x + w > window.innerWidth - 8) { x = Math.max(8, window.innerWidth - 8 - w); }
+      var y = Math.min(Math.max(8, r.top - 6), window.innerHeight - 8 - h);
+      box.style.left = x + 'px';
+      box.style.top = Math.max(8, y) + 'px';
+    };
+    var hide = function() { cur = null; box.style.display = 'none'; };
+    var find = function(t) { return t && t.closest ? t.closest('[data-hov], [data-tip]') : null; };
+    document.addEventListener('mouseover', function(e) { var el = find(e.target); if (el && el !== cur) { show(el); } else if (!el && cur) { hide(); } });
+    document.addEventListener('focusin', function(e) { var el = find(e.target); if (el) { show(el); } });
+    document.addEventListener('focusout', hide);
+    document.addEventListener('click', function(e) { var el = find(e.target); if (el && el !== cur) { show(el); } else if (!el) { hide(); } });
+    window.addEventListener('scroll', hide, true);
+  };
+
+  // ---- The government ---------------------------------------------------------------
   var STANCE = {
+    kpd: 'The party of the revolutionary working class, and ours. Strong in the factories of Saxony, Berlin, Hamburg and the Ruhr.',
     spd: 'The largest workers\' party. Its leaders govern with the bourgeoisie; its members are the workers we must win.',
     z: 'The Catholic party of every class, from the Rhineland works to the bishops. Governs with whoever guards the Church.',
     bvp: 'Bavaria\'s Catholic right. Its government shelters the armed leagues.',
     ddp: 'Liberal bankers, professors and officials: the Republic\'s loyal and shrinking middle.',
     dvp: 'The party of heavy industry. Stinnes wants the eight-hour day gone.',
     dnvp: 'Junkers, generals and anti-Semites. Wants the Republic overthrown and the KPD banned.',
-    nsdap: 'The völkisch racists: the DVFP in the Reichstag, Hitler\'s NSDAP in Munich. Fascism in its first form.'
+    nsdap: 'The völkisch racists: the DVFP in the Reichstag, Hitler\'s NSDAP in Munich. Fascism in its first form.',
+    other: 'Regional lists, the Bavarian Peasants\' League and others.'
   };
+  var CHANCELLOR = {Cuno: 'cuno', Stresemann: 'stresemann', Marx: 'marx'};
+  var LEFT_RIGHT = ['kpd', 'spd', 'ddp', 'z', 'bvp', 'agr', 'dvp', 'dnvp', 'nsdap', 'other'];
+
+  UI.sidebarMain = function(Q) {
+    var lead = Q.party_line || 'right';
+    var pos = Q.kpd_banned ? 'banned' : Q.y23_saxony ? 'in the Saxon government' : 'legal opposition';
+    var html = '<h1>Status</h1>' + line(esc(Q.date_label)) +
+      line('Resources: ' + Q.resources) +
+      line(UI.partyName('kpd') + ' position: ' + fword(lead, esc(pos))) +
+      line('Parteivorsitzender: ' + UI.person('brandler'));
+    var cab = KPD.cabinet(Q), ch = CHANCELLOR[Q.chancellor];
+    var cp = String(Q.chancellor_party).toLowerCase();
+    html += '<h1>Government</h1>' +
+      line('President: ' + hov(esc(PEOPLE.ebert[0]), 'person:ebert') + ' (' + UI.partyName('spd') + ')') +
+      line('Chancellor: ' + (ch ? hov(esc(PEOPLE[ch][0]), 'person:' + ch) : esc(Q.chancellor)) + ' (' +
+        (cp == 'i' ? tip('<b>I</b>', 'Independent: belongs to no party') : UI.partyName(cp)) + ')') +
+      line('Cabinet: ' + hov(esc(cab.short), 'cabinet:now'));
+    html += '<h1>Reichstag composition</h1>' + UI.seatList(Q.rt_seats) +
+      line('<span class="kdim">Elected June 1920. Next election: ' + KPD.MONTHS[Q.next_election_month - 1] + ' ' + Q.next_election_year + '</span>');
+    html += '<h1>Economy</h1>' + '<p class="kwip">In progress</p>';
+    return html;
+  };
+  UI.seatList = function(seats) {
+    var total = 0, p;
+    for (p in seats) { total += seats[p]; }
+    var out = '<table class="ktable kseats">';
+    LEFT_RIGHT.forEach(function(q) {
+      if (!seats[q]) { return; }
+      out += '<tr class="khov-row" tabindex="0" data-hov="party:' + q + '"><td><span class="kswatch bgf-' + q + '"></span>' + pspan(q) + '</td><td class="knum">' + seats[q] +
+        '</td><td class="knum">' + (100 * seats[q] / total).toFixed(1) + '%</td></tr>';
+    });
+    return out + '</table>';
+  };
+  // kept for the vote drawings in the story panel
+  UI.seatLegend = function(seats, sides) {
+    var total = 0, p;
+    for (p in seats) { total += seats[p]; }
+    var out = '<table class="ktable">';
+    LEFT_RIGHT.forEach(function(q) {
+      if (!seats[q]) { return; }
+      out += '<tr><td><span class="kswatch bgf-' + q + '"></span>' + UI.partyName(q) + '</td><td class="knum">' + seats[q] +
+        '</td><td class="knum kdim">' + (100 * seats[q] / total).toFixed(1) + '%</td>' +
+        (sides ? '<td class="kside">' + ({yes: 'for', no: 'against', abstain: 'abstains'}[sides[q] || 'abstain']) + '</td>' : '') + '</tr>';
+    });
+    return out + '</table>';
+  };
+
+  // ---- The party ----------------------------------------------------------------------
+  UI.organs = function(Q) {
+    var line_f = Q.party_line || 'right';
+    var strongest = Q.kpd_factions.slice().sort(function(a, b) { return Q['kf_' + b + '_strength'] - Q['kf_' + a + '_strength']; })[0];
+    var mapp = Q.y23_hundreds >= 6 || Q.oct_ok ? ['ready to command', 0] : Q.oct_show ? ['being built in haste', 2] : ['on paper', 3];
+    return [
+      {id: 'zentrale', name: 'Zentrale', sub: 'the leadership elected by the congress', word: fword(line_f, 'held by the ' + FACTION[line_f][0]),
+        text: 'The leadership elected at the Leipzig congress in January 1923. It sets the line, appoints the district secretaries and speaks for the party to Moscow. Its political bureau meets daily in Berlin.'},
+      {id: 'za', name: 'Zentralausschuss', sub: 'the districts\' council', word: fword(strongest, 'leaning to the ' + FACTION[strongest][0]),
+        text: 'The larger council of the Zentrale and the district leaders. Here the districts can outvote the leadership, and the Left of Berlin and Hamburg makes itself heard.'},
+      {id: 'fraktion', name: 'Reichstag Fraktion', sub: 'our deputies', word: (Q.rt_seats.kpd || 0) + ' deputies',
+        text: 'The party\'s deputies in the Reichstag. Their speeches reach millions through the press; their votes rarely decide anything, and the party distrusts its own parliamentarians.'},
+      {id: 'press', name: 'Die Rote Fahne', sub: 'the central organ', word: Q.kpd_banned ? sc('banned', 4) : sc('legal, daily', 0),
+        text: 'The party\'s daily paper in Berlin, founded by Luxemburg and Liebknecht in 1918, with some thirty district papers behind it. Banned again and again under the emergency decrees.'},
+      {id: 'mapp', name: 'M-Apparat', sub: 'the military-political apparatus', word: sc(mapp[0], mapp[1]),
+        text: 'The secret apparatus that is to command the Hundreds and arm the rising, built in 1923 with advisers sent from Moscow. Its weapons lists are longer than its weapons.'},
+      {id: 'ecci', name: 'Comintern representative', sub: 'Moscow\'s eyes in Berlin', word: 'Karl Radek',
+        text: 'The Executive of the Communist International sends its representatives to sit with the Zentrale. In 1923 that is Radek; in the autumn Pyatakov and others follow to prepare the October.'}
+    ];
+  };
+  UI.sidebarParty = function(Q) {
+    var html = '<h1>Factions</h1>' + line('Party line: ' + hov(fword(Q.party_line), 'faction:' + Q.party_line) + '. Internal dissent: ' +
+      sc(KPD.dissentWord(Q.kf_dissent_percent), lvl(Q.kf_dissent_percent, [5, 15, 31, 50])));
+    ['left', 'centre', 'right'].forEach(function(f) {
+      if (Q.kpd_factions.indexOf(f) < 0) { return; }
+      var s = Q['kf_' + f + '_strength'], d = Q['kf_' + f + '_dissent'];
+      html += '<div class="kfaction kfaction-' + f + '">' +
+        '<p class="kfaction-name">' + hov(fword(f, esc(FACTION[f][0]) + ' wing'), 'faction:' + f) + '</p>' +
+        line('Strength: ' + sc(KPD.strengthWord(s), 4 - lvl(s, [10, 25, 40, 60]))) +
+        line('Dissent: ' + sc(KPD.dissentWord(d), lvl(d, [5, 15, 31, 50]))) +
+        line('Tactic: ' + esc(TACTIC[f])) + '</div>';
+    });
+    html += '<h1>Organs</h1>';
+    UI.organs(Q).forEach(function(o) { html += line(hov(esc(o.name), 'organ:' + o.id) + ': ' + o.word); });
+    var t = Q.comintern_trust;
+    html += '<h1>Moscow</h1>' +
+      line('Leadership: ' + esc(Q.moscow_leader.replace(/-/g, ', ')) + ', favouring the ' + fword(Q.moscow_favored)) +
+      line(tip('Trust in us', 'Below satisfied Moscow writes letters; if displeased it cuts the subsidy and writes open letters; if angry it sends emissaries') + ': ' +
+        sc(KPD.trustWord(t), 4 - lvl(t, [30, 40, 50, 60]))) +
+      (Q.soviet_subsidy ? line('Subsidy: paid') : '');
+    if (Q.dir_active) {
+      html += line('Directive: ' + esc(Q.dir_target) + ' (' + esc(Q.dir_progress) + '), ' + met(Q.dir_ok) + '. Judged by ' + esc(Q.dir_by) + '.');
+    }
+    if (Q.oct_show) { html += '<h1>The German October</h1>' + UI.october(Q); }
+    var dues = KPD.duesEstimate(Q);
+    html += '<h1>The class</h1>' +
+      line('Workers\' mood: ' + sc(KPD.moodWord(Q.mood), 4 - lvl(Q.mood, [40, 55, 70, 85]))) +
+      line(tip('United front', 'Joint action with the workers of the SPD, the free unions and the factory councils') + ': ' + sc(KPD.unityWord(Q.y23_unity), 4 - lvl(Q.y23_unity, [1, 3, 6, 9]))) +
+      line(tip('Dues', 'Members in the districts pay dues every month; a stronger organisation pays more') + ': ' +
+        sc(dues >= 3 ? 'plentiful' : dues == 2 ? 'steady' : dues == 1 ? 'thin' : 'barely trickling', [4, 3, 1, 0][Math.min(3, dues)])) +
+      line('Organisation: ' + Object.keys(KPD.DISTRICTS).map(function(d) {
+        var o = Q['d_' + d + '_org'];
+        return esc(KPD.DISTRICTS[d].short || KPD.DISTRICTS[d].name) + ' ' + sc(KPD.orgWord(o), 4 - lvl(o, [15, 30, 45, 60]));
+      }).join(', '));
+    return html;
+  };
+
+  // ---- Politics -------------------------------------------------------------------------
   UI.sidebarPolitics = function(Q) {
-    var html = '<h1>Government</h1>' +
-      line('President: ' + esc(Q.president) + ' (' + UI.partyName('spd') + ')') +
-      line('Chancellor: ' + esc(Q.chancellor) + ' (' + (Q.chancellor_party == 'I' ? 'independent' : UI.partyName(String(Q.chancellor_party).toLowerCase())) + ')') +
-      line('Reichstag composition (elected June 1920, groups as of 1923):') +
-      UI.hemicycle(Q.rt_seats, {label: 'Reichstag'}) + UI.seatLegend(Q.rt_seats) +
-      line('Next election: ' + KPD.MONTHS[Q.next_election_month - 1] + ' ' + Q.next_election_year);
-    html += '<h1>The parties</h1>';
-    ['spd', 'z', 'bvp', 'ddp', 'dvp', 'dnvp', 'nsdap'].forEach(function(p) {
-      html += line(UI.partyName(p) + ': ' + esc(KPD.relationWord(Q[p + '_relation'])) + '. <span class="kdim">' + esc(STANCE[p]) + '</span>');
+    var html = '<h1>Inter-party relations</h1>';
+    ['spd', 'ddp', 'z', 'bvp', 'dvp', 'dnvp', 'nsdap'].forEach(function(p) {
+      var r = Q[p + '_relation'] || 0;
+      html += line(UI.partyName(p) + ': ' + sc(KPD.relationWord(r), 4 - lvl(r, [15, 30, 40, 55])));
     });
+    html += '<h1>Party leadership</h1><table class="ktable kleaders">';
+    LEFT_RIGHT.forEach(function(p) {
+      if (!LEADER[p]) { return; }
+      html += '<tr><td>' + UI.partyName(p) + '</td><td>' + hov(esc(PEOPLE[LEADER[p]][0].split(' ').slice(-1)[0]), 'person:' + LEADER[p]) +
+        '</td><td>' + hov(esc(IDEOLOGY[p][0]), 'ideology:' + p) + '</td></tr>';
+    });
+    html += '</table>';
     html += '<h1>The Lands</h1>';
-    KPD.LAND_ORDER.forEach(function(l) {
-      html += line(esc(KPD.LANDS[l].name) + ': ' + esc(KPD.landGov(Q, l)));
-    });
+    KPD.LAND_ORDER.forEach(function(l) { html += line(esc(KPD.LANDS[l].name) + ': ' + esc(KPD.landGov(Q, l))); });
     return html;
   };
 
+  // ---- Defense ----------------------------------------------------------------------------
+  // Official bodies and armed leagues in 1923. Most follow the calendar and the year's events;
+  // the Hundreds follow the player.
+  UI.forces = function(Q) {
+    var after = function(m) { return Q.year > 1923 || Q.month >= m; };
+    var putsch = Q.y23_beerhall_done == 1, exec = Q.state_intervention == 1 || after(11);
+    var h = KPD.hundreds(Q), mil = Q.rfb_militancy || 0;
+    return [
+      {id: 'reichswehr', kind: 'official', name: 'Reichswehr', party: '', sub: 'the army, under General von Seeckt', loyal: after(10) ? ['conditional', 3] : ['conditional', 2],
+        text: 'The hundred thousand men Versailles allows, officered by the old army. Loyal to the government against the Left; "Reichswehr does not fire on Reichswehr" against the Right.' + (after(10) ? ' Its Bavarian division has sworn itself to Munich.' : '')},
+      {id: 'prupol', kind: 'official', name: 'Prussian police', party: 'spd', sub: 'Schutzpolizei, under Severing', loyal: ['loyal', 0],
+        text: 'Barracked, armed with rifles and armoured cars, commanded by a Social Democrat. The Republic\'s best force, and in May it banned our Hundreds in Prussia.'},
+      {id: 'saxpol', kind: 'official', name: 'Saxon police', party: '', sub: exec ? 'under the Reich commissioner' : 'under the Dresden government', loyal: exec ? ['loyal to Berlin', 1] : Q.zeigner ? ['loyal to Dresden', 2] : ['loyal', 1],
+        text: exec ? 'Since the Reich execution the Saxon police take their orders from the general in Dresden.' : 'Answers to the Saxon government in Dresden, which needs our votes. Berlin does not trust it.'},
+      {id: 'baypol', kind: 'official', name: 'Bavarian police', party: 'bvp', sub: 'Landespolizei', loyal: after(9) && !putsch ? ['defiant', 4] : ['unreliable', 3],
+        text: 'Obeys Munich, not Berlin.' + (putsch ? ' On 9 November it fired on Hitler\'s march, then let the judges do the rest.' : after(9) ? ' Since September it answers to Kahr as general state commissioner, who defies the Reich.' : ' Watches the armed leagues and does nothing.')},
+      {id: 'teno', kind: 'official', name: 'Technische Nothilfe', party: '', sub: 'the emergency technical service', loyal: ['loyal', 0],
+        text: 'Students and officials trained to run the gasworks and the railways when the workers strike. A strikebreaking corps with a state budget.'},
+      {id: 'hundreds', kind: 'para', name: 'Proletarian Hundreds', party: 'kpd', sub: 'our workers\' defence', ours: true,
+        str: [KPD.unitsWord(h), h >= 4 ? 0 : h >= 2 ? 1 : h >= 1 ? 2 : 4], arms: [mil >= 2 ? 'armed' : mil >= 1 ? 'lightly armed' : 'barely armed', mil >= 2 ? 1 : mil >= 1 ? 2 : 3],
+        text: 'Factory-based defence units of the KPD and of non-party workers, the core of any rising. Banned in Prussia, legal in Saxony and Thuringia.'},
+      {id: 'sa', kind: 'para', name: 'SA', party: 'nsdap', sub: 'the NSDAP\'s storm troops', str: putsch ? ['banned, scattered', 1] : after(9) ? ['large', 3] : ['growing', 2],
+        arms: putsch ? ['hidden arms', 2] : ['armed', 3], text: 'Hitler\'s street army in Bavaria, trained by Röhm and officers of the Reichswehr.' + (putsch ? ' Broken up after the putsch, not destroyed.' : '')},
+      {id: 'oberland', kind: 'para', name: 'Bund Oberland', party: 'nsdap', sub: 'Freikorps veterans, Bavaria', str: putsch ? ['banned', 1] : ['sizeable', 3], arms: ['heavily armed', 4],
+        text: 'The Freikorps that stormed Upper Silesia in 1921 and Munich in 1919. Part of the Kampfbund with the SA from September.'},
+      {id: 'reichsflagge', kind: 'para', name: 'Reichsflagge', party: 'nsdap', sub: 'Röhm\'s league, Bavaria', str: ['modest', 2], arms: ['well armed', 3],
+        text: 'Ernst Röhm\'s league inside the Kampfbund, with direct access to the Reichswehr\'s stores.'},
+      {id: 'stahlhelm', kind: 'para', name: 'Stahlhelm', party: 'dnvp', sub: 'League of Front Soldiers', str: ['large', 3], arms: ['lightly armed', 2],
+        text: 'The largest veterans\' league, monarchist and close to the DNVP. Strongest in Prussia\'s east and in Central Germany.'},
+      {id: 'black', kind: 'para', name: 'Black Reichswehr', party: 'dnvp', sub: 'illegal army reserve', str: after(10) ? ['dissolved', 1] : ['sizeable', 3], arms: ['heavily armed', 4],
+        text: 'Labour battalions hidden in the barracks of Prussia, beyond what Versailles allows. ' + (after(10) ? 'Major Buchrucker\'s putsch at Küstrin on 1 October failed; the units are disbanded on paper.' : 'Major Buchrucker commands them and talks of marching on Berlin.')},
+      {id: 'wiking', kind: 'para', name: 'Bund Wiking', party: 'dnvp', sub: 'Captain Ehrhardt\'s men', str: ['modest', 2], arms: ['well armed', 3],
+        text: 'Successor of the Ehrhardt Brigade and Organisation Consul, the murderers of Erzberger and Rathenau.'}
+    ];
+  };
   UI.sidebarDefense = function(Q) {
-    var html = '<h1>Paramilitaries</h1>' +
-      line(tip('Proletarian Hundreds', 'The KPD\'s workers\' defence units of 1923') + ': ' + esc(KPD.unitsWord(KPD.hundreds(Q))));
+    var F = UI.forces(Q), name = function(f) { return hov(f.party ? pspan(f.party, esc(f.name)) : '<b>' + esc(f.name) + '</b>', 'force:' + f.id); };
+    var html = '<h1>Official organisations</h1>';
+    F.filter(function(f) { return f.kind == 'official'; }).forEach(function(f) { html += line(name(f) + ': ' + sc(f.loyal[0], f.loyal[1])); });
+    html += '<p class="kdim knote">Loyalty to the Reich government.</p><h1>Paramilitaries</h1>';
+    F.filter(function(f) { return f.kind == 'para'; }).forEach(function(f) {
+      // our own units: strong is good (green); the enemy's: strong is bad (red)
+      html += '<div class="kforce">' + '<p class="kforce-name">' + name(f) + '</p>' +
+        line('Strength: ' + sc(f.str[0], f.str[1]) + '. Militarization: ' + sc(f.arms[0], f.arms[1])) + '</div>';
+    });
     var where = Object.keys(KPD.DISTRICTS).filter(function(d) { return Q['d_' + d + '_h'] > 0; }).map(function(d) { return esc(KPD.DISTRICTS[d].name); });
-    if (where.length) { html += line('Formed in: ' + where.join(', ')); }
-    html += line(tip('Bavarian leagues', 'Bund Oberland, Reichsflagge, the SA and the other armed leagues') + ': arming openly under the Bavarian government') +
-      line(tip('Black Reichswehr', 'Illegal reserve units hidden inside the army') + ': in the barracks of Prussia, out of sight') +
-      '<h1>Official military</h1>' +
-      line('Reichswehr: the hundred thousand men allowed at Versailles, loyal to its generals') +
-      line('Prussian police: the strongest force in Germany, under the Social Democrat Severing');
+    if (where.length) { html += '<p class="kdim knote">Our Hundreds in: ' + where.join(', ') + '</p>'; }
     return html;
   };
 
+  // ---- Polls ---------------------------------------------------------------------------------
   UI.sidebarPolls = function(Q) {
-    var order = ['kpd', 'spd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
-    var html = '<h1>Projected election results</h1>' + line('(if the election were to be held now):');
-    order.forEach(function(p) { html += line(UI.partyName(p) + ': ' + (Q[p + '_votes'] || 0) + '%'); });
-    html += line('<b>Detailed results for each demographic</b>');
-    var names = {workers: 'Workers', unemployed: 'Unemployed', new_middle: 'New Middle Class', old_middle: 'Old Middle Class', rural: 'Rural', catholics: 'Catholics'};
+    var order = ['kpd', 'spd', 'ddp', 'z', 'dvp', 'dnvp', 'nsdap', 'other'];
+    var html = '<h1>Projected results</h1>' + line('<span class="kdim">If the election were held now:</span>') + '<table class="ktable kseats">';
+    order.forEach(function(p) {
+      html += '<tr class="khov-row" tabindex="0" data-hov="party:' + p + '"><td><span class="kswatch bgf-' + p + '"></span>' + pspan(p, p == 'z' ? 'Z + BVP' : '') +
+        '</td><td class="knum">' + (Q[p + '_votes'] || 0) + '%</td></tr>';
+    });
+    html += '</table><h1>Result per demographic</h1>';
+    var names = {workers: 'Workers', unemployed: 'Unemployed', new_middle: 'New middle class', old_middle: 'Old middle class', rural: 'Rural', catholics: 'Catholics'};
     Q.classes.forEach(function(c) {
-      html += line(names[c] + ': ' + order.map(function(p) { return UI.partyName(p) + ' ' + (Q[c + '_' + p + '_display'] || 0) + '%'; }).join(', '));
+      html += '<p class="kdemo"><b>' + names[c] + '</b><br>' + order.filter(function(p) { return (Q[c + '_' + p + '_display'] || 0) >= 1; })
+        .map(function(p) { return pspan(p, esc(pname(p)) + ' ' + Q[c + '_' + p + '_display'] + '%'); }).join(' · ') + '</p>';
     });
     return html + line('<span class="kdim">Z includes the BVP.</span>');
   };
@@ -321,6 +563,7 @@
   // ---- Filling the placeholders -----------------------------------------------------------
   UI.renderInserts = function(root) {
     var Q = Qnow();
+    UI.initHover();
     KPD.migrate(Q);
     var els = (root || document).querySelectorAll('.kpd-insert');
     Array.prototype.forEach.call(els, function(el) {
@@ -336,6 +579,7 @@
         else if (kind == 'october') { html = '<div class="kpanel"><p class="klabel">The German October</p>' + UI.october(Q) + '</div>'; }
         else if (kind == 'sb_main') { html = UI.sidebarMain(Q); }
         else if (kind == 'sb_politics') { html = UI.sidebarPolitics(Q); }
+        else if (kind == 'sb_party') { html = UI.sidebarParty(Q); }
         else if (kind == 'sb_defense') { html = UI.sidebarDefense(Q); }
         else if (kind == 'sb_polls') { html = UI.sidebarPolls(Q); }
       } catch (e) { html = '<p class="kdim">(' + esc(e.message) + ')</p>'; console.error(e); }

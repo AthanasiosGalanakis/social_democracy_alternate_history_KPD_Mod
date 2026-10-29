@@ -4,6 +4,10 @@ is-special: true
 
 {!<div class="kpd-insert" data-insert="sb_main"></div>!}
 
+@party
+
+{!<div class="kpd-insert" data-insert="sb_party"></div>!}
+
 @politics
 
 {!<div class="kpd-insert" data-insert="sb_politics"></div>!}

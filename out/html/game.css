@@ -13,7 +13,7 @@ body {
   --card-border-color: #ccc; 
   --card-bg-color: #ddd; 
   --p-kpd: #700000; --p-spd: #c00000; --p-uspd: #D47B9B; --p-dnvp: #3E88B3; --p-dvp: #D5AC27; --p-ddp: #D3C24D;
-  --f-right: #d9902f; --f-centre: #8f8f8f; --f-left: #b5504a;
+  --f-right: #e8703f; --f-centre: #d42a2a; --f-left: #8b0a1e;
   --p-nsdap: #7A3C00; --p-bvp: #95ccc7; --p-zentrum: #000;
   font-family: "Minion Pro", Georgia, serif;
   background-color: var(--bg-color);
@@ -34,7 +34,7 @@ body.dark-mode {
   --card-border-color: #4c4c4c;
   --card-bg-color: #3f3f3f;
   --p-kpd: #c0392b; --p-spd: #ff2a3a; --p-uspd: #ff8a5c; --p-dnvp: #5b8be0; --p-dvp: #d4ae2a; --p-ddp: #f5e68a;
-  --f-right: #e8a64f; --f-centre: #b5b5b5; --f-left: #d9726b;
+  --f-right: #ff9a70; --f-centre: #ff5a50; --f-left: #e0607a;
   --p-nsdap: #c98a4a; --p-bvp: #a8dcf5; --p-zentrum: #e8e8e8;
 }
 body.dark-mode #content {
@@ -730,3 +730,68 @@ body.dark-mode .kmap-prussia, body.dark-mode .kmap-ring { stroke: #9ab; }
 
 /* portraits we do not have yet: initials in the faction's colour frame */
 .card-placeholder { font-family: "Minion Pro", Georgia, serif; }
+
+/* three columns: status left, story in the middle, the paper right.
+ * The middle panel keeps the same margin on both sides so the story
+ * never runs under either column. */
+#mid_panel { margin: 0 16.5rem; }
+#tools_wrapper { max-width: 74em; }
+#news_sidebar { width: 14.5rem; }
+@media screen and (max-width: 1200px) {
+  #mid_panel { margin: 0 16.6rem; }
+  #tools_wrapper { max-width: none; }
+}
+/* too narrow for three columns: both columns go above the story */
+@media screen and (max-width: 1000px) {
+  #page, #tools_wrapper, #content { position: static; }
+  #mid_panel { margin: 0 auto; }
+  #tools_wrapper { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.6em; padding: 0 0.4em 0.8em 0.4em; }
+  .tools, .tools.left, .tools.right, #news_sidebar { float: none; position: static; flex: 1 1 14rem; width: auto; margin: 0; }
+}
+
+/* colour scales for words: green is good for us, dark red is bad (after the DDP mod) */
+:root { --sc0: #2e7d32; --sc1: #6b8e23; --sc2: #b8860b; --sc3: #d2691e; --sc4: #8b0000; }
+body.dark-mode { --sc0: #81c784; --sc1: #b5cf6b; --sc2: #e0b84a; --sc3: #f0975a; --sc4: #ff6b6b; }
+.ksc { font-weight: bold; }
+.ksc-0 { color: var(--sc0); } .ksc-1 { color: var(--sc1); } .ksc-2 { color: var(--sc2); } .ksc-3 { color: var(--sc3); } .ksc-4 { color: var(--sc4); }
+.kwip { color: var(--k-dim); font-style: italic; }
+.knote { font-size: 0.88em; margin-top: -0.2em; }
+.kfaction, .kforce { margin: 0.2em 0 0.7em 0; padding-left: 0.6em; border-left: 3px solid var(--k-line); }
+.kfaction p, .kforce p { margin: 0.1em 0; }
+.kfaction-left { border-left-color: var(--f-left); } .kfaction-centre { border-left-color: var(--f-centre); } .kfaction-right { border-left-color: var(--f-right); }
+.kfaction-name, .kforce-name { font-weight: bold; }
+.kforce { border-left-color: var(--k-line); }
+.kdemo { margin: 0.2em 0 0.6em 0; line-height: 1.45; font-size: 0.95em; }
+.kdemo .party { font-weight: normal; }
+.kseats tr.khov-row { cursor: help; }
+.kseats tr.khov-row:hover td, .kseats tr.khov-row:focus td { background: var(--k-panel); }
+.kleaders td { font-size: 0.95em; }
+
+/* hover cards: one floating box for every name with more to say */
+.khov { text-decoration: underline dotted; text-decoration-thickness: 1px; text-underline-offset: 0.18em; cursor: help; }
+.khov:focus { outline: 1px dotted var(--k-dim); }
+#kpd-hov { display: none; position: fixed; z-index: 1000; box-sizing: border-box; width: 19em; max-width: calc(100vw - 16px);
+  padding: 0.55em 0.7em; font-size: 0.9em; line-height: 1.35; text-align: left; text-indent: 0;
+  color: var(--text-color); background-color: var(--content-bg-color); border: 1px solid var(--k-line); border-top: 3px solid var(--k-red);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25); pointer-events: none; }
+#kpd-hov p { margin: 0.4em 0 0 0; text-indent: 0; }
+.khv-head { display: flex; gap: 0.6em; align-items: center; margin-bottom: 0.35em; }
+.khv-title { font-weight: bold; font-size: 1.05em; }
+.khv-sub { color: var(--k-dim); font-size: 0.9em; }
+.khv-body { margin-top: 0.25em; }
+.khv-row { display: flex; justify-content: space-between; gap: 0.8em; border-bottom: 1px solid var(--k-line); padding: 0.1em 0; }
+.khv-row > span { color: var(--k-dim); }
+.khv-row b { text-align: right; font-weight: normal; }
+.kport { flex: 0 0 3.2em; width: 3.2em; height: 4em; display: flex; align-items: center; justify-content: center;
+  font-family: "Minion Pro", Georgia, serif; font-size: 1.2em; font-weight: bold; color: #fff; border: 3px solid; background: #5a4a3a; }
+.kport-f-left { background: var(--f-left); border-color: #4a0010; } .kport-f-centre { background: var(--f-centre); border-color: #7a1010; }
+.kport-f-right { background: var(--f-right); border-color: #8a3a1a; }
+.kport-p-spd { background: var(--p-spd); border-color: #600; } .kport-p-dvp { background: #a8861a; border-color: #6a5410; }
+.kport-p-z { background: #333; border-color: #000; } .kport-p-ddp { background: #a89a30; border-color: #6a6010; }
+.kport-p-dnvp { background: var(--p-dnvp); border-color: #1e4a66; } .kport-p-bvp { background: #5a9a95; border-color: #2a5a55; }
+.kport-p-nsdap { background: var(--p-nsdap); border-color: #3a1c00; } .kport-p-other { background: #6a6a6a; border-color: #333; }
+/* six tabs on one row */
+.tab_container { display: flex; flex-wrap: wrap; }
+.tab_container .tab_button { flex: 1 1 auto; padding: 0.7em 0.25em; font-size: 0.86em; }
+.tab_container #dev_tab { flex: 0 0 auto; color: var(--k-dim); font-size: 0.75em; }
+.kdemo .party { white-space: nowrap; }
