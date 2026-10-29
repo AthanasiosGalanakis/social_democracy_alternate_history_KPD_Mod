@@ -458,7 +458,7 @@
     UI.organs(Q).forEach(function(o) {
       if (o.id == 'zentrale' || o.id == 'za') {
         html += '<div class="kfaction"><p class="kfaction-name">' + hov(esc(o.name), 'organ:' + o.id) + '</p>' +
-          (o.id == 'zentrale' ? seats('zentrale', 7, 6, 0) : seats('za', 17, 14, 5)) + '</div>';
+          (o.id == 'zentrale' ? seats('zentrale', 7, 6, 0) : seats('za', 16, 13, 7)) + '</div>';
       } else {
         html += line(hov(esc(o.name), 'organ:' + o.id) + ': ' + o.word);
       }
