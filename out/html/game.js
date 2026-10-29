@@ -393,7 +393,7 @@
       bar.appendChild(name);
       var role = document.createElement('p');
       role.className = 'leader-role';
-      role.textContent = 'Parteivorsitzender';
+      role.textContent = 'Chairman';
       bar.appendChild(role);
       pinned.removeChild(head);
       var content = document.getElementById('content');

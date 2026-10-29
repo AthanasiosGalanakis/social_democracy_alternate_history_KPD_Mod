@@ -55,6 +55,7 @@
     Q.kf_right_strength = 45; Q.kf_right_dissent = 5;
     // seats in the Zentrale by faction: the one co-opted after Jena (Aug 1921) until the Leipzig congress
     Q.zentrale_r = 7; Q.zentrale_c = 6; Q.zentrale_l = 0;
+    Q.za_r = 17; Q.za_c = 14; Q.za_l = 5; // Zentralausschuss elected at Jena (36)
     Q.kf_left_strength = 30; Q.kf_left_dissent = 20;
     Q.kf_centre_strength = 25; Q.kf_centre_dissent = 5;
     Q.kf_dissent = 0.095; Q.kf_dissent_percent = 9.5;
