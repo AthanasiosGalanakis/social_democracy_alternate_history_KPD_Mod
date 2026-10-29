@@ -44,9 +44,9 @@ Thälmann's Hamburg organisation grows. The defence units drill, and the police 
 
 @scholem
 title: Werner Scholem: write against the SPD leaders
-subtitle: A pamphlet and a series of articles. · dev: kf_left_strength +4, workers_spd −2, kf_centre_dissent +2, adv_left_last = time
+subtitle: A pamphlet and a series of articles. · dev: kf_left_strength +4, workers_spd −2, kf_right_dissent +2, adv_left_last = time
 unavailable-subtitle: [? if scholem_timer > 0 : [+ scholem_timer +] months before Scholem can act again. ?]
 choose-if: scholem_timer = 0
-on-arrival: scholem_timer = 3; kf_left_strength += 4; workers_spd -= 2; kf_centre_dissent += 2; adv_left_last = time
+on-arrival: scholem_timer = 3; kf_left_strength += 4; workers_spd -= 2; kf_right_dissent += 2; adv_left_last = time
 
-Scholem writes the party's case against the SPD leaders, as sharply as he can. Some SPD workers are won over and many are offended, and the Centre, who would like to keep the united front, flinches.
+Scholem writes the party's case against the SPD leaders, as sharply as he can. Some SPD workers are won over and many are offended, and the majority, which would like to keep the united front, flinches.

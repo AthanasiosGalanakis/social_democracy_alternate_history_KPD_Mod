@@ -18,11 +18,11 @@ It is a strange thing to be offered. We would be keeping a secret that belongs t
 - @decline: Leave it alone.
 
 @decline
-subtitle: dev: test_stage = 9, trust +3, kf_centre_strength +2
-on-arrival: test_stage = 9; comintern_trust += 3; kf_centre_strength += 2
+subtitle: dev: test_stage = 9, trust +3
+on-arrival: test_stage = 9; comintern_trust += 3
 go-to: root
 
-We write back that the German party asks the Russian party for nothing it does not choose to tell us. Zetkin's answer is short and not unfriendly. The Centre is relieved to hear that we want no part in Moscow's quarrels. The envelope stays with Krupskaya, and whatever is in it will be read, if it is read at all, by other people.
+We write back that the German party asks the Russian party for nothing it does not choose to tell us. Zetkin's answer is short and not unfriendly. Pieck and Eberlein, who run the apparatus, are relieved to hear that we want no part in Moscow's quarrels. The envelope stays with Krupskaya, and whatever is in it will be read, if it is read at all, by other people.
 
 @ask
 subtitle: dev: test_stage = 1
@@ -73,17 +73,17 @@ Brandler's friends have a line to Bukharin, and through him to Rykov and Tomsky,
 In the Russian party the balance slips against the secretaries and the slow drift toward Stalin stops. Nothing is decided; the Central Committee has not met. Our own Right is pleased with itself, because it can now claim the friendship of the men who will matter, while the Left, which wanted the paper for a different man, is furious.
 
 @publish
-subtitle: dev: testament_path = 3, test_stage = 2, moscow_balance −8, moscow_drift = 0, trust −20, kf_left_strength +6, kf_right_strength +6, kf_centre_strength −10, kf_centre_dissent +10
-on-arrival: testament_path = 3; test_stage = 2; moscow_balance -= 8; moscow_drift = 0; comintern_trust -= 20; kf_left_strength += 6; kf_right_strength += 6; kf_centre_strength -= 10; kf_centre_dissent += 10
+subtitle: dev: testament_path = 3, test_stage = 2, moscow_balance −8, moscow_drift = 0, trust −20, kf_left_strength +6, kf_right_strength +6, kf_right_dissent +6
+on-arrival: testament_path = 3; test_stage = 2; moscow_balance -= 8; moscow_drift = 0; comintern_trust -= 20; kf_left_strength += 6; kf_right_strength += 6; kf_right_dissent += 6
 go-to: root
 
 The extracts go into our press on a Sunday, under a headline that never names the man they are about. By Monday every other paper in Berlin has them, and Vorwärts prints them beside a leading article about dictatorship inside the Russian party. The men whose names are in them read them in the German press.
 
-The Centre, whose loyalty is to the secretariat that has been loyal to it, is dismayed. Both oppositions, in Berlin and in Moscow, take heart, and the balance in the Russian party moves against the secretaries, though nothing is decided before the Central Committee meets. Moscow does not take it quietly, and our standing with the Comintern drops sharply.
+The party's apparatus men, whose loyalty is to the secretariat that has been loyal to them, are dismayed. Both oppositions, in Berlin and in Moscow, take heart, and the balance in the Russian party moves against the secretaries, though nothing is decided before the Central Committee meets. Moscow does not take it quietly, and our standing with the Comintern drops sharply.
 
 @hold
-subtitle: dev: testament_path = 4, test_stage = 9, trust +5, kf_centre_strength +2
-on-arrival: testament_path = 4; test_stage = 9; comintern_trust += 5; kf_centre_strength += 2
+subtitle: dev: testament_path = 4, test_stage = 9, trust +5
+on-arrival: testament_path = 4; test_stage = 9; comintern_trust += 5
 go-to: root
 
 The copy goes into the safe, and the safe is locked. It is a careful choice, and Moscow will be glad of it when it hears. It is also a choice to have been trusted with something and to have done nothing with it. What the notes say will be said, if it is said at all, by someone else, at a time that suits them.

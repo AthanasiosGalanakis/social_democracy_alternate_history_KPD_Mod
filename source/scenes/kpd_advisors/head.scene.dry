@@ -17,12 +17,12 @@ The chairman of the party is not an adviser like the others. Heinrich Brandler l
 
 @districts
 title: Address the districts
-subtitle: A circular to every district committee. · dev: kf_right_dissent −5, kf_centre_dissent −3, workers_kpd +2×m
+subtitle: A circular to every district committee. · dev: kf_right_dissent −5, workers_kpd +2×m
 unavailable-subtitle: [? if head_timer > 0 : [+ head_timer +] months before the chairman can act again. ?]
 choose-if: head_timer = 0
-on-arrival: head_timer = 3; kf_right_dissent -= 5; kf_centre_dissent -= 3; workers_kpd += 2*campaign_mult
+on-arrival: head_timer = 3; kf_right_dissent -= 5; workers_kpd += 2*campaign_mult
 
-Brandler travels the districts, from Chemnitz to the Ruhr, and speaks to the functionaries as one who has stood at a bench himself. The Right takes heart, the Centre is reassured, and the workers hear a chairman who talks about wages.
+Brandler travels the districts, from Chemnitz to the Ruhr, and speaks to the functionaries as one who has stood at a bench himself. The Right takes heart, Pieck's apparatus is reassured, and the workers hear a chairman who talks about wages.
 
 @zentrale
 title: Chair the Zentrale on the united front

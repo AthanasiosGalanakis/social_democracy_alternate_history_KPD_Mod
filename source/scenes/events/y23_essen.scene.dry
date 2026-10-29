@@ -32,8 +32,8 @@ go-to: root
 The conference is called on the factory councils and the works committees, with the district leaders of the other organisations invited as guests. Delegates will be chosen in the pits and the mills, not in the party offices. The Left is pleased, because the base is where it counts its strength. The Right points out that a conference of the councils is a conference of our own people, and that the SPD leaders will not sit in a hall they do not control.
 
 @letters
-subtitle: The Right and Centre approve, the date slips. · dev: workers_spd +1, kf_right_dissent −3, kf_centre_dissent −2, kf_left_dissent +4
-on-arrival: workers_spd += 1; kf_right_dissent -= 3; kf_centre_dissent -= 2; kf_left_dissent += 4
+subtitle: The Right approves, the date slips. · dev: workers_spd +1, kf_right_dissent −3, kf_left_dissent +4
+on-arrival: workers_spd += 1; kf_right_dissent -= 3; kf_left_dissent += 4
 go-to: root
 
 Letters go to the executive of the SPD and to the ADGB, offering them the chair of one session and a share in the call. The answers come slowly and are polite. Some local branches reply on their own account. The Left says the party is begging, and that every week spent on letters is a week Poincare and Cuno spend on the workers. The Right answers that a conference without the unions is a conference of the already convinced.

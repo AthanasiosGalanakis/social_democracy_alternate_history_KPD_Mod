@@ -16,10 +16,10 @@ Most of the Social Democratic press treats it as a Bavarian curiosity. The quest
 - @ignore: Treat it as a Bavarian sideshow and keep to the Ruhr.
 
 @warn
-subtitle: Costs 1 resources. · dev: resources −1, workers_kpd +2×m, kf_centre_strength +1
+subtitle: Costs 1 resources. · dev: resources −1, workers_kpd +2×m, kf_right_strength +1
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; workers_kpd += 2*campaign_mult; kf_centre_strength += 1
+on-arrival: resources -= 1; workers_kpd += 2*campaign_mult; kf_right_strength += 1
 go-to: root
 
 The party press prints a series on the new movement: who pays it, whom it recruits, and what it promises the shopkeepers that it cannot deliver. It is read, because the workers in Munich and Nuremberg know the stormtroops by sight.

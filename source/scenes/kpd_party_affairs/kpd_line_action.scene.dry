@@ -92,7 +92,7 @@ The party returns to the work that the offensive had neglected: union fractions,
 
 @conciliators_moscow
 view-if: party_line = "conciliators"
-subtitle: No cost. · dev: trust +3, kf_centre_dissent +3
-on-arrival: comintern_trust += 3; kf_centre_dissent += 3
+subtitle: No cost. · dev: trust +3, kf_right_dissent +3
+on-arrival: comintern_trust += 3; kf_right_dissent += 3
 
 Our delegates tell the Comintern's officials that the party's mass base is shrinking, in language chosen not to sound like criticism. Moscow notes the facts and the manner, and the apparatus resents it.

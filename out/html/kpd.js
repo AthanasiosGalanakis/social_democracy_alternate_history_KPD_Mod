@@ -50,14 +50,19 @@
     Q.resources = 3; Q.dues = 2;
 
     // KPD factions. party_line is the faction whose line runs the party; Brandler's Right holds it in 1923.
-    Q.kpd_factions = ['right', 'centre', 'left'];
+    // In 1923 there are two currents: Meyer, Zetkin, Pieck and Eberlein stand with Brandler's majority.
+    // The Centre (the "Mittelgruppe") only forms after October; it stays dormant until an event adds it.
+    Q.kpd_factions = ['right', 'left'];
     Q.party_line = 'right';
-    Q.kf_right_strength = 45; Q.kf_right_dissent = 5;
-    // seats in the Zentrale by faction: the one co-opted after Jena (Aug 1921) until the Leipzig congress
-    Q.zentrale_r = 7; Q.zentrale_c = 6; Q.zentrale_l = 0;
-    Q.za_r = 16; Q.za_c = 13; Q.za_l = 7; // Zentralausschuss elected at Jena (36)
+    Q.kf_right_strength = 70; Q.kf_right_dissent = 5;
+    // Zentrale and Zentralausschuss: members, and how many of them belong to the Left (see MOD_NOTES).
+    // Jena (Aug 1921) elected 14 to the Zentrale, none from the Left, and 36 to the Zentralausschuss,
+    // six of them Left leaders (Fischer, Maslow, Thälmann, Urbahns, Geschke, Eppstein).
+    Q.zentrale_n = 14; Q.zentrale_l = 0;
+    Q.za_n = 36; Q.za_l = 6;
+    Q.y23_compromise = 0;
     Q.kf_left_strength = 30; Q.kf_left_dissent = 20;
-    Q.kf_centre_strength = 25; Q.kf_centre_dissent = 5;
+    Q.kf_centre_strength = 0; Q.kf_centre_dissent = 0; Q.kf_centre_on = 0;
     Q.kf_dissent = 0.095; Q.kf_dissent_percent = 9.5;
     Q.party_line_months = 0; Q.zigzag = 0; Q.holder_dissent = 5;
     Q.campaign_mult = 0.905; Q.head_mult = 1;
@@ -280,6 +285,7 @@
     // a faction whose dissent reaches 30 makes a demand
     Q.demand_f = 'none';
     for (f of ['left', 'right', 'centre']) {
+      if (Q.kpd_factions.indexOf(f) < 0) { continue; }
       if (Q.demand_f == 'none' && Q['kf_' + f + '_strength'] > 0 && Q['kf_' + f + '_dissent'] >= 30 && Q['demand_' + f + '_timer'] <= 0) {
         Q.demand_f = f;
       }
@@ -291,6 +297,12 @@
     KPD.monthlyEconomy(Q);
     KPD.monthlyDistricts(Q);
     KPD.monthlyDirectives(Q);
+    // the Moscow compromise (conference of 27 April to 4 May 1923): on 17 May the Zentralausschuss adds
+    // four Left members to the Zentrale (Fischer, Thälmann, Geschke, König); the Left is brought up to four seats
+    if (Q.year == 1923 && Q.month >= 5 && Q.y23_leipzig_done && !Q.y23_compromise) {
+      Q.y23_compromise = 1;
+      if (Q.zentrale_l < 4) { Q.zentrale_n += 4 - Q.zentrale_l; Q.zentrale_l = 4; }
+    }
     Q.economic_records.push({date: new Date(Q.year, Q.month - 1), inflation: Q.inflation, unemployment: Q.unemployed});
   };
 
@@ -309,6 +321,8 @@
     }
     // after a failed October the troika blames the Right and turns to bolshevisation, which favours the Left
     if (leader == 'Zinoviev-Kamenev-Stalin' && Q.y23_failed == 1) { line = 'bolshevisation'; fav = 'left'; }
+    // no Centre yet: Moscow's favour goes to the majority it would have come from
+    if (Q.kpd_factions.indexOf(fav) < 0) { fav = 'right'; }
     Q.comintern_line = line;
     Q.moscow_favored = fav;
     if (leader != Q.moscow_leader) {
@@ -495,7 +509,7 @@
     mayday: {title: 'Hold May Day in Munich against the leagues', only: ['bavaria'],
       cost: 0, when: function(Q, d) { return Q.year == 1923 && Q.month == 4; },
       can: function(Q, d) { return true; }, why: '',
-      effect: function(Q, d) { KPD.addOrg(Q, d, 4); KPD.addPres(Q, d, 5); Q.y23_unity += 1; Q.kf_centre_strength += 1; },
+      effect: function(Q, d) { KPD.addOrg(Q, d, 4); KPD.addPres(Q, d, 5); Q.y23_unity += 1; Q.kf_right_strength += 1; },
       sum: 'Builds organisation and the united front.'},
     border: {title: 'Watch the Bavarian border with the Thuringian Hundreds', only: ['bavaria'],
       cost: 1, when: function(Q, d) { return Q.year == 1923 && Q.month >= 10 && Q.month <= 11; },

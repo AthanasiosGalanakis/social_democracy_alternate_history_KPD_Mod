@@ -27,8 +27,8 @@ go-to: root
 The paper prints letters from the factories and sets out the demands in plain language. Circulation rises. The paper that tells the workers what they already know about their lives is a better paper than the one that tells them what the Comintern thinks about them.
 
 @line
-subtitle: No cost. · dev: trust +3, kf_centre_strength +1, workers_kpd −1
-on-arrival: comintern_trust += 3; kf_centre_strength += 1; workers_kpd -= 1
+subtitle: No cost. · dev: trust +3, kf_right_strength +1, workers_kpd −1
+on-arrival: comintern_trust += 3; kf_right_strength += 1; workers_kpd -= 1
 go-to: root
 
 Page after page of resolutions, and the readers' eyes glaze over. Moscow is pleased and reads the paper with approval. Many of our members read the sports page and the death notices.

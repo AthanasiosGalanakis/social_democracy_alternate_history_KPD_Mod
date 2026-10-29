@@ -253,7 +253,7 @@
   // pictures, and we have none of these men; the hover card draws initials instead.
   var PEOPLE = {
     brandler: ['Heinrich Brandler', 'born 1881', 'kpd', 'right', 'Bricklayer from Bohemia and union organiser in Chemnitz. Chairman in 1921 during the March Action and jailed for it; back from the Comintern Executive in Moscow in August 1922 and chairman again since. Practical and patient: he believes in the united front and doubts that the party is ready for power.'],
-    meyer: ['Ernst Meyer', 'born 1887', 'kpd', 'centre', 'Spartacist from the first day, journalist and former editor of Die Rote Fahne. Chairman from August 1921 to August 1922, when Moscow returned the post to Brandler. He steered the party back to the united front after the March Action.'],
+    meyer: ['Ernst Meyer', 'born 1887', 'kpd', 'right', 'Spartacist from the first day, journalist and former editor of Die Rote Fahne. Chairman from August 1921 to August 1922, when Moscow returned the post to Brandler. He steered the party back to the united front after the March Action.'],
     ebert: ['Friedrich Ebert', 'born 1871', 'spd', '', 'Saddler, party secretary, Reich President since 1919. He made the pact with the generals in November 1918 and let the Freikorps drown the revolution. Rules now by emergency decree under Article 48.'],
     cuno: ['Wilhelm Cuno', 'born 1876', 'other', '', 'Director-general of the Hapag shipping line, without a party but close to the DVP. Answers the occupation of the Ruhr with passive resistance, paid for by printing money.'],
     stresemann: ['Gustav Stresemann', 'born 1878', 'dvp', '', 'Chairman of the DVP. An annexationist in the war, a "republican by reason" since. Speaks for industry that has learned it can rule through the Republic.'],
@@ -267,7 +267,7 @@
     severing: ['Carl Severing', 'born 1875', 'spd', '', 'Social Democratic interior minister of Prussia. Commands the strongest police in Germany and uses it against the Hundreds as readily as against the völkisch leagues.']
   };
   var FACTION_INFO = {
-    right: ['Brandler, Thalheimer, Walcher', 'Saxony, Thuringia, Württemberg', 'United front from above and below: joint action with the SPD\'s leaders where possible, workers\' governments with the left Social Democrats, patient work in the free unions.'],
+    right: ['Brandler, Thalheimer, Walcher', 'Saxony, Thuringia, Württemberg', 'United front from above and below: joint action with the SPD\'s leaders where possible, workers\' governments with the left Social Democrats, patient work in the free unions. Meyer, Zetkin, Pieck and Eberlein stand with this majority.'],
     centre: ['Meyer, Zetkin, Pieck, Eberlein', 'the apparatus, scattered', 'United front, with sharper criticism of the SPD leaders. Holds the Zentrale together between Right and Left.'],
     left: ['Fischer, Maslow, Thälmann, Scholem', 'Berlin, Hamburg, the Ruhr', 'United front from below only: no deals with the SPD leaders, workers\' government as a slogan for agitation, strike towards the seizure of power.']
   };
@@ -424,9 +424,9 @@
     var mapp = Q.y23_hundreds >= 6 || Q.oct_ok ? ['ready to command', 0] : Q.oct_show ? ['being built in haste', 2] : ['on paper', 3];
     return [
       {id: 'zentrale', name: 'Zentrale', sub: 'the leadership elected by the congress', word: fword(line_f, 'held by the ' + FACTION[line_f][0]),
-        text: (Q.y23_leipzig_done ? '21 members, elected by the Leipzig congress. ' : 'Elected at Jena in August 1921, with Brandler back since 1922; the next congress meets in Leipzig at the end of January. ') + 'The party\'s day-to-day leadership: it sets the line, runs the press and the apparatus, appoints the district secretaries and deals with Moscow.'},
+        text: (Q.y23_leipzig_done ? '21 members elected by the Leipzig congress, which enlarged it from 14. ' + (Q.y23_compromise ? 'In May the Zentralausschuss brought the Left up to four seats, under the compromise Moscow imposed. ' : '') : '14 members, elected at Jena in August 1921; the next congress meets in Leipzig at the end of January. ') + 'The party\'s day-to-day leadership: it sets the line, runs the press and the apparatus, appoints the district secretaries and deals with Moscow.'},
       {id: 'za', name: 'Zentralausschuss', sub: 'the districts\' council', word: '',
-        text: (Q.y23_leipzig_done ? '38 members, elected by the Leipzig congress. ' : '36 members, elected at Jena. ') + 'The larger council of party leaders from the districts, which meets with the Zentrale between congresses and can check it. Here the Left of Berlin and Hamburg makes itself heard.'},
+        text: (Q.y23_leipzig_done ? '38 members, elected by the Leipzig congress. ' : '36 members, elected at Jena. ') + 'The larger council of party leaders from the districts, which meets with the Zentrale between congresses and can check it. It has no formal factions; the Left count is its known leaders who sit here, among them Fischer, Maslow and Thälmann.'},
       {id: 'fraktion', name: 'Reichstag Fraktion', sub: 'our deputies', word: (Q.rt_seats.kpd || 0) + ' deputies',
         text: 'The party\'s deputies in the Reichstag. Their speeches reach millions through the press; their votes rarely decide anything, and the party distrusts its own parliamentarians.'},
       {id: 'press', name: 'Die Rote Fahne', sub: 'the central organ', word: Q.kpd_banned ? sc('banned', 4) : sc('legal, daily', 0),
@@ -450,15 +450,15 @@
         line('Tactic: ' + esc(TACTIC[f])) + '</div>';
     });
     html += '<h1>Organs</h1>';
-    // seats by faction (estimates; see MOD_NOTES), set by the party congress
-    var seats = function(k, r, c, l) {
+    // members, and how many of them are Left (see MOD_NOTES); set by the party congress
+    var seats = function(k, n, l) {
       var v = function(f, d) { var x = Q[k + '_' + f]; return x === undefined ? d : x; };
-      return line(fword('right') + ': ' + v('r', r)) + line(fword('centre') + ': ' + v('c', c)) + line(fword('left') + ': ' + v('l', l));
+      return line('Members: ' + v('n', n)) + line(fword('left') + ': ' + v('l', l));
     };
     UI.organs(Q).forEach(function(o) {
       if (o.id == 'zentrale' || o.id == 'za') {
         html += '<div class="kfaction"><p class="kfaction-name">' + hov(esc(o.name), 'organ:' + o.id) + '</p>' +
-          (o.id == 'zentrale' ? seats('zentrale', 7, 6, 0) : seats('za', 16, 13, 7)) + '</div>';
+          (o.id == 'zentrale' ? seats('zentrale', 14, 0) : seats('za', 36, 6)) + '</div>';
       } else {
         html += line(hov(esc(o.name), 'organ:' + o.id) + ': ' + o.word);
       }

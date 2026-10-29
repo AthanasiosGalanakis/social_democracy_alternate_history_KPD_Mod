@@ -2,7 +2,7 @@ title: Ernst Meyer
 card-image: img/portraits/meyer.jpg
 is-pinned-card: true
 tags: advisor
-view-if: kf_centre_strength > 0
+view-if: kf_centre_strength > 0 and kf_centre_on = 1
 new-page: true
 
 = The Centre: advisers
