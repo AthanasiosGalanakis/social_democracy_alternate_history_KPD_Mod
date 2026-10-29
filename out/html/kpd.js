@@ -59,7 +59,8 @@
     // Jena (Aug 1921) elected 14 to the Zentrale, none from the Left, and 36 to the Zentralausschuss,
     // six of them Left leaders (Fischer, Maslow, Thälmann, Urbahns, Geschke, Eppstein).
     Q.zentrale_n = 14; Q.zentrale_l = 0;
-    Q.za_n = 36; Q.za_l = 6;
+    Q.za_n = 36; Q.za_l = 12; // Left share is an estimate: about a third, as among the Leipzig delegates
+    Q.za_lvl = 1; Q.za_cost = 3; Q.za_note = '';
     Q.y23_compromise = 0;
     Q.kf_left_strength = 30; Q.kf_left_dissent = 20;
     Q.kf_centre_strength = 0; Q.kf_centre_dissent = 0; Q.kf_centre_on = 0;
@@ -237,6 +238,7 @@
     Q.unemployed = Math.max(1, Q.unemployed);
     KPD.recomputeSupport(Q);
     KPD.recomputeFactions(Q);
+    KPD.zaRefresh(Q);
     if (Q.month_actions >= 1) {
       Q.month_actions = 0;
       Q.turn = (Q.turn || 1) + 1;
@@ -304,6 +306,21 @@
       if (Q.zentrale_l < 4) { Q.zentrale_n += 4 - Q.zentrale_l; Q.zentrale_l = 4; }
     }
     Q.economic_records.push({date: new Date(Q.year, Q.month - 1), inflation: Q.inflation, unemployment: Q.unemployed});
+  };
+
+  // The Zentralausschuss must back the big decisions the Left opposes (supporting Zeigner, calling off
+  // the strike). The Left's share there sets the price: none as a small minority, +3 or +6 Left dissent
+  // as about a third or a strong minority, and as the majority it blocks the decision outright.
+  KPD.zaRefresh = function(Q) {
+    var s = Q.za_n > 0 ? Q.za_l / Q.za_n : 0;
+    Q.za_lvl = s >= 0.5 ? 3 : s >= 0.4 ? 2 : s >= 0.25 ? 1 : 0;
+    Q.za_cost = [0, 3, 6, 0][Q.za_lvl];
+    Q.za_note = Q.za_cost ? ' Zentralausschuss: Left +' + Q.za_cost + ' dissent.' : '';
+  };
+  KPD.zaWords = function(Q) {
+    KPD.zaRefresh(Q);
+    return {left: ['a small minority', 'about a third', 'a strong minority', 'the majority'][Q.za_lvl],
+            right: Q.za_lvl == 3 ? 'a minority' : 'the majority'};
   };
 
   // Moscow: the balance drifts towards Stalin; visible thresholds decide who leads (no dice).

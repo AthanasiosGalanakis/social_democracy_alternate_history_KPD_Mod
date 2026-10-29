@@ -3,7 +3,7 @@ subtitle: The Saxon Landtag elects a Minister-President.
 new-page: true
 tags: kpd_event
 view-if: year = 1923 and month >= 3 and month <= 4 and y23_zeigner_done = 0
-on-arrival: y23_zeigner_done = 1
+on-arrival: {! Q.y23_zeigner_done = 1; window.KPD.zaRefresh(Q); !}
 
 = A vote in Dresden
 
@@ -20,8 +20,11 @@ The Right of our party wants a programme in return: control committees on prices
 - @refuse: Abstain. No votes for an SPD government.
 
 @terms
-subtitle: Moscow approves. Saxony organisation +4. The Right gains.
+subtitle: Moscow approves. Saxony organisation +4. The Right gains.[+ za_note +]
+choose-if: za_lvl < 3
+unavailable-subtitle: The Left holds the Zentralausschuss and will not back it.
 on-arrival: {!
+Q.kf_left_dissent += Q.za_cost;
 Q.zeigner = 1; Q.zeigner_kpd = 'yes';
 Q.y23_unity += 1; Q.comintern_trust += 2; Q.kf_right_strength += 2; Q.spd_relation += 5;
 window.KPD.addOrg(Q, 'saxony', 4);
@@ -29,8 +32,11 @@ window.KPD.addOrg(Q, 'saxony', 4);
 go-to: result
 
 @plain
-subtitle: United front actions +2. Moscow and the Left object.
+subtitle: United front actions +2. Moscow and the Left object.[+ za_note +]
+choose-if: za_lvl < 3
+unavailable-subtitle: The Left holds the Zentralausschuss and will not back it.
 on-arrival: {!
+Q.kf_left_dissent += Q.za_cost;
 Q.zeigner = 1; Q.zeigner_kpd = 'yes';
 Q.y23_unity += 2; Q.comintern_trust -= 3; Q.kf_left_dissent += 5; Q.spd_relation += 8;
 !}

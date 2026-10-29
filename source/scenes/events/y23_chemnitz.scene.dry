@@ -3,7 +3,7 @@ subtitle: 21 October. The factory councils of Saxony are waiting for our call.
 new-page: true
 tags: kpd_event
 view-if: year = 1923 and month = 10 and sub = 2 and (y23_saxony_done = 1 or zeigner = 0) and y23_chemnitz_done = 0
-on-arrival: y23_chemnitz_done = 1
+on-arrival: {! Q.y23_chemnitz_done = 1; window.KPD.zaRefresh(Q); !}
 
 = The Chemnitz conference
 
@@ -93,8 +93,11 @@ The call is made and the strike does not leave the Communist districts. The Reic
 - @root: Continue.
 
 @calloff
-subtitle: The historical choice, and it cost the party dearly. Trust -10, Hamburg fights alone, the party is banned.
+subtitle: The historical choice, and it cost the party dearly. Trust -10, Hamburg fights alone, the party is banned.[+ za_note +]
+choose-if: za_lvl < 3
+unavailable-subtitle: The Left holds the Zentralausschuss and will not let the party retreat.
 on-arrival: {!
+Q.kf_left_dissent += Q.za_cost;
 Q.y23_outcome = 'called_off';
 Q.comintern_trust -= 10;
 Q.kf_left_dissent += 10;
