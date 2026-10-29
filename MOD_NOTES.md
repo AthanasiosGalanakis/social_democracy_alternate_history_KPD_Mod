@@ -167,11 +167,13 @@ The player sees words, not numbers; numbers stay in the Dev tab and in the " · 
 Main shows status, government, the Reichstag as a list from left to right, and Economy (not built yet). Party holds the factions, the party organs, Moscow, the German October and the class. Names with more to say open a hover card (`KPD.UI.hoverHTML`); the cards for people show initials until we have fully free portraits.
 
 Facts in the hover cards and tabs that still need checking:
-- BVP leader in 1923 shown as Heinrich Held.
-- Cabinet parties: Cuno (DDP, Z, BVP, DVP and experts), Stresemann (SPD, DDP, Z, DVP; SPD out from 3 November), Marx (Z, BVP, DDP, DVP).
 - Strength and arms of the leagues (SA, Oberland, Reichsflagge, Stahlhelm, Black Reichswehr, Wiking) are estimates in words, by month.
 - Organs of 1923: Zentrale with a political bureau, Zentralausschuss, M-Apparat, Radek as Comintern representative.
 - Chairman: Brandler all of 1923 (checked: chairman Feb-Aug 1921, Meyer Aug 1921-Aug 1922, Brandler again from Aug 1922 to Apr 1924; Wikipedia). Sidebar and chairman card share `KPD.chair(Q)`.
 - Zentrale seats by faction (7/6/0 before Leipzig; 12/9/0, 11/8/2 or 8/7/6 after, by the congress choice) are estimates. The 21 Leipzig members are known (Wikipedia list); assigning them to our three factions is a judgement. Four members co-opted 17 May 1923 are not modelled (names unknown).
-- Prussian ban on the Proletarian Hundreds in May 1923 is still unverified; the Saxon ban of 13 October 1923 (General Müller) is checked.
+- Proletarian Hundreds: Prussian ban by Severing in May 1923 (checked, de.wikipedia; no exact day), Saxon ban 13 October 1923 by General Müller (checked, LeMO). Members 50,000-60,000.
+- Zentralausschuss seats by faction (17/14/5 of 36 before Leipzig; 20/13/5, 18/13/7 or 14/12/12 of 38 after) are estimates; sizes 36 and 38 are checked.
+- BVP leader corrected to Karl Speck, party president 1918-1929 (checked). Cabinet parties checked against LeMO (Cuno: Z, DDP, DVP, BVP; Stresemann I and II: DVP, SPD, Z, DDP, SPD out in November; Marx I: Z, DDP, DVP, BVP).
+- Checked: communist finance minister in Saxony in October 1923 (LeMO; Böttcher); working-time decree 23 December 1923 (LeMO); Fischer co-opted to the Zentrale in April 1923 by Comintern order.
+- Still estimates: 1923 Reichstag group sizes (the 1920 result is checked; the shifts after the USPD split and reunion are not), the Zentrale and Zentralausschuss faction splits, league strengths in words.
 - Hover texts are written as of the current date: birth years only, and events appear only once they have happened.

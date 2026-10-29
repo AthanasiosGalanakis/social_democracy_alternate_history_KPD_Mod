@@ -666,7 +666,7 @@ body.dark-mode {
 .ktable { border-collapse: collapse; width: 100%; font-size: 0.92em; }
 .ktable td { padding: 0.15em 0.35em; border-bottom: 1px solid var(--k-line); vertical-align: middle; }
 .ktable tr:last-child td { border-bottom: none; }
-.kpanel { background: var(--k-panel); border-left: 3px solid var(--k-red); padding: 0.3em 0.9em 0.5em 0.9em; margin: 0.8em 0; font-size: 0.95em; }
+.kpanel { background: var(--k-panel); padding: 0.3em 0.9em 0.5em 0.9em; margin: 0.8em 0; font-size: 0.95em; }
 .kpanel p { margin: 0.35em 0; text-indent: 0; }
 .kpanel-row { display: flex; gap: 1em; flex-wrap: wrap; }
 .kpanel-col { flex: 1 1 200px; min-width: 0; }
@@ -756,11 +756,9 @@ body.dark-mode { --sc0: #81c784; --sc1: #b5cf6b; --sc2: #e0b84a; --sc3: #f0975a;
 .ksc-0 { color: var(--sc0); } .ksc-1 { color: var(--sc1); } .ksc-2 { color: var(--sc2); } .ksc-3 { color: var(--sc3); } .ksc-4 { color: var(--sc4); }
 .kwip { color: var(--k-dim); font-style: italic; }
 .knote { font-size: 0.88em; margin-top: -0.2em; }
-.kfaction, .kforce { margin: 0.2em 0 0.7em 0; padding-left: 0.6em; border-left: 3px solid var(--k-line); }
+.kfaction, .kforce { margin: 0.2em 0 0.7em 0; }
 .kfaction p, .kforce p { margin: 0.1em 0; }
-.kfaction-left { border-left-color: var(--f-left); } .kfaction-centre { border-left-color: var(--f-centre); } .kfaction-right { border-left-color: var(--f-right); }
 .kfaction-name, .kforce-name { font-weight: bold; }
-.kforce { border-left-color: var(--k-line); }
 .kdemo { margin: 0.2em 0 0.6em 0; line-height: 1.45; font-size: 0.95em; }
 .kdemo .party { font-weight: normal; }
 .kseats tr.khov-row { cursor: help; }

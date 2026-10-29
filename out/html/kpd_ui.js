@@ -236,7 +236,7 @@
   var fword = function(f, text) { return '<span class="faction-word fw-' + f + '">' + (text || FACTION[f][0]) + '</span>'; };
 
   var LEADER = {
-    kpd: 'brandler', spd: 'wels', ddp: 'petersen', z: 'marx', bvp: 'held', dvp: 'stresemann', dnvp: 'hergt', nsdap: 'graefe'
+    kpd: 'brandler', spd: 'wels', ddp: 'petersen', z: 'marx', bvp: 'speck', dvp: 'stresemann', dnvp: 'hergt', nsdap: 'graefe'
   };
   var IDEOLOGY = {
     kpd: ['Communism', 'Power to the working class through workers\' councils and a dictatorship of the proletariat. A section of the Communist International.'],
@@ -261,7 +261,7 @@
     wels: ['Otto Wels', 'born 1873', 'spd', '', 'One of the SPD\'s chairmen, with Hermann Müller and Arthur Crispien. Commanded Berlin for the government in December 1918. The apparatus man of German social democracy.'],
     petersen: ['Carl Petersen', 'born 1868', 'ddp', '', 'Hamburg lawyer and senator, chairman of the DDP. Liberal, patrician and loyal to every coalition the DDP can still find.'],
     hergt: ['Oskar Hergt', 'born 1869', 'dnvp', '', 'Former Prussian finance minister of the Kaiser, chairman of the DNVP. Leads a party of Junkers and generals that waits for the Republic to fall.'],
-    held: ['Heinrich Held', 'born 1868', 'bvp', '', 'Leader of the BVP group in the Bavarian Landtag. Federalist and Catholic, hostile to Berlin and far more hostile to the Left.'],
+    speck: ['Karl Speck', 'born 1862', 'bvp', '', 'From Speyer. A Centre deputy in the Reichstag from 1898 to 1914, president of the BVP since it broke away in 1918. His party governs Bavaria and shelters the armed leagues.'],
     graefe: ['Albrecht von Graefe', 'born 1868', 'nsdap', '', 'Mecklenburg landowner who left the DNVP in 1922 to found the German Völkisch Freedom Party with Wulle and Henning. In Munich, Hitler leads the NSDAP.'],
     seeckt: ['Hans von Seeckt', 'born 1866', 'other', '', 'Chief of the Army Command. Keeps the Reichswehr "above politics", which means loyal to itself: it marches against the Left and will not march against the Right.'],
     severing: ['Carl Severing', 'born 1875', 'spd', '', 'Social Democratic interior minister of Prussia. Commands the strongest police in Germany and uses it against the Hundreds as readily as against the völkisch leagues.']
@@ -420,12 +420,11 @@
   // ---- The party ----------------------------------------------------------------------
   UI.organs = function(Q) {
     var line_f = Q.party_line || 'right';
-    var strongest = Q.kpd_factions.slice().sort(function(a, b) { return Q['kf_' + b + '_strength'] - Q['kf_' + a + '_strength']; })[0];
     var mapp = Q.y23_hundreds >= 6 || Q.oct_ok ? ['ready to command', 0] : Q.oct_show ? ['being built in haste', 2] : ['on paper', 3];
     return [
       {id: 'zentrale', name: 'Zentrale', sub: 'the leadership elected by the congress', word: fword(line_f, 'held by the ' + FACTION[line_f][0]),
         text: (Q.y23_leipzig_done ? '21 members, elected by the Leipzig congress. ' : 'Elected at Jena in August 1921, with Brandler back since 1922; the next congress meets in Leipzig at the end of January. ') + 'The party\'s day-to-day leadership: it sets the line, runs the press and the apparatus, appoints the district secretaries and deals with Moscow.'},
-      {id: 'za', name: 'Zentralausschuss', sub: 'the districts\' council', word: fword(strongest, 'leaning to the ' + FACTION[strongest][0]),
+      {id: 'za', name: 'Zentralausschuss', sub: 'the districts\' council', word: '',
         text: (Q.y23_leipzig_done ? '38 members, elected by the Leipzig congress. ' : '36 members, elected at Jena. ') + 'The larger council of party leaders from the districts, which meets with the Zentrale between congresses and can check it. Here the Left of Berlin and Hamburg makes itself heard.'},
       {id: 'fraktion', name: 'Reichstag Fraktion', sub: 'our deputies', word: (Q.rt_seats.kpd || 0) + ' deputies',
         text: 'The party\'s deputies in the Reichstag. Their speeches reach millions through the press; their votes rarely decide anything, and the party distrusts its own parliamentarians.'},
@@ -450,10 +449,15 @@
         line('Tactic: ' + esc(TACTIC[f])) + '</div>';
     });
     html += '<h1>Organs</h1>';
-    var zr = Q.zentrale_r === undefined ? 7 : Q.zentrale_r, zc = Q.zentrale_c === undefined ? 6 : Q.zentrale_c, zl = Q.zentrale_l || 0;
-    html += '<div class="kfaction"><p class="kfaction-name">' + hov('Zentrale', 'organ:zentrale') + '</p>' +
-      line(fword('right') + ': ' + zr) + line(fword('centre') + ': ' + zc) + line(fword('left') + ': ' + zl) + '</div>';
-    UI.organs(Q).forEach(function(o) { if (o.id != 'zentrale') { html += line(hov(esc(o.name), 'organ:' + o.id) + ': ' + o.word); } });
+    // seats by faction (estimates; see MOD_NOTES), set by the party congress
+    var seats = function(k, r, c, l) {
+      var v = function(f, d) { var x = Q[k + '_' + f]; return x === undefined ? d : x; };
+      return fword('right') + ' ' + v('r', r) + ', ' + fword('centre') + ' ' + v('c', c) + ', ' + fword('left') + ' ' + v('l', l);
+    };
+    UI.organs(Q).forEach(function(o) {
+      var word = o.id == 'zentrale' ? seats('zentrale', 7, 6, 0) : o.id == 'za' ? seats('za', 17, 14, 5) : o.word;
+      html += line(hov(esc(o.name), 'organ:' + o.id) + ': ' + word);
+    });
     var t = Q.comintern_trust;
     html += '<h1>Moscow</h1>' +
       line('Leadership: ' + esc(Q.moscow_leader.replace(/-/g, ', ')) + ', favouring the ' + fword(Q.moscow_favored)) +
@@ -526,13 +530,13 @@
     var html = '<h1>Official organisations</h1>';
     F.filter(function(f) { return f.kind == 'official'; }).forEach(function(f) {
       html += '<div class="kforce"><p class="kforce-name">' + name(f) + '</p>' +
-        line('Strength: ' + sc(f.str[0], f.str[1]) + '. Loyalty to the government: ' + sc(f.loyal[0], f.loyal[1])) + '</div>';
+        line('Loyalty: ' + sc(f.loyal[0], f.loyal[1])) + '</div>';
     });
     html += '<h1>Paramilitaries</h1>';
     F.filter(function(f) { return f.kind == 'para'; }).forEach(function(f) {
       // our own units: strong is good (green); the enemy's: strong is bad (red)
       html += '<div class="kforce">' + '<p class="kforce-name">' + name(f) + '</p>' +
-        line('Strength: ' + sc(f.str[0], f.str[1]) + '. Militarization: ' + sc(f.arms[0], f.arms[1])) + '</div>';
+        line('Strength: ' + sc(f.str[0], f.str[1])) + line('Militarization: ' + sc(f.arms[0], f.arms[1])) + '</div>';
     });
     var where = Object.keys(KPD.DISTRICTS).filter(function(d) { return Q['d_' + d + '_h'] > 0; }).map(function(d) { return esc(KPD.DISTRICTS[d].name); });
     if (where.length) { html += '<p class="kdim knote">Our Hundreds in: ' + where.join(', ') + '</p>'; }

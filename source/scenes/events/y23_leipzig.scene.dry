@@ -16,22 +16,22 @@ Both sides have an argument, and the congress has to give one of them the floor.
 - @leftturn: Give the Left the floor and move the party toward offensive action.
 
 @confirm
-subtitle: Right +4 strength, Left +6 dissent. Zentrale: Right 12, Centre 9, Left 0. · dev: kf_right_strength +4, kf_left_dissent +6, trust +3
-on-arrival: kf_right_strength += 4; kf_left_dissent += 6; comintern_trust += 3; zentrale_r = 12; zentrale_c = 9; zentrale_l = 0
+subtitle: Right +4 strength, Left +6 dissent. Zentrale: Right 12, Centre 9, Left 0. Zentralausschuss: 20, 13, 5. · dev: kf_right_strength +4, kf_left_dissent +6, trust +3
+on-arrival: kf_right_strength += 4; kf_left_dissent += 6; comintern_trust += 3; zentrale_r = 12; zentrale_c = 9; zentrale_l = 0; za_r = 20; za_c = 13; za_l = 5
 go-to: root
 
 The congress confirms the Zentrale by a clear majority. The united front line is the party's policy, and the Left is outvoted, which in this party means it will wait for its chance rather than change its mind.
 
 @balance
-subtitle: Left +3 strength, Right +3 dissent. Zentrale: Right 11, Centre 8, Left 2. · dev: kf_left_strength +3, kf_right_dissent +3, kf_centre_strength +2
-on-arrival: kf_left_strength += 3; kf_right_dissent += 3; kf_centre_strength += 2; zentrale_r = 11; zentrale_c = 8; zentrale_l = 2
+subtitle: Left +3 strength, Right +3 dissent. Zentrale: Right 11, Centre 8, Left 2. Zentralausschuss: 18, 13, 7. · dev: kf_left_strength +3, kf_right_dissent +3, kf_centre_strength +2
+on-arrival: kf_left_strength += 3; kf_right_dissent += 3; kf_centre_strength += 2; zentrale_r = 11; zentrale_c = 8; zentrale_l = 2; za_r = 18; za_c = 13; za_l = 7
 go-to: root
 
 Two Left delegates are admitted to the Zentrale. The Right calls it an invitation to sabotage and the Left calls it a token; the party centre, which wanted peace, is the only group pleased.
 
 @leftturn
-subtitle: Left +6 strength, Right +10 dissent, Moscow unimpressed. Zentrale: Right 8, Centre 7, Left 6. · dev: kf_left_strength +6, kf_right_dissent +10, trust −4, y23_hundreds +1
-on-arrival: kf_left_strength += 6; kf_right_dissent += 10; comintern_trust -= 4; y23_hundreds += 1; zentrale_r = 8; zentrale_c = 7; zentrale_l = 6
+subtitle: Left +6 strength, Right +10 dissent, Moscow unimpressed. Zentrale: Right 8, Centre 7, Left 6. Zentralausschuss: 14, 12, 12. · dev: kf_left_strength +6, kf_right_dissent +10, trust −4, y23_hundreds +1
+on-arrival: kf_left_strength += 6; kf_right_dissent += 10; comintern_trust -= 4; y23_hundreds += 1; zentrale_r = 8; zentrale_c = 7; zentrale_l = 6; za_r = 14; za_c = 12; za_l = 12
 go-to: root
 
 The congress adopts resolutions on armed workers' units that would be at home in a more revolutionary year. The Right is furious, and Moscow, whose line at this moment is the workers' government, reads it as indiscipline.
