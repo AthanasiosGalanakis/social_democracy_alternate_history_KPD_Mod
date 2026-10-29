@@ -1,4 +1,4 @@
-= Images in the KPD mod (cards and decks), taken over from the DDP mod by Cascadian-patriot with these credits:
+= Images in the KPD mod (cards and decks). Only public-domain images are used; these were taken over from the DDP mod by Cascadian-patriot with its credits:
 
 mann_der_arbeit.jpg: credited, Poet: Georg Herwegh, artist not. Mann Der Arbeit, Aufgewacht! Und Erkenne Deine Macht! Alle Räder Stehen Still, Wenn Dein Starker Arm Es Will, Postkarte. Druck Und Verlag: Rauh Und Pohle, Leipzig. circa 1910date QS:P,+ - -00T00:00:00Z/9,P1480,Q5727902 1910. ebay, Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Mann_der_Arbeit,_aufgewacht!_Postkarte,_c._1910.jpg. Public Domain
 
@@ -10,23 +10,17 @@ union_2.jpg: Werbekarte Des Deutschen Holzarbeiterverbands. 1900. Self-scanned, 
 
 international.jpg: ---. Français :  Drapeau Genevois de l’Association Internationale Des Travailleurs. 1 Jan. 1864. https://bge-geneve.ch/iconographie/oeuvre/vg-1131317, Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Drapeau_genevois_de_l%27Association_Internationale_des_travailleurs.png. Public Domain
 
-flags.jpg: UnknownUnknown. Berlin, Maidemonstration Der SPD. 1 May 1930. German Federal Archives, Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_102-09700,_Berlin,_Maidemonstration_der_SPD.jpg. CC-BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/de/deed.en
-
 spartakus.jpg: Leipzig, Verlag J. J. Weber in. Deutsch:  Barrikade Während Des Spartakusaufstandes. 12 Jan. 1919. Illustrirte Zeitung, Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Spartakusaufstand_Barrikaden.jpg. Public Domain
 
 arbeiterbew.jpg: ---. Deutsch:  Köpfe Der Frühen Deutschen Arbeiterbewegung: Unknown dateUnknown date. scan (aus Sozialdemokratie im Wandel, S.27), Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Arbeiterbew.jpg. Public Domain
 
 vorwarts_2.jpg: Julie Wolfthorn - VORWÄRTS. Mark 1,10 pro Monat; Frei Ins Haus. Farblithographie, 1360 Mm x 930 Mm, Vor 1902, Druck: Kunstanstalt Hollerbaum & Schmidt, Berlin. before 1902date QS:P,+ - -00T00:00:00Z/7,P1326,+1902-00-00T00:00:00Z/9 1902. http://www.kulturpool.at/plugins/kulturpool/showitem.action?itemId=4296109451, Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Julie_Wolfthorn_-_VORW%C3%84RTS._Mark_1,10_pro_Monat;_frei_ins_Haus.jpg. Public Domain
 
-reichstag_1.jpg: Unknown. Berlin, Reichstag, Reichsgründungsfeier. Jan. 1931. German Federal Archives, Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_102-11057A,_Berlin,_Reichstag,_Reichsgr%C3%BCndungsfeier.jpg. CC-BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/de/deed.en
-
-redfront.jpg: author, Unknown authorUnknown. Berlin, Pfingstreffen Der Rot-Front-Kämpfer. 5 May 1928. German Federal Archives, Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_102-05977,_Berlin,_Pfingstreffen_der_Rot-Front-K%C3%A4mpfer.jpg. CC-BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/de/deed.en
-
 Kollwitz_Arbeitslosigkeit.jpg: Käthe Kollwitz, Arbeitslosigkeit, 1909. Public Domain (the artist died in 1945).
 
 Kollwitz_Weavers.jpg: Käthe Kollwitz, from the cycle Ein Weberaufstand, 1893 to 1897. Public Domain (the artist died in 1945).
 
-cards/map.svg: drawn for this mod. The outline of the Reich here and on the in-game map is a rough sketch from coordinates, for orientation only.
+cards/map.svg, cards/hundreds.svg, cards/reichstag.svg, cards/line.svg: drawn for this mod, free to use under the repository's licence. The outline of the Reich here and on the in-game map is a rough sketch from coordinates, for orientation only.
 
 
 

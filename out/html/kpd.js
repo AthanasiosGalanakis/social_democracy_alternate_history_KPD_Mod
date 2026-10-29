@@ -18,6 +18,12 @@
     return 1;
   };
 
+  KPD.shortDate = function(Q) {
+    var m = KPD.MONTHS[Q.month - 1].slice(0, 3), n = KPD.turnsIn(Q.year, Q.month);
+    if (n == 4) { return m + ', week ' + Q.sub; }
+    if (n == 2) { return (Q.sub == 1 ? 'early ' : 'late ') + m; }
+    return m + ' ' + Q.year;
+  };
   KPD.dateLabel = function(Q) {
     var n = KPD.turnsIn(Q.year, Q.month), m = KPD.MONTHS[Q.month - 1];
     if (n == 4) { return 'Week ' + Q.sub + ' of ' + m + ' ' + Q.year; }
@@ -138,6 +144,9 @@
 
     KPD.newDistricts(Q);
     KPD.newDirectives(Q);
+    // how each party stands toward us (words in the Politics tab, same scale as the base game)
+    Q.spd_relation = 25; Q.z_relation = 10; Q.bvp_relation = 3; Q.ddp_relation = 8; Q.dvp_relation = 3;
+    Q.dnvp_relation = 0; Q.nsdap_relation = 0;
     Q.zeigner = 0; Q.zeigner_kpd = ''; Q.conf_kpd = ''; Q.councils_won = 0;
     Q.news_head = ''; Q.news_sub = ''; Q.news_log = [];
     Q.date_label = KPD.dateLabel(Q);
@@ -443,12 +452,12 @@
       effect: function(Q, d) { KPD.addOrg(Q, d, 2); KPD.addPres(Q, d, 6); Q.y23_strikes += 1;
         Q.workers_kpd += 1 * Q.campaign_mult; Q.kf_left_strength += 1; },
       sum: 'Organisation +2 × m, strikes +1, pressure up. The Left gains.'},
-    front: {title: 'Act together with the SPD workers',
+    front: {title: 'Build the united front with SPD and union workers',
       cost: 1, when: function(Q, d) { return d != 'bavaria' && !KPD.illegalIn(Q, d); },
       can: function(Q, d) { return Q.resources >= 1 && Q['d_' + d + '_org'] >= 20; }, why: 'Needs 1 resource and organisation 20 here.',
-      effect: function(Q, d) { Q.y23_unity += 1; Q['d_' + d + '_front'] += 1; KPD.addOrg(Q, d, 1);
+      effect: function(Q, d) { Q.y23_unity += 1; Q['d_' + d + '_front'] += 1; KPD.addOrg(Q, d, 1); Q.spd_relation += 1;
         Q.kf_right_strength += 1; Q.kf_left_dissent += 2; },
-      sum: 'Joint actions +1. Costs 1 resource. The Right gains, the Left grumbles.'},
+      sum: 'United front actions +1. Costs 1 resource. The Right gains, the Left grumbles.'},
     defence: {title: 'Form a unit of the Proletarian Hundreds',
       cost: 1, when: function(Q, d) { return Q.year == 1923 && !(Q.month == 1); },
       can: function(Q, d) { return Q.resources >= 1 && Q['d_' + d + '_org'] >= 30; },
@@ -473,13 +482,13 @@
       cost: 0, when: function(Q, d) { return Q.year == 1923 && Q.month == 4; },
       can: function(Q, d) { return true; }, why: '',
       effect: function(Q, d) { KPD.addOrg(Q, d, 4); KPD.addPres(Q, d, 5); Q.y23_unity += 1; Q.kf_centre_strength += 1; },
-      sum: 'Organisation +4 × m, joint actions +1.'},
+      sum: 'Organisation +4 × m, united front actions +1.'},
     border: {title: 'Watch the Bavarian border with the Thuringian Hundreds', only: ['bavaria'],
       cost: 1, when: function(Q, d) { return Q.year == 1923 && Q.month >= 10 && Q.month <= 11; },
       can: function(Q, d) { return Q.resources >= 1 && Q.d_thuringia_org >= 30; },
       why: 'Needs 1 resource and organisation 30 in Thuringia.',
       effect: function(Q, d) { Q.d_thuringia_h += 1; Q.y23_hundreds += 1; Q.y23_unity += 1; KPD.addPres(Q, 'thuringia', 4); },
-      sum: 'Hundreds +1 in Thuringia, joint actions +1.'}
+      sum: 'Hundreds +1 in Thuringia, united front actions +1.'}
   };
   KPD.ACTION_ORDER = ['organise', 'struggle', 'front', 'defence', 'control', 'mayday', 'border', 'underground'];
 
@@ -573,7 +582,7 @@
   KPD.DIRECTIVES = [
     {id: 'unitedfront', due: 6, by: 'the enlarged Executive in June',
       text: 'Win the majority of the working class: the united front from below and from above.',
-      target: 'Three joint actions with the SPD workers',
+      target: 'Three united front actions',
       check: function(Q) { return Q.y23_unity >= 3; },
       progress: function(Q) { return Math.min(3, Q.y23_unity) + ' of 3'; }},
     {id: 'defence', due: 9, by: 'the Politburo\'s decision in September',
@@ -681,6 +690,34 @@
     if (sub.indexOf('dev:') == 0) { sub = ''; }
     Q.news_head = scene.title;
     Q.news_sub = sub;
-    Q.news_log = [scene.title].concat(Q.news_log || []).slice(0, 8);
+    Q.news_log = [{t: scene.title, d: KPD.shortDate(Q)}].concat(Q.news_log || []).slice(0, 8);
+  };
+  // words for numbers, on the base game's scales (source/qdisplays)
+  var scale = function(x, steps) {
+    for (var i = 0; i < steps.length; i++) { if (x < steps[i][0]) { return steps[i][1]; } }
+    return steps[steps.length - 1][1];
+  };
+  KPD.dissentWord = function(x) { return scale(x, [[5, 'very low'], [15, 'low'], [31, 'medium'], [50, 'high'], [1e9, 'very high']]); };
+  KPD.strengthWord = function(x) { return scale(x, [[10, 'weak'], [25, 'moderate'], [40, 'strong'], [60, 'very strong'], [1e9, 'dominant']]); };
+  KPD.relationWord = function(x) {
+    return scale(x || 0, [[5, 'hostile'], [15, 'frigid'], [30, 'cold'], [40, 'cool'], [55, 'neutral'], [65, 'warm'], [75, 'friendly'], [1e9, 'very friendly']]);
+  };
+
+  // news from abroad for the paper's column, by month of 1923 (newest first)
+  KPD.WORLD_1923 = [
+    [1, 'January', 'Lithuanian irregulars seize the Memel territory from its Allied administrators.'],
+    [3, 'March', 'Lenin suffers a third stroke and can no longer speak.'],
+    [4, 'April', 'The Russian party holds its Twelfth Congress without Lenin.'],
+    [5, 'May', 'Stanley Baldwin becomes Prime Minister of Britain.'],
+    [6, 'June', 'In Bulgaria officers overthrow Stamboliyski\'s peasant government; the Bulgarian communists stand aside.'],
+    [7, 'July', 'The Treaty of Lausanne settles the borders of the new Turkey.'],
+    [8, 'August', 'President Harding dies; Calvin Coolidge takes office in Washington.'],
+    [9, 'September', 'An earthquake destroys Tokyo and Yokohama. In Spain General Primo de Rivera seizes power. In Bulgaria the communists rise too late and are crushed.'],
+    [10, 'October', 'The Republic of Turkey is proclaimed, with Mustafa Kemal as president.'],
+    [12, 'December', 'A British election leaves no party a majority; Labour may form a government.']
+  ];
+  KPD.worldNews = function(Q) {
+    if (Q.year != 1923) { return []; }
+    return KPD.WORLD_1923.filter(function(w) { return w[0] <= Q.month; }).reverse().map(function(w) { return [w[1], w[2]]; });
   };
 }());

@@ -2,11 +2,11 @@ title: Status
 new-page: true
 is-special: true
 
-{!<div class="kpd-insert" data-insert="sb_party"></div>!}
+{!<div class="kpd-insert" data-insert="sb_main"></div>!}
 
 @politics
 
-{!<div class="kpd-insert" data-insert="sb_reich"></div>!}
+{!<div class="kpd-insert" data-insert="sb_politics"></div>!}
 
 @dev
 on-arrival: {!
@@ -71,7 +71,7 @@ KPD [+ dv_kpd_v +]% and SPD [+ dv_spd_v +]% of the vote if an election were held
 
 @paramilitaries
 
-{!<div class="kpd-insert" data-insert="sb_forces"></div>!}
+{!<div class="kpd-insert" data-insert="sb_defense"></div>!}
 
 @polls
 

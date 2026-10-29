@@ -13,8 +13,6 @@ Q.pinnedCardsDescription = 'Head of party and faction advisers - ' + adv_ready +
 !}
 max-cards: 4
 
-{!<div class="kpd-insert" data-insert="front"></div>!}
-
 - @party
 - @mass
 - #mapcard

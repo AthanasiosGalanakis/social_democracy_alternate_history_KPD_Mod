@@ -51,15 +51,15 @@ In Central Germany the party calls the workers out: a strike over the wage the i
 - @root: Continue.
 
 @act_central_front
-title: Act together with the SPD workers
-subtitle: Joint actions +1. Costs 1 resource. The Right gains, the Left grumbles.
+title: Build the united front with SPD and union workers
+subtitle: United front actions +1. Costs 1 resource. The Right gains, the Left grumbles.
 view-if: x_central_front = 1
 choose-if: c_central_front = 1
 unavailable-subtitle: [? if d_central_cd > 0 : We acted here this turn. ?][? if d_central_cd <= 0 : Needs 1 resource and organisation 20 here. ?]
 on-arrival: {! window.KPD.act(Q, 'central', 'front'); !}
 new-page: true
 
-= Act together with the SPD workers
+= Build the united front with SPD and union workers
 
 In Central Germany our cells go to the SPD and union branches with a concrete proposal, not a lecture: a joint meeting, a joint demand, a joint committee. Some branch secretaries refuse. Some of their members come anyway.
 
@@ -103,7 +103,7 @@ Control committees of workers and housewives go to the markets of Central German
 
 @act_central_mayday
 title: Hold May Day in Munich against the leagues
-subtitle: Organisation +4 × m, joint actions +1.
+subtitle: Organisation +4 × m, united front actions +1.
 view-if: x_central_mayday = 1
 choose-if: c_central_mayday = 1
 unavailable-subtitle: [? if d_central_cd > 0 : We acted here this turn. ?][? if d_central_cd <= 0 :  ?]
@@ -120,7 +120,7 @@ On the first of May the workers of Munich march, while the völkisch leagues gat
 
 @act_central_border
 title: Watch the Bavarian border with the Thuringian Hundreds
-subtitle: Hundreds +1 in Thuringia, joint actions +1. Costs 1 resource.
+subtitle: Hundreds +1 in Thuringia, united front actions +1. Costs 1 resource.
 view-if: x_central_border = 1
 choose-if: c_central_border = 1
 unavailable-subtitle: [? if d_central_cd > 0 : We acted here this turn. ?][? if d_central_cd <= 0 : Needs 1 resource and organisation 30 in Thuringia. ?]

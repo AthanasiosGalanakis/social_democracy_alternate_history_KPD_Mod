@@ -23,16 +23,16 @@ The Right of our party wants a programme in return: control committees on prices
 subtitle: Moscow approves. Saxony organisation +4. The Right gains.
 on-arrival: {!
 Q.zeigner = 1; Q.zeigner_kpd = 'yes';
-Q.y23_unity += 1; Q.comintern_trust += 2; Q.kf_right_strength += 2;
+Q.y23_unity += 1; Q.comintern_trust += 2; Q.kf_right_strength += 2; Q.spd_relation += 5;
 window.KPD.addOrg(Q, 'saxony', 4);
 !}
 go-to: result
 
 @plain
-subtitle: Joint action with the SPD +2. Moscow and the Left object.
+subtitle: United front actions +2. Moscow and the Left object.
 on-arrival: {!
 Q.zeigner = 1; Q.zeigner_kpd = 'yes';
-Q.y23_unity += 2; Q.comintern_trust -= 3; Q.kf_left_dissent += 5;
+Q.y23_unity += 2; Q.comintern_trust -= 3; Q.kf_left_dissent += 5; Q.spd_relation += 8;
 !}
 go-to: result
 
@@ -40,7 +40,7 @@ go-to: result
 subtitle: Saxony gets no workers' government. The Left gains.
 on-arrival: {!
 Q.zeigner = 0; Q.zeigner_kpd = 'abstain';
-Q.kf_left_strength += 3; Q.kf_right_dissent += 6; Q.comintern_trust -= 2;
+Q.kf_left_strength += 3; Q.kf_right_dissent += 6; Q.comintern_trust -= 2; Q.spd_relation -= 5;
 window.KPD.addPres(Q, 'saxony', 8);
 !}
 go-to: result

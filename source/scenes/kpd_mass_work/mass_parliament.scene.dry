@@ -2,7 +2,7 @@ title: Parliamentary tactics
 subtitle: The Reichstag and the Landtage are a platform, not a goal.
 new-page: true
 is-card: true
-card-image: img/reichstag_1.jpg
+card-image: img/cards/reichstag.svg
 frequency: 150
 tags: kpd_mass
 view-if: mass_parliament_timer <= 0

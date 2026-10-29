@@ -263,6 +263,8 @@
       var displayContent = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
       $('#qualities').append(dendryUI.contentToHTML.convert(displayContent));
       window.KPD.UI.renderInserts(document.getElementById('qualities'));
+      // the party paper in the right-hand column
+      $('#news').html(window.KPD.UI.news(dendryUI.dendryEngine.state.qualities));
   };
 
   window.changeTab = function(newTab, tabId) {

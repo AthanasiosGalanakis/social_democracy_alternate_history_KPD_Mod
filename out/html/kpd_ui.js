@@ -23,14 +23,6 @@
                  left: ['Left', 'Fischer, Maslow, Thälmann, Scholem']};
 
   // ---- Small pieces ------------------------------------------------------------
-  UI.bar = function(value, max, cls, marks) {
-    var w = Math.max(0, Math.min(100, 100 * value / max));
-    var m = (marks || []).map(function(x) {
-      return '<span class="kbar-mark" style="left:' + (100 * x / max) + '%"></span>';
-    }).join('');
-    return '<span class="kbar ' + (cls || '') + '"><span class="kbar-fill" style="width:' + w + '%"></span>' + m + '</span>';
-  };
-  UI.tick = function(ok) { return ok ? '<span class="ktick ok">&#10003;</span>' : '<span class="ktick">&#9675;</span>'; };
   UI.partyName = function(p) {
     var n = PARTY[p] || [p.toUpperCase(), ''];
     return '<span class="party p-' + (p == 'z' ? 'zentrum' : p) + '" title="' + esc(n[1]) + '">' + esc(n[0]) + '</span>';
@@ -161,10 +153,10 @@
       '<div class="kpanel-col kpanel-chart"><p class="klabel">Landtag, elected ' + esc(L.elected) + '</p>' +
       UI.hemicycle(L.seats, {label: 'Landtag of ' + L.name}) + UI.seatLegend(L.seats) + '</div></div>';
     if (L.districts.length > 1) {
-      html += '<p class="klabel">Party districts in ' + esc(L.name) + '</p><table class="ktable kdistricts">';
+      html += '<p class="klabel">Party districts in ' + esc(L.name) + '</p><table class="ktable">';
       L.districts.forEach(function(d) {
-        html += '<tr><td><b>' + esc(KPD.DISTRICTS[d].name) + '</b></td><td>' + UI.bar(Q['d_' + d + '_org'], 100, 'kbar-org') +
-          ' ' + round(Q['d_' + d + '_org']) + '</td><td class="kdim">' + esc(KPD.pressureWord(Q['d_' + d + '_pres'])) + '</td></tr>';
+        html += '<tr><td><b>' + esc(KPD.DISTRICTS[d].name) + '</b></td><td>organisation <b>' + round(Q['d_' + d + '_org']) + '</b> (' +
+          esc(KPD.orgWord(Q['d_' + d + '_org'])) + ')</td><td class="kdim">' + esc(KPD.pressureWord(Q['d_' + d + '_pres'])) + '</td></tr>';
       });
       html += '</table>';
     }
@@ -176,55 +168,42 @@
     var org = Q['d_' + d + '_org'], pres = Q['d_' + d + '_pres'];
     return '<div class="kpanel kdistrict">' +
       '<p class="klabel">Party district: ' + esc(D.name) + '</p>' +
-      '<table class="ktable">' +
-      '<tr><td>Organisation</td><td>' + UI.bar(org, 100, 'kbar-org', [25, 55]) + '</td><td class="knum">' + round(org) + '</td><td class="kdim">' + esc(KPD.orgWord(org)) + '</td></tr>' +
-      '<tr><td>Pressure</td><td>' + UI.bar(pres, 100, 'kbar-pres', [60, 80]) + '</td><td></td><td class="kdim">' + esc(KPD.pressureWord(pres)) + '</td></tr>' +
-      '<tr><td>Hundreds</td><td colspan="3">' + (Q['d_' + d + '_h'] || 0) + ' units</td></tr>' +
-      '<tr><td>Joint actions</td><td colspan="3">' + (Q['d_' + d + '_front'] || 0) + ' here, ' + Q.y23_unity + ' in all</td></tr>' +
-      (Q['d_' + d + '_council'] ? '<tr><td>Factory councils</td><td colspan="3">' + Q['d_' + d + '_council'] + '% of the vote</td></tr>' : '') +
-      '</table><p class="kdim">' + esc(D.note) + ' Pressure over 60 costs organisation every month; over 80 it costs more.</p></div>';
+      '<p>Organisation: <b>' + round(org) + '</b> (' + esc(KPD.orgWord(org)) + ')<br>' +
+      'Pressure from the state: <b>' + esc(KPD.pressureWord(pres)) + '</b><br>' +
+      'Proletarian Hundreds: ' + (Q['d_' + d + '_h'] || 0) + ' units<br>' +
+      'United front actions here: ' + (Q['d_' + d + '_front'] || 0) +
+      (Q['d_' + d + '_council'] ? '<br>Factory councils: ' + Q['d_' + d + '_council'] + '% of the vote' : '') + '</p>' +
+      '<p class="kdim">' + esc(D.note) + ' Heavy pressure costs organisation every month.</p></div>';
   };
 
-  // ---- The front page ------------------------------------------------------------------
-  UI.coming = function(Q) {
-    var items = [];
-    if (Q.dir_active) { items.push(['Moscow judges the directive', Q.dir_due_label + ' ' + Q.year]); }
-    if (Q.year == 1923 && Q.month <= 3 && !Q.y23_councils_done) { items.push(['Factory council elections', 'March 1923']); }
-    if (Q.oct_show) { items.push(['The Chemnitz conference', 'October 1923']); }
-    items.push(['Reichstag election', KPD.MONTHS[Q.next_election_month - 1] + ' ' + Q.next_election_year]);
-    if (Q.year == 1923) { items.push(['End of the first act', 'January 1924']); }
-    return items.map(function(i) { return '<li><span>' + esc(i[0]) + '</span><span class="kdim">' + esc(i[1]) + '</span></li>'; }).join('');
-  };
+  var met = function(ok) { return ok ? '<span class="kmet">met</span>' : '<span class="kdim">not yet</span>'; };
 
   UI.october = function(Q) {
-    return '<h4>The German October</h4><p class="kdim">The Chemnitz call can hold if:</p><ul class="kchecks">' +
-      '<li>' + UI.tick(Q.oct_c1) + 'Saxony at organisation 60 <span class="kdim">(' + round(Q.d_saxony_org) + ')</span></li>' +
-      '<li>' + UI.tick(Q.oct_c2) + 'Six joint actions with the SPD workers <span class="kdim">(' + Q.y23_unity + ')</span></li>' +
-      '<li>' + UI.tick(Q.oct_c3) + 'One more district at 55: Central Germany, Thuringia or Berlin' +
-      (Q.oct_c3 ? ' <span class="kdim">(' + esc(Q.oct_second) + ')</span>' : '') + '</li></ul>';
+    return '<p>The Chemnitz call can hold if:</p><ul class="kchecks">' +
+      '<li>Saxony at organisation 60 (now ' + round(Q.d_saxony_org) + '): ' + met(Q.oct_c1) + '</li>' +
+      '<li>Six united front actions (now ' + Q.y23_unity + '): ' + met(Q.oct_c2) + '</li>' +
+      '<li>One more district at 55, Central Germany, Thuringia or Berlin: ' + met(Q.oct_c3) +
+      (Q.oct_c3 ? ' (' + esc(Q.oct_second) + ')' : '') + '</li></ul>';
   };
 
-  UI.front = function(Q) {
-    var head = Q.news_head || 'The Ruhr is occupied; the mark is falling';
-    var sub = Q.news_sub || 'The party meets the year with its factions divided and the workers waiting.';
-    var html = '<div class="paper">' +
-      '<div class="paper-top"><span>' + esc(Q.date_label) + '</span><span>Zentralorgan der KPD</span><span>Dollar: ' + esc(Q.usd_rate) + ' marks</span></div>' +
-      '<div class="paper-mast">Die Rote Fahne</div>' +
-      '<div class="paper-head">' + esc(head) + '</div>' +
-      '<div class="paper-deck">' + esc(sub) + '</div>' +
-      '<div class="paper-cols">';
-    html += '<div class="paper-col"><h4>Moscow\'s directive</h4>' + (Q.dir_active ?
-      '<p class="paper-quote">' + esc(Q.dir_text) + '</p><p>' + UI.tick(Q.dir_ok) + esc(Q.dir_target) + '</p><p class="kdim">Now: ' + esc(Q.dir_progress) + '. Judged by ' + esc(Q.dir_by) + '.</p>' :
-      '<p class="kdim">No directive is waiting this year.</p>') + '</div>';
-    html += '<div class="paper-col"><h4>Coming up</h4><ul class="paper-list">' + UI.coming(Q) + '</ul></div>';
-    html += '<div class="paper-col">' + (Q.oct_show ? UI.october(Q) :
-      '<h4>In the districts</h4><p>The workers\' mood is <b>' + esc(KPD.moodWord(Q.mood)) + '</b>.</p><p>Joint actions with the SPD workers: <b>' + Q.y23_unity + '</b>. Hundreds: <b>' + KPD.hundreds(Q) + '</b> units.</p>' +
-      (Q.last_action ? '<p class="kdim">Last turn: ' + esc(Q.last_action) + '.</p>' : '')) + '</div>';
-    html += '</div>';
-    if (Q.news_log && Q.news_log.length > 1) {
-      html += '<div class="paper-also"><b>Earlier:</b> ' + Q.news_log.slice(1, 4).map(function(n) { return esc(n); }).join(' · ') + '</div>';
+  // ---- The party paper, in its own column on the right -------------------------------------
+  UI.news = function(Q) {
+    var html = '<div class="rf-mast">Die Rote Fahne</div>' +
+      '<div class="rf-sub">Central organ of the KPD<br>' + esc(Q.date_label) + '</div>';
+    var head = Q.news_head || 'The year 1923 begins';
+    var sub = Q.news_head ? Q.news_sub : 'The mark is falling and the French stand at the Ruhr. The party meets the year divided.';
+    html += '<h1>' + esc(head) + '</h1>' + (sub ? '<p>' + esc(sub) + '</p>' : '');
+    var log = (Q.news_log || []).slice(1, 4);
+    log.forEach(function(n) {
+      html += '<hr><p><span class="rf-date">' + esc(n.d || '') + '</span> ' + esc(n.t || n) + '</p>';
+    });
+    var world = KPD.worldNews(Q).slice(0, 2);
+    if (world.length) {
+      html += '<p class="rf-section">Abroad</p>';
+      world.forEach(function(w) { html += '<p><span class="rf-date">' + esc(w[0]) + '</span> ' + esc(w[1]) + '</p>'; });
     }
-    return html + '</div>';
+    html += '<hr><p class="rf-foot">Dollar: ' + esc(Q.usd_rate) + ' marks</p>';
+    return html;
   };
   KPD.hundreds = function(Q) {
     var n = 0;
@@ -250,83 +229,93 @@
     for (var d in KPD.DISTRICTS) {
       if (d == 'bavaria') { continue; }
       var s = Q['d_' + d + '_council'];
-      out += '<tr><td>' + esc(KPD.DISTRICTS[d].name) + '</td><td>' + UI.bar(s, 60, 'kbar-org', [30]) + '</td><td class="knum">' + s + '%</td><td>' + UI.tick(s >= 30) + '</td></tr>';
+      out += '<tr><td>' + esc(KPD.DISTRICTS[d].name) + '</td><td class="knum">' + s + '%</td><td>' + (s >= 30 ? '<span class="kmet">majority in the big works</span>' : '<span class="kdim">minority</span>') + '</td></tr>';
     }
     return out + '</table><p class="kdim">At 30% or more the councils of a district give us a majority in the big works there (organisation +2).</p></div>';
   };
 
-  // ---- The sidebar ----------------------------------------------------------------------
-  UI.sidebarParty = function(Q) {
-    var html = '<div class="ksb">';
-    html += '<p class="ksb-date">' + esc(Q.date_label) + '</p>';
-    html += '<div class="ksb-res"><span title="Resources: money and full-timers">&#9733; ' + Q.resources + ' resources</span>' +
-      '<span class="kdim" title="Every month, from the members\' dues in the districts; every 150 points of organisation pay one">+' + KPD.duesEstimate(Q) + ' a month from dues' + (Q.soviet_subsidy ? ', +1 a quarter from Moscow' : '') + '</span></div>';
-    // factions
-    html += '<h3>The party</h3><div class="kstack">';
-    Q.kpd_factions.forEach(function(f) {
-      html += '<span class="kstack-seg f-' + f + '" style="width:' + Q['kf_' + f + '_strength'].toFixed(1) + '%" title="' + FACTION[f][0] + ': ' + round(Q['kf_' + f + '_strength']) + '%"></span>';
-    });
-    html += '</div><table class="ktable ksb-fac">';
-    Q.kpd_factions.forEach(function(f) {
-      var dis = Q['kf_' + f + '_dissent'];
-      html += '<tr title="' + esc(FACTION[f][1]) + '"><td><span class="faction-word fw-' + f + '">' + FACTION[f][0] + '</span>' + (Q.party_line == f ? ' <span class="kchip">line</span>' : '') +
-        '</td><td class="knum">' + round(Q['kf_' + f + '_strength']) + '%</td><td>' + UI.bar(dis, 50, 'kbar-dis', [30]) + '</td></tr>';
-    });
-    html += '</table><p class="kdim ksb-small">Bars: dissent. At 30 a faction makes a demand.</p>';
-    // Moscow
-    html += '<h3>Moscow</h3><p>' + esc(Q.moscow_leader.replace(/-/g, ', ')) + ' <span class="kdim">favour the</span> <span class="faction-word fw-' + Q.moscow_favored + '">' + FACTION[Q.moscow_favored][0] + '</span></p>' +
-      '<p>Trust ' + UI.bar(Q.comintern_trust, 100, 'kbar-trust', [15, 30, 40, 50]) + ' <b>' + round(Q.comintern_trust) + '</b></p>' +
-      (Q.dir_active ? '<p class="ksb-small">' + UI.tick(Q.dir_ok) + 'Directive: ' + esc(Q.dir_target) + ' <span class="kdim">(' + esc(Q.dir_progress) + ')</span></p>' : '');
-    // the class
-    html += '<h3>The class</h3><table class="ktable">' +
-      '<tr><td>Joint actions with SPD workers</td><td class="knum">' + Q.y23_unity + '</td></tr>' +
-      '<tr><td>Strikes led</td><td class="knum">' + Q.y23_strikes + '</td></tr>' +
-      '<tr><td>Hundreds (units)</td><td class="knum">' + KPD.hundreds(Q) + '</td></tr>' +
-      '<tr><td>Mood in the works</td><td class="knum">' + esc(KPD.moodWord(Q.mood)) + '</td></tr>' +
-      '<tr><td>KPD if the Reich voted now</td><td class="knum">' + Q.kpd_votes + '%</td></tr></table>';
-    if (Q.oct_show) { html += '<div class="ksb-oct">' + UI.october(Q) + '</div>'; }
-    return html + '</div>';
-  };
+  // ---- The sidebar tabs, laid out like the base game's ----------------------------------------
+  var tip = function(text, title) { return '<span class="tooltip-text" title="' + esc(title) + '">' + text + '</span>'; };
+  var line = function(s) { return '<p>' + s + '</p>'; };
 
-  UI.sidebarReich = function(Q) {
-    return '<div class="ksb"><h3>The Reich</h3><table class="ktable">' +
-      '<tr><td>President</td><td>' + esc(Q.president) + ' <span class="kdim">(SPD)</span></td></tr>' +
-      '<tr><td>Chancellor</td><td>' + esc(Q.chancellor) + '</td></tr>' +
-      '<tr><td>Dollar</td><td>' + esc(Q.usd_rate) + ' marks</td></tr>' +
-      '<tr><td>Next election</td><td>' + KPD.MONTHS[Q.next_election_month - 1] + ' ' + Q.next_election_year + '</td></tr></table>' +
-      '<h3>Reichstag</h3><p class="kdim ksb-small">Elected June 1920; groups as of 1923, approximate.</p>' +
-      UI.hemicycle(Q.rt_seats, {label: 'Reichstag'}) + UI.seatLegend(Q.rt_seats) + '</div>';
-  };
-
-  UI.sidebarForces = function(Q) {
-    var rows = '';
-    for (var d in KPD.DISTRICTS) {
-      if (Q['d_' + d + '_h'] > 0) { rows += '<tr><td>' + esc(KPD.DISTRICTS[d].name) + '</td><td class="knum">' + Q['d_' + d + '_h'] + '</td></tr>'; }
+  UI.sidebarMain = function(Q) {
+    var html = '<h1>Status</h1>' + line(esc(Q.date_label)) +
+      line('Resources available: ' + Q.resources) +
+      line(tip('Income', 'Every 150 points of organisation in the districts pay one resource a month in dues') + ': ' + KPD.duesEstimate(Q) + ' a month' + (Q.soviet_subsidy ? ', and Moscow\'s subsidy every quarter' : '')) +
+      line('KPD position: ' + (Q.kpd_banned ? 'banned' : 'legal opposition') + (Q.y23_saxony ? ', in the Saxon government' : '')) +
+      line('Party line: ' + FACTION[Q.party_line][0]) +
+      line('Internal dissent: ' + KPD.dissentWord(Q.kf_dissent_percent));
+    html += '<h1>Factions</h1>';
+    Q.kpd_factions.forEach(function(f) {
+      html += line(tip('<span class="faction-word fw-' + f + '">' + FACTION[f][0] + '</span>', FACTION[f][1]) + ' strength: ' + KPD.strengthWord(Q['kf_' + f + '_strength']) +
+        ' (' + round(Q['kf_' + f + '_strength']) + '%), dissent: ' + KPD.dissentWord(Q['kf_' + f + '_dissent']));
+    });
+    html += '<h1>Moscow</h1>' +
+      line('Leadership: ' + esc(Q.moscow_leader.replace(/-/g, ', ')) + ', favouring the <span class="faction-word fw-' + Q.moscow_favored + '">' + FACTION[Q.moscow_favored][0] + '</span>') +
+      line(tip('Trust', 'Under 50 Moscow writes letters, under 40 it cuts the subsidy, under 30 it writes an open letter, under 15 it sends emissaries') + ': ' + round(Q.comintern_trust));
+    if (Q.dir_active) {
+      html += line('Directive: ' + esc(Q.dir_target) + ' (' + esc(Q.dir_progress) + '), ' + met(Q.dir_ok) + '. Judged by ' + esc(Q.dir_by) + '.');
     }
-    return '<div class="ksb"><h3>Our forces</h3><p>The Proletarian Hundreds: <b>' + KPD.hundreds(Q) + '</b> units formed.</p>' +
-      (rows ? '<table class="ktable">' + rows + '</table>' : '<p class="kdim">No units formed yet. Form them in the Lands.</p>') +
-      '<h3>The state and its allies</h3><table class="ktable">' +
-      '<tr><td>Reichswehr</td><td>100,000 men, the limit set at Versailles, and the Black Reichswehr besides</td></tr>' +
-      '<tr><td>Prussian police</td><td>The strongest in Germany, under the Social Democrat Severing</td></tr>' +
-      '<tr><td>Bavarian leagues</td><td>Arming openly under the protection of the Bavarian government</td></tr>' +
-      '</table></div>';
+    if (Q.oct_show) { html += '<h1>The German October</h1>' + UI.october(Q); }
+    html += '<h1>The class</h1>' +
+      line('Workers\' mood: ' + esc(KPD.moodWord(Q.mood))) +
+      line(tip('United front actions', 'Joint actions with the workers of the SPD, the free unions and the factory councils') + ': ' + Q.y23_unity) +
+      line('Strikes led: ' + Q.y23_strikes) +
+      line('Organisation in the districts: ' + Object.keys(KPD.DISTRICTS).map(function(d) { return esc(KPD.DISTRICTS[d].short || KPD.DISTRICTS[d].name) + ' ' + round(Q['d_' + d + '_org']); }).join(', '));
+    return html;
+  };
+
+  var STANCE = {
+    spd: 'The largest workers\' party. Its leaders govern with the bourgeoisie; its members are the workers we must win.',
+    z: 'The Catholic party of every class, from the Rhineland works to the bishops. Governs with whoever guards the Church.',
+    bvp: 'Bavaria\'s Catholic right. Its government shelters the armed leagues.',
+    ddp: 'Liberal bankers, professors and officials: the Republic\'s loyal and shrinking middle.',
+    dvp: 'The party of heavy industry. Stinnes wants the eight-hour day gone.',
+    dnvp: 'Junkers, generals and anti-Semites. Wants the Republic overthrown and the KPD banned.',
+    nsdap: 'The völkisch racists: the DVFP in the Reichstag, Hitler\'s NSDAP in Munich. Fascism in its first form.'
+  };
+  UI.sidebarPolitics = function(Q) {
+    var html = '<h1>Government</h1>' +
+      line('President: ' + esc(Q.president) + ' (' + UI.partyName('spd') + ')') +
+      line('Chancellor: ' + esc(Q.chancellor) + ' (' + (Q.chancellor_party == 'I' ? 'independent' : UI.partyName(String(Q.chancellor_party).toLowerCase())) + ')') +
+      line('Reichstag composition (elected June 1920, groups as of 1923):') +
+      UI.hemicycle(Q.rt_seats, {label: 'Reichstag'}) + UI.seatLegend(Q.rt_seats) +
+      line('Next election: ' + KPD.MONTHS[Q.next_election_month - 1] + ' ' + Q.next_election_year);
+    html += '<h1>The parties</h1>';
+    ['spd', 'z', 'bvp', 'ddp', 'dvp', 'dnvp', 'nsdap'].forEach(function(p) {
+      html += line(UI.partyName(p) + ': ' + esc(KPD.relationWord(Q[p + '_relation'])) + '. <span class="kdim">' + esc(STANCE[p]) + '</span>');
+    });
+    html += '<h1>The Lands</h1>';
+    KPD.LAND_ORDER.forEach(function(l) {
+      html += line(esc(KPD.LANDS[l].name) + ': ' + esc(KPD.landGov(Q, l)));
+    });
+    return html;
+  };
+
+  UI.sidebarDefense = function(Q) {
+    var html = '<h1>Paramilitaries</h1>' +
+      line(tip('Proletarian Hundreds', 'The KPD\'s workers\' defence units of 1923') + ': ' + KPD.hundreds(Q) + ' units formed, about ' + round(Q.rfb_strength) + ' thousand members');
+    for (var d in KPD.DISTRICTS) {
+      if (Q['d_' + d + '_h'] > 0) { html += line('&nbsp;&nbsp;' + esc(KPD.DISTRICTS[d].name) + ': ' + Q['d_' + d + '_h'] + ' units'); }
+    }
+    html += line(tip('Bavarian leagues', 'Bund Oberland, Reichsflagge, the SA and the other armed leagues') + ': arming openly under the Bavarian government') +
+      line(tip('Black Reichswehr', 'Illegal reserve units hidden inside the army') + ': in the barracks of Prussia, out of sight') +
+      '<h1>Official military</h1>' +
+      line('Reichswehr: 100 thousand troops, the limit set at Versailles') +
+      line('Prussian police: the strongest force in Germany, under the Social Democrat Severing');
+    return html;
   };
 
   UI.sidebarPolls = function(Q) {
-    var order = ['kpd', 'spd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'], max = 0;
-    order.forEach(function(p) { max = Math.max(max, Q[p + '_votes'] || 0); });
-    var html = '<div class="ksb"><h3>If the Reich voted now</h3><table class="ktable kpoll">';
-    order.forEach(function(p) {
-      var v = Q[p + '_votes'] || 0;
-      html += '<tr><td><span class="kswatch bgf-' + p + '"></span>' + UI.partyName(p) + '</td><td class="kpoll-bar"><span class="kpoll-fill bgf-' + p + '" style="width:' + (max ? 100 * v / max : 0).toFixed(1) + '%"></span></td><td class="knum">' + v + '%</td></tr>';
-    });
-    html += '</table><p class="kdim ksb-small">The last Reichstag election was in June 1920; the next is due by 1924. Z includes the BVP.</p>';
-    var names = {workers: 'Workers', unemployed: 'Unemployed', new_middle: 'White-collar', old_middle: 'Small proprietors', rural: 'Rural', catholics: 'Catholics'};
-    html += '<h3>Our vote by class</h3><table class="ktable"><tr class="kdim"><td></td><td class="knum">KPD</td><td class="knum">SPD</td></tr>';
+    var order = ['kpd', 'spd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
+    var html = '<h1>Projected election results</h1>' + line('(if the election were to be held now):');
+    order.forEach(function(p) { html += line(UI.partyName(p) + ': ' + (Q[p + '_votes'] || 0) + '%'); });
+    html += line('<b>Detailed results for each demographic</b>');
+    var names = {workers: 'Workers', unemployed: 'Unemployed', new_middle: 'New Middle Class', old_middle: 'Old Middle Class', rural: 'Rural', catholics: 'Catholics'};
     Q.classes.forEach(function(c) {
-      html += '<tr><td>' + names[c] + '</td><td class="knum"><b>' + (Q[c + '_kpd_display'] || 0) + '%</b></td><td class="knum">' + (Q[c + '_spd_display'] || 0) + '%</td></tr>';
+      html += line(names[c] + ': ' + order.map(function(p) { return UI.partyName(p) + ' ' + (Q[c + '_' + p + '_display'] || 0) + '%'; }).join(', '));
     });
-    return html + '</table></div>';
+    return html + line('<span class="kdim">Z includes the BVP.</span>');
   };
 
   // ---- Filling the placeholders -----------------------------------------------------------
@@ -340,13 +329,13 @@
         if (kind == 'map') { html = UI.map(Q); }
         else if (kind == 'land') { html = UI.land(Q, arg); }
         else if (kind == 'district') { html = UI.district(Q, arg); }
-        else if (kind == 'front') { html = UI.front(Q); }
+        else if (kind == 'news') { html = UI.news(Q); }
         else if (kind == 'vote') { html = UI.vote(Q, arg); }
         else if (kind == 'councils') { html = UI.councils(Q); }
-        else if (kind == 'october') { html = '<div class="kpanel">' + UI.october(Q) + '</div>'; }
-        else if (kind == 'sb_party') { html = UI.sidebarParty(Q); }
-        else if (kind == 'sb_reich') { html = UI.sidebarReich(Q); }
-        else if (kind == 'sb_forces') { html = UI.sidebarForces(Q); }
+        else if (kind == 'october') { html = '<div class="kpanel"><p class="klabel">The German October</p>' + UI.october(Q) + '</div>'; }
+        else if (kind == 'sb_main') { html = UI.sidebarMain(Q); }
+        else if (kind == 'sb_politics') { html = UI.sidebarPolitics(Q); }
+        else if (kind == 'sb_defense') { html = UI.sidebarDefense(Q); }
         else if (kind == 'sb_polls') { html = UI.sidebarPolls(Q); }
       } catch (e) { html = '<p class="kdim">(' + esc(e.message) + ')</p>'; console.error(e); }
       el.innerHTML = html;

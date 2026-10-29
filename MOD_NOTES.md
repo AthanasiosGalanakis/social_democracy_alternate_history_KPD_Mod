@@ -144,9 +144,10 @@ Follows the 1923 to 1933 design doc (https://claude.ai/artifact/5ECdBo23oGZHyHN5
 - **Moscow's directives**: three in 1923 (joint actions by June, Hundreds in three districts by September, Saxony at 60 with two units by October). Met: trust +6, missed: trust −6, shown in a "Moscow's verdict" event.
 - **The German October**: from August the front page shows three conditions: Saxony at organisation 60, six joint actions, and one of Central Germany, Thuringia or Berlin at 55. The Chemnitz general strike holds only if all three are met (replaces `y23_unity >= 2`). Chemnitz now falls in late October. The rising stays greyed out.
 - **Votes**: factory council elections (March), Zeigner's election in the Saxon Landtag (March; refusing means no Saxon workers' government in October), the Enabling Act (October), Stresemann's confidence vote (November). Shown as hemicycles with the count.
-- **Front page**: Die Rote Fahne. The last event's title is the headline; it also shows the directive, what is coming, and the October conditions.
-- **Sidebar tabs**: Party, Reich, Forces, Polls, Dev, all drawn by KPD.UI.
-- **Card art**: deck and card images from the DDP mod's credited set, plus two Kollwitz prints; see credits_images.txt. The DDP poster that was the background is gone; the Lands card art is drawn for the mod.
+- **Party paper**: Die Rote Fahne in its own column on the right, as in the DDP mod: the last event is the headline, earlier headlines with their dates below, and news from abroad (`KPD.WORLD_1923`).
+- **Sidebar tabs** (Maarten, 29 October: keep them close to the base game): Main (status, factions, Moscow, directive, October conditions, the class), Politics (government, Reichstag, every party's stance and relation to us, the Lands), Defense, Polls (all parties, by class), Dev. Plain lines with words, as in the base game; no bars or tick symbols.
+- **Relations**: `<party>_relation` for SPD, Z, BVP, DDP, DVP, DNVP and the völkisch right, shown as words on the base game's scale. United front actions, Zeigner, the Enabling Act and the Saxon cabinet move them.
+- **Card art**: public-domain images only (Maarten's rule), credited in credits_images.txt, plus four cards drawn for the mod (The Lands, The Hundreds, Reichstag, The Line). The Brandler portrait has no recorded source yet.
 - `tools/dev_effects.py` no longer doubles the "dev:" numbers on choices that had no subtitle of their own.
 
 Playtests (headless, scripted): a player who builds Saxony and Central Germany and makes joint actions gets the strike to hold; a player who only plays cards fails at Chemnitz. Both reach the end of the act in January 1924.

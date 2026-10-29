@@ -24,8 +24,8 @@ What should our council members do with the seats they have?
 - @cells: Use the councils to build our own cells in the works.
 
 @united
-subtitle: The united front in the works. The Right gains. · dev: y23_unity +1, kf_right_strength +2, workers_spd +1
-on-arrival: y23_unity += 1; kf_right_strength += 2; workers_spd += 1
+subtitle: The united front in the works. The Right gains. · dev: y23_unity +1, kf_right_strength +2, workers_spd +1, spd_relation +2
+on-arrival: y23_unity += 1; kf_right_strength += 2; workers_spd += 1; spd_relation += 2
 go-to: root
 
 Our council members propose common demands to their SPD colleagues: control of prices, a wage that follows the dollar, a congress of the councils. Some SPD council members agree, against the advice of their union. The party's Right calls it the united front from below. The Left calls it tailing the reformists.

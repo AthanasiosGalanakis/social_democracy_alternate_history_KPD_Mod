@@ -15,8 +15,8 @@ This is the workers' government of Moscow's slogan. Is it a stepping stone to a 
 - @refuse: Refuse. A workers' government is no use if it sits at the pleasure of Berlin.
 
 @enter
-subtitle: Unity +1, Hundreds +40, Right +3 strength. Moscow trust +5 if it is 50 or more, -15 if it is not. · dev: y23_saxony = 1, y23_unity +1, rfb_strength +40, kf_right_strength +3, trust +5 (if comintern_trust >= 50), trust −15 (if comintern_trust < 50)
-on-arrival: y23_saxony = 1; y23_unity += 1; rfb_strength += 40; kf_right_strength += 3; comintern_trust += 5 if comintern_trust >= 50; comintern_trust -= 15 if comintern_trust < 50
+subtitle: Unity +1, Hundreds +40, Right +3 strength. Moscow trust +5 if it is 50 or more, -15 if it is not. · dev: y23_saxony = 1, y23_unity +1, spd_relation +5, dvp_relation −3, dnvp_relation −5, rfb_strength +40, kf_right_strength +3, trust +5 (if comintern_trust >= 50), trust −15 (if comintern_trust < 50)
+on-arrival: y23_saxony = 1; y23_unity += 1; spd_relation += 5; dvp_relation -= 3; dnvp_relation -= 5; rfb_strength += 40; kf_right_strength += 3; comintern_trust += 5 if comintern_trust >= 50; comintern_trust -= 15 if comintern_trust < 50
 go-to: root
 
 Our ministers take their oaths. The first act of the new cabinet is to open the police arsenals to the Hundreds. Berlin sends an ultimatum and the SPD ministers in the Reich government begin to wonder, in public, how long they will be asked to sit next to men who arm the workers of Saxony.
