@@ -27,9 +27,9 @@ Whether or not an election is near, the party has to win people over, and the in
 @women
 view-if: zetkin_advisor = 1
 choose-if: resources >= 1
-subtitle: Zetkin is in the leadership. · dev: workers_kpd +3×m, unemployed_kpd +2×m, resources −1, kf_centre_strength +1
+subtitle: Zetkin is in the leadership. · dev: workers_kpd +3×m, unemployed_kpd +2×m, resources −1, kf_right_strength +1
 unavailable-subtitle: Not enough resources.
-on-arrival: workers_kpd += 3*campaign_mult; unemployed_kpd += 2*campaign_mult; resources -= 1; kf_centre_strength += 1
+on-arrival: workers_kpd += 3*campaign_mult; unemployed_kpd += 2*campaign_mult; resources -= 1; kf_right_strength += 1
 
 Zetkin's women's committees hold meetings at the markets and the labour exchanges. Women who have stood in the queues since dawn say what they think of the Reich's prices, and a good many of them join.
 

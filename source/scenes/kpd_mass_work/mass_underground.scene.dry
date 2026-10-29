@@ -18,11 +18,11 @@ The offices are closed and the papers are confiscated. The party's members meet 
 - @easy_discard
 
 @cells
-subtitle: No cost. · dev: kf_centre_strength +2, workers_kpd +1×m
-on-arrival: kf_centre_strength += 2; workers_kpd += 1*campaign_mult
+subtitle: No cost. · dev: kf_right_strength +2, workers_kpd +1×m
+on-arrival: kf_right_strength += 2; workers_kpd += 1*campaign_mult
 go-to: root
 
-Each cell knows only its own members and one contact. The structure is hard to break and also hard to lead, and it favours the organisation men of the Centre. The old branches, which liked to argue, are gone.
+Each cell knows only its own members and one contact. The structure is hard to break and also hard to lead, and it favours the party's organisation men. The old branches, which liked to argue, are gone.
 
 @fronts
 choose-if: resources >= 1

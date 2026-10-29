@@ -17,12 +17,12 @@ The Right is the party of the districts and the unions: Thalheimer who thinks, W
 
 @thalheimer
 title: August Thalheimer: analyse the crisis
-subtitle: A theoretical report on the situation. · dev: kf_right_strength +4, kf_centre_dissent −3, adv_right_last = time
+subtitle: A theoretical report on the situation. · dev: kf_right_strength +4, kf_right_dissent −2, adv_right_last = time
 unavailable-subtitle: [? if thalheimer_timer > 0 : [+ thalheimer_timer +] months before Thalheimer can act again. ?]
 choose-if: thalheimer_timer = 0
-on-arrival: thalheimer_timer = 3; kf_right_strength += 4; kf_centre_dissent -= 3; adv_right_last = time
+on-arrival: thalheimer_timer = 3; kf_right_strength += 4; kf_right_dissent -= 2; adv_right_last = time
 
-Thalheimer writes the party its analysis: a crisis of the whole bourgeois order, and a party that must not mistake it for the revolution itself. The Centre, tired of slogans, is glad of a text.
+Thalheimer writes the party its analysis: a crisis of the whole bourgeois order, and a party that must not mistake it for the revolution itself. Pieck and the men of the apparatus, tired of slogans, are glad of a text.
 
 @walcher
 title: Jacob Walcher: win the unions

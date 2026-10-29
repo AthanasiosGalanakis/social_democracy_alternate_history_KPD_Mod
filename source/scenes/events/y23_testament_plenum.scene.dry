@@ -8,7 +8,6 @@ Q.y23_testament_plenum_done = 1;
 Q.test_stage = 4;
 // the Secretariat's retaliation of the summer lands first
 Q.y23_stalin_cornered = 1;
-Q.kf_centre_strength += 4;
 if (Q.testament_path == 1) {
     Q.moscow_balance = Math.max(-100, Q.moscow_balance - 10);
     Q.comintern_trust -= 8;
@@ -26,24 +25,18 @@ if (Q.testament_path == 1) {
     Q.moscow_drift = -0.3;
     Q.kf_left_strength += 15;
     Q.kf_right_dissent += 10;
-    Q.kf_centre_strength -= 10;
-    Q.kf_centre_dissent += 10;
 } else if (Q.testament_path == 2) {
     Q.y23_stalin_removed = 1;
     Q.moscow_balance = Math.min(Q.moscow_balance, 5);
     Q.moscow_drift = 0;
     Q.kf_right_strength += 18;
     Q.kf_left_dissent += 12;
-    Q.kf_centre_strength -= 8;
-    Q.kf_centre_dissent += 8;
 } else if (Q.testament_path == 3) {
     Q.moscow_balance = Math.min(Q.moscow_balance, -20);
     Q.moscow_drift = 0;
     Q.comintern_trust -= 10;
     Q.kf_left_strength += 8;
     Q.kf_right_strength += 8;
-    Q.kf_centre_strength -= 12;
-    Q.kf_centre_dissent += 10;
 }
 Q.pl_left = (Q.testament_path == 1) ? 1 : 0;
 Q.pl_right = (Q.testament_path == 2) ? 1 : 0;
@@ -52,7 +45,7 @@ Q.pl_publish = (Q.testament_path == 3) ? 1 : 0;
 
 = The plenum
 
-By early summer the paper has done its work in Moscow, and what it has produced is fear. A General Secretary whose character has been described by the founder of the party cannot carry on as if nothing had been said. Stalin does not deny that the notes exist. He says that a sick man's last words deserve respect, and then he reads out the passages that are hard on his rivals. His apparatus goes to work on us. Emissaries appear in our district committees with polite questions about how a Russian paper found its way to Berlin and who in the Zentrale let it. Moscow's trust in us drops ([? if pl_publish = 1 : sharply, and a promised payment is held back ?][? if pl_publish = 0 : noticeably ?]), and the Centre, our most loyal faction, rallies to the secretariat.
+By early summer the paper has done its work in Moscow, and what it has produced is fear. A General Secretary whose character has been described by the founder of the party cannot carry on as if nothing had been said. Stalin does not deny that the notes exist. He says that a sick man's last words deserve respect, and then he reads out the passages that are hard on his rivals. His apparatus goes to work on us. Emissaries appear in our district committees with polite questions about how a Russian paper found its way to Berlin and who in the Zentrale let it. Moscow's trust in us drops ([? if pl_publish = 1 : sharply, and a promised payment is held back ?][? if pl_publish = 0 : noticeably ?]), and Pieck and Eberlein, the most loyal men in our apparatus, rally to the secretariat.
 
 On 4 July the Central Committee of the Russian party is called together at short notice. Nobody keeps minutes that we are ever shown. We learn what happened from letters, from a delegate's account, and from the faces of the people who come out of the room.
 
@@ -62,9 +55,9 @@ On 4 July the Central Committee of the Russian party is called together at short
 
 [? if pl_publish = 1 : **Nobody carries it.** A paper that reached the German newspapers before it reached the Central Committee is not going to be used for anything but a scandal. The oppositions win the argument, but nobody wins a majority. Stalin is not removed. He is put under a control commission and told to answer for his appointments to men who do not trust him. Zinoviev and Kamenev break with him in all but name, and the Russian party is half paralysed for the rest of the year. ?]
 
-[? if pl_left = 1 : In Berlin our Left, which can say it was the first to act, grows much stronger. The Right, whose cautious leaders are now tied to a Moscow that wants a rising, becomes restless. The Centre, which had trusted the secretariat, has lost its friend and its footing. ?]
-[? if pl_right = 1 : In Berlin our Right, which was right about the men who would matter, grows much stronger. The Left, which had hoped for a different victory, becomes restless. The Centre has lost its friend in the secretariat and its footing. ?]
-[? if pl_publish = 1 : In Berlin the Left and the Right both gain ground. The Centre, which dislikes quarrels and has just been dragged into one, loses most. ?]
+[? if pl_left = 1 : In Berlin our Left, which can say it was the first to act, grows much stronger. The Right, whose cautious leaders are now tied to a Moscow that wants a rising, becomes restless. The apparatus men, who had trusted the secretariat, have lost their friend. ?]
+[? if pl_right = 1 : In Berlin our Right, which was right about the men who would matter, grows much stronger. The Left, which had hoped for a different victory, becomes restless. The apparatus men have lost their friend in the secretariat. ?]
+[? if pl_publish = 1 : In Berlin the Left and the Right both gain ground. Zetkin and the apparatus men, who dislike quarrels and have just been dragged into one, are unhappy. ?]
 
 Where Stalin falls, nobody should take it for a victory of communism over its critics. It is a fight between men who each want a party they can control, and the members are not asked. What the German party has bought with one copy of a letter, and from whom, is a question we will be answering for a long time.
 
