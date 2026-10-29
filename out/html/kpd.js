@@ -723,6 +723,24 @@
     for (var i = 0; i < steps.length; i++) { if (x < steps[i][0]) { return steps[i][1]; } }
     return steps[steps.length - 1][1];
   };
+  // The Reich cabinet, from the chancellor and the date (the SPD left Stresemann's coalition
+  // on 2 November 1923, after the Reich execution against Saxony).
+  KPD.cabinet = function(Q) {
+    if (Q.chancellor == 'Marx') {
+      return {short: 'Marx\'s minority cabinet', name: 'First Marx cabinet', since: 'from 30 November 1923', parties: ['z', 'bvp', 'ddp', 'dvp'], tolerated: ['spd'], experts: false,
+        note: 'The bourgeois middle governs alone, with the SPD voting through its Enabling Act. The stabilisation will be paid for by the workers.'};
+    }
+    if (Q.chancellor == 'Stresemann') {
+      if (Q.year > 1923 || Q.month >= 11) {
+        return {short: 'Stresemann\'s rump cabinet', name: 'Second Stresemann cabinet, without the SPD', since: 'from 3 November 1923', parties: ['ddp', 'z', 'dvp'], tolerated: [], experts: false,
+          note: 'The Social Democrats walked out after the army deposed the Saxon government, and kept their ministers out of the way of Bavaria. The cabinet lives on until the next vote of confidence.'};
+      }
+      return {short: 'The Great Coalition', name: 'Stresemann\'s Great Coalition', since: 'from 13 August 1923', parties: ['spd', 'ddp', 'z', 'dvp'], tolerated: [], experts: false,
+        note: 'Social Democrats in a cabinet led by the party of heavy industry. It ends passive resistance in the Ruhr and prepares the new currency.'};
+    }
+    return {short: 'Cuno\'s business cabinet', name: 'The Cuno cabinet, "cabinet of business"', since: 'from 22 November 1922', parties: ['ddp', 'z', 'bvp', 'dvp'], tolerated: ['spd'], experts: true,
+      note: 'Shipping and banking men with the bourgeois parties behind them, kept in office by the SPD. Its answer to the Ruhr occupation is passive resistance and the printing press.'};
+  };
   KPD.dissentWord = function(x) { return scale(x, [[5, 'very low'], [15, 'low'], [31, 'medium'], [50, 'high'], [1e9, 'very high']]); };
   KPD.strengthWord = function(x) { return scale(x, [[10, 'weak'], [25, 'moderate'], [40, 'strong'], [60, 'very strong'], [1e9, 'dominant']]); };
   KPD.relationWord = function(x) {

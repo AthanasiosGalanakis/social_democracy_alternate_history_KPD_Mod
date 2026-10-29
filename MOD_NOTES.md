@@ -161,3 +161,14 @@ To verify:
 
 ## Words instead of numbers (29 October, Maarten)
 The player sees words, not numbers; numbers stay in the Dev tab and in the " · dev:" suffixes. Scales: organisation scattered <15, weak <30, thin <45, solid <60, strong <75, a fortress; united front not yet begun, first steps (1), growing (3), broad (6), a mass movement (9); Hundreds none, one unit, several units (2), many units (4); Moscow's trust hostile <15, angry <30, displeased <40, doubtful <50, satisfied <60, confident <75, full confidence. Action thresholds follow the words (struggle and Hundreds need thin, the united front weak, price control solid). Every script and stylesheet in index.html carries a version tag (?v=...), core.js included; bump it on every release so browsers do not mix old and new files. `KPD.migrate` repairs saves from before the rebuild.
+
+## Sidebar tabs (Main, Party, Politics, Defense, Polls)
+
+Main shows status, government, the Reichstag as a list from left to right, and Economy (not built yet). Party holds the factions, the party organs, Moscow, the German October and the class. Names with more to say open a hover card (`KPD.UI.hoverHTML`); the cards for people show initials until we have fully free portraits.
+
+Facts in the hover cards and tabs that still need checking:
+- BVP leader in 1923 shown as Heinrich Held.
+- Cabinet parties: Cuno (DDP, Z, BVP, DVP and experts), Stresemann (SPD, DDP, Z, DVP; SPD out from 3 November), Marx (Z, BVP, DDP, DVP).
+- Prussian ban on the Proletarian Hundreds in May 1923.
+- Strength and arms of the leagues (SA, Oberland, Reichsflagge, Stahlhelm, Black Reichswehr, Wiking) are estimates in words, by month.
+- Organs of 1923: Zentrale with a political bureau, Zentralausschuss, M-Apparat, Radek as Comintern representative.

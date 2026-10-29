@@ -8,15 +8,15 @@
     <title>KPD: An Alternate History (working title)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap">
-    <link rel="stylesheet" type="text/css" href="game.css?v=20261029c">
+    <link rel="stylesheet" type="text/css" href="game.css?v=20261029d">
     <script src="jquery-1.11.1.min.js"></script>
     <script src="d3.v7.min.js"></script>
     <script src="d3-parliament.js"></script>
     <script src="d3-linegraph.js"></script>
-    <script src="core.js?v=20261029c"></script>
-    <script src="kpd.js?v=20261029c"></script>
-    <script src="kpd_ui.js?v=20261029c"></script>
-    <script src="game.js?v=20261029c"></script>
+    <script src="core.js?v=20261029d"></script>
+    <script src="kpd.js?v=20261029d"></script>
+    <script src="kpd_ui.js?v=20261029d"></script>
+    <script src="game.js?v=20261029d"></script>
   </head>
   <body>
     <div class="background" id="bg2">
@@ -324,6 +324,7 @@
                 <div id='stats_sidebar' class='tools left'>
                     <div class="tab_container">
                         <button class="tab_button active" id="main_tab" onclick="window.changeTab('status', 'main_tab');">Main</button>
+                        <button class="tab_button" id="party_tab" onclick="window.changeTab('status.party', 'party_tab');">Party</button>
                         <button class="tab_button" id="politics_tab" onclick="window.changeTab('status.politics', 'politics_tab');">Politics</button>
                         <button class="tab_button" id="paramilitary_tab" onclick="window.changeTab('status.paramilitaries', 'paramilitary_tab');">Defense</button>
                         <button class="tab_button" id="poll_tab" onclick="window.changeTab('status.polls', 'poll_tab');">Polls</button>
