@@ -169,8 +169,9 @@ Main shows status, government, the Reichstag as a list from left to right, and E
 Facts in the hover cards and tabs that still need checking:
 - BVP leader in 1923 shown as Heinrich Held.
 - Cabinet parties: Cuno (DDP, Z, BVP, DVP and experts), Stresemann (SPD, DDP, Z, DVP; SPD out from 3 November), Marx (Z, BVP, DDP, DVP).
-- Prussian ban on the Proletarian Hundreds in May 1923.
 - Strength and arms of the leagues (SA, Oberland, Reichsflagge, Stahlhelm, Black Reichswehr, Wiking) are estimates in words, by month.
 - Organs of 1923: Zentrale with a political bureau, Zentralausschuss, M-Apparat, Radek as Comintern representative.
-- Chairman: Ernst Meyer until the Leipzig congress event, then Heinrich Brandler (derived from `y23_leipzig_done`). Who formally chaired the Zentrale in January 1923 needs checking.
+- Chairman: Brandler all of 1923 (checked: chairman Feb-Aug 1921, Meyer Aug 1921-Aug 1922, Brandler again from Aug 1922 to Apr 1924; Wikipedia). Sidebar and chairman card share `KPD.chair(Q)`.
+- Zentrale seats by faction (7/6/0 before Leipzig; 12/9/0, 11/8/2 or 8/7/6 after, by the congress choice) are estimates. The 21 Leipzig members are known (Wikipedia list); assigning them to our three factions is a judgement. Four members co-opted 17 May 1923 are not modelled (names unknown).
+- Prussian ban on the Proletarian Hundreds in May 1923 is still unverified; the Saxon ban of 13 October 1923 (General Müller) is checked.
 - Hover texts are written as of the current date: birth years only, and events appear only once they have happened.
