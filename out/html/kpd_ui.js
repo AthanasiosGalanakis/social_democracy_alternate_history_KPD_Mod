@@ -278,7 +278,8 @@
     var cls = p[3] ? 'kport-f-' + p[3] : 'kport-p-' + p[2];
     return '<div class="kport ' + cls + '">' + esc(ini[0] + ini[ini.length - 1]) + '</div>';
   };
-  UI.person = function(id) { var p = PEOPLE[id]; return hov(p[3] ? fword(p[3], esc(p[0])) : esc(p[0]), 'person:' + id); };
+  var last = function(id) { return PEOPLE[id][0].split(' ').slice(-1)[0]; };
+  UI.person = function(id) { var p = PEOPLE[id]; return hov(p[3] ? fword(p[3], esc(last(id))) : esc(last(id)), 'person:' + id); };
 
   UI.hoverHTML = function(key, Q) {
     var k = key.split(':'), kind = k[0], id = k[1];
@@ -383,12 +384,12 @@
     var cab = KPD.cabinet(Q), ch = CHANCELLOR[Q.chancellor];
     var cp = String(Q.chancellor_party).toLowerCase();
     html += '<h1>Government</h1>' +
-      line('President: ' + hov(esc(PEOPLE.ebert[0]), 'person:ebert') + ' (' + UI.partyName('spd') + ')') +
-      line('Chancellor: ' + (ch ? hov(esc(PEOPLE[ch][0]), 'person:' + ch) : esc(Q.chancellor)) + ' (' +
+      line('President: ' + UI.person('ebert') + ' (' + UI.partyName('spd') + ')') +
+      line('Chancellor: ' + (ch ? UI.person(ch) : esc(Q.chancellor)) + ' (' +
         (cp == 'i' ? tip('<b>I</b>', 'Independent: belongs to no party') : UI.partyName(cp)) + ')') +
       line('Cabinet: ' + hov(esc(cab.short), 'cabinet:now'));
     html += '<h1>Reichstag composition</h1>' + UI.seatList(Q.rt_seats) +
-      line('<span class="kdim">Elected June 1920. Next election: ' + KPD.MONTHS[Q.next_election_month - 1] + ' ' + Q.next_election_year + '</span>');
+      line('<span class="kdim">Elected June 1920.</span>') + line('<span class="kdim">Next election: ' + KPD.MONTHS[Q.next_election_month - 1] + ' ' + Q.next_election_year + '</span>');
     html += '<h1>Economy</h1>' + '<p class="kwip">In progress</p>';
     return html;
   };
@@ -432,7 +433,7 @@
         text: 'The party\'s daily paper in Berlin, founded by Luxemburg and Liebknecht in 1918, with district papers in every region. Banned more than once since 1919.'},
       {id: 'mapp', name: 'M-Apparat', sub: 'the military-political apparatus', word: sc(mapp[0], mapp[1]),
         text: 'The party\'s secret apparatus, set up on the Comintern\'s orders after 1920 and paid by it: departments for military affairs (M), intelligence (N) and subversion in the army and police (Z).' + (Q.month >= 3 || Q.year > 1923 ? ' Woldemar Rose leads it.' : '') + (Q.month >= 10 || Q.year > 1923 ? ' Moscow has sent Unszlicht to build it into the staff of a rising. Its weapons lists are longer than its weapons.' : '')},
-      {id: 'ecci', name: 'Comintern representative', sub: 'Moscow\'s eyes in Berlin', word: 'Karl Radek',
+      {id: 'ecci', name: 'Comintern representative', sub: 'Moscow\'s eyes in Berlin', word: 'Radek',
         text: 'The Executive of the Communist International sends its representatives to sit with the Zentrale. Now that is Karl Radek, the Executive\'s man for Germany, who backs Brandler and the united front.'}
     ];
   };
@@ -452,11 +453,15 @@
     // seats by faction (estimates; see MOD_NOTES), set by the party congress
     var seats = function(k, r, c, l) {
       var v = function(f, d) { var x = Q[k + '_' + f]; return x === undefined ? d : x; };
-      return fword('right') + ' ' + v('r', r) + ', ' + fword('centre') + ' ' + v('c', c) + ', ' + fword('left') + ' ' + v('l', l);
+      return line(fword('right') + ': ' + v('r', r)) + line(fword('centre') + ': ' + v('c', c)) + line(fword('left') + ': ' + v('l', l));
     };
     UI.organs(Q).forEach(function(o) {
-      var word = o.id == 'zentrale' ? seats('zentrale', 7, 6, 0) : o.id == 'za' ? seats('za', 17, 14, 5) : o.word;
-      html += line(hov(esc(o.name), 'organ:' + o.id) + ': ' + word);
+      if (o.id == 'zentrale' || o.id == 'za') {
+        html += '<div class="kfaction"><p class="kfaction-name">' + hov(esc(o.name), 'organ:' + o.id) + '</p>' +
+          (o.id == 'zentrale' ? seats('zentrale', 7, 6, 0) : seats('za', 17, 14, 5)) + '</div>';
+      } else {
+        html += line(hov(esc(o.name), 'organ:' + o.id) + ': ' + o.word);
+      }
     });
     var t = Q.comintern_trust;
     html += '<h1>Moscow</h1>' +
@@ -530,7 +535,7 @@
     var html = '<h1>Official organisations</h1>';
     F.filter(function(f) { return f.kind == 'official'; }).forEach(function(f) {
       html += '<div class="kforce"><p class="kforce-name">' + name(f) + '</p>' +
-        line('Loyalty: ' + sc(f.loyal[0], f.loyal[1])) + '</div>';
+        line('Strength: ' + sc(f.str[0], f.str[1])) + line('Loyalty: ' + sc(f.loyal[0], f.loyal[1])) + '</div>';
     });
     html += '<h1>Paramilitaries</h1>';
     F.filter(function(f) { return f.kind == 'para'; }).forEach(function(f) {
