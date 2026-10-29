@@ -223,6 +223,7 @@
 
   // After every event and card: recompute, then move the clock if an action was taken.
   KPD.postEvent = function(Q) {
+    KPD.migrate(Q);
     Q.comintern_trust = Math.max(0, Math.min(100, Q.comintern_trust));
     Q.pro_republic = Math.max(0, Math.min(99, Math.round(Q.pro_republic)));
     Q.unemployed = Math.max(1, Q.unemployed);
@@ -433,7 +434,17 @@
     return p >= 80 ? 'persecution' : p >= 60 ? 'raids and arrests' : p >= 40 ? 'watchful police' : p >= 20 ? 'tolerated' : 'free to work';
   };
   KPD.orgWord = function(o) {
-    return o >= 70 ? 'a fortress' : o >= 55 ? 'strong' : o >= 40 ? 'solid' : o >= 25 ? 'thin' : 'scattered';
+    return o >= 75 ? 'a fortress' : o >= 60 ? 'strong' : o >= 45 ? 'solid' : o >= 30 ? 'thin' : o >= 15 ? 'weak' : 'scattered';
+  };
+  // the united front, the Hundreds and Moscow's trust, in words
+  KPD.unityWord = function(u) {
+    return u >= 9 ? 'a mass movement' : u >= 6 ? 'broad' : u >= 3 ? 'growing' : u >= 1 ? 'first steps' : 'not yet begun';
+  };
+  KPD.unitsWord = function(n) {
+    return n >= 4 ? 'many units' : n >= 2 ? 'several units' : n == 1 ? 'one unit' : 'none';
+  };
+  KPD.trustWord = function(t) {
+    return t >= 75 ? 'full confidence' : t >= 60 ? 'confident' : t >= 50 ? 'satisfied' : t >= 40 ? 'doubtful' : t >= 30 ? 'displeased' : t >= 15 ? 'angry' : 'hostile';
   };
   KPD.moodFactor = function(Q) { return 0.6 + Q.mood / 125; };
 
@@ -445,50 +456,50 @@
       cost: 1, when: function(Q, d) { return !KPD.illegalIn(Q, d); },
       can: function(Q, d) { return Q.resources >= 1; }, why: 'Needs 1 resource.',
       effect: function(Q, d) { KPD.addOrg(Q, d, 5); KPD.addPres(Q, d, 1); },
-      sum: 'Organisation +5 × m. Costs 1 resource.'},
+      sum: 'Builds organisation. Costs 1 resource.'},
     struggle: {title: 'Lead a strike or an unemployed march',
       cost: 0, when: function(Q, d) { return !KPD.illegalIn(Q, d) && d != 'bavaria'; },
-      can: function(Q, d) { return Q['d_' + d + '_org'] >= 25; }, why: 'Needs organisation 25 here.',
+      can: function(Q, d) { return Q['d_' + d + '_org'] >= 30; }, why: 'Needs at least a thin organisation here.',
       effect: function(Q, d) { KPD.addOrg(Q, d, 2); KPD.addPres(Q, d, 6); Q.y23_strikes += 1;
         Q.workers_kpd += 1 * Q.campaign_mult; Q.kf_left_strength += 1; },
-      sum: 'Organisation +2 × m, strikes +1, pressure up. The Left gains.'},
+      sum: 'Some organisation; the police take note. The Left gains.'},
     front: {title: 'Build the united front with SPD and union workers',
       cost: 1, when: function(Q, d) { return d != 'bavaria' && !KPD.illegalIn(Q, d); },
-      can: function(Q, d) { return Q.resources >= 1 && Q['d_' + d + '_org'] >= 20; }, why: 'Needs 1 resource and organisation 20 here.',
+      can: function(Q, d) { return Q.resources >= 1 && Q['d_' + d + '_org'] >= 15; }, why: 'Needs 1 resource and at least a weak organisation here.',
       effect: function(Q, d) { Q.y23_unity += 1; Q['d_' + d + '_front'] += 1; KPD.addOrg(Q, d, 1); Q.spd_relation += 1;
         Q.kf_right_strength += 1; Q.kf_left_dissent += 2; },
-      sum: 'United front actions +1. Costs 1 resource. The Right gains, the Left grumbles.'},
+      sum: 'Widens the united front. Costs 1 resource. The Right gains, the Left grumbles.'},
     defence: {title: 'Form a unit of the Proletarian Hundreds',
       cost: 1, when: function(Q, d) { return Q.year == 1923 && !(Q.month == 1); },
       can: function(Q, d) { return Q.resources >= 1 && Q['d_' + d + '_org'] >= 30; },
-      why: 'Needs 1 resource and organisation 30 here.',
+      why: 'Needs 1 resource and at least a thin organisation here.',
       effect: function(Q, d) { Q['d_' + d + '_h'] += 1; Q.y23_hundreds += 1; Q.rfb_strength += 10; KPD.addPres(Q, d, 7);
         Q.kf_left_strength += 1; },
-      sum: 'Hundreds +1 here. Pressure rises sharply.'},
+      sum: 'A new unit here. The state answers. Costs 1 resource.'},
     underground: {title: 'Move the work underground',
       cost: 1, when: function(Q, d) { return KPD.illegalIn(Q, d) || Q['d_' + d + '_pres'] >= 60; },
       can: function(Q, d) { return Q.resources >= 1; }, why: 'Needs 1 resource.',
       effect: function(Q, d) { KPD.addPres(Q, d, -12); KPD.addOrg(Q, d, 1); },
-      sum: 'Pressure −12: safe addresses, a second set of officers, hidden presses.'},
+      sum: 'Eases the pressure. Costs 1 resource.'},
     // Saxony: control committees against the profiteers, spring and summer 1923
     control: {title: 'Set up price control committees', only: ['saxony', 'thuringia', 'central', 'berlin'],
       cost: 0, when: function(Q, d) { return Q.year == 1923 && Q.month >= 3 && Q.month <= 9; },
-      can: function(Q, d) { return Q['d_' + d + '_org'] >= 35; }, why: 'Needs organisation 35 here.',
+      can: function(Q, d) { return Q['d_' + d + '_org'] >= 45; }, why: 'Needs at least a solid organisation here.',
       effect: function(Q, d) { KPD.addOrg(Q, d, 3); Q.unemployed_kpd += 1 * Q.campaign_mult; Q.workers_kpd += 1 * Q.campaign_mult;
         KPD.addPres(Q, d, 3); },
-      sum: 'Organisation +3 × m; housewives and the unemployed come to us.'},
+      sum: 'Builds organisation; housewives and the unemployed come to us.'},
     // Bavaria: the 1 May 1923 counter-demonstration in Munich, and the autumn border defence
     mayday: {title: 'Hold May Day in Munich against the leagues', only: ['bavaria'],
       cost: 0, when: function(Q, d) { return Q.year == 1923 && Q.month == 4; },
       can: function(Q, d) { return true; }, why: '',
       effect: function(Q, d) { KPD.addOrg(Q, d, 4); KPD.addPres(Q, d, 5); Q.y23_unity += 1; Q.kf_centre_strength += 1; },
-      sum: 'Organisation +4 × m, united front actions +1.'},
+      sum: 'Builds organisation and the united front.'},
     border: {title: 'Watch the Bavarian border with the Thuringian Hundreds', only: ['bavaria'],
       cost: 1, when: function(Q, d) { return Q.year == 1923 && Q.month >= 10 && Q.month <= 11; },
       can: function(Q, d) { return Q.resources >= 1 && Q.d_thuringia_org >= 30; },
-      why: 'Needs 1 resource and organisation 30 in Thuringia.',
+      why: 'Needs 1 resource and at least a thin organisation in Thuringia.',
       effect: function(Q, d) { Q.d_thuringia_h += 1; Q.y23_hundreds += 1; Q.y23_unity += 1; KPD.addPres(Q, 'thuringia', 4); },
-      sum: 'Hundreds +1 in Thuringia, united front actions +1.'}
+      sum: 'A new unit in Thuringia, and the united front grows. Costs 1 resource.'}
   };
   KPD.ACTION_ORDER = ['organise', 'struggle', 'front', 'defence', 'control', 'mayday', 'border', 'underground'];
 
@@ -552,6 +563,21 @@
 
   // The flags the scenes read (dendry conditions cannot call functions): which Lands and actions
   // show, which can be chosen, and the words for the sidebar and the map.
+  // games saved before the year-1 rebuild lack the district state: fill in what is missing
+  KPD.migrate = function(Q) {
+    if (!Q || Q.d_berlin_org !== undefined || Q.year === undefined) { return; }
+    KPD.newDistricts(Q);
+    KPD.newDirectives(Q);
+    if (Q.sub === undefined) { Q.sub = 1; }
+    if (Q.turn === undefined) { Q.turn = 1; }
+    if (Q.spd_relation === undefined) {
+      Q.spd_relation = 25; Q.z_relation = 10; Q.bvp_relation = 3; Q.ddp_relation = 8; Q.dvp_relation = 3; Q.dnvp_relation = 0; Q.nsdap_relation = 0;
+    }
+    if (!Q.news_log) { Q.news_head = ''; Q.news_sub = ''; Q.news_log = []; }
+    if (!Q.rt_seats) { Q.rt_seats = {spd: 173, kpd: 15, z: 64, bvp: 21, ddp: 39, dvp: 65, dnvp: 68, nsdap: 3, other: 11}; }
+    Q.date_label = KPD.dateLabel(Q);
+    KPD.refresh(Q);
+  };
   KPD.refresh = function(Q) {
     Q.mood_word = KPD.moodWord(Q.mood);
     for (var l of KPD.LAND_ORDER) {
@@ -582,19 +608,19 @@
   KPD.DIRECTIVES = [
     {id: 'unitedfront', due: 6, by: 'the enlarged Executive in June',
       text: 'Win the majority of the working class: the united front from below and from above.',
-      target: 'Three united front actions',
+      target: 'A growing united front',
       check: function(Q) { return Q.y23_unity >= 3; },
-      progress: function(Q) { return Math.min(3, Q.y23_unity) + ' of 3'; }},
+      progress: function(Q) { return 'the united front: ' + KPD.unityWord(Q.y23_unity); }},
     {id: 'defence', due: 9, by: 'the Politburo\'s decision in September',
       text: 'Defend the working class against the fascist leagues and the Black Reichswehr.',
       target: 'Units of the Hundreds in three districts',
       check: function(Q) { return KPD.districtsWith(Q, '_h', 1) >= 3; },
-      progress: function(Q) { return Math.min(3, KPD.districtsWith(Q, '_h', 1)) + ' of 3'; }},
+      progress: function(Q) { var n = KPD.districtsWith(Q, '_h', 1); return n ? 'units in ' + ['one', 'two', 'three', 'four', 'five', 'six', 'seven'][Math.min(n, 7) - 1] + (n == 1 ? ' district' : ' districts') : 'no units yet'; }},
     {id: 'october', due: 10, by: 'the Chemnitz conference in October',
       text: 'Prepare the German October.',
-      target: 'Saxony at organisation 60, with two units of the Hundreds',
+      target: 'A strong organisation in Saxony, with several units of the Hundreds',
       check: function(Q) { return Q.d_saxony_org >= 60 && Q.d_saxony_h >= 2; },
-      progress: function(Q) { return 'organisation ' + Math.round(Q.d_saxony_org) + ' of 60, Hundreds ' + Math.min(2, Q.d_saxony_h) + ' of 2'; }}
+      progress: function(Q) { return 'Saxony ' + KPD.orgWord(Q.d_saxony_org) + ', ' + KPD.unitsWord(Q.d_saxony_h); }}
   ];
   KPD.districtsWith = function(Q, suffix, min) {
     var n = 0;
@@ -632,7 +658,7 @@
     Q.oct_c2 = Q.y23_unity >= 6 ? 1 : 0;
     Q.oct_second = 'none';
     for (var d of ['central', 'thuringia', 'berlin']) {
-      if (Q.oct_second == 'none' && Q['d_' + d + '_org'] >= 55) { Q.oct_second = KPD.DISTRICTS[d].name; }
+      if (Q.oct_second == 'none' && Q['d_' + d + '_org'] >= 60) { Q.oct_second = KPD.DISTRICTS[d].name; }
     }
     Q.oct_c3 = Q.oct_second != 'none' ? 1 : 0;
     Q.oct_ok = (Q.oct_c1 && Q.oct_c2 && Q.oct_c3) ? 1 : 0;

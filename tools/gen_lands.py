@@ -23,23 +23,26 @@ DISTRICT_NAMES = {'berlin': 'Berlin', 'ruhr': 'Rhine and Ruhr', 'central': 'Cent
 
 # id, title, summary, unavailable reason, result text ({name} = the district)
 ACTIONS = [
-    ('organise', 'Build factory cells and recruit', 'Organisation +5 × m. Costs 1 resource.', 'Needs 1 resource.',
+    ('organise', 'Build factory cells and recruit', 'Builds organisation. Costs 1 resource.', 'Needs 1 resource.',
      'Organisers go from works gate to works gate in {name}. New cells meet in back rooms after the shift. The dues book fills slowly, and so does the list of names the police would like to have.'),
-    ('struggle', 'Lead a strike or an unemployed march', 'Organisation +2 × m, strikes +1, pressure rises. The Left gains.', 'Needs organisation 25 here.',
+    ('struggle', 'Lead a strike or an unemployed march', 'Some organisation; the police take note. The Left gains.', 'Needs at least a thin organisation here.',
      'In {name} the party calls the workers out: a strike over the wage the inflation ate this week, a march of the unemployed to the town hall. The employers answer with lockouts and the police with batons, and the workers see who stood with them.'),
-    ('front', 'Build the united front with SPD and union workers', 'United front actions +1. Costs 1 resource. The Right gains, the Left grumbles.', 'Needs 1 resource and organisation 20 here.',
+    ('front', 'Build the united front with SPD and union workers', 'Widens the united front. Costs 1 resource. The Right gains, the Left grumbles.', 'Needs 1 resource and at least a weak organisation here.',
      'In {name} our cells go to the SPD and union branches with a concrete proposal, not a lecture: a joint meeting, a joint demand, a joint committee. Some branch secretaries refuse. Some of their members come anyway.'),
-    ('defence', 'Form a unit of the Proletarian Hundreds', 'Hundreds +1 here. Pressure rises sharply. Costs 1 resource.', 'Needs 1 resource and organisation 30 here.',
+    ('defence', 'Form a unit of the Proletarian Hundreds', 'A new unit here. The state answers. Costs 1 resource.', 'Needs 1 resource and at least a thin organisation here.',
      'A new unit of the Proletarian Hundreds forms in {name}: workers from the same works, drilling at night with what weapons they have. Today they protect meetings. What they will be asked to do tomorrow is a question the party has not yet answered.'),
-    ('control', 'Set up price control committees', 'Organisation +3 × m; housewives and the unemployed come to us.', 'Needs organisation 35 here.',
+    ('control', 'Set up price control committees', 'Builds organisation; housewives and the unemployed come to us.', 'Needs at least a solid organisation here.',
      'Control committees of workers and housewives go to the markets of {name}, check prices and hoards, and post the names of the profiteers. The police call it vigilantism. The queues call it the first sensible thing anyone has done.'),
-    ('mayday', 'Hold May Day in Munich against the leagues', 'Organisation +4 × m, united front actions +1.', '',
+    ('mayday', 'Hold May Day in Munich against the leagues', 'Builds organisation and the united front.', '',
      'On the first of May the workers of Munich march, while the völkisch leagues gather under arms on the Oberwiesenfeld. This time the state holds the leagues back, and the workers see that they can be faced.'),
-    ('border', 'Watch the Bavarian border with the Thuringian Hundreds', 'Hundreds +1 in Thuringia, united front actions +1. Costs 1 resource.', 'Needs 1 resource and organisation 30 in Thuringia.',
+    ('border', 'Watch the Bavarian border with the Thuringian Hundreds', 'A new unit in Thuringia, and the united front grows. Costs 1 resource.', 'Needs 1 resource and at least a thin organisation in Thuringia.',
      'Hundreds from Thuringia take up watch along the Bavarian border, where the leagues are gathering. It is a job the Reich will not do, and the workers of the border towns notice who does it.'),
-    ('underground', 'Move the work underground', 'Pressure −12. Costs 1 resource.', 'Needs 1 resource.',
+    ('underground', 'Move the work underground', 'Eases the pressure. Costs 1 resource.', 'Needs 1 resource.',
      'In {name} the work moves out of sight: lists burned, meetings in allotment huts, a second set of officers ready for the day the first are arrested.'),
 ]
+
+
+DEV = {'organise': 'org +5×m', 'struggle': 'org +2×m, pressure +6, strikes +1, workers_kpd +1×m, kf_left_strength +1', 'front': 'resources −1, unity +1, org +1, spd_relation +1, kf_right_strength +1, kf_left_dissent +2', 'defence': 'resources −1, units +1, pressure +7, kf_left_strength +1', 'control': 'org +3×m, pressure +3, workers_kpd +1×m, unemployed_kpd +1×m', 'mayday': 'org +4×m, pressure +5, unity +1', 'border': 'resources −1, Thuringia units +1, unity +1', 'underground': 'resources −1, pressure −12, org +1'}
 
 
 def insert(kind, arg=''):
@@ -50,7 +53,7 @@ def action_scene(d, a):
     aid, title, summary, why, text = a
     return f"""@act_{d}_{aid}
 title: {title}
-subtitle: {summary}
+subtitle: {summary} · dev: {DEV[aid]}
 view-if: x_{d}_{aid} = 1
 choose-if: c_{d}_{aid} = 1
 unavailable-subtitle: [? if d_{d}_cd > 0 : We acted here this turn. ?][? if d_{d}_cd <= 0 : {why} ?]
