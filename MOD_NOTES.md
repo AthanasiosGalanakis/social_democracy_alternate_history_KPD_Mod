@@ -172,3 +172,5 @@ Facts in the hover cards and tabs that still need checking:
 - Prussian ban on the Proletarian Hundreds in May 1923.
 - Strength and arms of the leagues (SA, Oberland, Reichsflagge, Stahlhelm, Black Reichswehr, Wiking) are estimates in words, by month.
 - Organs of 1923: Zentrale with a political bureau, Zentralausschuss, M-Apparat, Radek as Comintern representative.
+- Chairman: Ernst Meyer until the Leipzig congress event, then Heinrich Brandler (derived from `y23_leipzig_done`). Who formally chaired the Zentrale in January 1923 needs checking.
+- Hover texts are written as of the current date: birth years only, and events appear only once they have happened.

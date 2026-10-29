@@ -728,7 +728,7 @@
   KPD.cabinet = function(Q) {
     if (Q.chancellor == 'Marx') {
       return {short: 'Marx\'s minority cabinet', name: 'First Marx cabinet', since: 'from 30 November 1923', parties: ['z', 'bvp', 'ddp', 'dvp'], tolerated: ['spd'], experts: false,
-        note: 'The bourgeois middle governs alone, with the SPD voting through its Enabling Act. The stabilisation will be paid for by the workers.'};
+        note: 'The bourgeois middle governs alone and asks the SPD for emergency powers. The workers are to pay for the stabilisation.'};
     }
     if (Q.chancellor == 'Stresemann') {
       if (Q.year > 1923 || Q.month >= 11) {
@@ -736,7 +736,7 @@
           note: 'The Social Democrats walked out after the army deposed the Saxon government, and kept their ministers out of the way of Bavaria. The cabinet lives on until the next vote of confidence.'};
       }
       return {short: 'The Great Coalition', name: 'Stresemann\'s Great Coalition', since: 'from 13 August 1923', parties: ['spd', 'ddp', 'z', 'dvp'], tolerated: [], experts: false,
-        note: 'Social Democrats in a cabinet led by the party of heavy industry. It ends passive resistance in the Ruhr and prepares the new currency.'};
+        note: 'Social Democrats in a cabinet led by the party of heavy industry. Its task, as industry sees it: end the passive resistance in the Ruhr and stop the inflation at the workers\' expense.'};
     }
     return {short: 'Cuno\'s business cabinet', name: 'The Cuno cabinet, "cabinet of business"', since: 'from 22 November 1922', parties: ['ddp', 'z', 'bvp', 'dvp'], tolerated: ['spd'], experts: true,
       note: 'Shipping and banking men with the bourgeois parties behind them, kept in office by the SPD. Its answer to the Ruhr occupation is passive resistance and the printing press.'};
