@@ -18,7 +18,7 @@ on-arrival: district_view = "berlin"
 
 @act_berlin_organise
 title: Build factory cells and recruit
-subtitle: Organisation +5 × m. Costs 1 resource.
+subtitle: Builds organisation. Costs 1 resource. · dev: org +5×m
 view-if: x_berlin_organise = 1
 choose-if: c_berlin_organise = 1
 unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource. ?]
@@ -35,10 +35,10 @@ Organisers go from works gate to works gate in Berlin. New cells meet in back ro
 
 @act_berlin_struggle
 title: Lead a strike or an unemployed march
-subtitle: Organisation +2 × m, strikes +1, pressure rises. The Left gains.
+subtitle: Some organisation; the police take note. The Left gains. · dev: org +2×m, pressure +6, strikes +1, workers_kpd +1×m, kf_left_strength +1
 view-if: x_berlin_struggle = 1
 choose-if: c_berlin_struggle = 1
-unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs organisation 25 here. ?]
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs at least a thin organisation here. ?]
 on-arrival: {! window.KPD.act(Q, 'berlin', 'struggle'); !}
 new-page: true
 
@@ -52,10 +52,10 @@ In Berlin the party calls the workers out: a strike over the wage the inflation 
 
 @act_berlin_front
 title: Build the united front with SPD and union workers
-subtitle: United front actions +1. Costs 1 resource. The Right gains, the Left grumbles.
+subtitle: Widens the united front. Costs 1 resource. The Right gains, the Left grumbles. · dev: resources −1, unity +1, org +1, spd_relation +1, kf_right_strength +1, kf_left_dissent +2
 view-if: x_berlin_front = 1
 choose-if: c_berlin_front = 1
-unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource and organisation 20 here. ?]
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource and at least a weak organisation here. ?]
 on-arrival: {! window.KPD.act(Q, 'berlin', 'front'); !}
 new-page: true
 
@@ -69,10 +69,10 @@ In Berlin our cells go to the SPD and union branches with a concrete proposal, n
 
 @act_berlin_defence
 title: Form a unit of the Proletarian Hundreds
-subtitle: Hundreds +1 here. Pressure rises sharply. Costs 1 resource.
+subtitle: A new unit here. The state answers. Costs 1 resource. · dev: resources −1, units +1, pressure +7, kf_left_strength +1
 view-if: x_berlin_defence = 1
 choose-if: c_berlin_defence = 1
-unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource and organisation 30 here. ?]
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource and at least a thin organisation here. ?]
 on-arrival: {! window.KPD.act(Q, 'berlin', 'defence'); !}
 new-page: true
 
@@ -86,10 +86,10 @@ A new unit of the Proletarian Hundreds forms in Berlin: workers from the same wo
 
 @act_berlin_control
 title: Set up price control committees
-subtitle: Organisation +3 × m; housewives and the unemployed come to us.
+subtitle: Builds organisation; housewives and the unemployed come to us. · dev: org +3×m, pressure +3, workers_kpd +1×m, unemployed_kpd +1×m
 view-if: x_berlin_control = 1
 choose-if: c_berlin_control = 1
-unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs organisation 35 here. ?]
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs at least a solid organisation here. ?]
 on-arrival: {! window.KPD.act(Q, 'berlin', 'control'); !}
 new-page: true
 
@@ -103,7 +103,7 @@ Control committees of workers and housewives go to the markets of Berlin, check 
 
 @act_berlin_mayday
 title: Hold May Day in Munich against the leagues
-subtitle: Organisation +4 × m, united front actions +1.
+subtitle: Builds organisation and the united front. · dev: org +4×m, pressure +5, unity +1
 view-if: x_berlin_mayday = 1
 choose-if: c_berlin_mayday = 1
 unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 :  ?]
@@ -120,10 +120,10 @@ On the first of May the workers of Munich march, while the völkisch leagues gat
 
 @act_berlin_border
 title: Watch the Bavarian border with the Thuringian Hundreds
-subtitle: Hundreds +1 in Thuringia, united front actions +1. Costs 1 resource.
+subtitle: A new unit in Thuringia, and the united front grows. Costs 1 resource. · dev: resources −1, Thuringia units +1, unity +1
 view-if: x_berlin_border = 1
 choose-if: c_berlin_border = 1
-unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource and organisation 30 in Thuringia. ?]
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource and at least a thin organisation in Thuringia. ?]
 on-arrival: {! window.KPD.act(Q, 'berlin', 'border'); !}
 new-page: true
 
@@ -137,7 +137,7 @@ Hundreds from Thuringia take up watch along the Bavarian border, where the leagu
 
 @act_berlin_underground
 title: Move the work underground
-subtitle: Pressure −12. Costs 1 resource.
+subtitle: Eases the pressure. Costs 1 resource. · dev: resources −1, pressure −12, org +1
 view-if: x_berlin_underground = 1
 choose-if: c_berlin_underground = 1
 unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource. ?]

@@ -81,7 +81,8 @@ def process(text, strip):
 def main():
     strip = '--strip' in sys.argv
     for path in glob.glob('source/scenes/**/*.scene.dry', recursive=True):
-        if path.split('/')[-1] in SKIP_FILES:
+        # the Lands scenes carry their own dev numbers (tools/gen_lands.py)
+        if path.split('/')[-1] in SKIP_FILES or '/lands/' in path:
             continue
         text = open(path).read()
         new = process(text, strip)

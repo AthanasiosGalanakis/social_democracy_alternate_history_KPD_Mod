@@ -121,21 +121,21 @@
         var target = (l == 'prussia') ? 'district_' + d : 'land_' + l;
         var prussian = l == 'prussia';
         svg += '<a class="kmap-tile" href="#" onclick="window.KPD.UI.go(\'' + target + '\');return false;">' +
-          '<title>' + esc(D.name + (prussian ? ' (Prussia)' : '') + ': organisation ' + round(org) + ', ' + KPD.pressureWord(Q['d_' + d + '_pres'])) + '</title>' +
-          (prussian ? '<circle cx="' + cx + '" cy="' + cy + '" r="59" class="kmap-ring"/>' : '') +
-          '<circle cx="' + cx + '" cy="' + cy + '" r="52" fill="' + UI.orgColour(org) + '" class="kmap-disc"/>' +
-          '<text x="' + cx + '" y="' + (cy - 10) + '" class="kmap-org">' + round(org) + '</text>' +
-          '<text x="' + cx + '" y="' + (cy + 11) + '" class="kmap-name">' + esc(D.short || D.name.replace('Rhine and ', '').replace('Central Germany', 'Central')) + '</text>' +
-          '<text x="' + cx + '" y="' + (cy + 31) + '" class="kmap-pres">' + esc(KPD.pressureWord(Q['d_' + d + '_pres'])) + '</text>' +
-          (Q['d_' + d + '_h'] > 0 ? '<text x="' + (cx + 36) + '" y="' + (cy - 36) + '" class="kmap-badge">' + Q['d_' + d + '_h'] + 'H</text>' : '') +
+          '<title>' + esc(D.name + (prussian ? ' (Prussia)' : '') + ': organisation ' + KPD.orgWord(org) + ', ' + KPD.pressureWord(Q['d_' + d + '_pres'])) + '</title>' +
+          (prussian ? '<circle cx="' + cx + '" cy="' + cy + '" r="63" class="kmap-ring"/>' : '') +
+          '<circle cx="' + cx + '" cy="' + cy + '" r="57" fill="' + UI.orgColour(org) + '" class="kmap-disc"/>' +
+          '<text x="' + cx + '" y="' + (cy - 4) + '" class="kmap-name">' + esc(D.short || D.name.replace('Rhine and ', '').replace('Central Germany', 'Central')) + '</text>' +
+          '<text x="' + cx + '" y="' + (cy + 22) + '" class="kmap-org">' + esc(KPD.orgWord(org)) + '</text>' +
+          (Q['d_' + d + '_pres'] >= 40 ? '<text x="' + cx + '" y="' + (cy + 88) + '" class="kmap-pres">' + esc(KPD.pressureWord(Q['d_' + d + '_pres'])) + '</text>' : '') +
+          (Q['d_' + d + '_h'] > 0 ? '<text x="' + (cx + 42) + '" y="' + (cy - 40) + '" class="kmap-badge">H</text>' : '') +
           '</a>';
       });
     });
     svg += '</svg>';
     var legend = '<div class="kmap-legend"><span class="kmap-key"><span class="kswatch" style="background:' + UI.orgColour(15) + '"></span>' +
-      '<span class="kswatch" style="background:' + UI.orgColour(45) + '"></span><span class="kswatch" style="background:' + UI.orgColour(75) + '"></span> organisation</span>' +
+      '<span class="kswatch" style="background:' + UI.orgColour(45) + '"></span><span class="kswatch" style="background:' + UI.orgColour(75) + '"></span> darker means a stronger organisation</span>' +
       '<span class="kmap-key"><span class="kmap-key-ring"></span> districts of Prussia</span>' +
-      '<span class="kmap-key"><b>H</b> units of the Hundreds</span></div>';
+      '<span class="kmap-key"><b>H</b> the Proletarian Hundreds have formed here</span><span class="kmap-key"><i>Words under a district: police pressure</i></span></div>';
     return '<div class="kmap-wrap">' + svg + legend + '<p class="kmap-note">Only the Lands where the party can act this turn are shown. Click a district to work there; each action takes the turn. The workers\' mood is <b>' + esc(KPD.moodWord(Q.mood)) + '</b>.</p></div>';
   };
 
@@ -155,8 +155,8 @@
     if (L.districts.length > 1) {
       html += '<p class="klabel">Party districts in ' + esc(L.name) + '</p><table class="ktable">';
       L.districts.forEach(function(d) {
-        html += '<tr><td><b>' + esc(KPD.DISTRICTS[d].name) + '</b></td><td>organisation <b>' + round(Q['d_' + d + '_org']) + '</b> (' +
-          esc(KPD.orgWord(Q['d_' + d + '_org'])) + ')</td><td class="kdim">' + esc(KPD.pressureWord(Q['d_' + d + '_pres'])) + '</td></tr>';
+        html += '<tr><td><b>' + esc(KPD.DISTRICTS[d].name) + '</b></td><td>organisation ' + esc(KPD.orgWord(Q['d_' + d + '_org'])) +
+          '</td><td class="kdim">' + esc(KPD.pressureWord(Q['d_' + d + '_pres'])) + '</td></tr>';
       });
       html += '</table>';
     }
@@ -168,21 +168,23 @@
     var org = Q['d_' + d + '_org'], pres = Q['d_' + d + '_pres'];
     return '<div class="kpanel kdistrict">' +
       '<p class="klabel">Party district: ' + esc(D.name) + '</p>' +
-      '<p>Organisation: <b>' + round(org) + '</b> (' + esc(KPD.orgWord(org)) + ')<br>' +
+      '<p>Organisation: <b>' + esc(KPD.orgWord(org)) + '</b><br>' +
       'Pressure from the state: <b>' + esc(KPD.pressureWord(pres)) + '</b><br>' +
-      'Proletarian Hundreds: ' + (Q['d_' + d + '_h'] || 0) + ' units<br>' +
-      'United front actions here: ' + (Q['d_' + d + '_front'] || 0) +
-      (Q['d_' + d + '_council'] ? '<br>Factory councils: ' + Q['d_' + d + '_council'] + '% of the vote' : '') + '</p>' +
+      'Proletarian Hundreds: ' + esc(KPD.unitsWord(Q['d_' + d + '_h'] || 0)) +
+      (Q['d_' + d + '_council'] ? '<br>Factory councils: ' + esc(UI.councilWord(Q['d_' + d + '_council'])) : '') + '</p>' +
       '<p class="kdim">' + esc(D.note) + ' Heavy pressure costs organisation every month.</p></div>';
   };
 
+  UI.councilWord = function(s) {
+    return s >= 30 ? 'we lead the big works' : s >= 20 ? 'a strong minority' : s >= 10 ? 'a minority' : 'hardly present';
+  };
   var met = function(ok) { return ok ? '<span class="kmet">met</span>' : '<span class="kdim">not yet</span>'; };
 
   UI.october = function(Q) {
     return '<p>The Chemnitz call can hold if:</p><ul class="kchecks">' +
-      '<li>Saxony at organisation 60 (now ' + round(Q.d_saxony_org) + '): ' + met(Q.oct_c1) + '</li>' +
-      '<li>Six united front actions (now ' + Q.y23_unity + '): ' + met(Q.oct_c2) + '</li>' +
-      '<li>One more district at 55, Central Germany, Thuringia or Berlin: ' + met(Q.oct_c3) +
+      '<li>The party in Saxony is strong (now ' + esc(KPD.orgWord(Q.d_saxony_org)) + '): ' + met(Q.oct_c1) + '</li>' +
+      '<li>The united front is broad (now ' + esc(KPD.unityWord(Q.y23_unity)) + '): ' + met(Q.oct_c2) + '</li>' +
+      '<li>A second district is strong: Central Germany, Thuringia or Berlin: ' + met(Q.oct_c3) +
       (Q.oct_c3 ? ' (' + esc(Q.oct_second) + ')' : '') + '</li></ul>';
   };
 
@@ -229,9 +231,9 @@
     for (var d in KPD.DISTRICTS) {
       if (d == 'bavaria') { continue; }
       var s = Q['d_' + d + '_council'];
-      out += '<tr><td>' + esc(KPD.DISTRICTS[d].name) + '</td><td class="knum">' + s + '%</td><td>' + (s >= 30 ? '<span class="kmet">majority in the big works</span>' : '<span class="kdim">minority</span>') + '</td></tr>';
+      out += '<tr><td>' + esc(KPD.DISTRICTS[d].name) + '</td><td>' + (s >= 30 ? '<span class="kmet">' + esc(UI.councilWord(s)) + '</span>' : '<span class="kdim">' + esc(UI.councilWord(s)) + '</span>') + '</td></tr>';
     }
-    return out + '</table><p class="kdim">At 30% or more the councils of a district give us a majority in the big works there (organisation +2).</p></div>';
+    return out + '</table><p class="kdim">Where we lead the councils of the big works, the party grows there.</p></div>';
   };
 
   // ---- The sidebar tabs, laid out like the base game's ----------------------------------------
@@ -241,27 +243,26 @@
   UI.sidebarMain = function(Q) {
     var html = '<h1>Status</h1>' + line(esc(Q.date_label)) +
       line('Resources available: ' + Q.resources) +
-      line(tip('Income', 'Every 150 points of organisation in the districts pay one resource a month in dues') + ': ' + KPD.duesEstimate(Q) + ' a month' + (Q.soviet_subsidy ? ', and Moscow\'s subsidy every quarter' : '')) +
+      line(tip('Dues', 'Members in the districts pay dues every month; a stronger organisation pays more') + ': ' + (KPD.duesEstimate(Q) >= 3 ? 'plentiful' : KPD.duesEstimate(Q) == 2 ? 'steady' : KPD.duesEstimate(Q) == 1 ? 'thin' : 'barely trickling') + (Q.soviet_subsidy ? '. Moscow pays a subsidy' : '')) +
       line('KPD position: ' + (Q.kpd_banned ? 'banned' : 'legal opposition') + (Q.y23_saxony ? ', in the Saxon government' : '')) +
       line('Party line: ' + FACTION[Q.party_line][0]) +
       line('Internal dissent: ' + KPD.dissentWord(Q.kf_dissent_percent));
     html += '<h1>Factions</h1>';
     Q.kpd_factions.forEach(function(f) {
       html += line(tip('<span class="faction-word fw-' + f + '">' + FACTION[f][0] + '</span>', FACTION[f][1]) + ' strength: ' + KPD.strengthWord(Q['kf_' + f + '_strength']) +
-        ' (' + round(Q['kf_' + f + '_strength']) + '%), dissent: ' + KPD.dissentWord(Q['kf_' + f + '_dissent']));
+        ', dissent: ' + KPD.dissentWord(Q['kf_' + f + '_dissent']));
     });
     html += '<h1>Moscow</h1>' +
       line('Leadership: ' + esc(Q.moscow_leader.replace(/-/g, ', ')) + ', favouring the <span class="faction-word fw-' + Q.moscow_favored + '">' + FACTION[Q.moscow_favored][0] + '</span>') +
-      line(tip('Trust', 'Under 50 Moscow writes letters, under 40 it cuts the subsidy, under 30 it writes an open letter, under 15 it sends emissaries') + ': ' + round(Q.comintern_trust));
+      line(tip('Trust in us', 'Below satisfied Moscow writes letters; if displeased it cuts the subsidy and writes open letters; if angry it sends emissaries') + ': ' + KPD.trustWord(Q.comintern_trust));
     if (Q.dir_active) {
       html += line('Directive: ' + esc(Q.dir_target) + ' (' + esc(Q.dir_progress) + '), ' + met(Q.dir_ok) + '. Judged by ' + esc(Q.dir_by) + '.');
     }
     if (Q.oct_show) { html += '<h1>The German October</h1>' + UI.october(Q); }
     html += '<h1>The class</h1>' +
       line('Workers\' mood: ' + esc(KPD.moodWord(Q.mood))) +
-      line(tip('United front actions', 'Joint actions with the workers of the SPD, the free unions and the factory councils') + ': ' + Q.y23_unity) +
-      line('Strikes led: ' + Q.y23_strikes) +
-      line('Organisation in the districts: ' + Object.keys(KPD.DISTRICTS).map(function(d) { return esc(KPD.DISTRICTS[d].short || KPD.DISTRICTS[d].name) + ' ' + round(Q['d_' + d + '_org']); }).join(', '));
+      line(tip('United front', 'Joint action with the workers of the SPD, the free unions and the factory councils') + ': ' + KPD.unityWord(Q.y23_unity)) +
+      line('Organisation in the districts: ' + Object.keys(KPD.DISTRICTS).map(function(d) { return esc(KPD.DISTRICTS[d].short || KPD.DISTRICTS[d].name) + ' ' + esc(KPD.orgWord(Q['d_' + d + '_org'])); }).join(', '));
     return html;
   };
 
@@ -294,14 +295,13 @@
 
   UI.sidebarDefense = function(Q) {
     var html = '<h1>Paramilitaries</h1>' +
-      line(tip('Proletarian Hundreds', 'The KPD\'s workers\' defence units of 1923') + ': ' + KPD.hundreds(Q) + ' units formed, about ' + round(Q.rfb_strength) + ' thousand members');
-    for (var d in KPD.DISTRICTS) {
-      if (Q['d_' + d + '_h'] > 0) { html += line('&nbsp;&nbsp;' + esc(KPD.DISTRICTS[d].name) + ': ' + Q['d_' + d + '_h'] + ' units'); }
-    }
+      line(tip('Proletarian Hundreds', 'The KPD\'s workers\' defence units of 1923') + ': ' + esc(KPD.unitsWord(KPD.hundreds(Q))));
+    var where = Object.keys(KPD.DISTRICTS).filter(function(d) { return Q['d_' + d + '_h'] > 0; }).map(function(d) { return esc(KPD.DISTRICTS[d].name); });
+    if (where.length) { html += line('Formed in: ' + where.join(', ')); }
     html += line(tip('Bavarian leagues', 'Bund Oberland, Reichsflagge, the SA and the other armed leagues') + ': arming openly under the Bavarian government') +
       line(tip('Black Reichswehr', 'Illegal reserve units hidden inside the army') + ': in the barracks of Prussia, out of sight') +
       '<h1>Official military</h1>' +
-      line('Reichswehr: 100 thousand troops, the limit set at Versailles') +
+      line('Reichswehr: the hundred thousand men allowed at Versailles, loyal to its generals') +
       line('Prussian police: the strongest force in Germany, under the Social Democrat Severing');
     return html;
   };
@@ -321,6 +321,7 @@
   // ---- Filling the placeholders -----------------------------------------------------------
   UI.renderInserts = function(root) {
     var Q = Qnow();
+    KPD.migrate(Q);
     var els = (root || document).querySelectorAll('.kpd-insert');
     Array.prototype.forEach.call(els, function(el) {
       var kind = el.getAttribute('data-insert'), arg = el.getAttribute('data-arg');

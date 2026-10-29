@@ -142,7 +142,7 @@ Follows the 1923 to 1933 design doc (https://claude.ai/artifact/5ECdBo23oGZHyHN5
 - **Dues**: every 150 points of organisation across the districts pay one resource a month.
 - **Workers' mood** is hidden and scripted for 1923 (`KPD.MOOD_1923`); it multiplies organising.
 - **Moscow's directives**: three in 1923 (joint actions by June, Hundreds in three districts by September, Saxony at 60 with two units by October). Met: trust +6, missed: trust −6, shown in a "Moscow's verdict" event.
-- **The German October**: from August the front page shows three conditions: Saxony at organisation 60, six joint actions, and one of Central Germany, Thuringia or Berlin at 55. The Chemnitz general strike holds only if all three are met (replaces `y23_unity >= 2`). Chemnitz now falls in late October. The rising stays greyed out.
+- **The German October**: from August the Main tab shows three conditions: Saxony strong (organisation 60), a broad united front (6 actions), and one of Central Germany, Thuringia or Berlin strong (60). The Chemnitz general strike holds only if all three are met (replaces `y23_unity >= 2`). Chemnitz now falls in late October. The rising stays greyed out.
 - **Votes**: factory council elections (March), Zeigner's election in the Saxon Landtag (March; refusing means no Saxon workers' government in October), the Enabling Act (October), Stresemann's confidence vote (November). Shown as hemicycles with the count.
 - **Party paper**: Die Rote Fahne in its own column on the right, as in the DDP mod: the last event is the headline, earlier headlines with their dates below, and news from abroad (`KPD.WORLD_1923`).
 - **Sidebar tabs** (Maarten, 29 October: keep them close to the base game): Main (status, factions, Moscow, directive, October conditions, the class), Politics (government, Reichstag, every party's stance and relation to us, the Lands), Defense, Polls (all parties, by class), Dev. Plain lines with words, as in the base game; no bars or tick symbols.
@@ -158,3 +158,6 @@ To verify:
 - The Enabling Act vote of 13 October 1923 and the confidence vote of 23 November 1923 (in game the counts use all seats, so they differ from the real tallies).
 - Factory council election timing in 1923.
 - District starting organisation values are design numbers, not membership figures.
+
+## Words instead of numbers (29 October, Maarten)
+The player sees words, not numbers; numbers stay in the Dev tab and in the " · dev:" suffixes. Scales: organisation scattered <15, weak <30, thin <45, solid <60, strong <75, a fortress; united front not yet begun, first steps (1), growing (3), broad (6), a mass movement (9); Hundreds none, one unit, several units (2), many units (4); Moscow's trust hostile <15, angry <30, displeased <40, doubtful <50, satisfied <60, confident <75, full confidence. Action thresholds follow the words (struggle and Hundreds need thin, the united front weak, price control solid). Every script and stylesheet in index.html carries a version tag (?v=...), core.js included; bump it on every release so browsers do not mix old and new files. `KPD.migrate` repairs saves from before the rebuild.
