@@ -16,15 +16,15 @@ Both sides have an argument, and the congress has to give one of them the floor.
 - @leftturn: Give the Left the floor and move the party toward offensive action.
 
 @confirm
-subtitle: Right +4 strength, Left +6 dissent. Zentrale: Right 12, Centre 9, Left 0. Zentralausschuss: 20, 13, 5. · dev: kf_right_strength +4, kf_left_dissent +6, trust +3
-on-arrival: kf_right_strength += 4; kf_left_dissent += 6; comintern_trust += 3; zentrale_r = 12; zentrale_c = 9; zentrale_l = 0; za_r = 20; za_c = 13; za_l = 5
+subtitle: Right +4 strength, Left +6 dissent. Zentrale: Right 12, Centre 9, Left 0. Zentralausschuss: 19, 12, 7. · dev: kf_right_strength +4, kf_left_dissent +6, trust +3
+on-arrival: kf_right_strength += 4; kf_left_dissent += 6; comintern_trust += 3; zentrale_r = 12; zentrale_c = 9; zentrale_l = 0; za_r = 19; za_c = 12; za_l = 7
 go-to: root
 
 The congress confirms the Zentrale by a clear majority. The united front line is the party's policy, and the Left is outvoted, which in this party means it will wait for its chance rather than change its mind.
 
 @balance
-subtitle: Left +3 strength, Right +3 dissent. Zentrale: Right 11, Centre 8, Left 2. Zentralausschuss: 18, 13, 7. · dev: kf_left_strength +3, kf_right_dissent +3, kf_centre_strength +2
-on-arrival: kf_left_strength += 3; kf_right_dissent += 3; kf_centre_strength += 2; zentrale_r = 11; zentrale_c = 8; zentrale_l = 2; za_r = 18; za_c = 13; za_l = 7
+subtitle: Left +3 strength, Right +3 dissent. Zentrale: Right 11, Centre 8, Left 2. Zentralausschuss: 18, 11, 9. · dev: kf_left_strength +3, kf_right_dissent +3, kf_centre_strength +2
+on-arrival: kf_left_strength += 3; kf_right_dissent += 3; kf_centre_strength += 2; zentrale_r = 11; zentrale_c = 8; zentrale_l = 2; za_r = 18; za_c = 11; za_l = 9
 go-to: root
 
 Two Left delegates are admitted to the Zentrale. The Right calls it an invitation to sabotage and the Left calls it a token; the party centre, which wanted peace, is the only group pleased.
