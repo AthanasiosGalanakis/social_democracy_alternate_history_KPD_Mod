@@ -1,0 +1,154 @@
+title: Berlin
+new-page: true
+on-arrival: district_view = "berlin"
+
+= Berlin
+
+{!<div class="kpd-insert" data-insert="district" data-arg="berlin"></div>!}
+
+- @land_prussia: Back to Prussia.
+- @act_berlin_organise
+- @act_berlin_struggle
+- @act_berlin_front
+- @act_berlin_defence
+- @act_berlin_control
+- @act_berlin_mayday
+- @act_berlin_border
+- @act_berlin_underground
+
+@act_berlin_organise
+title: Build factory cells and recruit
+subtitle: Organisation +5 × m. Costs 1 resource.
+view-if: x_berlin_organise = 1
+choose-if: c_berlin_organise = 1
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource. ?]
+on-arrival: {! window.KPD.act(Q, 'berlin', 'organise'); !}
+new-page: true
+
+= Build factory cells and recruit
+
+Organisers go from works gate to works gate in Berlin. New cells meet in back rooms after the shift. The dues book fills slowly, and so does the list of names the police would like to have.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="berlin"></div>!}
+
+- @root: Continue.
+
+@act_berlin_struggle
+title: Lead a strike or an unemployed march
+subtitle: Organisation +2 × m, strikes +1, pressure rises. The Left gains.
+view-if: x_berlin_struggle = 1
+choose-if: c_berlin_struggle = 1
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs organisation 25 here. ?]
+on-arrival: {! window.KPD.act(Q, 'berlin', 'struggle'); !}
+new-page: true
+
+= Lead a strike or an unemployed march
+
+In Berlin the party calls the workers out: a strike over the wage the inflation ate this week, a march of the unemployed to the town hall. The employers answer with lockouts and the police with batons, and the workers see who stood with them.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="berlin"></div>!}
+
+- @root: Continue.
+
+@act_berlin_front
+title: Act together with the SPD workers
+subtitle: Joint actions +1. Costs 1 resource. The Right gains, the Left grumbles.
+view-if: x_berlin_front = 1
+choose-if: c_berlin_front = 1
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource and organisation 20 here. ?]
+on-arrival: {! window.KPD.act(Q, 'berlin', 'front'); !}
+new-page: true
+
+= Act together with the SPD workers
+
+In Berlin our cells go to the SPD and union branches with a concrete proposal, not a lecture: a joint meeting, a joint demand, a joint committee. Some branch secretaries refuse. Some of their members come anyway.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="berlin"></div>!}
+
+- @root: Continue.
+
+@act_berlin_defence
+title: Form a unit of the Proletarian Hundreds
+subtitle: Hundreds +1 here. Pressure rises sharply. Costs 1 resource.
+view-if: x_berlin_defence = 1
+choose-if: c_berlin_defence = 1
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource and organisation 30 here. ?]
+on-arrival: {! window.KPD.act(Q, 'berlin', 'defence'); !}
+new-page: true
+
+= Form a unit of the Proletarian Hundreds
+
+A new unit of the Proletarian Hundreds forms in Berlin: workers from the same works, drilling at night with what weapons they have. Today they protect meetings. What they will be asked to do tomorrow is a question the party has not yet answered.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="berlin"></div>!}
+
+- @root: Continue.
+
+@act_berlin_control
+title: Set up price control committees
+subtitle: Organisation +3 × m; housewives and the unemployed come to us.
+view-if: x_berlin_control = 1
+choose-if: c_berlin_control = 1
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs organisation 35 here. ?]
+on-arrival: {! window.KPD.act(Q, 'berlin', 'control'); !}
+new-page: true
+
+= Set up price control committees
+
+Control committees of workers and housewives go to the markets of Berlin, check prices and hoards, and post the names of the profiteers. The police call it vigilantism. The queues call it the first sensible thing anyone has done.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="berlin"></div>!}
+
+- @root: Continue.
+
+@act_berlin_mayday
+title: Hold May Day in Munich against the leagues
+subtitle: Organisation +4 × m, joint actions +1.
+view-if: x_berlin_mayday = 1
+choose-if: c_berlin_mayday = 1
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 :  ?]
+on-arrival: {! window.KPD.act(Q, 'berlin', 'mayday'); !}
+new-page: true
+
+= Hold May Day in Munich against the leagues
+
+On the first of May the workers of Munich march, while the völkisch leagues gather under arms on the Oberwiesenfeld. This time the state holds the leagues back, and the workers see that they can be faced.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="berlin"></div>!}
+
+- @root: Continue.
+
+@act_berlin_border
+title: Watch the Bavarian border with the Thuringian Hundreds
+subtitle: Hundreds +1 in Thuringia, joint actions +1. Costs 1 resource.
+view-if: x_berlin_border = 1
+choose-if: c_berlin_border = 1
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource and organisation 30 in Thuringia. ?]
+on-arrival: {! window.KPD.act(Q, 'berlin', 'border'); !}
+new-page: true
+
+= Watch the Bavarian border with the Thuringian Hundreds
+
+Hundreds from Thuringia take up watch along the Bavarian border, where the leagues are gathering. It is a job the Reich will not do, and the workers of the border towns notice who does it.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="berlin"></div>!}
+
+- @root: Continue.
+
+@act_berlin_underground
+title: Move the work underground
+subtitle: Pressure −12. Costs 1 resource.
+view-if: x_berlin_underground = 1
+choose-if: c_berlin_underground = 1
+unavailable-subtitle: [? if d_berlin_cd > 0 : We acted here this turn. ?][? if d_berlin_cd <= 0 : Needs 1 resource. ?]
+on-arrival: {! window.KPD.act(Q, 'berlin', 'underground'); !}
+new-page: true
+
+= Move the work underground
+
+In Berlin the work moves out of sight: lists burned, meetings in allotment huts, a second set of officers ready for the day the first are arrested.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="berlin"></div>!}
+
+- @root: Continue.
+

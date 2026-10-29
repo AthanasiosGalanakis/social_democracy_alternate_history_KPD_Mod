@@ -2,14 +2,18 @@ title: The Chemnitz conference
 subtitle: 21 October. The factory councils of Saxony are waiting for our call.
 new-page: true
 tags: kpd_event
-view-if: year = 1923 and month = 10 and y23_saxony_done = 1 and y23_chemnitz_done = 0
+view-if: year = 1923 and month = 10 and sub = 2 and (y23_saxony_done = 1 or zeigner = 0) and y23_chemnitz_done = 0
 on-arrival: y23_chemnitz_done = 1
 
 = The Chemnitz conference
 
 The conference of Saxony's factory councils, about 450 delegates, meets in Chemnitz on 21 October. The Reichswehr is already moving: General Müller banned the Proletarian Hundreds on the 13th, and his troops enter Saxony on the 23rd. The KPD intends to call a general strike from Chemnitz as the signal for the German October, and Brandler is going to say so.
 
-The SPD ministers in the Saxon cabinet are unwilling to call a general strike. Whether a strike spreads beyond the Communist-led districts depends on the ground we have laid with the SPD left in the months before this conference. A rising is not yet available in this version of the game.
+[? if zeigner = 1 : The SPD ministers in the Saxon cabinet are unwilling to call a general strike. ?][? if zeigner = 0 : Saxony has no workers' government to shelter the conference, and the SPD's leaders want no strike. ?] Whether a strike spreads beyond the Communist-led districts depends on the ground we have laid in the months before this conference: our organisation in Saxony, the joint actions with the SPD workers, and a second district ready to follow.
+
+{!<div class="kpd-insert" data-insert="october"></div>!}
+
+A rising is not yet available in this version of the game.
 
 - @rising: Call the general strike and the armed rising. (Not implemented yet.)
 - @strike: Call the general strike, but no rising.
@@ -57,9 +61,10 @@ Hundreds of workers are dead or arrested. The party is ruined, and Moscow will l
 - @root: Continue.
 
 @strike
-subtitle: Holds only if the SPD left has been brought into joint action.
+subtitle: Holds only if all three October conditions on the front page are met.
 on-arrival: {!
-if (Q.y23_unity >= 2) {
+window.KPD.refreshOctober(Q);
+if (Q.oct_ok == 1) {
     Q.y23_outcome = 'strike_holds';
     Q.saxony_survives = 1;
     Q.workers_kpd += 4;
@@ -83,7 +88,7 @@ title: The strike fails
 
 = The strike fails
 
-The call is made and the strike does not leave the Communist districts. The Reichswehr enters Saxony on the 27th, and the SPD ministers, who had never wanted this, leave the cabinet. Our own people are left to explain to the workers what the strike was for.
+The call is made and the strike does not leave the Communist districts. The Reichswehr enters Saxony on the 23rd, and the SPD ministers, who had never wanted this, leave the cabinet. Our own people are left to explain to the workers what the strike was for.
 
 - @root: Continue.
 

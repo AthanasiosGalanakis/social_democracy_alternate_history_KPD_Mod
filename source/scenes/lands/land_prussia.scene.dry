@@ -1,0 +1,25 @@
+title: Prussia
+new-page: true
+on-arrival: land_view = "prussia"
+
+= Prussia
+
+{!<div class="kpd-insert" data-insert="land" data-arg="prussia"></div>!}
+
+- @lands: Back to the map.
+- @to_berlin: Berlin
+- @to_ruhr: Rhine and Ruhr
+- @to_central: Central Germany
+
+@to_berlin
+view-if: x_berlin = 1
+go-to: district_berlin
+
+@to_ruhr
+view-if: x_ruhr = 1
+go-to: district_ruhr
+
+@to_central
+view-if: x_central = 1
+go-to: district_central
+

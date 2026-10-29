@@ -1,0 +1,57 @@
+title: Zeigner asks for our votes
+subtitle: The Saxon Landtag elects a Minister-President.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month >= 3 and month <= 4 and y23_zeigner_done = 0
+on-arrival: y23_zeigner_done = 1
+
+= A vote in Dresden
+
+In January our ten deputies brought down Wilhelm Buck's SPD minority government in Saxony, which had governed with our votes and against our demands. Now the SPD's left wing, which controls the party in Saxony, puts up Erich Zeigner, the former justice minister, a man who speaks of the Reichswehr's ties to the Bavarian leagues and means it.
+
+The SPD has 40 seats. A majority is 49. Every other party in the Landtag will vote against him. Our ten seats decide whether Saxony has a government that relies on the workers, or a crisis that ends in a bourgeois cabinet.
+
+{!<div class="kpd-insert" data-insert="vote" data-arg="zeigner"></div>!}
+
+The Right of our party wants a programme in return: control committees on prices, the arming of workers' defence groups, an amnesty for workers in prison. The Left wants no support for any SPD government at all.
+
+- @terms: Vote for Zeigner on our terms.
+- @plain: Vote for him without conditions.
+- @refuse: Abstain. No votes for an SPD government.
+
+@terms
+subtitle: Moscow approves. Saxony organisation +4. The Right gains.
+on-arrival: {!
+Q.zeigner = 1; Q.zeigner_kpd = 'yes';
+Q.y23_unity += 1; Q.comintern_trust += 2; Q.kf_right_strength += 2;
+window.KPD.addOrg(Q, 'saxony', 4);
+!}
+go-to: result
+
+@plain
+subtitle: Joint action with the SPD +2. Moscow and the Left object.
+on-arrival: {!
+Q.zeigner = 1; Q.zeigner_kpd = 'yes';
+Q.y23_unity += 2; Q.comintern_trust -= 3; Q.kf_left_dissent += 5;
+!}
+go-to: result
+
+@refuse
+subtitle: Saxony gets no workers' government. The Left gains.
+on-arrival: {!
+Q.zeigner = 0; Q.zeigner_kpd = 'abstain';
+Q.kf_left_strength += 3; Q.kf_right_dissent += 6; Q.comintern_trust -= 2;
+window.KPD.addPres(Q, 'saxony', 8);
+!}
+go-to: result
+
+@result
+title: The vote
+
+= The Landtag votes
+
+{!<div class="kpd-insert" data-insert="vote" data-arg="zeigner"></div>!}
+
+[? if zeigner = 1 : On 21 March Zeigner is elected with fifty votes, forty of them his own party's and ten of them ours. [? if y23_unity >= 2 : The workers of Saxony see the two parties vote together for the first time since 1919. ?] Zeigner's government is not ours, and it will not arm the workers on our say-so. But it will not send the police against them either, and in Saxony that is the ground on which the party can grow. ?][? if zeigner = 0 : Zeigner falls short. Saxony is left with a caretaker cabinet and a crisis, and the bourgeois parties talk of a coalition without the SPD. The SPD workers ask our members why they stood aside, and our members find the answer harder to give than the Left had promised. ?]
+
+- @root: Continue.

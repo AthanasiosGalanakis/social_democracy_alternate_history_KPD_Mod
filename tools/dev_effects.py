@@ -64,14 +64,16 @@ def process(text, strip):
                 eff = effects(l[len('on-arrival:'):])
         if sub_idx is not None and SEP in lines[sub_idx]:
             lines[sub_idx] = lines[sub_idx].split(SEP)[0].rstrip()
+        # a subtitle that only held generated numbers is dropped and made again
+        if sub_idx is not None and lines[sub_idx].startswith('subtitle: dev: '):
+            del lines[sub_idx]
+            sub_idx = None
         if not strip and eff:
             suffix = SEP + ', '.join(eff)
             if sub_idx is not None:
                 lines[sub_idx] = lines[sub_idx] + suffix
             else:
                 lines.insert(1, 'subtitle: ' + suffix.lstrip(' ·').strip())
-        elif strip and sub_idx is not None and lines[sub_idx].startswith('subtitle: dev: '):
-            del lines[sub_idx]
         result.append('\n'.join(lines))
     return ''.join(result)
 

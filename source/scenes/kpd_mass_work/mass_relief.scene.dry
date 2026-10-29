@@ -2,7 +2,7 @@ title: Workers' relief
 subtitle: Solidarity is also a kind of politics.
 new-page: true
 is-card: true
-card-image: img/Mann_der_Arbeit.jpg
+card-image: img/arbeiterbew.jpg
 frequency: 150
 tags: kpd_mass
 view-if: mass_relief_timer <= 0

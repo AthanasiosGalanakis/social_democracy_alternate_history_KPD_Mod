@@ -2,7 +2,7 @@ title: Underground work
 subtitle: The party is banned. The work continues.
 new-page: true
 is-card: true
-card-image: img/poster_0.jpg
+card-image: img/spartakus.jpg
 frequency: 150
 tags: kpd_mass
 view-if: mass_underground_timer <= 0 and kpd_banned = 1

@@ -25,103 +25,6 @@
       ui.loadGame(url);
   };
 
-  window.loadGerman = function() {
-      ui.loadGame('game-de.json');
-      dendryUI.language = "de";
-      localStorage[game.title + '_language'] = "de";
-      var text_label_map_ids = {
-          // top-level
-          'main_tab': "Haupt",
-          'politics_tab': "Politik",
-          'paramilitary_tab': "Militär",
-          'poll_tab': "Wahl",
-          'stats-link': "Bibliothek",
-          'save-link': "Speichern/Laden",
-          'options-link': "Einstellungen",
-          // options
-          "currently_playing_text": "Momentan spielt:",
-          "music_header_text": "Musik",
-          "next_song_text": "Nächstes Lied",
-          "settings_text": "Einstellung",
-          "backgrounds_text": "Hintergründe:",
-          "event_images_text": "Ereignisbilder:",
-          "animations_text": "Animationen:",
-          "music_text": "Musik:",
-          "color_scheme_text": "Farbschema:",
-          "light_mode_label": "Hell",
-          "dark_mode_label": "Dunkel",
-          "font_size_text": "Schriftgröße:",
-          "decrease_font_button": "- verkleinern",
-          "increase_font_button": "+ vergrößern",
-          // save/load menu
-      };
-      var text_label_map_classes = {
-          //"save_button":"Speichern",
-          "delete_button": "Löschen",
-          "load_button": "Laden",
-          "label_on": "An",
-          "label_off": "Aus",
-          "close_button": "Schließen"
-      }
-      for (var elementId in text_label_map_ids) {
-          document.getElementById(elementId).textContent = text_label_map_ids[elementId];
-      }
-      for (var className in text_label_map_classes) {
-          for (var element of document.getElementsByClassName(className)) {
-              element.textContent = text_label_map_classes[className];
-          }
-      }
-  };
-
-  window.loadEnglish = function() {
-      ui.loadGame('game.json');
-      dendryUI.language = "en";
-      localStorage[game.title + '_language'] = "en";
-      var text_label_map_ids = {
-          // top-level
-          'main_tab': "Main",
-          'politics_tab': "Politics",
-          'paramilitary_tab': "Defense",
-          'poll_tab': "Polls",
-          'stats-link': "Library",
-          'save-link': "Save/Load",
-          'options-link': "Options",
-          // options
-          "currently_playing_text": "Currently playing:",
-          "music_header_text": "Music",
-          "next_song_text": "Next song",
-          "settings_text": "Settings",
-          "backgrounds_text": "Backgrounds:",
-          "event_images_text": "Event images:",
-          "animations_text": "Animations:",
-          "music_text": "Music:",
-          "color_scheme_text": "Color scheme:",
-          "light_mode_label": "Light mode",
-          "dark_mode_label": "Dark mode",
-          "font_size_text": "Font size:",
-          "decrease_font_button": "- decrease",
-          "increase_font_button": "+ increase",
-          // save/load menu
-      };
-      var text_label_map_classes = {
-          //"save_button":"Save",
-          "delete_button": "Delete",
-          "load_button": "Load",
-          "label_on": "On",
-          "label_off": "Off",
-          "close_button": "Close"
-      }
-      for (var elementId in text_label_map_ids) {
-          document.getElementById(elementId).textContent = text_label_map_ids[elementId];
-      }
-      for (var className in text_label_map_classes) {
-          for (var element of document.getElementsByClassName(className)) {
-              element.textContent = text_label_map_classes[className];
-          }
-      }
-  };
-
-  // save/load buttons
   window.updateSaveButtons = function() {
       if (window.dendryUI.language && window.dendryUI.language == "de") {
           for (var element of document.getElementsByClassName("save_button")) {
@@ -328,15 +231,6 @@
     } else {
         $('#light_mode')[0].checked = true;
     }
-    if (window.dendryUI.language) {
-        if (window.dendryUI.language == "de") {
-            $('#german')[0].checked = true;
-        } else {
-            $('#english')[0].checked = true;
-        }
-    } else {
-        $('#english')[0].checked = true;
-    }
   };
 
   
@@ -368,6 +262,7 @@
       dendryUI.dendryEngine._runActions(scene.onArrival);
       var displayContent = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
       $('#qualities').append(dendryUI.contentToHTML.convert(displayContent));
+      window.KPD.UI.renderInserts(document.getElementById('qualities'));
   };
 
   window.changeTab = function(newTab, tabId) {
@@ -523,6 +418,12 @@
       document.getElementById('tools_wrapper').style.display = opening ? 'none' : '';
       document.body.classList.toggle('opening', opening);
       if (!opening) { window.arrangeLeadership(); }
+      // events make the headlines of the front page; maps and charts are drawn into their placeholders
+      var scene = window.dendryUI.game.scenes[sceneId];
+      if (scene && scene.tags && scene.tags.indexOf('kpd_event') >= 0) {
+          window.KPD.headline(window.dendryUI.dendryEngine.state.qualities, scene);
+      }
+      window.KPD.UI.renderInserts(document.getElementById('content'));
       window.colourParties();
       if (!opening) {
           window.updateSidebar();
@@ -588,14 +489,10 @@
 
   window.onload = function() {
     window.dendryUI.loadSettings({show_portraits: false});
-    if (localStorage[game.title + '_language']) {
-        if (localStorage[game.title + '_language'] == "de") {
-            window.loadGerman();
-        }
-    }
     if (window.dendryUI.dark_mode) {
         document.body.classList.add('dark-mode');
     }
+    if (!window.dendryUI.font_size) { window.dendryUI.font_size = 1.1; }
     if (window.dendryUI.font_size != 1.1) {
         var fs = window.dendryUI.font_size;
         var sidebar_fs = fs - 0.1;

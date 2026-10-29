@@ -32,7 +32,7 @@ go-to: root
 Factory committees organise food distribution and inspect the books of the local profiteers. Social Democratic and union members sit on them next to ours. It is small and concrete work, and it shows the SPD rank and file that the party can do something besides shout.
 
 @distance
-subtitle: dev: workers_kpd −1, kf_left_dissent +3, trust −4 · dev: workers_kpd −1, kf_left_dissent +3, trust −4
+subtitle: dev: workers_kpd −1, kf_left_dissent +3, trust −4
 on-arrival: workers_kpd -= 1; kf_left_dissent += 3; comintern_trust -= 4
 go-to: root
 

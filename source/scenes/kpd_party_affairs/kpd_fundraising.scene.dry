@@ -4,7 +4,7 @@ view-if: fundraising_timer <= 0 and (not historical_mode)
 on-arrival: fundraising_timer = 6; month_actions += 1
 frequency: 300
 is-card: true
-card-image: img/poster_2.jpg
+card-image: img/union_2.jpg
 tags: kpd_party
 
 # KPD version of the base game's Fundraising card. Moscow's subsidy is not included yet (milestone M4).

@@ -2,7 +2,7 @@ title: Send a delegation to Moscow
 subtitle: Moscow decides more than we like. We can try to decide some of it back.
 new-page: true
 is-card: true
-card-image: img/flags.jpg
+card-image: img/international.jpg
 frequency: 150
 tags: kpd_party
 view-if: moscow_action_timer <= 0

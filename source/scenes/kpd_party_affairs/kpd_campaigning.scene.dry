@@ -3,7 +3,7 @@ new-page: true
 on-arrival: month_actions += 1
 max-visits: 60
 is-card: true
-card-image: img/flags.jpg
+card-image: img/kpd_2.jpg
 frequency: 100
 tags: kpd_party
 

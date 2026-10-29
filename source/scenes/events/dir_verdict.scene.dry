@@ -1,0 +1,16 @@
+title: Moscow's verdict
+subtitle: The Executive judges the party's work.
+new-page: true
+tags: kpd_event
+view-if: dir_verdict_pending = 1
+on-arrival: dir_verdict_pending = 0
+
+= Moscow's verdict
+
+The Executive of the Communist International has set the party a task, and now it reports on it. The target was: [+ dir_verdict +].
+
+[? if dir_met = 1 : The report is warm. The German party has done what it was asked, and Zinoviev's letter says so in front of the other sections. Our standing in Moscow rises (trust +6). Comrades in the apparatus who had been writing reports about us start writing them for us. ?][? if dir_met = 0 : The report is cold. The German party was given a task and did not carry it out. The Executive's letter is read aloud at the Central Committee, and every faction hears in it what it wants to hear. Our standing in Moscow falls (trust −6). ?]
+
+[? if dir_active = 1 : The next directive: [+ dir_text +] Moscow wants [+ dir_target +], judged by [+ dir_by +]. ?]
+
+- @root: Continue.

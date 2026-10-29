@@ -1,0 +1,156 @@
+title: Saxony
+new-page: true
+on-arrival: land_view = "saxony"
+
+= Saxony
+
+{!<div class="kpd-insert" data-insert="land" data-arg="saxony"></div>!}
+
+{!<div class="kpd-insert" data-insert="district" data-arg="saxony"></div>!}
+
+- @lands: Back to the map.
+- @act_saxony_organise
+- @act_saxony_struggle
+- @act_saxony_front
+- @act_saxony_defence
+- @act_saxony_control
+- @act_saxony_mayday
+- @act_saxony_border
+- @act_saxony_underground
+
+@act_saxony_organise
+title: Build factory cells and recruit
+subtitle: Organisation +5 × m. Costs 1 resource.
+view-if: x_saxony_organise = 1
+choose-if: c_saxony_organise = 1
+unavailable-subtitle: [? if d_saxony_cd > 0 : We acted here this turn. ?][? if d_saxony_cd <= 0 : Needs 1 resource. ?]
+on-arrival: {! window.KPD.act(Q, 'saxony', 'organise'); !}
+new-page: true
+
+= Build factory cells and recruit
+
+Organisers go from works gate to works gate in Saxony. New cells meet in back rooms after the shift. The dues book fills slowly, and so does the list of names the police would like to have.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="saxony"></div>!}
+
+- @root: Continue.
+
+@act_saxony_struggle
+title: Lead a strike or an unemployed march
+subtitle: Organisation +2 × m, strikes +1, pressure rises. The Left gains.
+view-if: x_saxony_struggle = 1
+choose-if: c_saxony_struggle = 1
+unavailable-subtitle: [? if d_saxony_cd > 0 : We acted here this turn. ?][? if d_saxony_cd <= 0 : Needs organisation 25 here. ?]
+on-arrival: {! window.KPD.act(Q, 'saxony', 'struggle'); !}
+new-page: true
+
+= Lead a strike or an unemployed march
+
+In Saxony the party calls the workers out: a strike over the wage the inflation ate this week, a march of the unemployed to the town hall. The employers answer with lockouts and the police with batons, and the workers see who stood with them.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="saxony"></div>!}
+
+- @root: Continue.
+
+@act_saxony_front
+title: Act together with the SPD workers
+subtitle: Joint actions +1. Costs 1 resource. The Right gains, the Left grumbles.
+view-if: x_saxony_front = 1
+choose-if: c_saxony_front = 1
+unavailable-subtitle: [? if d_saxony_cd > 0 : We acted here this turn. ?][? if d_saxony_cd <= 0 : Needs 1 resource and organisation 20 here. ?]
+on-arrival: {! window.KPD.act(Q, 'saxony', 'front'); !}
+new-page: true
+
+= Act together with the SPD workers
+
+In Saxony our cells go to the SPD and union branches with a concrete proposal, not a lecture: a joint meeting, a joint demand, a joint committee. Some branch secretaries refuse. Some of their members come anyway.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="saxony"></div>!}
+
+- @root: Continue.
+
+@act_saxony_defence
+title: Form a unit of the Proletarian Hundreds
+subtitle: Hundreds +1 here. Pressure rises sharply. Costs 1 resource.
+view-if: x_saxony_defence = 1
+choose-if: c_saxony_defence = 1
+unavailable-subtitle: [? if d_saxony_cd > 0 : We acted here this turn. ?][? if d_saxony_cd <= 0 : Needs 1 resource and organisation 30 here. ?]
+on-arrival: {! window.KPD.act(Q, 'saxony', 'defence'); !}
+new-page: true
+
+= Form a unit of the Proletarian Hundreds
+
+A new unit of the Proletarian Hundreds forms in Saxony: workers from the same works, drilling at night with what weapons they have. Today they protect meetings. What they will be asked to do tomorrow is a question the party has not yet answered.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="saxony"></div>!}
+
+- @root: Continue.
+
+@act_saxony_control
+title: Set up price control committees
+subtitle: Organisation +3 × m; housewives and the unemployed come to us.
+view-if: x_saxony_control = 1
+choose-if: c_saxony_control = 1
+unavailable-subtitle: [? if d_saxony_cd > 0 : We acted here this turn. ?][? if d_saxony_cd <= 0 : Needs organisation 35 here. ?]
+on-arrival: {! window.KPD.act(Q, 'saxony', 'control'); !}
+new-page: true
+
+= Set up price control committees
+
+Control committees of workers and housewives go to the markets of Saxony, check prices and hoards, and post the names of the profiteers. The police call it vigilantism. The queues call it the first sensible thing anyone has done.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="saxony"></div>!}
+
+- @root: Continue.
+
+@act_saxony_mayday
+title: Hold May Day in Munich against the leagues
+subtitle: Organisation +4 × m, joint actions +1.
+view-if: x_saxony_mayday = 1
+choose-if: c_saxony_mayday = 1
+unavailable-subtitle: [? if d_saxony_cd > 0 : We acted here this turn. ?][? if d_saxony_cd <= 0 :  ?]
+on-arrival: {! window.KPD.act(Q, 'saxony', 'mayday'); !}
+new-page: true
+
+= Hold May Day in Munich against the leagues
+
+On the first of May the workers of Munich march, while the völkisch leagues gather under arms on the Oberwiesenfeld. This time the state holds the leagues back, and the workers see that they can be faced.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="saxony"></div>!}
+
+- @root: Continue.
+
+@act_saxony_border
+title: Watch the Bavarian border with the Thuringian Hundreds
+subtitle: Hundreds +1 in Thuringia, joint actions +1. Costs 1 resource.
+view-if: x_saxony_border = 1
+choose-if: c_saxony_border = 1
+unavailable-subtitle: [? if d_saxony_cd > 0 : We acted here this turn. ?][? if d_saxony_cd <= 0 : Needs 1 resource and organisation 30 in Thuringia. ?]
+on-arrival: {! window.KPD.act(Q, 'saxony', 'border'); !}
+new-page: true
+
+= Watch the Bavarian border with the Thuringian Hundreds
+
+Hundreds from Thuringia take up watch along the Bavarian border, where the leagues are gathering. It is a job the Reich will not do, and the workers of the border towns notice who does it.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="saxony"></div>!}
+
+- @root: Continue.
+
+@act_saxony_underground
+title: Move the work underground
+subtitle: Pressure −12. Costs 1 resource.
+view-if: x_saxony_underground = 1
+choose-if: c_saxony_underground = 1
+unavailable-subtitle: [? if d_saxony_cd > 0 : We acted here this turn. ?][? if d_saxony_cd <= 0 : Needs 1 resource. ?]
+on-arrival: {! window.KPD.act(Q, 'saxony', 'underground'); !}
+new-page: true
+
+= Move the work underground
+
+In Saxony the work moves out of sight: lists burned, meetings in allotment huts, a second set of officers ready for the day the first are arrested.
+
+{!<div class="kpd-insert" data-insert="district" data-arg="saxony"></div>!}
+
+- @root: Continue.
+

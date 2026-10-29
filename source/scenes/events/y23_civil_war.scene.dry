@@ -28,7 +28,7 @@ After the fourth month the campaign is decided: if our strength is more than 10 
 - @dig_in: Hold the cities and refuse a decisive battle. +3 strength, and -2 for the enemy.
 
 @mobilise
-subtitle: dev: workers_kpd −1 · dev: workers_kpd −1
+subtitle: dev: workers_kpd −1
 on-arrival: cw_red += 8; workers_kpd -= 1
 go-to: root
 
