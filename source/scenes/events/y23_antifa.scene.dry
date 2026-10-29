@@ -20,7 +20,7 @@ go-to: root
 The marches are large and orderly in some cities and violent in others, where the police and the Hundreds meet. The day shows the strength of the movement and also its edge: the SPD ministers who banned the marches are our actual opponents in half of Germany.
 
 @comply
-subtitle: dev: workers_kpd +1×m, kf_right_strength +2, kf_left_dissent +5 · dev: workers_kpd +1×m, kf_right_strength +2, kf_left_dissent +5
+subtitle: dev: workers_kpd +1×m, kf_right_strength +2, kf_left_dissent +5
 on-arrival: workers_kpd += 1*campaign_mult; kf_right_strength += 2; kf_left_dissent += 5
 go-to: root
 

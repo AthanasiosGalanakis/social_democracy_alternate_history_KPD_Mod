@@ -2,7 +2,7 @@ title: Defence units
 subtitle: The Proletarian Hundreds, and later the Red Front Fighters' League.
 new-page: true
 is-card: true
-card-image: img/reichsbanner.jpg
+card-image: img/redfront.jpg
 frequency: 150
 tags: kpd_mass
 view-if: mass_defence_timer <= 0

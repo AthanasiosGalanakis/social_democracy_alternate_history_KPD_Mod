@@ -2,7 +2,7 @@ title: Councils of the unemployed
 subtitle: Those without work have no factory to organise in.
 new-page: true
 is-card: true
-card-image: img/arbeiterbew.jpg
+card-image: img/Kollwitz_Arbeitslosigkeit.jpg
 frequency: 150
 tags: kpd_mass
 view-if: mass_unemployed_timer <= 0

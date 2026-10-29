@@ -2,7 +2,7 @@ title: Saxony offers us seats
 subtitle: Minister-President Zeigner wants communists in his cabinet.
 new-page: true
 tags: kpd_event
-view-if: year = 1923 and month = 10 and y23_saxony_done = 0
+view-if: year = 1923 and month = 10 and y23_saxony_done = 0 and zeigner = 1
 on-arrival: y23_saxony_done = 1
 
 = A workers' government in Saxony

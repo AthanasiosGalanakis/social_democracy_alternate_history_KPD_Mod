@@ -1,0 +1,31 @@
+title: Stresemann falls
+subtitle: The SPD turns on the chancellor it kept in office.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month = 11 and y23_confidence_done = 0 and civil_war = 0
+on-arrival: y23_confidence_done = 1
+
+= A vote of confidence
+
+In October the Reichswehr marched into Saxony and Thuringia and removed governments that had a majority in their own Landtag. In Bavaria, where von Kahr defied Berlin openly and Hitler tried his putsch, nothing of the kind was done. The SPD ministers left the cabinet over it in early November, after the work was finished.
+
+Now Stresemann asks the Reichstag for its confidence, and the SPD votes against him, together with the German Nationals, the völkisch deputies and us.
+
+{!<div class="kpd-insert" data-insert="vote" data-arg="confidence"></div>!}
+
+- @no: Vote no and say why: the SPD tolerated it all until it was done.
+- @abstain: Abstain. We will not be counted in a majority with the German Nationals.
+
+@no
+subtitle: The Left gains. · dev: chancellor = 'Marx', chancellor_party = 'Z', kf_left_strength +1, workers_kpd +1×m
+on-arrival: chancellor = 'Marx'; chancellor_party = 'Z'; kf_left_strength += 1; workers_kpd += 1*campaign_mult
+go-to: root
+
+Stresemann falls on 23 November. A week later Wilhelm Marx of the Centre forms a cabinet without the SPD, which tolerates it. Our speaker reminds the Reichstag that the SPD's deputies voted for the Enabling Act in October and for the Reichswehr's budget every year, and that the soldiers who marched into Dresden were paid with SPD votes.
+
+@abstain
+subtitle: No difference to the count. The Right approves. · dev: chancellor = 'Marx', chancellor_party = 'Z', conf_kpd = 'abstain', kf_right_strength +1
+on-arrival: chancellor = 'Marx'; chancellor_party = 'Z'; conf_kpd = 'abstain'; kf_right_strength += 1
+go-to: root
+
+Stresemann falls anyway on 23 November; our fifteen votes were never needed. A week later Wilhelm Marx of the Centre forms a cabinet without the SPD, which tolerates it. The party's abstention is noted by the German Nationals, who did not want our company either.

@@ -6,13 +6,17 @@
     <meta prefix="ifiction: http://babel.ifarchive.org/protocol/iFiction/"
         property="ifiction:ifid" content="7FCDF039-2B77-4179-B795-CBAFA65253AA">
     <title>KPD: An Alternate History (working title)</title>
-    <link rel="stylesheet" type="text/css" href="game.css?v=20261028b">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=UnifrakturMaguntia&display=swap">
+    <link rel="stylesheet" type="text/css" href="game.css?v=20261029a">
     <script src="jquery-1.11.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="d3.v7.min.js"></script>
     <script src="d3-parliament.js"></script>
     <script src="d3-linegraph.js"></script>
     <script src="core.js"></script>
-    <script src="game.js?v=20261028b"></script>
+    <script src="kpd.js?v=20261029a"></script>
+    <script src="kpd_ui.js?v=20261029a"></script>
+    <script src="game.js?v=20261029a"></script>
   </head>
   <body>
     <div class="background" id="bg2">
@@ -45,21 +49,7 @@
         </div>
             <h3 id="settings_text">Settings</h3>
             <table>
-                <tr>
-                    <td id="language_text">Language (will restart game):</td>
-                    <td>
-                        <label id="english_label" for="english">English</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="english" name="language" value="1" onclick="window.loadEnglish();">
-                    </td>
-                    <td>
-                        <label id="german_label" for="german">Deutsch</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="german" name="language" value="0" onclick="window.loadGerman();">
-                    </td>
-                </tr>
+                
                 <tr>
                     <td> <hr> </td>
                 </tr>
@@ -333,9 +323,9 @@
             <div id="tools_wrapper">
                 <div id='stats_sidebar' class='tools left'>
                     <div class="tab_container">
-                        <button class="tab_button active" id="main_tab" onclick="window.changeTab('status', 'main_tab');">Main</button>
-                        <button class="tab_button" id="politics_tab" onclick="window.changeTab('status.politics', 'politics_tab');">Politics</button>
-                        <button class="tab_button" id="paramilitary_tab" onclick="window.changeTab('status.paramilitaries', 'paramilitary_tab');">Defense</button>
+                        <button class="tab_button active" id="main_tab" onclick="window.changeTab('status', 'main_tab');">Party</button>
+                        <button class="tab_button" id="politics_tab" onclick="window.changeTab('status.politics', 'politics_tab');">Reich</button>
+                        <button class="tab_button" id="paramilitary_tab" onclick="window.changeTab('status.paramilitaries', 'paramilitary_tab');">Forces</button>
                         <button class="tab_button" id="poll_tab" onclick="window.changeTab('status.polls', 'poll_tab');">Polls</button>
                         <button class="tab_button" id="dev_tab" onclick="window.changeTab('status.dev', 'dev_tab');">Dev</button>
                     </div>

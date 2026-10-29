@@ -25,14 +25,14 @@ go-to: root
 Control committees inspect the shops, expose the hoarders and, in some towns, make them sell. They are small and they are popular, and one thing they are not is a revolution.
 
 @wages
-subtitle: dev: y23_strikes +1, workers_kpd +3×m, workers_spd −1, kf_right_dissent +2 · dev: y23_strikes +1, workers_kpd +3×m, workers_spd −1, kf_right_dissent +2
+subtitle: dev: y23_strikes +1, workers_kpd +3×m, workers_spd −1, kf_right_dissent +2
 on-arrival: y23_strikes += 1; workers_kpd += 3*campaign_mult; workers_spd -= 1; kf_right_dissent += 2
 go-to: root
 
 The strikes win raises that are eaten by the next week's prices. The workers still learn something: that wages negotiated by the union bureaucracy follow the market, while wages won by a strike follow the workers' strength.
 
 @agitate
-subtitle: dev: workers_kpd +1×m, unemployed_kpd +1×m, kf_left_dissent −2 · dev: workers_kpd +1×m, unemployed_kpd +1×m, kf_left_dissent −2
+subtitle: dev: workers_kpd +1×m, unemployed_kpd +1×m, kf_left_dissent −2
 on-arrival: workers_kpd += 1*campaign_mult; unemployed_kpd += 1*campaign_mult; kf_left_dissent -= 2
 go-to: root
 

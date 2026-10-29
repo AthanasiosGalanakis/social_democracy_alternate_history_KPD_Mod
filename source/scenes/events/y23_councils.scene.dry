@@ -1,0 +1,43 @@
+title: The factory council elections
+subtitle: In the big works the councils are elected this spring.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month >= 3 and month <= 4 and y23_councils_done = 0
+on-arrival: {!
+Q.y23_councils_done = 1;
+window.KPD.councilElections(Q);
+!}
+
+= The factory council elections
+
+Every spring the workers of the large works elect their factory councils. The law of 1920 gave the councils little power, and the trade union officials of the SPD keep them on a short lead. But a council is where the workers of a works speak with one voice, and in 1923, with wages eaten every week by the inflation, the councils have become the place where the class argues about what to do.
+
+Our share in each district follows our support among the workers and the organisation we have built there. Where we have cells in the works, our candidates are known; where we have none, the union list wins by default.
+
+{!<div class="kpd-insert" data-insert="councils"></div>!}
+
+[? if councils_won >= 3 : In [+ councils_won +] districts the councils of the big works now have communist majorities. The union bureaucracy calls it a putsch; the workers call it an election. ?][? if councils_won > 0 and councils_won < 3 : In [+ councils_won +] district[? if councils_won > 1 : s?] we hold majorities in the big works. Elsewhere the union list carries the day. ?][? if councils_won = 0 : Nowhere do we hold a majority. Our council members are a minority who will have to win the rest by example. ?]
+
+What should our council members do with the seats they have?
+
+- @united: Work with the SPD council members for joint demands on prices and wages.
+- @cells: Use the councils to build our own cells in the works.
+
+@united
+subtitle: The united front in the works. The Right gains. · dev: y23_unity +1, kf_right_strength +2, workers_spd +1
+on-arrival: y23_unity += 1; kf_right_strength += 2; workers_spd += 1
+go-to: root
+
+Our council members propose common demands to their SPD colleagues: control of prices, a wage that follows the dollar, a congress of the councils. Some SPD council members agree, against the advice of their union. The party's Right calls it the united front from below. The Left calls it tailing the reformists.
+
+@cells
+subtitle: Organisation +3 where we won. The Left gains.
+on-arrival: {!
+for (var d in window.KPD.DISTRICTS) {
+    if (Q['d_' + d + '_council'] >= 30) { window.KPD.addOrg(Q, d, 3); }
+}
+Q.kf_left_strength += 2;
+!}
+go-to: root
+
+Our council members use their seats to recruit. They hold meetings in the works on the company's time and press the hesitant to join the party. Our cells grow where we already had them, and the SPD council members draw the lesson that we want their seats more than their cooperation.

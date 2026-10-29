@@ -49,7 +49,7 @@ body.dark-mode .tools {
 }
 header, #content, footer {
   color: var(--text-color);
-  max-width: 540px;
+  max-width: 640px;
   margin: 0 auto;
   overflow: auto;
 }
@@ -202,7 +202,7 @@ body.opening #mid_panel {
 #tools_wrapper {
   position: absolute;
   width: 100%;
-  max-width: 69em;
+  max-width: 76em;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -645,3 +645,141 @@ table {
 .leader-card .card-img { width: 170px; height: 210px; object-fit: cover; }
 .leader-card .leader-name { text-indent: 0; font-weight: bold; margin: 0; }
 .leader-card .leader-role { text-indent: 0; color: var(--unavailable-color); font-style: italic; margin: 0; }
+
+/* ===================================================================================
+   KPD: the front page, the map, parliaments and the sidebar (drawn by kpd_ui.js)
+   =================================================================================== */
+body {
+  --p-z: #222; --p-agr: #4f7a3a; --p-other: #9a9a9a;
+  --k-red: #b3121b; --k-red-dark: #6e0a10; --k-ink: #1d1712; --k-paper: #f4ecd8; --k-rule: #2b2118;
+  --k-dim: #7a6a58; --k-panel: rgba(120, 90, 50, 0.07); --k-line: rgba(60, 40, 20, 0.22);
+  --k-ok: #2e7d32; --k-sea: #dfe6ea; --k-land: #e9dfc7; --k-land-edge: #9c8a6c;
+}
+body.dark-mode {
+  --p-z: #d8d8d8; --p-agr: #8fc47a; --p-other: #8a8a8a;
+  --k-red: #e0453f; --k-red-dark: #ff8a80; --k-ink: #efe6d6; --k-paper: #2a2622; --k-rule: #cdbfa8;
+  --k-dim: #a89a88; --k-panel: rgba(255, 240, 220, 0.06); --k-line: rgba(255, 240, 220, 0.18);
+  --k-ok: #81c784; --k-sea: #1e2a30; --k-land: #3a342c; --k-land-edge: #8a7a62;
+}
+.kdim { color: var(--k-dim); }
+.knum { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.klabel { font-family: "Oswald", "Arial Narrow", sans-serif; text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: 0.78em; color: var(--k-red); margin: 0.9em 0 0.2em 0; }
+.ktable { border-collapse: collapse; width: 100%; font-size: 0.92em; }
+.ktable td { padding: 0.18em 0.35em; border-bottom: 1px solid var(--k-line); vertical-align: middle; }
+.ktable tr:last-child td { border-bottom: none; }
+.kpanel { background: var(--k-panel); border-left: 4px solid var(--k-red); padding: 0.4em 0.9em 0.6em 0.9em; margin: 0.8em 0; }
+.kpanel p { margin: 0.35em 0; }
+.kpanel-row { display: flex; gap: 1em; flex-wrap: wrap; }
+.kpanel-col { flex: 1 1 200px; min-width: 0; }
+.kpanel-chart { flex: 1 1 220px; }
+.kside { color: var(--k-dim); font-style: italic; }
+.kchip { font-family: "Oswald", sans-serif; font-size: 0.7em; text-transform: uppercase; background: var(--k-red); color: #fff;
+  padding: 0 0.4em; border-radius: 2px; vertical-align: middle; }
+.ktick { display: inline-block; width: 1.2em; color: var(--k-dim); }
+.ktick.ok { color: var(--k-ok); font-weight: bold; }
+.kchecks { list-style: none; padding: 0; margin: 0.3em 0; }
+.kchecks li { margin: 0.25em 0; }
+
+/* bars */
+.kbar { display: inline-block; position: relative; width: 100%; min-width: 60px; max-width: 160px; height: 0.62em;
+  background: var(--k-line); border-radius: 1px; vertical-align: middle; overflow: visible; }
+.kbar-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--k-red); }
+.kbar-pres .kbar-fill { background: #4a5a6a; }
+body.dark-mode .kbar-pres .kbar-fill { background: #8aa0b5; }
+.kbar-dis .kbar-fill { background: #c77d1a; }
+.kbar-trust .kbar-fill { background: #8b1a1a; }
+.kbar-mark { position: absolute; top: -2px; bottom: -2px; width: 1px; background: var(--k-ink); opacity: 0.55; }
+.kswatch { display: inline-block; width: 0.8em; height: 0.8em; margin-right: 0.35em; vertical-align: -0.05em; border-radius: 1px; }
+
+/* party fills (seats, swatches, poll bars) */
+.bgf-kpd { fill: var(--p-kpd); background: var(--p-kpd); }
+.bgf-spd { fill: var(--p-spd); background: var(--p-spd); }
+.bgf-z { fill: var(--p-z); background: var(--p-z); }
+.bgf-bvp { fill: var(--p-bvp); background: var(--p-bvp); }
+.bgf-ddp { fill: var(--p-ddp); background: var(--p-ddp); }
+.bgf-dvp { fill: var(--p-dvp); background: var(--p-dvp); }
+.bgf-dnvp { fill: var(--p-dnvp); background: var(--p-dnvp); }
+.bgf-nsdap { fill: var(--p-nsdap); background: var(--p-nsdap); }
+.bgf-agr { fill: var(--p-agr); background: var(--p-agr); }
+.bgf-other { fill: var(--p-other); background: var(--p-other); }
+.p-z { color: var(--p-z); }
+.khemi { width: 100%; max-width: 300px; display: block; margin: 0.2em auto; }
+.khemi .seat.side-no { opacity: 0.35; }
+.khemi .seat.side-abstain { opacity: 0.12; }
+.khemi .seat.side-yes { stroke: var(--k-ink); stroke-width: 0.006; }
+.khemi-n { text-anchor: middle; font-size: 0.16px; fill: var(--k-ink); font-family: "Oswald", sans-serif; }
+.kvote .ktable td.kside { width: 5em; }
+.kpoll-bar { width: 55%; }
+.kpoll-fill { display: block; height: 0.75em; border-radius: 1px; }
+
+/* the front page */
+.paper { background: var(--k-paper); color: var(--k-ink); border: 1px solid var(--k-rule); padding: 0.5em 0.9em 0.8em 0.9em;
+  margin: 0 0 1em 0; box-shadow: 0 1px 0 var(--k-rule), 0 3px 8px rgba(0, 0, 0, 0.08); }
+.paper-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5em; font-family: "Oswald", sans-serif;
+  font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--k-rule); padding-bottom: 0.2em; }
+.paper-mast { font-family: "UnifrakturMaguntia", "Old English Text MT", "Engravers Old English", serif; color: var(--k-red);
+  font-size: 2.6em; line-height: 1.15; text-align: center; padding: 0.12em 0 0.08em 0; border-bottom: 3px double var(--k-rule); }
+.paper-head { font-family: "Oswald", "Arial Narrow", sans-serif; font-weight: 600; font-size: 1.55em; line-height: 1.15;
+  text-transform: uppercase; text-align: center; margin: 0.45em 0 0.15em 0; }
+.paper-deck { text-align: center; font-style: italic; margin-bottom: 0.5em; border-bottom: 1px solid var(--k-rule); padding-bottom: 0.45em; }
+.paper-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; font-size: 0.86em; line-height: 1.4; }
+.paper-col { padding: 0 0.7em; border-left: 1px solid var(--k-line); }
+.paper-col:first-child { border-left: none; padding-left: 0; }
+.paper-col:last-child { padding-right: 0; }
+.paper-col h4 { font-family: "Oswald", sans-serif; text-transform: uppercase; font-size: 0.95em; letter-spacing: 0.04em;
+  margin: 0.2em 0 0.3em 0; color: var(--k-red); }
+.paper-col p { margin: 0.3em 0; }
+.paper-quote { font-style: italic; }
+.paper-list { list-style: none; margin: 0; padding: 0; }
+.paper-list li { display: flex; justify-content: space-between; gap: 0.5em; border-bottom: 1px dotted var(--k-line); padding: 0.15em 0; }
+.paper-also { font-size: 0.8em; border-top: 1px solid var(--k-rule); margin-top: 0.6em; padding-top: 0.3em; }
+@media (max-width: 640px) {
+  .paper-cols { grid-template-columns: 1fr; }
+  .paper-col { border-left: none; padding: 0; border-top: 1px solid var(--k-line); }
+  .paper-mast { font-size: 2em; }
+}
+
+/* the map */
+.kmap-wrap { margin: 0.4em 0 0.8em 0; }
+.kmap { width: 100%; display: block; background: var(--k-sea); border: 1px solid var(--k-land-edge); }
+.kmap-reich { fill: var(--k-land); stroke: var(--k-land-edge); stroke-width: 3; stroke-linejoin: round; }
+.kmap-sea { font-family: Georgia, serif; font-style: italic; font-size: 24px; fill: #7f98a8; }
+.kmap-faint { font-family: Georgia, serif; font-style: italic; font-size: 22px; fill: var(--k-dim); }
+.kmap-prussia { fill: none; stroke: #20354a; stroke-width: 4; stroke-dasharray: 10 8; opacity: 0.6; }
+body.dark-mode .kmap-prussia { stroke: #9ab; }
+.kmap-ring { fill: none; stroke: #20354a; stroke-width: 4; stroke-dasharray: 8 6; }
+body.dark-mode .kmap-ring { stroke: #9ab; }
+.kmap-disc { stroke: #fff; stroke-width: 3; }
+.kmap-tile { cursor: pointer; }
+.kmap-tile:hover .kmap-disc, .kmap-tile:focus .kmap-disc { stroke: var(--k-ink); stroke-width: 5; }
+.kmap-org { text-anchor: middle; font-family: "Oswald", sans-serif; font-weight: 600; font-size: 34px; fill: #fff; }
+.kmap-name { text-anchor: middle; font-family: "Oswald", sans-serif; font-size: 16px; text-transform: uppercase; fill: #fff; letter-spacing: 0.04em; }
+.kmap-pres { text-anchor: middle; font-family: Georgia, serif; font-style: italic; font-size: 16px; fill: #fff; }
+.kmap-badge { font-family: "Oswald", sans-serif; font-weight: 600; font-size: 20px; fill: #fff; paint-order: stroke; stroke: var(--k-ink); stroke-width: 5px; }
+.kmap-legend { display: flex; flex-wrap: wrap; gap: 0.4em 1.2em; font-size: 0.82em; margin-top: 0.35em; }
+.kmap-key-ring { display: inline-block; width: 0.8em; height: 0.8em; border-radius: 50%; border: 2px dashed #20354a; vertical-align: -0.1em; }
+.kmap-note { font-size: 0.85em; color: var(--k-dim); margin-top: 0.3em; }
+
+/* the sidebar */
+.ksb h3 { font-family: "Oswald", sans-serif; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.95em;
+  color: var(--k-red); border-bottom: 2px solid var(--k-red); margin: 0.9em 0 0.35em 0; padding-bottom: 0.1em; }
+.ksb p { margin: 0.3em 0; }
+.ksb-date { font-family: "Oswald", sans-serif; font-size: 1.15em; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0; }
+.ksb-res { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5em; font-weight: bold; }
+.ksb-small { font-size: 0.85em; }
+.ksb-fac td:last-child { width: 40%; }
+.ksb-oct { margin-top: 0.6em; border-top: 1px solid var(--k-line); }
+.ksb-oct h4 { font-family: "Oswald", sans-serif; text-transform: uppercase; font-size: 0.95em; color: var(--k-red); margin: 0.5em 0 0.2em 0; }
+.kstack { display: flex; height: 0.9em; border-radius: 1px; overflow: hidden; margin: 0.2em 0 0.4em 0; }
+.kstack-seg.f-right { background: var(--f-right); }
+.kstack-seg.f-centre { background: var(--f-centre); }
+.kstack-seg.f-left { background: var(--f-left); }
+.kpd-filled { display: block; }
+.kpd-filled p, .paper p, .kpanel p, .ksb p { text-indent: 0; }
+.ksb-res { flex-wrap: wrap; }
+.ksb-res .kdim { font-weight: normal; font-size: 0.85em; }
+/* portraits we do not have yet: initials on paper, in the faction's colour frame */
+.card-placeholder { background: var(--k-paper) !important; color: var(--k-ink) !important;
+  font-family: "Oswald", sans-serif !important; letter-spacing: 0.05em; }
+.kpoll td:first-child { white-space: nowrap; }
