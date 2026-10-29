@@ -1,7 +1,7 @@
 title: Work for the Party Line
 new-page: true
 is-card: true
-card-image: img/flags.jpg
+card-image: img/cards/line.svg
 frequency: 150
 tags: kpd_party
 view-if: line_action_timer <= 0

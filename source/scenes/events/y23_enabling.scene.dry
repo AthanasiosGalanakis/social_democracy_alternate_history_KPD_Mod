@@ -17,15 +17,15 @@ The SPD's deputies vote for it. Some of them say it is the price of keeping the 
 - @silent: Vote against, but keep the attack on the SPD quiet while Saxony is at stake.
 
 @against
-subtitle: Our vote among the workers rises. Joint action with the SPD suffers. · dev: workers_kpd +3×m, workers_spd −2, y23_unity −1, kf_left_strength +2
-on-arrival: workers_kpd += 3*campaign_mult; workers_spd -= 2; y23_unity -= 1; kf_left_strength += 2
+subtitle: Our vote among the workers rises. The united front suffers. · dev: workers_kpd +3×m, workers_spd −2, y23_unity −1, kf_left_strength +2, spd_relation −4, ddp_relation −2
+on-arrival: workers_kpd += 3*campaign_mult; workers_spd -= 2; y23_unity -= 1; kf_left_strength += 2; spd_relation -= 4; ddp_relation -= 2
 go-to: root
 
 Our deputies vote no, and the next morning Die Rote Fahne prints the names of the SPD deputies who voted to give the cabinet the eight-hour day. It is true, and the workers read it. The SPD left in Saxony, which needs its own party's tolerance in Berlin, reads it too.
 
 @silent
-subtitle: The alliance in Saxony holds. The Left calls it cowardice. · dev: kf_left_dissent +5, trust −1
-on-arrival: kf_left_dissent += 5; comintern_trust -= 1
+subtitle: The alliance in Saxony holds. The Left calls it cowardice. · dev: kf_left_dissent +5, trust −1, spd_relation +2
+on-arrival: kf_left_dissent += 5; comintern_trust -= 1; spd_relation += 2
 go-to: root
 
 Our deputies vote no and say little. The paper reports the vote on page two. Zeigner's people are grateful, and the party's Left asks whether a workers' government in Dresden is worth the eight-hour day in the whole Reich.
