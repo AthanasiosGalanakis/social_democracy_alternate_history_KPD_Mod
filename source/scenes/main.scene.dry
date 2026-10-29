@@ -9,7 +9,7 @@ for (var f of Q.kpd_factions) {
         for (var a of adv_by[f]) { if (Q[a + '_timer'] <= 0) { adv_ready += 1; break; } }
     }
 }
-Q.pinnedCardsDescription = 'Head of party and faction advisers - ' + adv_ready + ' of ' + adv_in + ' can act.';
+Q.pinnedCardsDescription = 'Chairman and faction advisers - ' + adv_ready + ' of ' + adv_in + ' can act.';
 !}
 max-cards: 4
 

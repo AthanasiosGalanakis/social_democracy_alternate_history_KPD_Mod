@@ -172,18 +172,17 @@
 
   // ---- The party paper, in its own column on the right -------------------------------------
   UI.news = function(Q) {
-    var html = '<div class="rf-mast">Die Rote Fahne</div>' +
-      '<div class="rf-sub">Central organ of the KPD<br>' + esc(Q.date_label) + '</div>';
+    var html = '<div class="rf-mast">Die Rote Fahne</div>' + '<p class="rf-sub">' + esc(Q.date_label) + '</p>';
     var head = Q.news_head || 'The year 1923 begins';
     var sub = Q.news_head ? Q.news_sub : 'The mark is falling and the French stand at the Ruhr. The party meets the year divided.';
-    html += '<h1>' + esc(head) + '</h1>' + (sub ? '<p>' + esc(sub) + '</p>' : '');
+    html += '<p class="rf-lead"><b>' + esc(head) + '.</b> ' + (sub ? esc(sub) : '') + '</p>';
     var log = (Q.news_log || []).slice(1, 4);
     log.forEach(function(n) {
       html += '<hr><p><span class="rf-date">' + esc(n.d || '') + '</span> ' + esc(n.t || n) + '</p>';
     });
     var world = KPD.worldNews(Q).slice(0, 2);
     if (world.length) {
-      html += '<p class="rf-section">Abroad</p>';
+      html += '<hr>';
       world.forEach(function(w) { html += '<p><span class="rf-date">' + esc(w[0]) + '</span> ' + esc(w[1]) + '</p>'; });
     }
     html += '<hr><p class="rf-foot">Dollar: ' + esc(Q.usd_rate) + ' marks</p>';
@@ -253,13 +252,13 @@
   // People: [name, years, party, faction or '', text]. No portraits yet: we only use fully free
   // pictures, and we have none of these men; the hover card draws initials instead.
   var PEOPLE = {
-    brandler: ['Heinrich Brandler', 'born 1881', 'kpd', 'right', 'Building worker from Bohemia and union organiser in Chemnitz. Chairman in 1921, jailed after the March Action, back from Moscow since 1922 as the strongest man in the Zentrale. Practical and patient: he believes in the united front and doubts that the party is ready for power.'],
-    meyer: ['Ernst Meyer', 'born 1887', 'kpd', 'centre', 'Spartacist from the first day, journalist and former editor of Die Rote Fahne. Chairman of the Zentrale since the defeat of the March Action in 1921, he steered the party back to the united front. Respected, but without Brandler\'s weight in the factories.'],
+    brandler: ['Heinrich Brandler', 'born 1881', 'kpd', 'right', 'Bricklayer from Bohemia and union organiser in Chemnitz. Chairman in 1921 during the March Action and jailed for it; back from the Comintern Executive in Moscow in August 1922 and chairman again since. Practical and patient: he believes in the united front and doubts that the party is ready for power.'],
+    meyer: ['Ernst Meyer', 'born 1887', 'kpd', 'centre', 'Spartacist from the first day, journalist and former editor of Die Rote Fahne. Chairman from August 1921 to August 1922, when Moscow returned the post to Brandler. He steered the party back to the united front after the March Action.'],
     ebert: ['Friedrich Ebert', 'born 1871', 'spd', '', 'Saddler, party secretary, Reich President since 1919. He made the pact with the generals in November 1918 and let the Freikorps drown the revolution. Rules now by emergency decree under Article 48.'],
     cuno: ['Wilhelm Cuno', 'born 1876', 'other', '', 'Director-general of the Hapag shipping line, without a party but close to the DVP. Answers the occupation of the Ruhr with passive resistance, paid for by printing money.'],
     stresemann: ['Gustav Stresemann', 'born 1878', 'dvp', '', 'Chairman of the DVP. An annexationist in the war, a "republican by reason" since. Speaks for industry that has learned it can rule through the Republic.'],
     marx: ['Wilhelm Marx', 'born 1863', 'z', '', 'Judge from Cologne and chairman of the Centre Party. A careful Catholic who will serve any coalition that leaves the Church its schools.'],
-    wels: ['Otto Wels', 'born 1873', 'spd', '', 'Co-chairman of the SPD with Hermann Müller. Commanded Berlin for the government in December 1918. The apparatus man of German social democracy.'],
+    wels: ['Otto Wels', 'born 1873', 'spd', '', 'One of the SPD\'s chairmen, with Hermann Müller and Arthur Crispien. Commanded Berlin for the government in December 1918. The apparatus man of German social democracy.'],
     petersen: ['Carl Petersen', 'born 1868', 'ddp', '', 'Hamburg lawyer and senator, chairman of the DDP. Liberal, patrician and loyal to every coalition the DDP can still find.'],
     hergt: ['Oskar Hergt', 'born 1869', 'dnvp', '', 'Former Prussian finance minister of the Kaiser, chairman of the DNVP. Leads a party of Junkers and generals that waits for the Republic to fall.'],
     held: ['Heinrich Held', 'born 1868', 'bvp', '', 'Leader of the BVP group in the Bavarian Landtag. Federalist and Catholic, hostile to Berlin and far more hostile to the Left.'],
@@ -380,7 +379,7 @@
     var html = '<h1>Status</h1>' + line(esc(Q.date_label)) +
       line('Resources: ' + Q.resources) +
       line(hov(pspan('kpd', '<span class="p-kpd-lead fw-' + lead + '">KPD</span>'), 'party:kpd') + ' position: ' + esc(pos)) +
-      line('Chairman: ' + UI.person(Q.y23_leipzig_done ? 'brandler' : 'meyer'));
+      line('Chairman: ' + UI.person(KPD.chair(Q)));
     var cab = KPD.cabinet(Q), ch = CHANCELLOR[Q.chancellor];
     var cp = String(Q.chancellor_party).toLowerCase();
     html += '<h1>Government</h1>' +
@@ -425,17 +424,17 @@
     var mapp = Q.y23_hundreds >= 6 || Q.oct_ok ? ['ready to command', 0] : Q.oct_show ? ['being built in haste', 2] : ['on paper', 3];
     return [
       {id: 'zentrale', name: 'Zentrale', sub: 'the leadership elected by the congress', word: fword(line_f, 'held by the ' + FACTION[line_f][0]),
-        text: (Q.y23_leipzig_done ? 'The leadership elected by the Leipzig congress. ' : 'The leadership elected by the last party congress; the next meets in Leipzig at the end of January. ') + 'It sets the line, appoints the district secretaries and speaks for the party to Moscow. Its political bureau meets daily in Berlin.'},
+        text: (Q.y23_leipzig_done ? '21 members, elected by the Leipzig congress. ' : 'Elected at Jena in August 1921, with Brandler back since 1922; the next congress meets in Leipzig at the end of January. ') + 'The party\'s day-to-day leadership: it sets the line, runs the press and the apparatus, appoints the district secretaries and deals with Moscow.'},
       {id: 'za', name: 'Zentralausschuss', sub: 'the districts\' council', word: fword(strongest, 'leaning to the ' + FACTION[strongest][0]),
-        text: 'The larger council of the Zentrale and the district leaders. Here the districts can outvote the leadership, and the Left of Berlin and Hamburg makes itself heard.'},
+        text: (Q.y23_leipzig_done ? '38 members, elected by the Leipzig congress. ' : '36 members, elected at Jena. ') + 'The larger council of party leaders from the districts, which meets with the Zentrale between congresses and can check it. Here the Left of Berlin and Hamburg makes itself heard.'},
       {id: 'fraktion', name: 'Reichstag Fraktion', sub: 'our deputies', word: (Q.rt_seats.kpd || 0) + ' deputies',
         text: 'The party\'s deputies in the Reichstag. Their speeches reach millions through the press; their votes rarely decide anything, and the party distrusts its own parliamentarians.'},
       {id: 'press', name: 'Die Rote Fahne', sub: 'the central organ', word: Q.kpd_banned ? sc('banned', 4) : sc('legal, daily', 0),
-        text: 'The party\'s daily paper in Berlin, founded by Luxemburg and Liebknecht in 1918, with some thirty district papers behind it. Banned again and again under the emergency decrees.'},
+        text: 'The party\'s daily paper in Berlin, founded by Luxemburg and Liebknecht in 1918, with district papers in every region. Banned more than once since 1919.'},
       {id: 'mapp', name: 'M-Apparat', sub: 'the military-political apparatus', word: sc(mapp[0], mapp[1]),
-        text: 'The party\'s secret military-political apparatus: intelligence, weapons, and the command of the Hundreds in a rising. ' + (Q.oct_show ? 'Advisers from Moscow are building it up in haste. Its weapons lists are longer than its weapons.' : 'Small and underground, mostly lists of names.')},
+        text: 'The party\'s secret apparatus, set up on the Comintern\'s orders after 1920 and paid by it: departments for military affairs (M), intelligence (N) and subversion in the army and police (Z).' + (Q.month >= 3 || Q.year > 1923 ? ' Woldemar Rose leads it.' : '') + (Q.month >= 10 || Q.year > 1923 ? ' Moscow has sent Unszlicht to build it into the staff of a rising. Its weapons lists are longer than its weapons.' : '')},
       {id: 'ecci', name: 'Comintern representative', sub: 'Moscow\'s eyes in Berlin', word: 'Karl Radek',
-        text: 'The Executive of the Communist International sends its representatives to sit with the Zentrale. Now that is Karl Radek, who speaks for the united front.'}
+        text: 'The Executive of the Communist International sends its representatives to sit with the Zentrale. Now that is Karl Radek, the Executive\'s man for Germany, who backs Brandler and the united front.'}
     ];
   };
   UI.sidebarParty = function(Q) {
@@ -451,7 +450,10 @@
         line('Tactic: ' + esc(TACTIC[f])) + '</div>';
     });
     html += '<h1>Organs</h1>';
-    UI.organs(Q).forEach(function(o) { html += line(hov(esc(o.name), 'organ:' + o.id) + ': ' + o.word); });
+    var zr = Q.zentrale_r === undefined ? 7 : Q.zentrale_r, zc = Q.zentrale_c === undefined ? 6 : Q.zentrale_c, zl = Q.zentrale_l || 0;
+    html += '<div class="kfaction"><p class="kfaction-name">' + hov('Zentrale', 'organ:zentrale') + '</p>' +
+      line(fword('right') + ': ' + zr) + line(fword('centre') + ': ' + zc) + line(fword('left') + ': ' + zl) + '</div>';
+    UI.organs(Q).forEach(function(o) { if (o.id != 'zentrale') { html += line(hov(esc(o.name), 'organ:' + o.id) + ': ' + o.word); } });
     var t = Q.comintern_trust;
     html += '<h1>Moscow</h1>' +
       line('Leadership: ' + esc(Q.moscow_leader.replace(/-/g, ', ')) + ', favouring the ' + fword(Q.moscow_favored)) +
@@ -499,34 +501,24 @@
   // the Hundreds follow the player.
   UI.forces = function(Q) {
     var after = function(m) { return Q.year > 1923 || Q.month >= m; };
-    var putsch = Q.y23_beerhall_done == 1, exec = Q.state_intervention == 1 || after(11);
+    var putsch = Q.y23_beerhall_done == 1;
     var h = KPD.hundreds(Q), mil = Q.rfb_militancy || 0;
     return [
       {id: 'reichswehr', kind: 'official', name: 'Reichswehr', party: '', sub: 'the army, under General von Seeckt', str: ['large', 4], loyal: after(10) ? ['conditional', 3] : ['conditional', 2],
         text: 'The hundred thousand men Versailles allows, officered by the old army. Loyal to the government against the Left; "Reichswehr does not fire on Reichswehr" against the Right.' + (after(10) ? ' Its Bavarian division has sworn itself to Munich.' : '')},
       {id: 'prupol', kind: 'official', name: 'Prussian police', party: 'spd', sub: 'Schutzpolizei, under Severing', str: ['large', 4], loyal: ['loyal', 0],
         text: 'Barracked, armed with rifles and armoured cars, commanded by a Social Democrat. The Republic\'s best force.' + (after(5) ? ' In May it banned our Hundreds in Prussia.' : '')},
-      {id: 'saxpol', kind: 'official', name: 'Saxon police', party: '', sub: exec ? 'under the Reich commissioner' : 'under the Dresden government', str: ['modest', 2], loyal: exec ? ['loyal to Berlin', 1] : Q.zeigner ? ['loyal to Dresden', 2] : ['loyal', 1],
-        text: exec ? 'Since the Reich execution the Saxon police take their orders from the general in Dresden.' : 'Answers to the Saxon government in Dresden, which needs our votes. Berlin does not trust it.'},
       {id: 'baypol', kind: 'official', name: 'Bavarian police', party: 'bvp', sub: 'Landespolizei', str: ['sizeable', 3], loyal: after(9) && !putsch ? ['defiant', 4] : ['unreliable', 3],
         text: 'Obeys Munich, not Berlin.' + (putsch ? ' On 9 November it fired on Hitler\'s march; Hitler is under arrest.' : after(9) ? ' Since September it answers to Kahr as general state commissioner, who defies the Reich.' : ' Watches the armed leagues and does nothing.')},
-      {id: 'teno', kind: 'official', name: 'Technische Nothilfe', party: '', sub: 'the emergency technical service', str: ['sizeable', 3], loyal: ['loyal', 0],
-        text: 'Students and officials trained to run the gasworks and the railways when the workers strike. A strikebreaking corps with a state budget.'},
       {id: 'hundreds', kind: 'para', name: 'Proletarian Hundreds', party: 'kpd', sub: 'our workers\' defence', ours: true,
         str: [KPD.unitsWord(h), h >= 4 ? 0 : h >= 2 ? 1 : h >= 1 ? 2 : 4], arms: [mil >= 2 ? 'armed' : mil >= 1 ? 'lightly armed' : 'barely armed', mil >= 2 ? 1 : mil >= 1 ? 2 : 3],
-        text: 'Factory-based defence units of the KPD and of non-party workers, the core of any rising.' + (after(5) ? ' Banned in Prussia, legal in Saxony and Thuringia.' : '')},
+        text: 'Defence units formed in the factories by the KPD with left Social Democrats and non-party workers, to guard meetings and strikes; the core of any rising.' + (after(5) ? ' Banned in Prussia.' : '') + (after(11) ? ' Banned in Saxony since 13 October by General Müller.' : '')},
       {id: 'sa', kind: 'para', name: 'SA', party: 'nsdap', sub: 'the NSDAP\'s storm troops', str: putsch ? ['banned, scattered', 1] : after(9) ? ['large', 3] : ['growing', 2],
-        arms: putsch ? ['hidden arms', 2] : ['armed', 3], text: 'Hitler\'s street army in Bavaria, trained by Röhm and officers of the Reichswehr.' + (putsch ? ' Broken up after the putsch, not destroyed.' : '')},
-      {id: 'oberland', kind: 'para', name: 'Bund Oberland', party: 'nsdap', sub: 'Freikorps veterans, Bavaria', str: putsch ? ['banned', 1] : ['sizeable', 3], arms: ['heavily armed', 4],
-        text: 'The Freikorps that stormed Upper Silesia in 1921 and Munich in 1919. ' + (after(9) ? 'Joined the SA in the Kampfbund in September.' : 'Close to the SA.')},
-      {id: 'reichsflagge', kind: 'para', name: 'Reichsflagge', party: 'nsdap', sub: 'Röhm\'s league, Bavaria', str: ['modest', 2], arms: ['well armed', 3],
-        text: 'Ernst Röhm\'s league inside the Kampfbund, with direct access to the Reichswehr\'s stores.'},
+        arms: putsch ? ['hidden arms', 2] : ['armed', 3], text: 'Hitler\'s street army in Bavaria, trained by Röhm and officers of the Reichswehr, ' + (after(9) ? 'now joined with Bund Oberland and the Reichsflagge in the Kampfbund.' : 'marching beside Bund Oberland and Röhm\'s Reichsflagge.') + (putsch ? ' Broken up after the putsch, not destroyed.' : '')},
       {id: 'stahlhelm', kind: 'para', name: 'Stahlhelm', party: 'dnvp', sub: 'League of Front Soldiers', str: ['large', 3], arms: ['lightly armed', 2],
         text: 'The largest veterans\' league, monarchist and close to the DNVP. Strongest in Prussia\'s east and in Central Germany.'},
       {id: 'black', kind: 'para', name: 'Black Reichswehr', party: 'dnvp', sub: 'illegal army reserve', str: after(10) ? ['dissolved', 1] : ['sizeable', 3], arms: ['heavily armed', 4],
-        text: 'Labour battalions hidden in the barracks of Prussia, beyond what Versailles allows. ' + (after(10) ? 'Major Buchrucker\'s putsch at Küstrin on 1 October failed; the units are disbanded on paper.' : 'Major Buchrucker commands them and talks of marching on Berlin.')},
-      {id: 'wiking', kind: 'para', name: 'Bund Wiking', party: 'dnvp', sub: 'Captain Ehrhardt\'s men', str: ['modest', 2], arms: ['well armed', 3],
-        text: 'Successor of the Ehrhardt Brigade and Organisation Consul, the murderers of Erzberger and Rathenau.'}
+        text: 'Labour battalions hidden in the barracks of Prussia, beyond what Versailles allows. ' + (after(10) ? 'Major Buchrucker\'s putsch at Küstrin on 1 October failed; the units are disbanded on paper.' : 'Major Buchrucker commands them and talks of marching on Berlin.')}
     ];
   };
   UI.sidebarDefense = function(Q) {

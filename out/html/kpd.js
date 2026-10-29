@@ -53,6 +53,8 @@
     Q.kpd_factions = ['right', 'centre', 'left'];
     Q.party_line = 'right';
     Q.kf_right_strength = 45; Q.kf_right_dissent = 5;
+    // seats in the Zentrale by faction: the one co-opted after Jena (Aug 1921) until the Leipzig congress
+    Q.zentrale_r = 7; Q.zentrale_c = 6; Q.zentrale_l = 0;
     Q.kf_left_strength = 30; Q.kf_left_dissent = 20;
     Q.kf_centre_strength = 25; Q.kf_centre_dissent = 5;
     Q.kf_dissent = 0.095; Q.kf_dissent_percent = 9.5;
@@ -741,6 +743,9 @@
     return {short: 'Cuno\'s business cabinet', name: 'The Cuno cabinet, "cabinet of business"', since: 'from 22 November 1922', parties: ['ddp', 'z', 'bvp', 'dvp'], tolerated: ['spd'], experts: true,
       note: 'Shipping and banking men with the bourgeois parties behind them, kept in office by the SPD. Its answer to the Ruhr occupation is passive resistance and the printing press.'};
   };
+  // The chairman, shared by the sidebar and the chairman's card: the faction holding the line
+  // leads the Zentrale. Only the Right's chairman (Brandler, chairman again since August 1922) is written.
+  KPD.chair = function(Q) { return {right: 'brandler'}[Q.party_line] || 'brandler'; };
   KPD.dissentWord = function(x) { return scale(x, [[5, 'very low'], [15, 'low'], [31, 'medium'], [50, 'high'], [1e9, 'very high']]); };
   KPD.strengthWord = function(x) { return scale(x, [[10, 'weak'], [25, 'moderate'], [40, 'strong'], [60, 'very strong'], [1e9, 'dominant']]); };
   KPD.relationWord = function(x) {
