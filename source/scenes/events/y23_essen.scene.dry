@@ -1,5 +1,5 @@
 title: The Essen conference
-subtitle: The Comintern calls a conference against the war danger on 6 and 7 January.
+subtitle: 6 and 7 January. The Comintern calls the parties of the Rhine to Essen.
 new-page: true
 tags: kpd_event
 view-if: year = 1923 and month = 1 and jan_week = 1 and y23_essen_done = 0
@@ -7,46 +7,27 @@ on-arrival: y23_essen_done = 1
 
 = Essen, 6 and 7 January
 
-French troops are massing on the Rhine, and Poincare is waiting for the next late delivery of coal. The conference in Essen is meant to give the workers of Europe one answer for both governments: against the French occupation and against Cuno, who calls on the workers to stand behind their own industrialists in passive resistance. It will issue a joint appeal, and it will call a second, larger conference of all workers' organisations in the Ruhr, to meet in Cologne.
+The Allied conference in Paris has broken up. Britain wanted to give Germany time; Poincaré wants the Ruhr, and he is waiting only for the Reparations Commission to declare the next delivery of coal late. In Essen the Comintern brings together the communist parties of Germany, France, Belgium, Britain, Italy, Czechoslovakia and the Netherlands, so that the workers on both sides of the Rhine hear one answer to both governments.
 
-That second conference is the real purpose. Appeals are cheap. If the Social Democratic and trade union leaders can be drawn into it, the party has a united front at the one place where it counts. If they refuse, we will at least have shown the workers who refused. The Right wants the SPD in the hall. The Left expects them to stay away and wants the councils of the Ruhr to carry it alone.
+The answer is an appeal: against the French occupation, and against Cuno, who will ask the workers to stand behind their own industrialists. It also calls a second, larger conference of every workers' organisation for the spring. If the SPD and the unions come, the party has a united front where it counts. If they stay away, the workers will see who stayed away.
 
-- @appeal: Issue the appeal and invite every workers' organisation to the second conference.
-- @councils: Build the second conference on the factory councils of the Ruhr, and invite the leaders afterwards.
-- @letters: Write to the SPD and ADGB executives first, and fix the date after they answer.
-- @stay: Leave it to the Comintern and keep the party's hands free.
-- @poincare: Invite Poincare and Cuno to the platform to explain themselves.
+- @appeal: Issue the joint appeal and invite every workers' organisation to the second conference.
+- @alt1: —
+- @alt2: —
+- @alt3: —
 
 @appeal
-subtitle: Moscow approves, the Left grumbles. · dev: trust +4, workers_kpd +1×m, kf_left_dissent +2
+subtitle: The historical choice. Moscow approves, the Left grumbles. · dev: trust +4, workers_kpd +1×m, kf_left_dissent +2
 on-arrival: comintern_trust += 4; workers_kpd += 1*campaign_mult; kf_left_dissent += 2
 go-to: root
 
-The appeal goes out under the signatures of the communist parties and the red trade unions, and the invitation goes to everyone: the SPD, the ADGB, the syndicalists, the unorganised. The date is set before anyone has answered, which is the Left's complaint. In Berlin they say a resolution does not stop troops, and that a conference nobody comes to is a resolution with a hall.
+The appeal goes out under the names of the communist parties and the red trade unions, and the invitation goes to everyone: the SPD, the ADGB, the syndicalists, the unorganised. The date is set before anyone has answered, which is the Left's complaint. In Berlin they say a resolution does not stop troops, and that a conference nobody comes to is a resolution with a hall.
 
-@councils
-subtitle: The Ruhr councils carry it, the Right fears isolation. · dev: workers_kpd +2×m, workers_spd −1, kf_left_dissent −3, kf_right_dissent +3
-on-arrival: workers_kpd += 2*campaign_mult; workers_spd -= 1; kf_left_dissent -= 3; kf_right_dissent += 3
-go-to: root
-
-The conference is called on the factory councils and the works committees, with the district leaders of the other organisations invited as guests. Delegates will be chosen in the pits and the mills, not in the party offices. The Left is pleased, because the base is where it counts its strength. The Right points out that a conference of the councils is a conference of our own people, and that the SPD leaders will not sit in a hall they do not control.
-
-@letters
-subtitle: The Right approves, the date slips. · dev: workers_spd +1, kf_right_dissent −3, kf_left_dissent +4
-on-arrival: workers_spd += 1; kf_right_dissent -= 3; kf_left_dissent += 4
-go-to: root
-
-Letters go to the executive of the SPD and to the ADGB, offering them the chair of one session and a share in the call. The answers come slowly and are polite. Some local branches reply on their own account. The Left says the party is begging, and that every week spent on letters is a week Poincare and Cuno spend on the workers. The Right answers that a conference without the unions is a conference of the already convinced.
-
-@stay
-subtitle: Moscow is displeased, the Right is uneasy. · dev: trust −4, kf_right_dissent +3
-on-arrival: comintern_trust -= 4; kf_right_dissent += 3
-go-to: root
-
-The party stays at home. The conference goes ahead without a German delegation worth the name, and the Executive Committee takes note of it. The Right warns that a party which stays away from Moscow's conferences will not have Moscow's confidence when it needs it.
-
-@poincare
-subtitle: Not available.
+@alt1
 choose-if: 1 = 0
-unavailable-subtitle: Not available. Neither of them replies to letters from Communists.
-go-to: root
+
+@alt2
+choose-if: 1 = 0
+
+@alt3
+choose-if: 1 = 0

@@ -96,7 +96,7 @@
     Q.kpd_ending = 'none';
     // Lenin's Testament chain (April to August 1923)
     Q.test_stage = 0; Q.testament_path = 0; Q.y23_stalin_cornered = 0; Q.y23_stalin_removed = 0;
-    ['essen', 'ruhr', 'leipzig', 'nsdap_munich', 'prices', 'ruhr_strike', 'schlageter', 'antifa', 'cuno', 'moscow',
+    ['essen', 'ruhr', 'passive', 'lipinski', 'leipzig', 'prices', 'ruhr_strike', 'schlageter', 'antifa', 'cuno', 'moscow',
      'emergency', 'saxony', 'thuringia', 'chemnitz', 'exec', 'hamburg', 'beerhall', 'rentenmark', 'ban', 'blame',
      'cw_start', 'testament_plenum', 'councils', 'zeigner', 'enabling', 'confidence'].forEach(function(f) { Q['y23_' + f + '_done'] = 0; });
 
@@ -746,6 +746,14 @@
   // The Saxon Landtag elected in November 1922 (96 seats) and two Reichstag votes of the autumn.
   KPD.SAXONY_SEATS = {spd: 40, kpd: 10, ddp: 8, dvp: 19, dnvp: 19};
   KPD.VOTES = {
+    ruhr: {house: 'Reichstag, 13 January 1923', question: 'Confidence in Cuno\'s policy of passive resistance',
+      seats: null, need: 'majority',
+      sides: function(Q) { return {spd: 'yes', z: 'yes', bvp: 'yes', ddp: 'yes', dvp: 'yes', dnvp: 'yes', nsdap: 'yes', other: 'yes', kpd: 'no'}; },
+      note: 'Recorded vote: 284 to 12. Every party but ours stands behind the chancellor.'},
+    lipinski: {house: 'Saxon Landtag, 30 January 1923', question: 'No confidence in Interior Minister Lipinski (SPD)',
+      seats: KPD.SAXONY_SEATS, need: 'majority',
+      sides: function(Q) { return {kpd: 'yes', ddp: 'yes', dvp: 'yes', dnvp: 'yes', spd: 'no'}; },
+      note: 'Our motion, carried with the votes of every bourgeois party. Buck\'s ministry resigns and stays on as caretaker.'},
     zeigner: {house: 'Saxon Landtag, 21 March 1923', question: 'Erich Zeigner (SPD) for Minister-President',
       seats: KPD.SAXONY_SEATS, need: 'majority',
       sides: function(Q) { return {spd: 'yes', kpd: Q.zeigner_kpd || 'abstain', ddp: 'no', dvp: 'no', dnvp: 'no'}; },
@@ -802,9 +810,21 @@
     return scale(x || 0, [[5, 'hostile'], [15, 'frigid'], [30, 'cold'], [40, 'cool'], [55, 'neutral'], [65, 'warm'], [75, 'friendly'], [1e9, 'very friendly']]);
   };
 
-  // news from abroad for the paper's column, by month of 1923 (newest first)
+  // Die Rote Fahne: side news, at home and abroad, that is not worth an event. [month, turn of the month
+  // (weeks in January, halves after), date, headline, article]. The newest item is the lead article.
+  KPD.NEWS_1923 = [
+    [1, 1, '1 January', 'The year 1923 begins', 'The mark is falling and the French stand on the Rhine. The party meets the year divided.'],
+    [1, 1, '3 January', 'The dollar at 7,525 marks', 'A week\'s wage buys less than it did at Christmas, and the shops mark up their prices twice a week.'],
+    [1, 1, '4 January', 'The Paris conference fails', 'Britain proposed a four-year moratorium on reparations. Poincaré refused it and spoke of productive pledges: the mines of the Ruhr.'],
+    [1, 2, '10 January', 'Lithuania takes Memel', 'Lithuanian irregulars seize the Memel territory from its Allied administrators.'],
+    [1, 2, '12 January', 'No more coal for France', 'The Reich halts all reparation and in-kind deliveries to France and Belgium.'],
+    [1, 3, '15 January', 'Bochum and Dortmund occupied', 'French troops push east to Bochum, Witten, Recklinghausen and Dortmund. The whole coalfield is under occupation.'],
+    [1, 3, '18 January', 'The dollar at 23,000 marks', 'The mark has lost two thirds of its value since the troops came. Wages are paid on Friday and spent on Friday.'],
+    [1, 4, '24 January', 'Thyssen before a French court', 'A court-martial in Mainz fines Fritz Thyssen and other mine owners for refusing to deliver coal. The bourgeois press makes martyrs of them. They keep their mines; their miners lose their wages.'],
+    [1, 4, '27 January', 'The Nazis march in Munich', 'The NSDAP holds its first Reich party day. The Bavarian government declared a state of emergency and banned rallies in the open air, then let Hitler have his parade after all. Munich\'s "cell of order" protects the order of the leagues.']
+  ];
+  // news from abroad for the paper's column, by month of 1923
   KPD.WORLD_1923 = [
-    [1, 'January', 'Lithuanian irregulars seize the Memel territory from its Allied administrators.'],
     [3, 'March', 'Lenin suffers a third stroke and can no longer speak.'],
     [4, 'April', 'The Russian party holds its Twelfth Congress without Lenin.'],
     [5, 'May', 'Stanley Baldwin becomes Prime Minister of Britain.'],
@@ -815,6 +835,12 @@
     [10, 'October', 'The Republic of Turkey is proclaimed, with Mustafa Kemal as president.'],
     [12, 'December', 'A British election leaves no party a majority; Labour may form a government.']
   ];
+  KPD.WORLD_1923.forEach(function(w) { KPD.NEWS_1923.push([w[0], 1, w[1], w[2], '']); });
+  KPD.paperNews = function(Q) {
+    if (Q.year != 1923) { return KPD.NEWS_1923.slice().reverse(); }
+    var sub = Q.sub || 1;
+    return KPD.NEWS_1923.filter(function(n) { return n[0] < Q.month || (n[0] == Q.month && n[1] <= sub); }).reverse();
+  };
   KPD.worldNews = function(Q) {
     if (Q.year != 1923) { return []; }
     return KPD.WORLD_1923.filter(function(w) { return w[0] <= Q.month; }).reverse().map(function(w) { return [w[1], w[2]]; });

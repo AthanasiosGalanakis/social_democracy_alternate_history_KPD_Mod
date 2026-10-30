@@ -1,39 +1,33 @@
 title: The Ruhr occupation
-subtitle: French and Belgian troops have crossed the Rhine.
+subtitle: 11 January. French and Belgian troops march into the Ruhr.
 new-page: true
 tags: kpd_event
 view-if: year = 1923 and (month >= 2 or jan_week >= 2) and y23_ruhr_done = 0
-on-arrival: y23_ruhr_done = 1
+on-arrival: y23_ruhr_done = 1; d_ruhr_pres += 10
 
 = French troops in the Ruhr
 
-On 9 January the Reparations Commission declared Germany in default on its deliveries of coal and timber. On 11 January French and Belgian troops march into the Ruhr to enforce the reparations deliveries Germany has defaulted on. Chancellor Cuno answers with passive resistance: the miners and railwaymen are told to stop work, and the Ruhr industrialists, who are in no hurry to pay anything, are compensated for their losses out of the printing press. Every day that the strike continues, the mark loses more of its worth.
+On 9 January the Reparations Commission, over British objections, declared Germany in default on its coal. On the 11th five French and Belgian divisions march into Essen, and within days they hold the coalfield as far as Dortmund. Cuno's government stops all deliveries to France and Belgium and calls on the miners and railwaymen to resist by refusing to work. The Ruhr industrialists, who are in no hurry to pay anything, will be compensated out of the printing press.
 
-The question for the party is simple to state and hard to answer. A German government that serves the coal and steel barons is calling on workers to defend the nation, and a French government that serves the French coal and steel barons has sent soldiers to take the coal. Both lines are bourgeois. What do we say to the miners?
+A German government that serves the coal and steel barons calls on the workers to defend the nation. A French government that serves the French coal and steel barons has sent soldiers to take the coal. Both lines are bourgeois. What do we say to the miners?
 
-- @both: Fight French imperialism and Cuno's Ruhr kings together.
-- @committees: Organise factory committees to feed the strikers and watch the profiteers.
-- @distance: Call it a quarrel between capitalists and keep out of it.
+- @both: "Beat Poincaré on the Ruhr and Cuno on the Spree."
+- @alt1: —
+- @alt2: —
+- @alt3: —
 
 @both
-subtitle: The Zentrale's line. Moscow approves. · dev: workers_kpd +2×m, trust +3, kf_left_dissent +2
+subtitle: The historical choice. Moscow approves. Pressure in the Ruhr rises. · dev: workers_kpd +2×m, trust +3, kf_left_dissent +2
 on-arrival: workers_kpd += 2*campaign_mult; comintern_trust += 3; kf_left_dissent += 2
 go-to: root
 
-The party's paper carries the headline "Against Poincare and Cuno". It is a correct line that satisfies nobody who is actually hungry: the miners want to know who will pay their wages next week. The slogan is accurate and it is also very easy to ignore.
+Die Rote Fahne prints the slogan across its front page: the enemy is in Essen and the enemy is in Berlin. It is a correct line, and it satisfies nobody who is actually hungry: the miners want to know who will pay their wages next week. Under occupation the party's district in the Ruhr now works between French patrols and German police.
 
-@committees
-subtitle: Costs 1 resources. · dev: resources −1, y23_unity +1, workers_kpd +3×m, workers_spd −1
-choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; y23_unity += 1; workers_kpd += 3*campaign_mult; workers_spd -= 1
-go-to: root
+@alt1
+choose-if: 1 = 0
 
-Factory committees organise food distribution and inspect the books of the local profiteers. Social Democratic and union members sit on them next to ours. It is small and concrete work, and it shows the SPD rank and file that the party can do something besides shout.
+@alt2
+choose-if: 1 = 0
 
-@distance
-subtitle: dev: workers_kpd −1, kf_left_dissent +3, trust −4
-on-arrival: workers_kpd -= 1; kf_left_dissent += 3; comintern_trust -= 4
-go-to: root
-
-We stay out of it. Abstention is a position, and the workers read it as one: the Left accuses the leadership of failing to lead, and Moscow, which expects a revolutionary party to use a national crisis, is not pleased.
+@alt3
+choose-if: 1 = 0
