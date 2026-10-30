@@ -426,6 +426,24 @@
     }
     return KPD.LANDS[l].gov;
   };
+  // the same in a few words, for the Länder tiles
+  KPD.landGovShort = function(Q, l) {
+    if (l == 'saxony') {
+      if (Q.y23_exec_done == 1) { return 'Reich commissioner, then SPD and DDP'; }
+      if (Q.y23_saxony == 1) { return 'Workers\' government of SPD and KPD'; }
+      if (Q.y23_zeigner_done == 1 && Q.zeigner == 1) { return 'Zeigner (SPD), with our votes'; }
+      if (Q.y23_zeigner_done == 1) { return 'Caretaker cabinet'; }
+      if (Q.month >= 2 || Q.year > 1923) { return 'Caretaker cabinet after Buck\'s fall'; }
+      return 'SPD minority under Buck';
+    }
+    if (l == 'thuringia') {
+      if (Q.y23_exec_done == 1) { return 'Occupied by the Reichswehr'; }
+      if (Q.y23_thuringia == 1) { return 'Workers\' government of SPD and KPD'; }
+      return 'SPD minority under Frölich, with our votes';
+    }
+    if (l == 'bavaria') { return (Q.year == 1923 && Q.month >= 10) ? 'Kahr, State Commissioner' : 'Knilling (BVP), right coalition'; }
+    return {prussia: 'Braun (SPD), grand coalition', hamburg: 'Senate of SPD and DDP'}[l];
+  };
 
   KPD.DISTRICTS = {
     berlin:    {name: 'Berlin', land: 'prussia', org: 40, pres: 30, lean: 'left', lon: 13.4, lat: 52.5,

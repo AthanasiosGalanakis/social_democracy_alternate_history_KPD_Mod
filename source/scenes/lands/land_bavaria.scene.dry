@@ -8,7 +8,7 @@ on-arrival: land_view = "bavaria"
 
 {!<div class="kpd-insert" data-insert="district" data-arg="bavaria"></div>!}
 
-- @lands: Back to the map.
+- @lands: Back to the Länder.
 - @act_bavaria_organise
 - @act_bavaria_struggle
 - @act_bavaria_front

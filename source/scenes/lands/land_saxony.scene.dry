@@ -8,7 +8,7 @@ on-arrival: land_view = "saxony"
 
 {!<div class="kpd-insert" data-insert="district" data-arg="saxony"></div>!}
 
-- @lands: Back to the map.
+- @lands: Back to the Länder.
 - @act_saxony_organise
 - @act_saxony_struggle
 - @act_saxony_front

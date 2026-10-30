@@ -8,7 +8,7 @@ on-arrival: land_view = "thuringia"
 
 {!<div class="kpd-insert" data-insert="district" data-arg="thuringia"></div>!}
 
-- @lands: Back to the map.
+- @lands: Back to the Länder.
 - @act_thuringia_organise
 - @act_thuringia_struggle
 - @act_thuringia_front
