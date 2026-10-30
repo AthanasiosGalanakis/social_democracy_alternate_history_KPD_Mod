@@ -121,6 +121,51 @@
     return '<div class="kmap-wrap">' + svg + legend + '<p class="kmap-note">Only the Lands where the party can act this turn are shown. Click a district to work there; each action takes the turn. The workers\' mood is <b>' + esc(KPD.moodWord(Q.mood)) + '</b>.</p></div>';
   };
 
+  // ---- The Länder screen -------------------------------------------------------------
+  // One tile per Land (or per Prussian district) where the party can act this turn; a click opens it.
+  var open = function(Q, d) {
+    var n = 0;
+    KPD.ACTION_ORDER.forEach(function(a) { n += Q['c_' + d + '_' + a] || 0; });
+    return n;
+  };
+  var openWord = function(Q, ds) {
+    var n = 0, acted = false;
+    ds.forEach(function(d) { n += open(Q, d); if (Q['d_' + d + '_cd'] > 0) { acted = true; } });
+    if (n) { return '<span class="ksc-0">' + n + (n == 1 ? ' action open' : ' actions open') + '</span>'; }
+    return '<span class="kdim">' + (acted ? 'we acted here this turn' : 'nothing to do now') + '</span>';
+  };
+  var districtLines = function(Q, d, named) {
+    var org = Q['d_' + d + '_org'], pres = Q['d_' + d + '_pres'], h = Q['d_' + d + '_h'] || 0;
+    return (named ? '<p class="kland-d">' + esc(KPD.DISTRICTS[d].name) + '</p>' : '') +
+      '<p>Organisation: <b>' + sc(KPD.orgWord(org), 4 - lvl(org, [20, 35, 50, 65])) + '</b></p>' +
+      '<p>Police: ' + sc(KPD.pressureWord(pres), lvl(pres, [20, 40, 60, 80])) + '</p>' +
+      (h ? '<p>Hundreds: ' + esc(KPD.unitsWord(h)) + '</p>' : '');
+  };
+  var tile = function(target, title, sub, body, foot) {
+    return '<a class="kland" href="#" onclick="window.KPD.UI.go(\'' + target + '\');return false;">' +
+      '<p class="kland-name">' + esc(title) + '</p>' + (sub ? '<p class="kland-gov">' + sub + '</p>' : '') +
+      body + '<p class="kland-foot">' + foot + '</p></a>';
+  };
+  UI.landGrid = function(Q) {
+    var html = '<div class="kland-grid">';
+    KPD.LAND_ORDER.forEach(function(l) {
+      if (!Q['x_' + l]) { return; }
+      var L = KPD.LANDS[l], ds = L.districts.filter(function(d) { return Q['x_' + d]; });
+      html += tile('land_' + l, L.name, esc(KPD.landGovShort(Q, l)),
+        ds.map(function(d) { return districtLines(Q, d, L.districts.length > 1); }).join(''), openWord(Q, ds));
+    });
+    return html + '</div><p class="kmap-note">Only the Länder where the party can act are shown. Each action takes the turn. The workers\' mood is <b>' +
+      esc(KPD.moodWord(Q.mood)) + '</b>.</p>';
+  };
+  UI.districtGrid = function(Q, l) {
+    var html = '<div class="kland-grid">';
+    KPD.LANDS[l].districts.forEach(function(d) {
+      if (!Q['x_' + d]) { return; }
+      html += tile('district_' + d, KPD.DISTRICTS[d].name, '', districtLines(Q, d, false), openWord(Q, [d]));
+    });
+    return html + '</div>';
+  };
+
   UI.go = function(scene) {
     window.dendryUI.dendryEngine.goToScene(scene);
   };
@@ -134,14 +179,6 @@
       '<p class="kdim">' + esc(L.note) + '</p></div>' +
       '<div class="kpanel-col kpanel-chart"><p class="klabel">Landtag, elected ' + esc(L.elected) + '</p>' +
       UI.hemicycle(L.seats, {label: 'Landtag of ' + L.name}) + UI.seatLegend(L.seats) + '</div></div>';
-    if (L.districts.length > 1) {
-      html += '<p class="klabel">Party districts in ' + esc(L.name) + '</p><table class="ktable">';
-      L.districts.forEach(function(d) {
-        html += '<tr><td><b>' + esc(KPD.DISTRICTS[d].name) + '</b></td><td>organisation ' + esc(KPD.orgWord(Q['d_' + d + '_org'])) +
-          '</td><td class="kdim">' + esc(KPD.pressureWord(Q['d_' + d + '_pres'])) + '</td></tr>';
-      });
-      html += '</table>';
-    }
     return html + '</div>';
   };
 
@@ -504,7 +541,7 @@
         '</td><td>' + hov(esc(IDEOLOGY[p][0]), 'ideology:' + p) + '</td></tr>';
     });
     html += '</table>';
-    html += '<h1>The Lands</h1>';
+    html += '<h1>The Länder</h1>';
     KPD.LAND_ORDER.forEach(function(l) { html += line(esc(KPD.LANDS[l].name) + ': ' + esc(KPD.landGov(Q, l))); });
     return html;
   };
@@ -580,6 +617,8 @@
       var html = '';
       try {
         if (kind == 'map') { html = UI.map(Q); }
+        else if (kind == 'landgrid') { html = UI.landGrid(Q); }
+        else if (kind == 'districtgrid') { html = UI.districtGrid(Q, arg); }
         else if (kind == 'land') { html = UI.land(Q, arg); }
         else if (kind == 'district') { html = UI.district(Q, arg); }
         else if (kind == 'news') { html = UI.news(Q); }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the map scenes: the Lands card, a page per Land, a page per Prussian district and
+"""Generate the Länder scenes: the Länder card, a page per Land, a page per Prussian district and
 one scene per district action. Run from the repository root:
 
     python3 tools/gen_lands.py
@@ -78,39 +78,35 @@ def district_options(d):
 def main():
     os.makedirs(OUT, exist_ok=True)
     # the pinned card and the map
-    opts = ''.join(f'- @to_{l}: {name}\n' for l, name, _ in LANDS)
-    views = ''.join(f'@to_{l}\nview-if: x_{l} = 1\ngo-to: land_{l}\n\n' for l, name, _ in LANDS)
     with open(os.path.join(OUT, 'lands.scene.dry'), 'w') as f:
-        f.write(f"""title: The Lands
+        f.write(f"""title: Länder
 subtitle: Where the party works and fights.
 card-image: img/cards/map.svg
 is-pinned-card: true
 tags: mapcard
 new-page: true
 
-= The Lands
+= The Länder
 
-{insert('map')}
+{insert('landgrid')}
 
 - @root: Back to the party.
-{opts}
-{views}""")
+""")
     for l, name, ds in LANDS:
         if len(ds) > 1:
-            dopts = ''.join(f'- @to_{d}: {DISTRICT_NAMES[d]}\n' for d in ds)
-            dviews = ''.join(f'@to_{d}\nview-if: x_{d} = 1\ngo-to: district_{d}\n\n' for d in ds)
             body = f"""{insert('land', l)}
 
-- @lands: Back to the map.
-{dopts}
-{dviews}"""
+{insert('districtgrid', l)}
+
+- @lands: Back to the Länder.
+"""
         else:
             d = ds[0]
             body = f"""{insert('land', l)}
 
 {insert('district', d)}
 
-- @lands: Back to the map.
+- @lands: Back to the Länder.
 {district_options(d)}
 {''.join(action_scene(d, a) for a in ACTIONS)}"""
         with open(os.path.join(OUT, f'land_{l}.scene.dry'), 'w') as f:

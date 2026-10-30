@@ -1,38 +1,12 @@
-title: The Lands
+title: Länder
 subtitle: Where the party works and fights.
 card-image: img/cards/map.svg
 is-pinned-card: true
 tags: mapcard
 new-page: true
 
-= The Lands
+= The Länder
 
-{!<div class="kpd-insert" data-insert="map" data-arg=""></div>!}
+{!<div class="kpd-insert" data-insert="landgrid" data-arg=""></div>!}
 
 - @root: Back to the party.
-- @to_prussia: Prussia
-- @to_saxony: Saxony
-- @to_thuringia: Thuringia
-- @to_hamburg: Hamburg
-- @to_bavaria: Bavaria
-
-@to_prussia
-view-if: x_prussia = 1
-go-to: land_prussia
-
-@to_saxony
-view-if: x_saxony = 1
-go-to: land_saxony
-
-@to_thuringia
-view-if: x_thuringia = 1
-go-to: land_thuringia
-
-@to_hamburg
-view-if: x_hamburg = 1
-go-to: land_hamburg
-
-@to_bavaria
-view-if: x_bavaria = 1
-go-to: land_bavaria
-

@@ -793,3 +793,15 @@ body.dark-mode { --sc0: #81c784; --sc1: #b5cf6b; --sc2: #e0b84a; --sc3: #f0975a;
 .tab_container .tab_button { flex: 1 1 auto; padding: 0.7em 0.25em; font-size: 0.86em; }
 .tab_container #dev_tab { flex: 0 0 auto; color: var(--k-dim); font-size: 0.75em; }
 .kdemo .party { white-space: nowrap; }
+
+/* The Länder screen: one tile per Land where the party can act */
+.kland-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13.5em, 1fr)); gap: 0.7em; margin: 0.6em 0 0.4em 0; }
+.kland { display: block; background: var(--k-panel); border: 1px solid transparent; border-radius: 3px; padding: 0.5em 0.85em 0.55em 0.85em;
+  color: var(--k-ink); text-decoration: none; transition: border-color 0.15s, box-shadow 0.15s; }
+.kland:hover, .kland:focus { border-color: var(--k-ink); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12); text-decoration: none; }
+.kland p { margin: 0.12em 0; text-indent: 0; font-size: 0.93em; }
+.kland .kland-name { font-variant: small-caps; letter-spacing: 0.06em; font-size: 1.15em; color: #8b0a1e; margin-bottom: 0.15em; }
+body.dark-mode .kland .kland-name { color: #e06a6a; }
+.kland .kland-gov { font-style: italic; color: var(--k-dim); margin-bottom: 0.35em; }
+.kland .kland-d { font-weight: bold; margin-top: 0.4em; }
+.kland .kland-foot { margin-top: 0.45em; font-size: 0.88em; }

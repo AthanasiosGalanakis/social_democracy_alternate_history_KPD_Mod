@@ -8,7 +8,7 @@ on-arrival: land_view = "hamburg"
 
 {!<div class="kpd-insert" data-insert="district" data-arg="hamburg"></div>!}
 
-- @lands: Back to the map.
+- @lands: Back to the Länder.
 - @act_hamburg_organise
 - @act_hamburg_struggle
 - @act_hamburg_front
