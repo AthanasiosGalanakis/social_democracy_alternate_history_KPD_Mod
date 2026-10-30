@@ -420,11 +420,7 @@
       document.getElementById('tools_wrapper').style.display = opening ? 'none' : '';
       document.body.classList.toggle('opening', opening);
       if (!opening) { window.arrangeLeadership(); }
-      // events make the headlines of the front page; maps and charts are drawn into their placeholders
-      var scene = window.dendryUI.game.scenes[sceneId];
-      if (scene && scene.tags && scene.tags.indexOf('kpd_event') >= 0) {
-          window.KPD.headline(window.dendryUI.dendryEngine.state.qualities, scene);
-      }
+      // maps, votes and charts are drawn into their placeholders
       window.KPD.UI.renderInserts(document.getElementById('content'));
       window.colourParties();
       if (!opening) {

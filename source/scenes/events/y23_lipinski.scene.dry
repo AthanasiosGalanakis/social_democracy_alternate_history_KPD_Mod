@@ -1,0 +1,35 @@
+title: Lipinski must go
+subtitle: 30 January. Our motion against Saxony's interior minister.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and month <= 2 and y23_leipzig_done = 1 and y23_lipinski_done = 0
+on-arrival: y23_lipinski_done = 1
+
+= Saxony: our vote against Buck
+
+Wilhelm Buck's Social Democratic minority government lives on our ten votes in the Landtag. Its interior minister, Richard Lipinski, uses the Saxon police like any other: against strikers, against our meetings, against the unemployed. The party has put its conditions to the SPD: control committees on prices, workers' defence against the leagues, an end to police action against the workers. Buck has not met them.
+
+Our motion of no confidence in Lipinski is on the order paper. The bourgeois parties will vote with us for their own reasons.
+
+{!<div class="kpd-insert" data-insert="vote" data-arg="lipinski"></div>!}
+
+- @motion: Bring the motion and bring down the government.
+- @alt1: —
+- @alt2: —
+- @alt3: —
+
+@motion
+subtitle: The historical choice. Buck's cabinet resigns and stays on as caretaker. · dev: spd_relation −2, kf_left_dissent −2, d_saxony_org +2
+on-arrival: spd_relation -= 2; kf_left_dissent -= 2; d_saxony_org += 2
+go-to: root
+
+The motion passes with our votes and those of every bourgeois party. Buck's ministry resigns and carries on as caretaker. The SPD's right says the Communists have voted with reaction; the SPD's left in Leipzig and Chemnitz says that a Social Democratic government should have met the conditions. The next Minister-President will need our votes, and he will know the price.
+
+@alt1
+choose-if: 1 = 0
+
+@alt2
+choose-if: 1 = 0
+
+@alt3
+choose-if: 1 = 0

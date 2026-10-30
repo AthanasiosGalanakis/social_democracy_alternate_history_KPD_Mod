@@ -1,0 +1,35 @@
+title: Passive resistance
+subtitle: 13 January. Cuno asks the Reichstag to stand behind him.
+new-page: true
+tags: kpd_event
+view-if: year = 1923 and (month >= 2 or jan_week >= 2) and y23_ruhr_done = 1 and y23_passive_done = 0
+on-arrival: y23_passive_done = 1
+
+= The nation's front
+
+Chancellor Cuno tells the Reichstag that Germany will not work for the occupiers. Officials, railwaymen and miners are to refuse every order of the French, and the Reich will pay for the strike. Every bourgeois party, from the Democrats to the German Nationals, rises behind him, and so does the SPD, which calls it the defence of the Republic. The völkisch benches applaud loudest of all.
+
+The party alone has to decide whether the workers' place is in this national front, with the men who will make them pay for it.
+
+{!<div class="kpd-insert" data-insert="vote" data-arg="ruhr"></div>!}
+
+- @no: Vote no. The enemy is also at home.
+- @alt1: —
+- @alt2: —
+- @alt3: —
+
+@no
+subtitle: The historical choice. The motion passes 284 to 12. SPD relations fall, the Left approves. · dev: spd_relation −3, kf_left_dissent −2, workers_kpd +1×m
+on-arrival: spd_relation -= 3; kf_left_dissent -= 2; workers_kpd += 1*campaign_mult
+go-to: root
+
+The House backs the chancellor by 284 votes to 12. Our deputies vote no and say why: the passive resistance is paid for with the workers' wages and the mark, while the coal barons are compensated and keep their profits abroad. The bourgeois press calls us the party of the foreigner. In the Ruhr the miners listen, for now, to the nation.
+
+@alt1
+choose-if: 1 = 0
+
+@alt2
+choose-if: 1 = 0
+
+@alt3
+choose-if: 1 = 0

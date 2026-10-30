@@ -210,18 +210,13 @@
   // ---- The party paper, in its own column on the right -------------------------------------
   UI.news = function(Q) {
     var html = '<div class="rf-mast">Die Rote Fahne</div>' + '<p class="rf-sub">' + esc(Q.date_label) + '</p>';
-    var head = Q.news_head || 'The year 1923 begins';
-    var sub = Q.news_head ? Q.news_sub : 'The mark is falling and the French stand at the Ruhr. The party meets the year divided.';
-    html += '<p class="rf-lead"><b>' + esc(head) + '.</b> ' + (sub ? esc(sub) : '') + '</p>';
-    var log = (Q.news_log || []).slice(1, 4);
-    log.forEach(function(n) {
-      html += '<hr><p><span class="rf-date">' + esc(n.d || '') + '</span> ' + esc(n.t || n) + '</p>';
+    // side news only: the newest item is the lead article, the three before it are short items
+    var news = KPD.paperNews(Q);
+    var lead = news.filter(function(n) { return n[4]; })[0] || news[0];
+    if (lead) { html += '<p class="rf-lead"><b>' + esc(lead[3]) + '.</b> ' + esc(lead[4]) + '</p>'; }
+    news.filter(function(n) { return n !== lead; }).slice(0, 3).forEach(function(n) {
+      html += '<hr><p><span class="rf-date">' + esc(n[2]) + '</span> ' + esc(n[3]) + (n[4] ? '.' : '') + '</p>';
     });
-    var world = KPD.worldNews(Q).slice(0, 2);
-    if (world.length) {
-      html += '<hr>';
-      world.forEach(function(w) { html += '<p><span class="rf-date">' + esc(w[0]) + '</span> ' + esc(w[1]) + '</p>'; });
-    }
     html += '<hr><p class="rf-foot">Dollar: ' + esc(Q.usd_rate) + ' marks</p>';
     return html;
   };
@@ -463,7 +458,7 @@
       {id: 'zentrale', name: 'Zentrale', sub: 'the leadership elected by the congress', word: fword(line_f, 'held by the ' + FACTION[line_f][0]),
         text: (Q.y23_leipzig_done ? '21 members elected by the Leipzig congress, which enlarged it from 14. ' + (Q.y23_compromise ? 'In May the Zentralausschuss brought the Left up to four seats, under the compromise Moscow imposed. ' : '') : '14 members, elected at Jena in August 1921; the next congress meets in Leipzig at the end of January. ') + 'The party\'s day-to-day leadership: it sets the line, runs the press and the apparatus, appoints the district secretaries and deals with Moscow.'},
       {id: 'za', name: 'Zentralausschuss', sub: 'the districts\' council', word: '',
-        text: (Q.y23_leipzig_done ? '38 members, elected by the Leipzig congress. ' : '36 members, elected at Jena. ') + 'The larger council of party leaders from the districts, which meets with the Zentrale between congresses and can check it. It has no formal factions, but the Left districts of Berlin, Hamburg and the Ruhr send their own people, among them Fischer, Maslow and Thälmann. Big decisions the Left opposes need its backing: the larger the Left here, the more they cost in dissent, and if the Left holds the majority it can block them.'},
+        text: (Q.y23_leipzig_done ? '38 members, elected by the Leipzig congress. ' : '36 members, elected at Jena. ') + 'The larger council of party leaders from the districts, which meets with the Zentrale between congresses and can check it. It has no formal factions, but the Left districts of Berlin, Hamburg and the Ruhr send their own people, among them Fischer, Maslow and Thälmann, about a third of the whole. Big decisions the Left opposes need its backing, and cost Left dissent.'},
       {id: 'fraktion', name: 'Reichstag Fraktion', sub: 'our deputies', word: (Q.rt_seats.kpd || 0) + ' deputies',
         text: 'The party\'s deputies in the Reichstag. Their speeches reach millions through the press; their votes rarely decide anything, and the party distrusts its own parliamentarians.'},
       {id: 'press', name: 'Die Rote Fahne', sub: 'the central organ', word: Q.kpd_banned ? sc('banned', 4) : sc('legal, daily', 0),
@@ -490,11 +485,9 @@
     // members, and how many of them are Left (see MOD_NOTES); set by the party congress
     var seats = function(k, n, l) {
       var v = function(f, d) { var x = Q[k + '_' + f]; return x === undefined ? d : x; };
-      if (k == 'za') {
-        var w = KPD.zaWords(Q);
-        return line('Members: ' + v('n', n)) + line(fword('right') + ': ' + w.right) + line(fword('left') + ': ' + w.left);
-      }
-      return line('Members: ' + v('n', n)) + line(fword('left') + ': ' + v('l', l));
+      // the Zentralausschuss had no formal factions: members only
+      if (k == 'za') { return line('Members: ' + v('n', n)); }
+      return line('Members: ' + v('n', n)) + line(fword('right') + ': ' + (v('n', n) - v('l', l))) + line(fword('left') + ': ' + v('l', l));
     };
     UI.organs(Q).forEach(function(o) {
       if (o.id == 'zentrale' || o.id == 'za') {

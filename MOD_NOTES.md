@@ -178,3 +178,10 @@ Facts in the hover cards and tabs that still need checking:
 - Checked: communist finance minister in Saxony in October 1923 (LeMO; Böttcher); working-time decree 23 December 1923 (LeMO); Fischer ordered into the Zentrale by the Comintern in April 1923, elected by the Zentralausschuss on 17 May.
 - Still estimates: 1923 Reichstag group sizes (the 1920 result is checked; the shifts after the USPD split and reunion are not), the alignment of most Zentralausschuss members, league strengths in words.
 - Hover texts are written as of the current date: birth years only, and events appear only once they have happened.
+
+## January 1923 rewrite (30 October, Maarten)
+- January events offer only the historical choice plus three greyed-out placeholder options (to be written later): Essen conference (6-7 Jan), Ruhr occupation (11 Jan), passive resistance vote (13 Jan, new, with a Reichstag drawing), Leipzig congress (28 Jan-1 Feb), Lipinski motion in Saxony (30 Jan, new, with a Landtag drawing).
+- The Nazi party day in Munich is no longer an event; it is an article in Die Rote Fahne. The paper now carries side news only (KPD.NEWS_1923, by turn), not event headlines.
+- Checked: Paris conference 2-4 Jan, dollar 7,525 (3 Jan) and 23,000 (18 Jan), default 9 Jan, Memel 10 Jan, deliveries halted 12 Jan, occupation of Bochum and Dortmund 15 Jan, Thyssen court-martial 24 Jan, NSDAP party day 27-29 Jan (LeMO 1923 chronicle); Buck's fall on 30 Jan on a KPD motion against Lipinski with all bourgeois votes (gonschior.de, Sachsen 1918-1933); Reichstag backing for Cuno 284 to 12 with the Communists against (derfunke.de).
+- To verify: the 284 to 12 vote's date (placed on 13 Jan, Cuno's declaration); Bavaria's state of emergency and the rally ban before the party day, and how Hitler got his parade; the second conference called at Essen (placed "in the spring").
+- Organs: the Zentrale shows Members, Right and Left; the Zentralausschuss shows members only.
