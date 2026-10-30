@@ -1,5 +1,4 @@
 title: August Thalheimer
-card-image: img/portraits/thalheimer.jpg
 is-pinned-card: true
 tags: advisor
 view-if: kf_right_strength > 0
@@ -17,7 +16,7 @@ The Right is the party of the districts and the unions: Thalheimer who thinks, W
 
 @thalheimer
 title: August Thalheimer: analyse the crisis
-subtitle: A theoretical report on the situation. · dev: kf_right_strength +4, kf_right_dissent −2, adv_right_last = time
+subtitle: dev: kf_right_strength +4, kf_right_dissent −2, adv_right_last = time
 unavailable-subtitle: [? if thalheimer_timer > 0 : [+ thalheimer_timer +] months before Thalheimer can act again. ?]
 choose-if: thalheimer_timer = 0
 on-arrival: thalheimer_timer = 3; kf_right_strength += 4; kf_right_dissent -= 2; adv_right_last = time
@@ -26,7 +25,7 @@ Thalheimer writes the party its analysis: a crisis of the whole bourgeois order,
 
 @walcher
 title: Jacob Walcher: win the unions
-subtitle: Fractions in the factory councils and unions. · dev: workers_kpd +3×m, kf_right_strength +3, adv_right_last = time
+subtitle: dev: workers_kpd +3×m, kf_right_strength +3, adv_right_last = time
 unavailable-subtitle: [? if walcher_timer > 0 : [+ walcher_timer +] months before Walcher can act again. ?]
 choose-if: walcher_timer = 0
 on-arrival: walcher_timer = 3; workers_kpd += 3*campaign_mult; kf_right_strength += 3; adv_right_last = time
@@ -35,7 +34,7 @@ Walcher knows the works councils and the metalworkers' branches, and the party's
 
 @radek
 title: Karl Radek: ask what Moscow thinks
-subtitle: A letter to the Executive. · dev: trust +6, kf_right_strength +4, kf_left_dissent +3, adv_right_last = time
+subtitle: dev: trust +6, kf_right_strength +4, kf_left_dissent +3, adv_right_last = time
 unavailable-subtitle: [? if radek_timer > 0 : [+ radek_timer +] months before Radek can act again. ?]
 choose-if: radek_timer = 0
 on-arrival: radek_timer = 3; comintern_trust += 6; kf_right_strength += 4; kf_left_dissent += 3; adv_right_last = time
@@ -44,7 +43,7 @@ Radek writes to Moscow, in his own style, and tells Zinoviev what the Zentrale w
 
 @heckert
 title: Fritz Heckert: work with the Saxon ministers
-subtitle: A government of workers in Dresden. · dev: y23_unity +1, kf_left_dissent +2, workers_kpd +1×m, adv_right_last = time
+subtitle: dev: y23_unity +1, kf_left_dissent +2, workers_kpd +1×m, adv_right_last = time
 unavailable-subtitle: [? if heckert_timer > 0 : [+ heckert_timer +] months before Heckert can act again. ?]
 choose-if: heckert_timer = 0
 on-arrival: heckert_timer = 3; y23_unity += 1; kf_left_dissent += 2; workers_kpd += 1*campaign_mult; adv_right_last = time

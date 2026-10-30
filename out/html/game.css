@@ -13,7 +13,7 @@ body {
   --card-border-color: #ccc; 
   --card-bg-color: #ddd; 
   --p-kpd: #700000; --p-spd: #c00000; --p-uspd: #D47B9B; --p-dnvp: #3E88B3; --p-dvp: #D5AC27; --p-ddp: #D3C24D;
-  --f-right: #e8703f; --f-centre: #d42a2a; --f-left: #8b0a1e;
+  --f-right: #c8572a; --f-centre: #d42a2a; --f-left: #8b0a1e;
   --p-nsdap: #7A3C00; --p-bvp: #95ccc7; --p-zentrum: #000;
   font-family: "Minion Pro", Georgia, serif;
   background-color: var(--bg-color);
@@ -34,7 +34,7 @@ body.dark-mode {
   --card-border-color: #4c4c4c;
   --card-bg-color: #3f3f3f;
   --p-kpd: #c0392b; --p-spd: #ff2a3a; --p-uspd: #ff8a5c; --p-dnvp: #5b8be0; --p-dvp: #d4ae2a; --p-ddp: #f5e68a;
-  --f-right: #ff9a70; --f-centre: #ff5a50; --f-left: #e0607a;
+  --f-right: #f0905e; --f-centre: #ff5a50; --f-left: #e0607a;
   --p-nsdap: #c98a4a; --p-bvp: #a8dcf5; --p-zentrum: #e8e8e8;
 }
 body.dark-mode #content {
@@ -811,3 +811,30 @@ body.dark-mode .kland .kland-name { color: #e06a6a; }
 body.dev-on #dev_tab { display: inline-block; }
 body:not(.dev-on) .kdev { display: none; }
 .kelected { text-align: center; font-size: 0.82em; color: var(--k-dim); margin: -0.4em 0 0.3em 0; white-space: nowrap; }
+
+/* the KPD takes the colour of the faction that holds the line */
+body.line-right, body.dark-mode.line-right { --p-kpd: var(--f-right); }
+body.line-left, body.dark-mode.line-left { --p-kpd: var(--f-left); }
+
+/* inter-party relations: one colour per stage, cold to warm */
+.krel { font-weight: bold; }
+.krel-hostile { color: #6e0f0f; } .krel-frigid { color: #1f3f7a; } .krel-cold { color: #3a6fb0; } .krel-cool { color: #6f97b8; }
+.krel-neutral { color: #7a7a6a; } .krel-warm { color: #c07a18; } .krel-friendly { color: #6b8e23; } .krel-very-friendly { color: #2e7d32; }
+body.dark-mode .krel-hostile { color: #e05050; } body.dark-mode .krel-frigid { color: #7fa6ff; } body.dark-mode .krel-cold { color: #8fbdf0; }
+body.dark-mode .krel-cool { color: #b4d2ea; } body.dark-mode .krel-neutral { color: #bdbdb0; } body.dark-mode .krel-warm { color: #f0b04a; }
+body.dark-mode .krel-friendly { color: #a8d060; } body.dark-mode .krel-very-friendly { color: #6fd07a; }
+
+/* the Länder in the Politics tab */
+.kland-sb { margin: 0.2em 0 0.7em 0; }
+.kland-sb p { margin: 0.1em 0; }
+.kland-sb .kland-sb-name { font-weight: bold; }
+.kland-sb .kland-sb-gov { font-size: 0.93em; }
+
+/* polls per demographic: one party per line */
+.kdemo-t { margin: 0.1em 0 0.7em 0; }
+.kdemo-h { font-weight: bold; margin: 0.6em 0 0.1em 0; }
+
+/* dates on their own line above the text */
+.kdate { display: block; font-variant: small-caps; letter-spacing: 0.04em; }
+#news .rf-item { margin: 0.2em 0 0.5em 0; line-height: 1.4; }
+#news .rf-item .rf-date { display: block; font-weight: bold; }

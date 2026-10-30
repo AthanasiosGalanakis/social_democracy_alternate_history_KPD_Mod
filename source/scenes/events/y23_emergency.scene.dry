@@ -16,7 +16,7 @@ We have a few weeks. What do we use them for?
 - @unions: Prepare the factory councils for a general strike.
 
 @hundreds
-subtitle: Costs 1 resources. · dev: resources −1, y23_hundreds +2, rfb_strength +40
+subtitle: dev: resources −1, y23_hundreds +2, rfb_strength +40
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_hundreds += 2; rfb_strength += 40

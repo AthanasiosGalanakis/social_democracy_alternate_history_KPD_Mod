@@ -18,7 +18,7 @@ on-arrival: district_view = "central"
 
 @act_central_organise
 title: Build factory cells and recruit
-subtitle: Builds organisation. Costs 1 resource. · dev: org +5×m
+subtitle: −1 resources · dev: org +5×m
 view-if: x_central_organise = 1
 choose-if: c_central_organise = 1
 unavailable-subtitle: [? if d_central_cd > 0 : We acted here this turn. ?][? if d_central_cd <= 0 : Needs 1 resource. ?]
@@ -35,7 +35,7 @@ Organisers go from works gate to works gate in Central Germany. New cells meet i
 
 @act_central_struggle
 title: Lead a strike or an unemployed march
-subtitle: Some organisation; the police take note. The Left gains. · dev: org +2×m, pressure +6, strikes +1, workers_kpd +1×m, kf_left_strength +1
+subtitle: dev: org +2×m, pressure +6, strikes +1, workers_kpd +1×m, kf_left_strength +1
 view-if: x_central_struggle = 1
 choose-if: c_central_struggle = 1
 unavailable-subtitle: [? if d_central_cd > 0 : We acted here this turn. ?][? if d_central_cd <= 0 : Needs at least a thin organisation here. ?]
@@ -52,7 +52,7 @@ In Central Germany the party calls the workers out: a strike over the wage the i
 
 @act_central_front
 title: Build the united front with SPD and union workers
-subtitle: Widens the united front. Costs 1 resource. The Right gains, the Left grumbles. · dev: resources −1, unity +1, org +1, spd_relation +1, kf_right_strength +1, kf_left_dissent +2
+subtitle: −1 resources · dev: resources −1, unity +1, org +1, spd_relation +1, kf_right_strength +1, kf_left_dissent +2
 view-if: x_central_front = 1
 choose-if: c_central_front = 1
 unavailable-subtitle: [? if d_central_cd > 0 : We acted here this turn. ?][? if d_central_cd <= 0 : Needs 1 resource and at least a weak organisation here. ?]
@@ -69,7 +69,7 @@ In Central Germany our cells go to the SPD and union branches with a concrete pr
 
 @act_central_defence
 title: Form a unit of the Proletarian Hundreds
-subtitle: A new unit here. The state answers. Costs 1 resource. · dev: resources −1, units +1, pressure +7, kf_left_strength +1
+subtitle: −1 resources · dev: resources −1, units +1, pressure +7, kf_left_strength +1
 view-if: x_central_defence = 1
 choose-if: c_central_defence = 1
 unavailable-subtitle: [? if d_central_cd > 0 : We acted here this turn. ?][? if d_central_cd <= 0 : Needs 1 resource and at least a thin organisation here. ?]
@@ -86,7 +86,7 @@ A new unit of the Proletarian Hundreds forms in Central Germany: workers from th
 
 @act_central_control
 title: Set up price control committees
-subtitle: Builds organisation; housewives and the unemployed come to us. · dev: org +3×m, pressure +3, workers_kpd +1×m, unemployed_kpd +1×m
+subtitle: dev: org +3×m, pressure +3, workers_kpd +1×m, unemployed_kpd +1×m
 view-if: x_central_control = 1
 choose-if: c_central_control = 1
 unavailable-subtitle: [? if d_central_cd > 0 : We acted here this turn. ?][? if d_central_cd <= 0 : Needs at least a solid organisation here. ?]
@@ -103,7 +103,7 @@ Control committees of workers and housewives go to the markets of Central German
 
 @act_central_mayday
 title: Hold May Day in Munich against the leagues
-subtitle: Builds organisation and the united front. · dev: org +4×m, pressure +5, unity +1
+subtitle: dev: org +4×m, pressure +5, unity +1
 view-if: x_central_mayday = 1
 choose-if: c_central_mayday = 1
 unavailable-subtitle: [? if d_central_cd > 0 : We acted here this turn. ?][? if d_central_cd <= 0 :  ?]
@@ -120,7 +120,7 @@ On the first of May the workers of Munich march, while the völkisch leagues gat
 
 @act_central_border
 title: Watch the Bavarian border with the Thuringian Hundreds
-subtitle: A new unit in Thuringia, and the united front grows. Costs 1 resource. · dev: resources −1, Thuringia units +1, unity +1
+subtitle: −1 resources · dev: resources −1, Thuringia units +1, unity +1
 view-if: x_central_border = 1
 choose-if: c_central_border = 1
 unavailable-subtitle: [? if d_central_cd > 0 : We acted here this turn. ?][? if d_central_cd <= 0 : Needs 1 resource and at least a thin organisation in Thuringia. ?]
@@ -137,7 +137,7 @@ Hundreds from Thuringia take up watch along the Bavarian border, where the leagu
 
 @act_central_underground
 title: Move the work underground
-subtitle: Eases the pressure. Costs 1 resource. · dev: resources −1, pressure −12, org +1
+subtitle: −1 resources · dev: resources −1, pressure −12, org +1
 view-if: x_central_underground = 1
 choose-if: c_central_underground = 1
 unavailable-subtitle: [? if d_central_cd > 0 : We acted here this turn. ?][? if d_central_cd <= 0 : Needs 1 resource. ?]

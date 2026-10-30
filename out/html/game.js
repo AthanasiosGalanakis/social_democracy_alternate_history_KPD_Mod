@@ -246,6 +246,17 @@
       if (!on && window.statusTab == 'status.dev') { window.changeTab('status', 'main_tab'); }
   };
   // wrap the "dev: ..." tail of every option subtitle so the toggle can hide it
+  // "13 January. Cuno asks..." becomes the date on its own line, then the text
+  var dateRegex = /^(\s*)(\d{1,2}(?:\s*(?:and|to|–|-)\s*\d{1,2})? (?:January|February|March|April|May|June|July|August|September|October|November|December)(?: \d{4})?)\.\s+/;
+  window.splitDates = function(root) {
+      $(root || document).find('.subtitle, .choice-subtitle, .card-subtitle').each(function() {
+          if (this.dataset.dateSplit) { return; }
+          this.dataset.dateSplit = '1';
+          var m = dateRegex.exec(this.innerHTML);
+          if (!m) { return; }
+          this.innerHTML = m[1] + '<span class="kdate">' + m[2] + '</span>' + this.innerHTML.slice(m[0].length);
+      });
+  };
   window.markDevNotes = function(root) {
       $(root || document).find('.subtitle, .choice-subtitle').each(function() {
           if (this.dataset.devMarked) { return; }
@@ -310,9 +321,9 @@
 
   /* party names in their own colours, in the story text and the sidebar */
   var partyClasses = {'KPD': 'p-kpd', 'SPD': 'p-spd', 'DNVP': 'p-dnvp', 'DVP': 'p-dvp', 'DDP': 'p-ddp',
-                      'NSDAP': 'p-nsdap', 'Nazis': 'p-nsdap', 'Nazi': 'p-nsdap', 'BVP': 'p-bvp', 'Zentrum': 'p-zentrum',
+                      'NSDAP': 'p-nsdap', 'DVFP': 'p-nsdap', 'Nazis': 'p-nsdap', 'Nazi': 'p-nsdap', 'BVP': 'p-bvp', 'Zentrum': 'p-zentrum',
                       'Centre Party': 'p-zentrum', 'Z': 'p-zentrum', 'Center Party': 'p-zentrum'};
-  var partyRegex = /\b(KPD|SPD|DNVP|DVP|DDP|NSDAP|BVP|Zentrum|Centre Party|Center Party|Nazis|Nazi)\b|\b(Z)(?= \+|:)/g;
+  var partyRegex = /\b(KPD|SPD|DNVP|DVP|DDP|NSDAP|DVFP|BVP|Zentrum|Centre Party|Center Party|Nazis|Nazi)\b|\b(Z)(?= \+|:)/g;
   var factionRegex = /^(\s*)(Right|Left|Centre)(?= strength)/;
   var colouring = false;
   window.colourParties = function() {
@@ -448,6 +459,7 @@
       // maps, votes and charts are drawn into their placeholders
       window.KPD.UI.renderInserts(document.getElementById('content'));
       window.markDevNotes(document.getElementById('content'));
+      window.splitDates(document.getElementById('content'));
       window.colourParties();
       if (!opening) {
           window.updateSidebar();
@@ -521,7 +533,7 @@
     // choices are drawn after the page text, so watch the content for new subtitles
     var content = document.getElementById('content');
     if (content && window.MutationObserver) {
-        new MutationObserver(function() { window.markDevNotes(content); }).observe(content, {childList: true, subtree: true});
+        new MutationObserver(function() { window.markDevNotes(content); window.splitDates(content); }).observe(content, {childList: true, subtree: true});
     }
     window.pinnedCardsDescription = "Advisor cards - actions are only usable once per 6 months.";
   };

@@ -19,7 +19,7 @@ The party alone has to decide whether the workers' place is in this national fro
 - @alt3: —
 
 @no
-subtitle: The historical choice. The motion passes 284 to 12. SPD relations fall, the Left approves. · dev: spd_relation −3, kf_left_dissent −2, workers_kpd +1×m
+subtitle: dev: spd_relation −3, kf_left_dissent −2, workers_kpd +1×m
 on-arrival: spd_relation -= 3; kf_left_dissent -= 2; workers_kpd += 1*campaign_mult
 go-to: root
 

@@ -16,7 +16,7 @@ For the party the inflation is both an opportunity and a test. It is easy to bla
 - @agitate: Concentrate on agitation: the whole of capitalism is to blame.
 
 @control
-subtitle: Costs 1 resources. · dev: resources −1, y23_unity +1, workers_kpd +3×m, unemployed_kpd +2×m
+subtitle: dev: resources −1, y23_unity +1, workers_kpd +3×m, unemployed_kpd +2×m
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_unity += 1; workers_kpd += 3*campaign_mult; unemployed_kpd += 2*campaign_mult

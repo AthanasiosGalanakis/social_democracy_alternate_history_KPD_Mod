@@ -17,14 +17,14 @@ Now Stresemann asks the Reichstag for its confidence, and the SPD votes against 
 - @abstain: Abstain. We will not be counted in a majority with the German Nationals.
 
 @no
-subtitle: The Left gains. · dev: chancellor = 'Marx', chancellor_party = 'Z', kf_left_strength +1, workers_kpd +1×m
+subtitle: dev: chancellor = 'Marx', chancellor_party = 'Z', kf_left_strength +1, workers_kpd +1×m
 on-arrival: chancellor = 'Marx'; chancellor_party = 'Z'; kf_left_strength += 1; workers_kpd += 1*campaign_mult
 go-to: root
 
 Stresemann falls on 23 November. A week later Wilhelm Marx of the Centre forms a cabinet without the SPD, which tolerates it. Our speaker reminds the Reichstag that the SPD's deputies voted for the Enabling Act in October and for the Reichswehr's budget every year, and that the soldiers who marched into Dresden were paid with SPD votes.
 
 @abstain
-subtitle: No difference to the count. The Right approves. · dev: chancellor = 'Marx', chancellor_party = 'Z', conf_kpd = 'abstain', kf_right_strength +1
+subtitle: dev: chancellor = 'Marx', chancellor_party = 'Z', conf_kpd = 'abstain', kf_right_strength +1
 on-arrival: chancellor = 'Marx'; chancellor_party = 'Z'; conf_kpd = 'abstain'; kf_right_strength += 1
 go-to: root
 

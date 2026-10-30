@@ -1,5 +1,4 @@
 title: Heinrich Brandler
-card-image: img/portraits/brandler.png
 is-pinned-card: true
 tags: advisor
 view-if: party_line = "right"
@@ -17,7 +16,7 @@ The chairman of the party is not an adviser like the others. Heinrich Brandler l
 
 @districts
 title: Address the districts
-subtitle: A circular to every district committee. · dev: kf_right_dissent −5, workers_kpd +2×m
+subtitle: dev: kf_right_dissent −5, workers_kpd +2×m
 unavailable-subtitle: [? if head_timer > 0 : [+ head_timer +] months before the chairman can act again. ?]
 choose-if: head_timer = 0
 on-arrival: head_timer = 3; kf_right_dissent -= 5; workers_kpd += 2*campaign_mult
@@ -26,7 +25,7 @@ Brandler travels the districts, from Chemnitz to the Ruhr, and speaks to the fun
 
 @zentrale
 title: Chair the Zentrale on the united front
-subtitle: Settle the policy toward the SPD. · dev: y23_unity +1, kf_left_dissent +3, trust +2
+subtitle: dev: y23_unity +1, kf_left_dissent +3, trust +2
 unavailable-subtitle: [? if head_timer > 0 : [+ head_timer +] months before the chairman can act again. ?]
 choose-if: head_timer = 0
 on-arrival: head_timer = 3; y23_unity += 1; kf_left_dissent += 3; comintern_trust += 2
@@ -35,7 +34,7 @@ A long session of the Zentrale ends in a resolution for joint action with the SP
 
 @executive
 title: Report to the Executive
-subtitle: Account for the German party in Moscow. · dev: trust +6, kf_left_dissent +2
+subtitle: dev: trust +6, kf_left_dissent +2
 unavailable-subtitle: [? if head_timer > 0 : [+ head_timer +] months before the chairman can act again. ?]
 choose-if: head_timer = 0
 on-arrival: head_timer = 3; comintern_trust += 6; kf_left_dissent += 2
@@ -44,7 +43,7 @@ Brandler reports to the Executive of the Comintern. He is polite and prepared, a
 
 @governments
 title: Press for workers' governments
-subtitle: Ministries in Saxony and Thuringia. · dev: kf_right_strength +4, kf_left_dissent +3, y23_unity +1
+subtitle: dev: kf_right_strength +4, kf_left_dissent +3, y23_unity +1
 unavailable-subtitle: [? if head_timer > 0 : [+ head_timer +] months before the chairman can act again. ?]
 choose-if: head_timer = 0
 on-arrival: head_timer = 3; kf_right_strength += 4; kf_left_dissent += 3; y23_unity += 1

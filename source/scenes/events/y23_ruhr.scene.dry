@@ -17,7 +17,7 @@ A German government that serves the coal and steel barons calls on the workers t
 - @alt3: —
 
 @both
-subtitle: The historical choice. Moscow approves. Pressure in the Ruhr rises. · dev: workers_kpd +2×m, trust +3, kf_left_dissent +2
+subtitle: dev: workers_kpd +2×m, trust +3, kf_left_dissent +2
 on-arrival: workers_kpd += 2*campaign_mult; comintern_trust += 3; kf_left_dissent += 2
 go-to: root
 

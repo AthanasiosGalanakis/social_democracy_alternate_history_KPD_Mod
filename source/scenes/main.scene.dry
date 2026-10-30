@@ -20,14 +20,12 @@ max-cards: 4
 
 @mass
 title: Mass Work
-card-image: img/Mann_der_Arbeit.jpg
 is-deck: true
 
 - #kpd_mass
 
 @party
 title: Party Affairs
-card-image: img/workers.jpg
 is-deck: true
 
 - #kpd_party

@@ -2,7 +2,6 @@ title: Councils of the unemployed
 subtitle: Those without work have no factory to organise in.
 new-page: true
 is-card: true
-card-image: img/Kollwitz_Arbeitslosigkeit.jpg
 frequency: 150
 tags: kpd_mass
 view-if: mass_unemployed_timer <= 0
@@ -18,7 +17,7 @@ The unemployed are outside the factories and the unions. They are queueing at th
 - @easy_discard
 
 @councils
-subtitle: No cost. · dev: unemployed_kpd +5×m
+subtitle: dev: unemployed_kpd +5×m
 on-arrival: unemployed_kpd += 5*campaign_mult
 go-to: root
 
@@ -26,7 +25,7 @@ The councils meet at the labour exchanges. They do small, concrete things: they 
 
 @march
 choose-if: resources >= 1
-subtitle: -1 resources · dev: resources −1, unemployed_kpd +4×m, pro_republic −1, y23_strikes +0
+subtitle: −1 resources · dev: resources −1, unemployed_kpd +4×m, pro_republic −1, y23_strikes +0
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; unemployed_kpd += 4*campaign_mult; pro_republic -= 1; y23_strikes += 0
 go-to: root

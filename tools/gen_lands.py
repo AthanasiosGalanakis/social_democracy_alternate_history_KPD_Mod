@@ -51,9 +51,10 @@ def insert(kind, arg=''):
 
 def action_scene(d, a):
     aid, title, summary, why, text = a
+    cost = '−1 resources · ' if 'Costs 1 resource' in summary else ''
     return f"""@act_{d}_{aid}
 title: {title}
-subtitle: {summary} · dev: {DEV[aid]}
+subtitle: {cost}dev: {DEV[aid]}
 view-if: x_{d}_{aid} = 1
 choose-if: c_{d}_{aid} = 1
 unavailable-subtitle: [? if d_{d}_cd > 0 : We acted here this turn. ?][? if d_{d}_cd <= 0 : {why} ?]

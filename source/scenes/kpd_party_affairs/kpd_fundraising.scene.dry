@@ -4,7 +4,6 @@ view-if: fundraising_timer <= 0 and (not historical_mode)
 on-arrival: fundraising_timer = 6; month_actions += 1
 frequency: 300
 is-card: true
-card-image: img/union_2.jpg
 tags: kpd_party
 
 # KPD version of the base game's Fundraising card. Moscow's subsidy is not included yet (milestone M4).
@@ -21,26 +20,26 @@ The party cannot exist without money, and in the inflation the dues are worth le
 
 @arrears
 view-if: pieck_advisor = 1
-subtitle: Pieck is in the leadership. · dev: resources +dues, resources +1
+subtitle: dev: resources +dues, resources +1
 on-arrival: resources += dues; resources += 1
 
 Pieck goes through the books and the districts, and finds money that nobody had asked for in months. The comrades grumble at being asked, and pay.
 
 @maintain
-subtitle: [+ dues +] resources gained. · dev: resources +dues
+subtitle: dev: resources +dues
 on-arrival: resources += dues;
 
 We maintain our current dues.
 
 @reduce
-subtitle: [+ dues - 1 +] resources gained. · dev: dues −1, resources +dues, kf_right_dissent −8, kf_left_dissent −8
+subtitle: dev: dues −1, resources +dues, kf_right_dissent −8, kf_left_dissent −8
 choose-if: dues > 1
 on-arrival: dues -= 1; resources += dues; kf_right_dissent -= 8; kf_left_dissent -= 8
 
 Our members, many of them unemployed, appreciate this, but no one joins a party because of low dues.
 
 @increase
-subtitle: [+ dues + 1 +] resources gained. [? if unemployed >= 15 : Given the present economic situation, this may be painful. ?] · dev: dues +1, resources +dues, workers_kpd −3, unemployed_kpd −3, workers_kpd −3*dues (if dues >= 5), unemployed_kpd −3*dues (if dues >= 5)
+subtitle: dev: dues +1, resources +dues, workers_kpd −3, unemployed_kpd −3, workers_kpd −3*dues (if dues >= 5), unemployed_kpd −3*dues (if dues >= 5)
 on-arrival: dues += 1; resources += dues; workers_kpd -= 3; unemployed_kpd -= 3; workers_kpd -= 3*dues if dues >= 5; unemployed_kpd -= 3*dues if dues >= 5
 view-if: dues <= 4
 

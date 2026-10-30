@@ -2,7 +2,6 @@ title: Defence units
 subtitle: The Proletarian Hundreds, and later the Red Front Fighters' League.
 new-page: true
 is-card: true
-card-image: img/cards/hundreds.svg
 frequency: 150
 tags: kpd_mass
 view-if: mass_defence_timer <= 0
@@ -21,7 +20,7 @@ on-arrival: month_actions += 1; mass_defence_timer = 3
 
 @hamburg
 view-if: thaelmann_advisor = 1
-subtitle: Thälmann is in the leadership. · dev: y23_hundreds +2, rfb_strength +30, kf_left_strength +2
+subtitle: dev: y23_hundreds +2, rfb_strength +30, kf_left_strength +2
 on-arrival: y23_hundreds += 2; rfb_strength += 30; kf_left_strength += 2
 go-to: root
 
@@ -29,7 +28,7 @@ Thälmann sends dockers from the Hamburg organisation to the other districts. Th
 
 @drill
 choose-if: resources >= 1
-subtitle: -1 resources · dev: resources −1, y23_hundreds +1, rfb_strength +20, rfb_militancy +0.02
+subtitle: −1 resources · dev: resources −1, y23_hundreds +1, rfb_strength +20, rfb_militancy +0.02
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_hundreds += 1; rfb_strength += 20; rfb_militancy += 0.02
 go-to: root
@@ -37,14 +36,14 @@ go-to: root
 The units drill in the evenings and some of them are armed. The arms are few, and the men in the units are brave and often very young. They are not a match for the Reichswehr, and the leaders who know it say nothing.
 
 @discipline
-subtitle: No cost. · dev: rfb_militancy −0.02, workers_kpd +1×m
+subtitle: dev: rfb_militancy −0.02, workers_kpd +1×m
 on-arrival: rfb_militancy -= 0.02; workers_kpd += 1*campaign_mult
 go-to: root
 
 The units march in step and keep to the party's orders. The parades impress the neighbourhood, and the Left calls it the militarisation of the movement for the sake of display.
 
 @joint
-subtitle: No cost. · dev: y23_unity +1, kf_left_dissent +3
+subtitle: dev: y23_unity +1, kf_left_dissent +3
 on-arrival: y23_unity += 1; kf_left_dissent += 3
 go-to: root
 
