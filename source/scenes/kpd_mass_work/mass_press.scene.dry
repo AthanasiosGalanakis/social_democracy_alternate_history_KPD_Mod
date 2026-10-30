@@ -2,7 +2,6 @@ title: The party press
 subtitle: The Rote Fahne has more readers than the party has members.
 new-page: true
 is-card: true
-card-image: img/vorwarts_2.jpg
 frequency: 150
 tags: kpd_mass
 view-if: mass_press_timer <= 0
@@ -19,7 +18,7 @@ A daily newspaper explains events to the workers in the party's own terms, and i
 
 @campaign
 choose-if: resources >= 1
-subtitle: -1 resources · dev: resources −1, workers_kpd +2×m, unemployed_kpd +1×m
+subtitle: −1 resources · dev: resources −1, workers_kpd +2×m, unemployed_kpd +1×m
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; workers_kpd += 2*campaign_mult; unemployed_kpd += 1*campaign_mult
 go-to: root
@@ -27,7 +26,7 @@ go-to: root
 The paper prints letters from the factories and sets out the demands in plain language. Circulation rises. The paper that tells the workers what they already know about their lives is a better paper than the one that tells them what the Comintern thinks about them.
 
 @line
-subtitle: No cost. · dev: trust +3, kf_right_strength +1, workers_kpd −1
+subtitle: dev: trust +3, kf_right_strength +1, workers_kpd −1
 on-arrival: comintern_trust += 3; kf_right_strength += 1; workers_kpd -= 1
 go-to: root
 

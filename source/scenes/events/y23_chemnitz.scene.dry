@@ -20,7 +20,6 @@ A rising is not yet available in this version of the game.
 - @calloff: Call it off. The party cannot win this fight.
 
 @rising
-subtitle: Not implemented yet.
 choose-if: 1 = 0
 unavailable-subtitle: Not implemented yet.
 on-arrival: {!
@@ -61,7 +60,6 @@ Hundreds of workers are dead or arrested. The party is ruined, and Moscow will l
 - @root: Continue.
 
 @strike
-subtitle: Holds only if all three October conditions on the front page are met.
 on-arrival: {!
 window.KPD.refreshOctober(Q);
 if (Q.oct_ok == 1) {
@@ -93,7 +91,7 @@ The call is made and the strike does not leave the Communist districts. The Reic
 - @root: Continue.
 
 @calloff
-subtitle: The historical choice, and it cost the party dearly. Trust -10, Hamburg fights alone, the party is banned.[+ za_note +]
+subtitle: [+ za_note +]
 choose-if: za_lvl < 3
 unavailable-subtitle: The Left holds the Zentralausschuss and will not let the party retreat.
 on-arrival: {!

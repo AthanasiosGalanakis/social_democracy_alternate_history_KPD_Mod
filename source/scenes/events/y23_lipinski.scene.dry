@@ -19,7 +19,7 @@ Our motion of no confidence in Lipinski is on the order paper. The bourgeois par
 - @alt3: —
 
 @motion
-subtitle: The historical choice. Buck's cabinet resigns and stays on as caretaker. · dev: spd_relation −2, kf_left_dissent −2, d_saxony_org +2
+subtitle: dev: spd_relation −2, kf_left_dissent −2, d_saxony_org +2
 on-arrival: spd_relation -= 2; kf_left_dissent -= 2; d_saxony_org += 2
 go-to: root
 

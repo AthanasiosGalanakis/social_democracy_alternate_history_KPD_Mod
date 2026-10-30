@@ -2,7 +2,6 @@ title: Send a delegation to Moscow
 subtitle: Moscow decides more than we like. We can try to decide some of it back.
 new-page: true
 is-card: true
-card-image: img/international.jpg
 frequency: 150
 tags: kpd_party
 view-if: moscow_action_timer <= 0
@@ -24,7 +23,7 @@ Moscow's balance of power runs from -100 (the Left Opposition) to +100 (Stalin) 
 @radek_brief
 view-if: radek_advisor = 1
 choose-if: resources >= 1
-subtitle: Radek is in the leadership. · dev: resources −1, trust +5, moscow_balance −4
+subtitle: dev: resources −1, trust +5, moscow_balance −4
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; comintern_trust += 5; moscow_balance -= 4
 
@@ -32,7 +31,7 @@ Radek has Zinoviev's ear and Trotsky's friendship, and he uses both. The Executi
 
 @back_opposition
 choose-if: resources >= 2
-subtitle: -2 resources, -9 on the balance of power, -6 trust · dev: resources −2, moscow_balance −9, trust −6
+subtitle: −2 resources · dev: resources −2, moscow_balance −9, trust −6
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 2; moscow_balance -= 9; comintern_trust -= 6
 
@@ -40,14 +39,14 @@ We argue the Left Opposition's case in the corridors of the Comintern: that the 
 
 @back_apparatus
 choose-if: resources >= 2
-subtitle: -2 resources, +8 on the balance of power, +4 trust · dev: resources −2, moscow_balance +8, trust +4
+subtitle: −2 resources · dev: resources −2, moscow_balance +8, trust +4
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 2; moscow_balance += 8; comintern_trust += 4
 
 We lend our voices to the majority in the Russian party. The Secretariat is grateful and says so. It is also the faction that will remember, when the time comes, who was useful and who was not.
 
 @report_loyal
-subtitle: No cost, +5 trust · dev: trust +5
+subtitle: dev: trust +5
 on-arrival: comintern_trust += 5
 
 A full, careful report goes to the ECCI. It says what they wish to read, and it is an easy way to buy their goodwill, if the cost of goodwill is that Moscow will see Germany as it sees us, not as it is.

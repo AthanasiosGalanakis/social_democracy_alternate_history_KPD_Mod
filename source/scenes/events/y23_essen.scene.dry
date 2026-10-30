@@ -17,7 +17,7 @@ The answer is an appeal: against the French occupation, and against Cuno, who wi
 - @alt3: —
 
 @appeal
-subtitle: The historical choice. Moscow approves, the Left grumbles. · dev: trust +4, workers_kpd +1×m, kf_left_dissent +2
+subtitle: dev: trust +4, workers_kpd +1×m, kf_left_dissent +2
 on-arrival: comintern_trust += 4; workers_kpd += 1*campaign_mult; kf_left_dissent += 2
 go-to: root
 

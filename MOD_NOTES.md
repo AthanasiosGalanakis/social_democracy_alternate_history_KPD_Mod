@@ -185,3 +185,10 @@ Facts in the hover cards and tabs that still need checking:
 - Checked: Paris conference 2-4 Jan, dollar 7,525 (3 Jan) and 23,000 (18 Jan), default 9 Jan, Memel 10 Jan, deliveries halted 12 Jan, occupation of Bochum and Dortmund 15 Jan, Thyssen court-martial 24 Jan, NSDAP party day 27-29 Jan (LeMO 1923 chronicle); Buck's fall on 30 Jan on a KPD motion against Lipinski with all bourgeois votes (gonschior.de, Sachsen 1918-1933); Reichstag backing for Cuno 284 to 12 with the Communists against (derfunke.de).
 - To verify: the 284 to 12 vote's date (placed on 13 Jan, Cuno's declaration); Bavaria's state of emergency and the rally ban before the party day, and how Hitler got his parade; the second conference called at Essen (placed "in the spring").
 - Organs: the Zentrale shows Members, Right and Left; the Zentralausschuss shows members only.
+
+## UI pass, 30 October 2026
+- Choice subtitles: the base game puts grey text under about 40% of its options, the dynamic mod under 38%; we had 81%. Option subtitles now carry only a resource cost (and the Zentralausschuss note); the effects stay in the dev notes.
+- The völkisch slot is labelled DVFP (Graefe, Wulle, Henning: the völkisch party in the Reichstag). Set `Q.volk_nsdap = 1` when the NSDAP becomes the bigger of the two and the label switches to NSDAP everywhere.
+- The KPD takes the colour of the faction holding the line (body class `line-right` / `line-left`).
+- Die Rote Fahne items are `[month, turn, date, article]`, no headlines; the page shows the newest four as date, then text.
+- Card images were removed from every card; Maarten will add his own.

@@ -2,7 +2,6 @@ title: Workers' relief
 subtitle: Solidarity is also a kind of politics.
 new-page: true
 is-card: true
-card-image: img/arbeiterbew.jpg
 frequency: 150
 tags: kpd_mass
 view-if: mass_relief_timer <= 0
@@ -19,7 +18,7 @@ Willi Münzenberg's International Workers' Aid collects for strikers, for the st
 
 @kitchens
 choose-if: resources >= 1
-subtitle: -1 resources · dev: resources −1, unemployed_kpd +3×m, workers_kpd +2×m, trust +1
+subtitle: −1 resources · dev: resources −1, unemployed_kpd +3×m, workers_kpd +2×m, trust +1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; unemployed_kpd += 3*campaign_mult; workers_kpd += 2*campaign_mult; comintern_trust += 1
 go-to: root
@@ -27,7 +26,7 @@ go-to: root
 The kitchens are run by volunteers and fed by collections. A hot meal is not a revolution, and a party that does nothing about hunger has no standing to talk about revolution.
 
 @collection
-subtitle: No cost. · dev: resources +1, y23_unity +1
+subtitle: dev: resources +1, y23_unity +1
 on-arrival: resources += 1; y23_unity += 1
 go-to: root
 

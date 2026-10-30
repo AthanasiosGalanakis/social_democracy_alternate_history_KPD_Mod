@@ -827,18 +827,18 @@
     return scale(x || 0, [[5, 'hostile'], [15, 'frigid'], [30, 'cold'], [40, 'cool'], [55, 'neutral'], [65, 'warm'], [75, 'friendly'], [1e9, 'very friendly']]);
   };
 
-  // Die Rote Fahne: side news, at home and abroad, that is not worth an event. [month, turn of the month
-  // (weeks in January, halves after), date, headline, article]. The newest item is the lead article.
+  // Die Rote Fahne: side news, at home and abroad, that is not worth an event. No headlines:
+  // [month, turn of the month (weeks in January, halves after), date, article]. Newest first on the page.
   KPD.NEWS_1923 = [
-    [1, 1, '1 January', 'The year 1923 begins', 'The mark is falling and the French stand on the Rhine. The party meets the year divided.'],
-    [1, 1, '3 January', 'The dollar at 7,525 marks', 'A week\'s wage buys less than it did at Christmas, and the shops mark up their prices twice a week.'],
-    [1, 1, '4 January', 'The Paris conference fails', 'Britain proposed a four-year moratorium on reparations. Poincaré refused it and spoke of productive pledges: the mines of the Ruhr.'],
-    [1, 2, '10 January', 'Lithuania takes Memel', 'Lithuanian irregulars seize the Memel territory from its Allied administrators.'],
-    [1, 2, '12 January', 'No more coal for France', 'The Reich halts all reparation and in-kind deliveries to France and Belgium.'],
-    [1, 3, '15 January', 'Bochum and Dortmund occupied', 'French troops push east to Bochum, Witten, Recklinghausen and Dortmund. The whole coalfield is under occupation.'],
-    [1, 3, '18 January', 'The dollar at 23,000 marks', 'The mark has lost two thirds of its value since the troops came. Wages are paid on Friday and spent on Friday.'],
-    [1, 4, '24 January', 'Thyssen before a French court', 'A court-martial in Mainz fines Fritz Thyssen and other mine owners for refusing to deliver coal. The bourgeois press makes martyrs of them. They keep their mines; their miners lose their wages.'],
-    [1, 4, '27 January', 'The Nazis march in Munich', 'The NSDAP holds its first Reich party day. The Bavarian government declared a state of emergency and banned rallies in the open air, then let Hitler have his parade after all. Munich\'s "cell of order" protects the order of the leagues.']
+    [1, 1, '1 January', 'The new year opens on a falling mark and French troops on the Rhine. In the working-class districts the holiday was short: rents, bread and coal all rose over Christmas, and the wage negotiated in December is already worth less than the paper it was written on. The bourgeois papers wish their readers a year of national unity. Unity with whom, and paid for by whom, they do not say.'],
+    [1, 1, '3 January', 'The dollar stands at 7,525 marks in Berlin. A week\'s wage buys less than it did at Christmas, and the shops mark up their prices twice a week. The housewife who queues at noon pays more than the one who queued at nine. Only those who own goods, land or foreign money are safe; the industrialists who borrow marks and repay them in rubbish are doing better than safe.'],
+    [1, 1, '4 January', 'The reparations conference in Paris has broken up. Britain proposed a moratorium of four years. Poincaré refused it and spoke instead of "productive pledges", by which he means the mines and coke ovens of the Ruhr. The French steelmasters want German coal; the German coal barons want to sell it dear. Between them stand the miners, who will be told by both governments that the nation needs them to suffer.'],
+    [1, 2, '10 January', 'Lithuanian irregulars have crossed into the Memel territory, which the Allies have administered since Versailles, and are marching on the town. The small French garrison has offered little resistance. The great powers redraw the map of the Baltic with volunteers and faits accomplis, and the German nationalist press, which never objected to borders drawn by German bayonets, discovers the right of peoples to decide their fate.'],
+    [1, 2, '12 January', 'In answer to the occupation, the Reich government has stopped all reparation payments and deliveries in kind to France and Belgium, coal included. Berlin calls it resistance. The coal still lies at the pitheads; the mine owners keep their profits and their accounts abroad, and the bill for the "national struggle" will be sent, as always, to those who dig.'],
+    [1, 3, '15 January', 'French troops have pushed east to Bochum, Witten, Recklinghausen and Dortmund. The whole coalfield is now under occupation, with machine guns at the colliery gates and the mine offices requisitioned. In Bochum the miners have been told by their employers to obey Berlin and by the French to obey Paris. The miners\' unions ask who will pay the wages while the two governments argue over the coal.'],
+    [1, 3, '18 January', 'The dollar has reached 23,000 marks. The mark has lost two thirds of its value since the troops crossed the line. Wages are paid on Friday and spent on Friday, before the evening rate comes in. The Reichsbank prints, the speculators buy dollars with what it prints, and the government blames the French for the speed of the presses.'],
+    [1, 4, '24 January', 'A French court-martial at Mainz has fined Fritz Thyssen and other Ruhr mine owners for refusing to deliver coal to the occupiers. The bourgeois press makes martyrs of them; crowds sang outside the court. The martyrs keep their mines and their fortunes. Their miners, who refuse the same orders without a court or a crowd, lose their wages.'],
+    [1, 4, '27 January', 'The NSDAP has opened its first Reich party day in Munich. The Bavarian government declared a state of emergency and banned open-air rallies, then allowed Hitler his parade and his twelve meetings after all. Storm troops in field grey marched past him with their flags. Munich\'s "cell of order" keeps order for the leagues and against the workers; the völkisch movement learns that the Bavarian state will bend to it.']
   ];
   // news from abroad for the paper's column, by month of 1923
   KPD.WORLD_1923 = [
@@ -852,7 +852,7 @@
     [10, 'October', 'The Republic of Turkey is proclaimed, with Mustafa Kemal as president.'],
     [12, 'December', 'A British election leaves no party a majority; Labour may form a government.']
   ];
-  KPD.WORLD_1923.forEach(function(w) { KPD.NEWS_1923.push([w[0], 1, w[1], w[2], '']); });
+  KPD.WORLD_1923.forEach(function(w) { KPD.NEWS_1923.push([w[0], 1, w[1], w[2]]); });
   KPD.paperNews = function(Q) {
     if (Q.year != 1923) { return KPD.NEWS_1923.slice().reverse(); }
     var sub = Q.sub || 1;

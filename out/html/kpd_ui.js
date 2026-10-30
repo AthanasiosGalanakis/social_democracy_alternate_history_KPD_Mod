@@ -15,9 +15,14 @@
     kpd: ['KPD', 'Communist Party of Germany'], spd: ['SPD', 'Social Democratic Party of Germany'],
     z: ['Z', 'Centre Party'], bvp: ['BVP', 'Bavarian People\'s Party'], ddp: ['DDP', 'German Democratic Party'],
     dvp: ['DVP', 'German People\'s Party'], dnvp: ['DNVP', 'German National People\'s Party'],
-    nsdap: ['Völkisch', 'The völkisch right: the DVFP in the Reichstag, the NSDAP in Bavaria'],
+    nsdap: ['DVFP', 'German Völkisch Freedom Party'],
     agr: ['Agrarians', 'Farmers\' and rural leagues'], other: ['Others', 'Smaller parties']
   };
+  // the völkisch slot shows whichever of the two parties is bigger: the DVFP, which sits in the
+  // Reichstag, until Q.volk_nsdap says the NSDAP has overtaken it
+  var VOLK = {dvfp: ['DVFP', 'German Völkisch Freedom Party'], nsdap: ['NSDAP', 'National Socialist German Workers\' Party']};
+  var volk = function() { try { return VOLK[Qnow().volk_nsdap ? 'nsdap' : 'dvfp']; } catch (e) { return VOLK.dvfp; } };
+  var party = function(p) { return p == 'nsdap' ? volk() : PARTY[p]; };
   var SEAT_ORDER = ['kpd', 'spd', 'ddp', 'z', 'bvp', 'agr', 'dvp', 'other', 'dnvp', 'nsdap'];
   var FACTION = {right: ['Right', 'Brandler, Thalheimer, Walcher'], centre: ['Centre', 'Meyer, Zetkin, Pieck, Eberlein'],
                  left: ['Left', 'Fischer, Maslow, Thälmann, Scholem']};
@@ -211,11 +216,9 @@
   UI.news = function(Q) {
     var html = '<div class="rf-mast">Die Rote Fahne</div>' + '<p class="rf-sub">' + esc(Q.date_label) + '</p>';
     // side news only: the newest item is the lead article, the three before it are short items
-    var news = KPD.paperNews(Q);
-    var lead = news.filter(function(n) { return n[4]; })[0] || news[0];
-    if (lead) { html += '<p class="rf-lead"><b>' + esc(lead[3]) + '.</b> ' + esc(lead[4]) + '</p>'; }
-    news.filter(function(n) { return n !== lead; }).slice(0, 3).forEach(function(n) {
-      html += '<hr><p><span class="rf-date">' + esc(n[2]) + '</span> ' + esc(n[3]) + (n[4] ? '.' : '') + '</p>';
+    // side news only, no headlines: the date, then the article; the newest four
+    KPD.paperNews(Q).slice(0, 4).forEach(function(n, i) {
+      html += (i ? '<hr>' : '') + '<p class="rf-item"><span class="rf-date">' + esc(n[2]) + '</span>' + esc(n[3]) + '</p>';
     });
     html += '<hr><p class="rf-foot">Dollar: ' + esc(Q.usd_rate) + ' marks</p>';
     return html;
@@ -258,7 +261,7 @@
     return '<span class="khov' + (cls ? ' ' + cls : '') + '" tabindex="0" data-hov="' + esc(key) + '">' + label + '</span>';
   };
   var tip = function(text, title) { return '<span class="khov" tabindex="0" data-tip="' + esc(title) + '">' + text + '</span>'; };
-  var pname = function(p) { return (PARTY[p] || [p])[0]; };
+  var pname = function(p) { return (party(p) || [p])[0]; };
   var pspan = function(p, text) { return '<span class="party p-' + (p == 'z' ? 'zentrum' : p) + '">' + (text || esc(pname(p))) + '</span>'; };
   UI.partyName = function(p) { return hov(pspan(p), 'party:' + p); };
 
@@ -278,7 +281,7 @@
     bvp: ['Bavarian Catholic conservatism', 'Federalism, the Church and order in Bavaria. Broke with the Centre in 1920; its governments in Munich shelter the armed leagues.'],
     dvp: ['National liberalism', 'The party of heavy industry and the export trade: free enterprise, the end of the eight-hour day and a cautious peace with the Republic.'],
     dnvp: ['National conservatism', 'The monarchy, the Junker estates, the officer corps and anti-Semitism. Wants Versailles torn up and the Republic overthrown.'],
-    nsdap: ['Völkisch nationalism', 'Race hatred, the "stab in the back" and the armed street league: fascism in its first German form. The DVFP sits in the Reichstag; Hitler\'s NSDAP marches in Munich.'],
+    nsdap: ['Völkisch nationalism', 'Race hatred, the "stab in the back" and the armed street league: fascism in its first German form. The DVFP of Graefe and Wulle sits in the Reichstag; Hitler\'s NSDAP, its ally, marches in Munich and stands in no Reich election.'],
     other: ['Various', 'Regional, agrarian and single-issue groups.']
   };
   // People: [name, years, party, faction or '', text]. No portraits yet: we only use fully free
@@ -327,7 +330,7 @@
     if (kind == 'party') {
       var cab = KPD.cabinet(Q), role = cab.parties.indexOf(id) >= 0 ? 'in government' : cab.tolerated.indexOf(id) >= 0 ? 'tolerates the cabinet' : 'opposition';
       if (id == 'kpd' && Q.kpd_banned) { role = 'banned'; }
-      return head(pspan(id, esc(PARTY[id][1])), esc(PARTY[id][0])) + '<div class="khv-body">' +
+      return head(pspan(id, esc(party(id)[1])), esc(party(id)[0])) + '<div class="khv-body">' +
         (LEADER[id] ? row('Leader', esc(PEOPLE[LEADER[id]][0])) : '') +
         (IDEOLOGY[id] ? row('Ideology', esc(IDEOLOGY[id][0])) : '') +
         (seats[id] ? row('Reichstag', seats[id] + ' seats, ' + (100 * seats[id] / total).toFixed(1) + '%') : '') +
@@ -525,7 +528,8 @@
     var html = '<h1>Inter-party relations</h1>';
     ['spd', 'ddp', 'z', 'bvp', 'dvp', 'dnvp', 'nsdap'].forEach(function(p) {
       var r = Q[p + '_relation'] || 0;
-      html += line(UI.partyName(p) + ': ' + sc(KPD.relationWord(r), 4 - lvl(r, [15, 30, 40, 55])));
+      var w = KPD.relationWord(r);
+      html += line(UI.partyName(p) + ': <span class="krel krel-' + w.replace(/ /g, '-') + '">' + esc(w) + '</span>');
     });
     html += '<h1>Party leadership</h1><table class="ktable kleaders">';
     LEFT_RIGHT.forEach(function(p) {
@@ -535,7 +539,10 @@
     });
     html += '</table>';
     html += '<h1>The Länder</h1>';
-    KPD.LAND_ORDER.forEach(function(l) { html += line(esc(KPD.LANDS[l].name) + ': ' + esc(KPD.landGov(Q, l))); });
+    KPD.LAND_ORDER.forEach(function(l) {
+      html += '<div class="kland-sb"><p class="kland-sb-name">' + esc(KPD.LANDS[l].name) + '</p>' +
+        '<p class="kland-sb-gov">' + tip(esc(KPD.landGovShort(Q, l)), KPD.landGov(Q, l)) + '</p></div>';
+    });
     return html;
   };
 
@@ -569,7 +576,7 @@
     var html = '<h1>Official organisations</h1>';
     F.filter(function(f) { return f.kind == 'official'; }).forEach(function(f) {
       html += '<div class="kforce"><p class="kforce-name">' + name(f) + '</p>' +
-        line('Strength: ' + sc(f.str[0], f.str[1])) + line('Loyalty: ' + sc(f.loyal[0], f.loyal[1])) + '</div>';
+        line('Strength: ' + sc(f.str[0], f.str[1])) + line(tip('Loyalty', 'Loyalty to the government in Berlin: whether this force would carry out the Reich government\'s orders, against the Left and against the Right') + ': ' + sc(f.loyal[0], f.loyal[1])) + '</div>';
     });
     html += '<h1>Paramilitaries</h1>';
     F.filter(function(f) { return f.kind == 'para'; }).forEach(function(f) {
@@ -584,19 +591,22 @@
 
   // ---- Polls ---------------------------------------------------------------------------------
   UI.sidebarPolls = function(Q) {
-    var order = ['kpd', 'spd', 'ddp', 'z', 'dvp', 'dnvp', 'nsdap', 'other'];
+    // always these seven, in this order, even below one per cent
+    var order = ['kpd', 'spd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap'];
+    var label = function(p) { return p == 'z' ? 'Z + BVP' : pname(p); };
     var html = '<h1>Projected results</h1>' + line('<span class="kdim">If the election were held now:</span>') + '<table class="ktable kseats">';
     order.forEach(function(p) {
-      html += '<tr class="khov-row" tabindex="0" data-hov="party:' + p + '"><td><span class="kswatch bgf-' + p + '"></span>' + pspan(p, p == 'z' ? 'Z + BVP' : '') +
+      html += '<tr class="khov-row" tabindex="0" data-hov="party:' + p + '"><td><span class="kswatch bgf-' + p + '"></span>' + pspan(p, esc(label(p))) +
         '</td><td class="knum">' + (Q[p + '_votes'] || 0) + '%</td></tr>';
     });
     html += '</table><h1>Result per demographic</h1>';
     var names = {workers: 'Workers', unemployed: 'Unemployed', new_middle: 'New middle class', old_middle: 'Old middle class', rural: 'Rural', catholics: 'Catholics'};
     Q.classes.forEach(function(c) {
-      html += '<p class="kdemo"><b>' + names[c] + '</b><br>' + order.filter(function(p) { return (Q[c + '_' + p + '_display'] || 0) >= 1; })
-        .map(function(p) { return pspan(p, esc(pname(p)) + ' ' + Q[c + '_' + p + '_display'] + '%'); }).join(' · ') + '</p>';
+      html += '<p class="kdemo-h">' + names[c] + '</p><table class="ktable kseats kdemo-t">' + order.map(function(p) {
+        return '<tr><td><span class="kswatch bgf-' + p + '"></span>' + pspan(p, esc(label(p))) + '</td><td class="knum">' + (Q[c + '_' + p + '_display'] || 0) + '%</td></tr>';
+      }).join('') + '</table>';
     });
-    return html + line('<span class="kdim">Z includes the BVP.</span>');
+    return html;
   };
 
   // ---- Filling the placeholders -----------------------------------------------------------
@@ -604,6 +614,7 @@
     var Q = Qnow();
     UI.initHover();
     KPD.migrate(Q);
+    ['right', 'left', 'centre'].forEach(function(f) { document.body.classList.toggle('line-' + f, (Q.party_line || 'right') == f); });
     var els = (root || document).querySelectorAll('.kpd-insert');
     Array.prototype.forEach.call(els, function(el) {
       var kind = el.getAttribute('data-insert'), arg = el.getAttribute('data-arg');

@@ -13,7 +13,7 @@ In May a wave of wage strikes spreads through the Ruhr coalfield. The miners are
 - @support: Support the strikers from outside, with funds and leaflets.
 
 @lead
-subtitle: Costs 1 resources. · dev: resources −1, y23_strikes +1, workers_kpd +4×m, workers_spd −2, kf_left_strength +2
+subtitle: dev: resources −1, y23_strikes +1, workers_kpd +4×m, workers_spd −2, kf_left_strength +2
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; y23_strikes += 1; workers_kpd += 4*campaign_mult; workers_spd -= 2; kf_left_strength += 2

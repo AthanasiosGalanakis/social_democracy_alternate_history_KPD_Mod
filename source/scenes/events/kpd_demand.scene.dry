@@ -30,7 +30,7 @@ The faction is angry enough that its adviser will not take silence for an answer
 @concede_right
 title: Grant it: more patience and joint action
 view-if: dm_f = "right"
-subtitle: The united front comes first. · dev: y23_unity +1, kf_right_dissent −15, kf_left_dissent +6, trust +2
+subtitle: dev: y23_unity +1, kf_right_dissent −15, kf_left_dissent +6, trust +2
 on-arrival: demand_right_timer = 4; y23_unity += 1; kf_right_dissent -= 15; kf_left_dissent += 6; comintern_trust += 2
 go-to: root
 
@@ -39,7 +39,7 @@ We commit the party to joint action first. The Right is satisfied, and the Left 
 @concede_left
 title: Grant it: arm the Hundreds
 view-if: dm_f = "left"
-subtitle: The offensive is not shelved. · dev: y23_hundreds +1, rfb_strength +20, kf_left_dissent −15, kf_right_dissent +6, trust −3
+subtitle: dev: y23_hundreds +1, rfb_strength +20, kf_left_dissent −15, kf_right_dissent +6, trust −3
 on-arrival: demand_left_timer = 4; y23_hundreds += 1; rfb_strength += 20; kf_left_dissent -= 15; kf_right_dissent += 6; comintern_trust -= 3
 go-to: root
 
@@ -48,7 +48,7 @@ We order the districts to drill and arm the units. The Left is satisfied. The Ri
 @concede_centre
 title: Grant it: settle the line and the unity
 view-if: dm_f = "centre"
-subtitle: The quarrel is stopped by decree. · dev: kf_centre_dissent −10, kf_right_dissent −4, kf_left_dissent −4, workers_kpd −1
+subtitle: dev: kf_centre_dissent −10, kf_right_dissent −4, kf_left_dissent −4, workers_kpd −1
 on-arrival: demand_centre_timer = 4; kf_centre_dissent -= 10; kf_right_dissent -= 4; kf_left_dissent -= 4; workers_kpd -= 1
 go-to: root
 
@@ -57,21 +57,21 @@ A plenum is called and a resolution is passed. The meetings take a month of the 
 @refuse_right
 title: Refuse
 view-if: dm_f = "right"
-subtitle: The Right will not forget it. · dev: kf_right_dissent +5
+subtitle: dev: kf_right_dissent +5
 on-arrival: demand_right_timer = 4; kf_right_dissent += 5
 go-to: leave_check
 
 @refuse_left
 title: Refuse
 view-if: dm_f = "left"
-subtitle: The Left will not forget it. · dev: kf_left_dissent +5
+subtitle: dev: kf_left_dissent +5
 on-arrival: demand_left_timer = 4; kf_left_dissent += 5
 go-to: leave_check
 
 @refuse_centre
 title: Refuse
 view-if: dm_f = "centre"
-subtitle: The Centre will not forget it. · dev: kf_centre_dissent +5
+subtitle: dev: kf_centre_dissent +5
 on-arrival: demand_centre_timer = 4; kf_centre_dissent += 5
 go-to: leave_check
 
