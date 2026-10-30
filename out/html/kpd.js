@@ -749,7 +749,8 @@
     ruhr: {house: 'Reichstag, 13 January 1923', question: 'Confidence in Cuno\'s policy of passive resistance',
       seats: null, need: 'majority',
       sides: function(Q) { return {spd: 'yes', z: 'yes', bvp: 'yes', ddp: 'yes', dvp: 'yes', dnvp: 'yes', nsdap: 'yes', other: 'yes', kpd: 'no'}; },
-      note: 'Recorded vote: 284 to 12. Every party but ours stands behind the chancellor.'},
+      recorded: {yes: 284, no: 12},
+      note: 'Every party but ours stands behind the chancellor. Only the deputies present are drawn.'},
     lipinski: {house: 'Saxon Landtag, 30 January 1923', question: 'No confidence in Interior Minister Lipinski (SPD)',
       seats: KPD.SAXONY_SEATS, need: 'majority',
       sides: function(Q) { return {kpd: 'yes', ddp: 'yes', dvp: 'yes', dnvp: 'yes', spd: 'no'}; },
@@ -767,7 +768,23 @@
       sides: function(Q) { return {spd: 'no', kpd: Q.conf_kpd || 'no', dnvp: 'no', nsdap: 'no', z: 'yes', bvp: 'yes', ddp: 'yes', dvp: 'yes', other: 'abstain'}; },
       note: 'The SPD votes against the man who sent the Reichswehr into Saxony and left Bavaria alone. It had kept him in office until the work was done.'}
   };
-  KPD.voteSeats = function(Q, id) { return KPD.VOTES[id].seats || Q.rt_seats; };
+  // A vote with a recorded count draws only the deputies who voted, shared out by party
+  // (largest remainder) among the parties on each side.
+  KPD.voteSeats = function(Q, id) {
+    var V = KPD.VOTES[id], seats = V.seats || Q.rt_seats;
+    if (!V.recorded) { return seats; }
+    var sides = V.sides(Q), out = {};
+    ['yes', 'no', 'abstain'].forEach(function(side) {
+      var n = V.recorded[side] || 0, ps = Object.keys(seats).filter(function(p) { return (sides[p] || 'abstain') == side; });
+      var total = ps.reduce(function(a, p) { return a + seats[p]; }, 0);
+      if (!n || !total) { return; }
+      var rest = [], given = 0;
+      ps.forEach(function(p) { var x = n * seats[p] / total; out[p] = Math.floor(x); given += out[p]; rest.push([x - out[p], p]); });
+      rest.sort(function(a, b) { return b[0] - a[0]; });
+      for (var i = 0; given < n; i++, given++) { out[rest[i][1]] += 1; }
+    });
+    return out;
+  };
 
   // The front page: an event's title becomes the headline, its subtitle the line beneath.
   KPD.headline = function(Q, scene) {

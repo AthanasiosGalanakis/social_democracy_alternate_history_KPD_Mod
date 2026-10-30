@@ -74,6 +74,7 @@
   // TODO: update audio displays
   window.updateAudio = function(song) {
       var now_playing = document.getElementById('currently_playing');
+      if (!now_playing) { return; }
       if (song) {
           var a = song.split('/');
           now_playing.textContent = a[a.length-1];
@@ -231,6 +232,30 @@
     } else {
         $('#light_mode')[0].checked = true;
     }
+    $(window.devMode() ? '#dev_yes' : '#dev_no')[0].checked = true;
+  };
+
+  // The dev toggle shows the Dev tab beside the other sidebar tabs and the "dev:" notes in option
+  // subtitles. Off by default; remembered in this browser.
+  window.devMode = function() {
+      try { return window.localStorage.getItem('kpd_dev') == '1'; } catch (e) { return false; }
+  };
+  window.setDevMode = function(on) {
+      try { window.localStorage.setItem('kpd_dev', on ? '1' : '0'); } catch (e) {}
+      document.body.classList.toggle('dev-on', !!on);
+      if (!on && window.statusTab == 'status.dev') { window.changeTab('status', 'main_tab'); }
+  };
+  // wrap the "dev: ..." tail of every option subtitle so the toggle can hide it
+  window.markDevNotes = function(root) {
+      $(root || document).find('.subtitle, .choice-subtitle').each(function() {
+          if (this.dataset.devMarked) { return; }
+          this.dataset.devMarked = '1';
+          var html = this.innerHTML, i = html.indexOf('dev:');
+          if (i < 0) { return; }
+          var j = html.lastIndexOf('·', i);
+          var start = (j >= 0 && i - j < 4) ? j : i;
+          this.innerHTML = html.slice(0, start) + '<span class="kdev">' + html.slice(start) + '</span>';
+      });
   };
 
   
@@ -422,6 +447,7 @@
       if (!opening) { window.arrangeLeadership(); }
       // maps, votes and charts are drawn into their placeholders
       window.KPD.UI.renderInserts(document.getElementById('content'));
+      window.markDevNotes(document.getElementById('content'));
       window.colourParties();
       if (!opening) {
           window.updateSidebar();
@@ -490,14 +516,13 @@
     if (window.dendryUI.dark_mode) {
         document.body.classList.add('dark-mode');
     }
-    if (!window.dendryUI.font_size) { window.dendryUI.font_size = 1.1; }
-    if (window.dendryUI.font_size != 1.1) {
-        var fs = window.dendryUI.font_size;
-        var sidebar_fs = fs - 0.1;
-        document.getElementById("content").setAttribute("style", "font-size: " + fs + "em;");
-        document.getElementById("stats_sidebar").setAttribute("style", "font-size: " + sidebar_fs + "em;");
+    window.dendryUI.font_size = 1.1;
+    document.body.classList.toggle('dev-on', window.devMode());
+    // choices are drawn after the page text, so watch the content for new subtitles
+    var content = document.getElementById('content');
+    if (content && window.MutationObserver) {
+        new MutationObserver(function() { window.markDevNotes(content); }).observe(content, {childList: true, subtree: true});
     }
-    document.getElementById('font_size_value').textContent = window.dendryUI.font_size.toFixed(1) + "em";
     window.pinnedCardsDescription = "Advisor cards - actions are only usable once per 6 months.";
   };
 
