@@ -8,15 +8,15 @@
     <title>KPD: An Alternate History (working title)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap">
-    <link rel="stylesheet" type="text/css" href="game.css?v=20261030b">
+    <link rel="stylesheet" type="text/css" href="game.css?v=20261030c">
     <script src="jquery-1.11.1.min.js"></script>
     <script src="d3.v7.min.js"></script>
     <script src="d3-parliament.js"></script>
     <script src="d3-linegraph.js"></script>
-    <script src="core.js?v=20261030b"></script>
-    <script src="kpd.js?v=20261030b"></script>
-    <script src="kpd_ui.js?v=20261030b"></script>
-    <script src="game.js?v=20261030b"></script>
+    <script src="core.js?v=20261030c"></script>
+    <script src="kpd.js?v=20261030c"></script>
+    <script src="kpd_ui.js?v=20261030c"></script>
+    <script src="game.js?v=20261030c"></script>
   </head>
   <body>
     <div class="background" id="bg2">
@@ -28,25 +28,6 @@
     <div id="options" class="overlay options" style="display: none;">
 
         <div class="overlay_top">
-        <div class="music_player">
-            <h3 id="music_header_text">Music</h3>
-            <p><span id="currently_playing_text">Currently playing:</span> <span id="currently_playing"></span></p>
-            <p><label for="volume" id="volume_label">Volume:</label><input style="vertical-align:-0.25em;" type="range" min="0" max="100" value="100" id="volume" name="volume" oninput="window.setVolume(this.value);"></p>
-
-            <!-- icon sources: https://icons.getbootstrap.com/ -->
-            <p style="text-align: center;">
-            <button id="pause-button" class="icon-button" onclick="window.togglePausePlay();">
-                <span id="pause-button-image" class="button-image"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
-  <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5"/> </svg></span>
-                <span id="play-button-image" class="button-image" style='display: none;'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-  <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/></svg></span>
-                <span id="pause-button-text">Pause</span></button>
-            <button class="icon-button" onclick="window.shuffle();"><span class="button-image"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-skip-forward-fill" viewBox="0 0 16 16">
-  <path d="M15.5 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V8.753l-6.267 3.636c-.54.313-1.233-.066-1.233-.697v-2.94l-6.267 3.636C.693 12.703 0 12.324 0 11.693V4.308c0-.63.693-1.01 1.233-.696L7.5 7.248v-2.94c0-.63.693-1.01 1.233-.696L15 7.248V4a.5.5 0 0 1 .5-.5"/>
-        </svg></span>
-        <span id="next_song_text">Next song</span></button>
-            </p>
-        </div>
             <h3 id="settings_text">Settings</h3>
             <table>
                 
@@ -154,18 +135,20 @@
                     <td> <hr> </td>
                 </tr>
                 <tr>
-                    <td id="font_size_text">
-                        Font size:
-                    </td>
-
-                    <td colspan=2>
-                        <button onclick="window.decreaseFontSize();" id="decrease_font_button"><b>-</b> Decrease font size</button>
-                    </td>
-                    <td colspan=2>
-                        <button onclick="window.increaseFontSize();" id="increase_font_button"><b>+</b> Increase font size</button>
+                    <td id="dev_toggle_text">
+                        Dev tab:
                     </td>
                     <td>
-                        <span id="font_size_value"></span>
+                        <label class="label_on" for="dev_yes">On</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="dev_yes" name="devmode" value="1" onclick="window.setDevMode(true);">
+                    </td>
+                    <td>
+                        <label class="label_off" for="dev_no">Off</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="dev_no" name="devmode" value="0" onclick="window.setDevMode(false);">
                     </td>
                 </tr>
                 <tr>

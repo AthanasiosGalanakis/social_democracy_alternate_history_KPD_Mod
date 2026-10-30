@@ -420,8 +420,8 @@
       line('Chancellor: ' + (ch ? UI.person(ch) : esc(Q.chancellor)) + ' (' +
         (cp == 'i' ? tip('<b>I</b>', 'Independent: belongs to no party') : UI.partyName(cp)) + ')') +
       line('Cabinet: ' + hov(esc(cab.short), 'cabinet:now'));
-    html += '<h1>Reichstag composition</h1>' + UI.seatList(Q.rt_seats) +
-      line('<span class="kdim">Elected June 1920.</span>') + line('<span class="kdim">Next election: ' + KPD.MONTHS[Q.next_election_month - 1] + ' ' + Q.next_election_year + '</span>');
+    html += '<h1>Reichstag composition</h1>' +
+      '<p class="kelected">Elected June 1920 · next ' + KPD.MONTHS[Q.next_election_month - 1] + ' ' + Q.next_election_year + '</p>' + UI.seatList(Q.rt_seats);
     html += '<h1>Economy</h1>' + '<p class="kwip">In progress</p>';
     return html;
   };
